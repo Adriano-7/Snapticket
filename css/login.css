@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+*{
+  background-color: #111111;
+  font-family: 'Lato', sans-serif;
+  color: white;
+}
+
+.login_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.login_container .left{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.login_container .left img:first-child {
+    margin: 2rem;
+}
+
+.login_container .left img:last-child {
+    margin-top: 4em;
+    margin-bottom: 4em;
+    margin-left: 5em;
+}
+
+.login_container .left h1 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.login_container .right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login_container .right>h1 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 0rem;
+}
+
+.login_container .right>h2 {
+    margin-top: 0;
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 2rem;
+}
+
+.login_container .right form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.login_container .right form input[type="text"],
+.login_container .right form input[type="password"]{
+  border-radius: 20px;
+  color: black;
+  background-color: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  width: 50%;
+  border: none;
+  outline: none;
+}
+
+.login_container .right form button[type="submit"]{
+  background-color: #82B7DC;
+  color: white;
+  border-radius: 20px;
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 55%;
+  border: none;
+  cursor: pointer;
+}
+
+.login_container .right form button[type="submit"]:hover{
+  background-color: #006699;
+}
+
+.login_container .right form p {
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .login_container .right form p a {
+    color: #82B7DC;
+    text-decoration: none;
+  }
+  
