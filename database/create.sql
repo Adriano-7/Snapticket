@@ -22,7 +22,8 @@ DROP TABLE IF EXISTS Client;
 CREATE TABLE Client (
     name TEXT NOT NULL, 
     username TEXT PRIMARY KEY, 
-    email TEXT, password TEXT
+    email TEXT, 
+    password TEXT
 );
 
 DROP TABLE IF EXISTS Comment;
@@ -68,6 +69,7 @@ CREATE TABLE Question (
 DROP TABLE IF EXISTS Ticket;
 CREATE TABLE Ticket (
     ticket_id INTEGER PRIMARY KEY, 
+    ticket_name TEXT,
     date TEXT, 
     priority TEXT, 
     assignee TEXT, 
