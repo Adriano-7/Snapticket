@@ -71,4 +71,14 @@ INSERT INTO DepartmentTicket VALUES ('Accounting', 549);
 INSERT INTO TicketHashtag VALUES (540, '#LackPermissions');
 
 --Comment Table
-INSERT INTO Comment VALUES (1, 1, 'Im unable to access our financial reports on QuickBooks. Im receiving an error message that says Access denied. You do not have the necessary permissions to access this report. Ive tried logging out and logging back in, but the issue persists. Can anyone grant me acess?'
+INSERT INTO Comment VALUES (1, 1, '2023-05-13', 'Im unable to access our financial reports on QuickBooks. Im receiving an error message that says Access denied. You do not have the necessary permissions to access this report. Ive tried logging out and logging back in, but the issue persists. Can anyone grant me acess?', 'APeterson12', 540);
+INSERT INTO Comment VALUES (2, 2, '2023-05-14', 'Hi Andrew, Ive updated your user permissions, and you should now be able to access the financial reports. Please let me know if you have any further issues.', 'JamesDavis', 540);
+INSERT INTO Comment VALUES (3, 3, '2023-05-14', 'Thanks, everything looks good now. Im able to access the financial reports without any issues. I really appreciate your help!', 'APeterson12', 540);
+INSERT INTO Comment VALUES (4, 4, '2023-05-14', 'Youre welcome, Andrew. Glad I could help. Dont hesitate to reach out if you have any further issues.', 'JamesDabis', 540);
+
+--Question Table
+INSERT INTO Question VALUES (1, 1, 'What is the process for managing subscription billing and revenue in our company?','', 1);
+INSERT INTO Question VALUES (2, 2, ' How to comply with tax laws and regulations in foreign countries?','', 1);
+
+--FAQ Table
+INSERT INTO FAQ VALUES (1, 'Accounting');

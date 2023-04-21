@@ -56,8 +56,9 @@ CREATE TABLE TicketHashtag (
 DROP TABLE IF EXISTS Comment;
 CREATE TABLE Comment (
     comment_id INTEGER PRIMARY KEY,
-    num INTEGER, date TEXT, 
-    content, 
+    num INTEGER, 
+    date TEXT, 
+    content TEXT, 
     username REFERENCES Client (name) ON DELETE SET NULL ON UPDATE CASCADE NOT NULL, 
     ticket_id INTEGER REFERENCES Ticket (ticket_id) ON DELETE CASCADE ON UPDATE CASCADE NOT NULL
 );
