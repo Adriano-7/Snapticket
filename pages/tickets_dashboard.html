@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>SnapTicket - Tickets</title>  
+    <link rel="icon" href="../assets/favicon.png">
+    <link href="../css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <header class="menu">
+        <img src="../assets/logo.png" alt="SnapTicket Logo" class="logo">
+        <nav>
+            <a href="tickets_dashboard.html" class="active">Tickets</a>
+            <a href="faq.html">Faq</a>
+            <a href="notifications.html">Notifications</a>
+        </nav>
+        <div class="profile">
+            <img src="../assets/profile_temp.jpg" alt="Profile image">
+            <span class="profile_name">Andrew Peterson</span>
+        </div>
+    </header>
+    <main class="main_content">
+        <div class="tickets_search">
+            <input type="text" placeholder="Search..." class="input_box">
+            <button class="input_box">Add Filter</button>
+            <button class="create_ticket">Create Ticket</button>
+        </div>
+        <table class="tickets_table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Assignee</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="ticket_id">AC540</td>
+                    <td class="ticket_assignee">JamesDavis</td>
+                    <td>
+                        <div class="ticket_title">Need access to financial reports</div>
+                        <div class="ticket_department">Accounting</div>
+                        <div class="ticket_client">Andrew Peterson</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="ticket_id">AC482</td>
+                    <td class="ticket_assignee">Michael Brown</td>
+                    <td>
+                        <div class="ticket_title">Incorrect tax filling submitted to IRS for client</div>
+                        <div class="ticket_department">Accounting</div>
+                        <div class="ticket_client">Andrew Peterson</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+  </body>
+</html>
