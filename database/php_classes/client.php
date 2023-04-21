@@ -16,7 +16,7 @@
         static function getClientWithPassword(PDO $db, string $username, string $password) : ?Client{
             $query = $db->prepare('
             SELECT name, username, email, password
-            FROM Client 
+            FROM Client
             WHERE lower(username) = ? AND password = ?
           ');
     

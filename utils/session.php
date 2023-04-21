@@ -15,5 +15,14 @@
     public function setUsername(string $username) {
       $_SESSION['username'] = $username;
     }
+    public function setFailedLogin() {
+      $_SESSION['failed_login'] = true;
+    }
+    public function getFailedLogin() : bool {
+      return isset($_SESSION['failed_login']) ? $_SESSION['failed_login'] : false;
+    }
+    public function setSuccessfullLogin() {
+      $_SESSION['failed_login'] = false;
+    }
   }
 ?>

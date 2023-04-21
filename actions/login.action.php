@@ -5,18 +5,18 @@
     $session = new Session();
 
     require_once(__DIR__ . '/../database/connection.db.php');
-    require_once(__DIR__ . '/../database/users.db.php');
+    require_once(__DIR__ . '/../database/php_classes/client.php');
 
     $db = connectToDatabase();
     $client = Client::getClientWithPassword($db, $_POST['username'], $_POST['password']);
 
     if($client){
         $session->setUsername($client->username);
-        $session->addMessage('success', 'Login successful!');
         header('Location: ../pages/tickets_dashboard.php');
     }
     else{
-        $session->addMessage('error', 'Login failed!');
+        $session->setFailedLogin();
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    
 ?>
