@@ -36,7 +36,7 @@ CREATE TABLE Ticket (
     ticket_name TEXT,
     date TEXT, 
     priority TEXT, 
-    assignee TEXT, 
+    assignee REFERENCES Agent (username) ON DELETE SET NULL ON UPDATE CASCADE, 
     status TEXT, 
     username REFERENCES Client (username) ON DELETE CASCADE ON UPDATE CASCADE
 );
