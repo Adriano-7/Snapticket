@@ -17,12 +17,12 @@
       <div class="right">
         <h1>Welcome back!</h1>
         <h2>Improve your productivity with our ticket management solution!</h2>
-        <form action="login.php" method="post">
+        <form action="../actions/login.action.php" method="post">
           <input type="text" name="username" placeholder="username">
           <br>
           <input type="password" name="password" placeholder="password">
           <button type="submit">Login</button>
-          <p>Don't you have an account? <a href="register.html">Sign Up</a></p>
+          <p>Don't you have an account? <a href="register.php">Sign Up</a></p>
         </form>
       </div>
     </div>

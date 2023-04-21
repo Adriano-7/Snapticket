@@ -5,9 +5,9 @@
     $session = new Session();
 
     if ($session->isLoggedIn()) {
-        header('Location: login.php');
+        header('Location: pages/tickets_dashboard.php');
         exit();
     }
 
-    header('Location: tickets_dashboard.php');
+    header('Location: pages/login.php');
 ?>

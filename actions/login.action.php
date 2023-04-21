@@ -13,10 +13,10 @@
     if($client){
         $session->setUsername($client->username);
         $session->addMessage('success', 'Login successful!');
+        header('Location: ../pages/tickets_dashboard.php');
     }
     else{
         $session->addMessage('error', 'Login failed!');
     }
-
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
