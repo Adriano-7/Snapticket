@@ -10,4 +10,3 @@
   drawRightText();
   drawLoginForm();
 ?>
-
