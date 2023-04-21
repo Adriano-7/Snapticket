@@ -13,16 +13,19 @@
             $this->password = $password;
         }
         
-        static function getClientName(string $username): string {
-            $db = connectToDatabase();
-            $statement = $db->prepare('
-                SELECT name 
-                FROM Client
-                WHERE username = ?
-            ');
-            $statement->execute([$username]);
-            $client = $statement->fetch(PDO::FETCH_ASSOC);
-            return $client['name'];
+        static function getClientWithPassword(PDO $db, string $username, string $password) : ?Client{
+            $query = $db->prepare('
+            SELECT name, username, email, password
+            FROM Client
+            WHERE lower(username) = ? AND password = ?
+          ');
+    
+          $query->execute(array(strtolower($username), sha1($password)));
+
+          if($client = $query->fetch()){
+            return new Client($client['name'], $client['username'], $client['email'], $client['password']);
+          }
+          return null;
         }
     }
 

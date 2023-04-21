@@ -19,7 +19,7 @@
             <input type="text" name="password" placeholder="password">
             <input type="text" name="confirm password" placeholder="confirm password">
             <button type="submit">Register</button>
-            <p>Already have an account? <a href="login.html">Login</a></p>
+            <p>Already have an account? <a href="login.php">Login</a></p>
         </div>
   </body>
 </html>
