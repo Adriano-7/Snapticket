@@ -18,7 +18,7 @@
   $db = connectToDatabase();
   $tickets = Ticket::getClientTickets($db, $session->getUsername());
 
-  createHead('Dashboard', ['style', 'dashboard'], ['script']);
+  createHead('Dashboard', ['style', 'dashboard'], ['menu-colors']);
   drawMenu($session->getUsername(), $db);
   drawSearchBar();
   drawTicketsTable($tickets, $db);

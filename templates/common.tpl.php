@@ -26,15 +26,46 @@
         <a href="../pages/tickets_dashboard.php">
           <img src="../assets/logo.png" alt="SnapTicket Logo" class="logo" />
         </a>
-        <label for="menu-toggle" class="menu-icon"></label>
         <input type="checkbox" id="menu-toggle" />
       </div>
       <nav>
-          <a href="tickets_dashboard.php" class="tickets-menu" style="color: white">Tickets</a>
-          <a href="faq.php" class="faq-menu" style="color: #808080">Faq</a>
-          <a href="notifications.php" class="notifications-menu" style="color: #808080">Notifications</a>
-          <a href="profile.php" class="profile_link">
+            <?php if($_SERVER['REQUEST_URI'] == '/pages/tickets_dashboard.php') { ?>
+            <a href="tickets_dashboard.php" class="tickets-menu">
+              <img src="../assets/menu_icons/dashboard-white-icon.svg" alt="Dashboard" class="tickets-icon" />
+              Dashboard
+            </a>
+            <?php } else { ?>
+            <a href="tickets_dashboard.php" class="tickets-menu">
+              <img src="../assets/menu_icons/dashboard-gray-icon.svg" alt="Dashboard" class="tickets-icon" />
+              Dashboard
+            </a>
+            <?php } ?>
+
+            <?php if($_SERVER['REQUEST_URI'] == '/pages/faq.php') { ?>
+            <a href="faq.php" class="faq-menu">
+              <img src="../assets/menu_icons/faq-white-icon.svg" alt="FAQ" class="faq-icon" />
+              FAQ
+            </a>
+            <?php } else { ?>
+            <a href="faq.php" class="faq-menu">
+              <img src="../assets/menu_icons/faq-gray-icon.svg" alt="FAQ" class="faq-icon" />
+              FAQ
+            </a>
+            <?php } ?>
+
+            <?php if($_SERVER['REQUEST_URI'] == '/pages/notifications.php') { ?>
+              <a href="notifications.php" class="notifications-menu">
+                <img src="../assets/menu_icons/notifications-white-icon.svg" alt="Notifications" class="notifications-icon" />
+                Notifications
+              </a>
+            <?php } else { ?>
+              <a href="notifications.php" class="notifications-menu">
+                <img src="../assets/menu_icons/notifications-gray-icon.svg" alt="Notifications" class="notifications-icon" />
+                Notifications
+              </a>
+            <?php } ?>  
       </nav>
+      <a href="profile.php" class="profile_link">
             <div class="profile">
               <img src="/../actions/display_profile_pic.action.php" alt="Profile image" />
               <span class="profile_name"><?php echo $user_name ?></span>

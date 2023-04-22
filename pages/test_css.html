@@ -3,26 +3,35 @@
   <head>
     <title>SnapTicket - Dashboard</title>  
     <link rel="icon" href="../assets/favicon.png">
-              <link href="../css/style.css" rel="stylesheet">
-              <link href="../css/dashboard.css" rel="stylesheet">
-          </head>
-
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <script src="../js/menu-colors.js" defer></script>
+  </head>
 <body>
 <header class="menu">
   <div class="menu_header">
-    <img src="../assets/logo.png" alt="SnapTicket Logo" class="logo" />
-    <label for="menu-toggle" class="menu-icon"></label>
-    <input type="checkbox" id="menu-toggle" />
+    <a href="../pages/tickets_dashboard.php">
+      <img src="../assets/logo.png" alt="SnapTicket Logo" class="logo" />
+    </a>
   </div>
   <nav>
-      <a href="tickets_dashboard.php" class="tickets-menu" style="color: white">Tickets</a>
-      <a href="faq.php" class="faq-menu" style="color: #808080">Faq</a>
-      <a href="notifications.php" class="notifications-menu" style="color: #808080">Notifications</a>
-      <a href="profile.php" class="profile_link">
+    <a href="tickets_dashboard.php" class="tickets-menu">
+      <img src="../assets/menu_icons/dashboard-white-icon.svg" alt="Dashboard" class="tickets-icon" />
+      Dashboard
+    </a>
+    <a href="faq.php" class="faq-menu">
+      <img src="../assets/menu_icons/faq-gray-icon.svg" alt="FAQ" class="faq-icon" />
+      FAQ
+    </a>
+    <a href="notifications.php" class="notifications-menu">
+      <img src="../assets/menu_icons/notifications-gray-icon.svg" alt="Notifications" class="notifications-icon" />
+      Notifications
+    </a>  
   </nav>
+  <a href="profile.php" class="profile_link">
         <div class="profile">
-          <img src="/../assets/profile_pics_examples/jessica_ramirez.jpg" alt="Profile image" />
-          <span class="profile_name">JessicaRamirez15</span>
+          <img src="/../assets/profile_pics_examples/andrew_peterson.jpg" alt="Profile image" />
+          <span class="profile_name">APeterson12</span>
         </div>  
   </a>   
 </header>
@@ -38,25 +47,113 @@
       <td>Assignee</td>
       <td>Description</td>
     </tr>
-          <tr>
-      <td class="tickets_id">595</td>
-      <td class="tickets_assignee"></td>
+    <tr>
+      <td class="tickets_id">600</td>
+      <td class="tickets_assignee">JamesDavis</td>
       <td class="tickets_description">
-        <div class="tickets_description_title">Promotion code not working</div>
+        <div class="tickets_description_title">Need access to financial reports</div>
         <div class="tickets_description_details">
-          <div class="tickets_description_department">Sales</div>
-          <div class="tickets_description_client">Jessica Ramirez</div>
+          <div class="tickets_description_department">Accounting</div>
+          <div class="tickets_description_client">Andrew Peterson</div>
         </div>
       </td>
     </tr>
-          <tr>
-      <td class="tickets_id">592</td>
-      <td class="tickets_assignee">TWilliams</td>
+    <tr>
+      <td class="tickets_id">598</td>
+      <td class="tickets_assignee">MBrown1</td>
       <td class="tickets_description">
-        <div class="tickets_description_title">Having trouble connecting to the companys email</div>
+        <div class="tickets_description_title">Incorrect tax filling submitted to IRS for client</div>
         <div class="tickets_description_details">
-          <div class="tickets_description_department">Sales</div>
-          <div class="tickets_description_client">Jessica Ramirez</div>
+          <div class="tickets_description_department">Accounting</div>
+          <div class="tickets_description_client">Andrew Peterson</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="tickets_id">593</td>
+      <td class="tickets_assignee">SKim</td>
+      <td class="tickets_description">
+        <div class="tickets_description_title">Unable to reconcile bank accounts in QuickBooks</div>
+        <div class="tickets_description_details">
+          <div class="tickets_description_department">Accounting</div>
+          <div class="tickets_description_client">Andrew Peterson</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="tickets_id">590</td>
+      <td class="tickets_assignee">SarahJohnson7</td>
+      <td class="tickets_description">
+        <div class="tickets_description_title">Issue with depreciation calculation for fixed assets</div>
+        <div class="tickets_description_details">
+          <div class="tickets_description_department">Accounting</div>
+          <div class="tickets_description_client">Andrew Peterson</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="tickets_id">589</td>
+      <td class="tickets_assignee"></td>
+      <td class="tickets_description">
+        <div class="tickets_description_title">Issue with accounts payable aging report</div>
+        <div class="tickets_description_details">
+          <div class="tickets_description_department">Accounting</div>
+          <div class="tickets_description_client">Andrew Peterson</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="tickets_id">588</td>
+      <td class="tickets_assignee">CChen</td>
+      <td class="tickets_description">
+        <div class="tickets_description_title">Inquiry about accounting treatment for leasehold improvements</div>
+        <div class="tickets_description_details">
+          <div class="tickets_description_department">Accounting</div>
+          <div class="tickets_description_client">Andrew Peterson</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="tickets_id">587</td>
+      <td class="tickets_assignee"></td>
+      <td class="tickets_description">
+        <div class="tickets_description_title">Issue with expense reimbursement for employee travel</div>
+        <div class="tickets_description_details">
+          <div class="tickets_description_department">Accounting</div>
+          <div class="tickets_description_client">Andrew Peterson</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="tickets_id">586</td>
+      <td class="tickets_assignee">JamesDavis</td>
+      <td class="tickets_description">
+        <div class="tickets_description_title">Request for assistance with financial due diligence</div>
+        <div class="tickets_description_details">
+          <div class="tickets_description_department">Accounting</div>
+          <div class="tickets_description_client">Andrew Peterson</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="tickets_id">585</td>
+      <td class="tickets_assignee">APatel</td>
+      <td class="tickets_description">
+        <div class="tickets_description_title">Having trouble connecting to the company email</div>
+        <div class="tickets_description_details">
+          <div class="tickets_description_department">Accounting</div>
+          <div class="tickets_description_client">Andrew Peterson</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td class="tickets_id">584</td>
+      <td class="tickets_assignee">CChen</td>
+      <td class="tickets_description">
+        <div class="tickets_description_title">Issue with payroll processing</div>
+        <div class="tickets_description_details">
+          <div class="tickets_description_department">Accounting</div>
+          <div class="tickets_description_client">Andrew Peterson</div>
         </div>
       </td>
     </tr>

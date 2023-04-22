@@ -15,7 +15,7 @@
   
   $db = connectToDatabase();
 
-  createHead('Profile', ['style']);
+  createHead('Profile', ['style'], ['menu-colors']);
   drawMenu($session->getUsername(), $db);
   drawLogOut();
   drawChangePic();
