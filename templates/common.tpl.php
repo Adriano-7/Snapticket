@@ -23,7 +23,9 @@
   <body>
     <header class="menu">
       <div class="menu_header">
-        <img src="../assets/logo.png" alt="SnapTicket Logo" class="logo" />
+        <a href="../pages/tickets_dashboard.php">
+          <img src="../assets/logo.png" alt="SnapTicket Logo" class="logo" />
+        </a>
         <label for="menu-toggle" class="menu-icon"></label>
         <input type="checkbox" id="menu-toggle" />
       </div>

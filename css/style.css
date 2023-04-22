@@ -249,3 +249,23 @@ td {
   margin-left: 0.5em;
   font-size: 0.7em;
 }
+
+/*Making the scrollbar prettier*/
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #35353e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5c5e6c;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ACACBE;
+}
+/* */
