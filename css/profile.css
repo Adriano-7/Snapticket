@@ -1,0 +1,58 @@
+.profile-pic {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.profile-pic img {
+    width: 15%;
+    border-radius: 50%;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.user-details {
+    color: white;
+    margin-top: 15px;
+}
+
+.user-details h2{
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.user-details h3{
+    font-size: 20px;
+    font-weight: 100;
+    padding-left: 3em;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: row;
+
+    background-color: #333537;
+    width: 30%;
+
+    margin-top: 20px;
+    margin-left: 33%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.edit-form input {
+    background: transparent;
+    color: white;
+    border: none;
+}
+
+.edit-form button {
+    border: none;
+    background-color: transparent;
+    margin-left: 15em;
+}

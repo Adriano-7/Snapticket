@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>SnapTicket - Notifications</title>
+    <link rel="icon" href="../assets/favicon.png">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/profile.css" rel="stylesheet">
+    <script src="../js/menu-colors.js" defer></script>
+</head>
+<body>
+    <header class="menu">
+        <div class="menu_header">
+            <a href="../pages/tickets_dashboard.php">
+                <img src="../assets/logo.png" alt="SnapTicket Logo" class="logo" />
+            </a>
+            <input type="checkbox" id="menu-toggle" />
+        </div>
+        <nav>
+            <a href="tickets_dashboard.php" class="tickets-menu">
+                <img src="../assets/menu_icons/dashboard-gray-icon.svg" alt="Dashboard" class="tickets-icon" />
+                Dashboard
+            </a>
+
+            <a href="faq.php" class="faq-menu">
+                <img src="../assets/menu_icons/faq-white-icon.svg" alt="FAQ" class="faq-icon" />
+                FAQ
+            </a>
+
+            <a href="notifications.php" class="notifications-menu">
+                <img src="../assets/menu_icons/notifications-gray-icon.svg" alt="Notifications" class="notifications-icon" />
+                Notifications
+            </a>
+        </nav>
+        <a href="profile.php" class="profile_link">
+            <div class="profile">
+                <img src="/../assets/profile_pics_examples/andrew_peterson.jpg" alt="Profile image" />
+                <span class="profile_name">Andrew Peterson</span>
+            </div>
+        </a>
+    </header>
+    <main class="main_content">
+        <div class="user-info">
+            <div class="profile-pic">
+                <img src="../assets/profile_pics_examples/andrew_peterson.jpg" alt="Profile image" />
+            </div>
+            <div class="user-details">
+                <h2>Andrew Peterson</h2>
+                <h3>@APeterson12</h3>
+            </div>
+        </div>
+        <div class="edit-forms">
+            <div class="edit-form">
+                <div class="edit-input">
+                    <input type="text" value="Andrew Peterson" />
+                    <button><img src="../assets/edit-icon.svg" alt="edit-button"></button>
+                </div>
+            </div>
+            <div class="edit-form">
+                <div class="edit-input">
+                    <input type="text" value="@APeterson12" />
+                    <button><img src="../assets/edit-icon.svg" alt="edit-button"></button>
+                </div>
+            </div>
+            <div class="edit-form">
+                <div class="edit-input">
+                    <input type="email" value="peterson_andrew@snapticket.com" />
+                    <button><img src="../assets/edit-icon.svg" alt="edit-button"></button>
+                </div>
+            </div>
+            <div class="edit-form">
+                <div class="edit-input">
+                    <input type="password" placeholder="**********" />
+                    <button><img src="../assets/edit-icon.svg" alt="edit-button"></button>
+                </div>
+            </div>
+        </div>
+        <div class="change-profile-pic">
+            <h4>Change Profile Image</h4>
+            <form>
+                <div class="edit-input">
+                    <input type="file" accept="image/*" />
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>    
+        <div class="logout">
+            <form action="../php/logout.php" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
