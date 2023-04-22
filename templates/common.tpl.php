@@ -4,7 +4,7 @@
   require_once(__DIR__ . '/../database/php_classes/client.class.php');
 ?>
 
-<?php function createHead(string $title, array $stylesheets = []) { ?>
+<?php function createHead(string $title, array $stylesheets = [], array $javascript_files = []) { ?>
     <!DOCTYPE html>
     <html lang="en-US">
       <head>
@@ -12,6 +12,9 @@
         <link rel="icon" href="../assets/favicon.png">
         <?php foreach ($stylesheets as $stylesheet) { ?>
           <link href="../css/<?= $stylesheet ?>.css" rel="stylesheet">
+        <?php } ?>
+        <?php foreach ($javascript_files as $javascript_file) { ?>
+          <script src="../js/<?= $javascript_file ?>.js" defer></script>
         <?php } ?>
       </head>
 <?php } ?>
