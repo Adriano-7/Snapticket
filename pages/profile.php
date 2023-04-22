@@ -12,11 +12,12 @@
 
   require_once(__DIR__ . '/../templates/profile.tpl.php');
   require_once(__DIR__ . '/../templates/common.tpl.php');
+  require_once(__DIR__ . '/../database/php_classes/client.class.php');
   
   $db = connectToDatabase();
 
   createHead('Profile', ['style'], ['menu-colors']);
-  drawMenu($session->getUsername(), $db);
+  drawMenu(Client::getClientName($db, $session->getUsername()), $db);
   drawLogOut();
   drawChangePic();
 ?>

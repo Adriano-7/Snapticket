@@ -92,10 +92,17 @@ td {
   font-weight: 400;
 }
 
-.tickets_id::after{
-  content: "•";
+.tickets_status_open{
+  padding-left: 0.5em;
+  color: #84C596;
+}
+.tickets_status_assigned{
+  padding-left: 0.5em;
   color: #FFC277;
-  margin-left: 0.5em;
+}
+.tickets_status_closed{
+  padding-left: 0.5em;
+  color: #F8888B;
 }
 
 .tickets_assignee {

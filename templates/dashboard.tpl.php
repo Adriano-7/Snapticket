@@ -16,7 +16,18 @@
         </tr>
       <?php foreach ($tickets as $ticket) { ?>
         <tr>
-          <td class="tickets_id"><?php echo $ticket->getId(); ?></td>
+          <td class="tickets_id">
+          <div style="display: flex; align-items: center;">
+            <?php echo $ticket->getId(); ?>
+            <?php if (strtolower($ticket->getStatus()) === 'open') { ?>
+              <span class="tickets_status_open">•</span>
+            <?php } else if (strtolower($ticket->getStatus()) === 'assigned') { ?>
+              <span class="tickets_status_assigned">•</span>
+            <?php } else if (strtolower($ticket->getStatus()) === 'closed') { ?>
+              <span class="tickets_status_closed">•</span>
+            <?php } ?>
+          </td>
+          </div>
           <td class="tickets_assignee"><?php echo $ticket->getAssignee(); ?></td>
           <td class="tickets_description">
             <div class="tickets_description_title"><?php echo $ticket->getTitle(); ?></div>

@@ -19,7 +19,7 @@
   $tickets = Ticket::getClientTickets($db, $session->getUsername());
 
   createHead('Dashboard', ['style', 'dashboard'], ['menu-colors']);
-  drawMenu($session->getUsername(), $db);
+  drawMenu(Client::getClientName($db, $session->getUsername()), $db);
   drawSearchBar();
   drawTicketsTable($tickets, $db);
 ?>
