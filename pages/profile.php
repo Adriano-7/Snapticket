@@ -15,12 +15,17 @@
           <a href="faq.php" class="faq-menu">Faq</a>
           <a href="notifications.php" class="notifications-menu">Notifications</a>
         </nav>
-        <div class="profile">
-          <img src="../assets/profile_temp.jpg" alt="Profile image" />
-          <span class="profile_name">Andrew Peterson</span>
-        </div>      
+        <a href="profile.php" class="profile">
+          <div class="profile">
+            <img src="../assets/profile_temp.jpg" alt="Profile image" />
+            <span class="profile_name">Andrew Peterson</span>
+          </div>   
+        </a>   
     </header>
     <main class="main_content">
+      <form action="../actions/logout.action.php" method="post">
+        <button type="submit" class="logout">Log Out</button>
+      </form>
     </main>
   </body>
 </html>

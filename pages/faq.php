@@ -15,10 +15,12 @@
           <a href="faq.php" class="faq-menu">Faq</a>
           <a href="notifications.php" class="notifications-menu">Notifications</a>
         </nav>
-        <div class="profile">
-          <img src="../assets/profile_temp.jpg" alt="Profile image" />
-          <span class="profile_name">Andrew Peterson</span>
-        </div>      
+        <a href="profile.php" class="profile_link">
+          <div class="profile">
+            <img src="../assets/profile_temp.jpg" alt="Profile image" />
+            <span class="profile_name">Andrew Peterson</span>
+          </div>  
+        </a>   
     </header>
     <main class="main_content">
     </main>

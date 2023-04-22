@@ -75,6 +75,10 @@ nav a {
     margin-left: 2em;
 }
 
+.profile_link{
+  text-decoration: none;
+}
+
 .profile img {
   width:27%;
   height: auto;
