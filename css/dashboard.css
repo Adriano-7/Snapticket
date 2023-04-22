@@ -44,7 +44,7 @@ input[type=text]::-webkit-input-placeholder {
 
 .tickets_search > *:last-child{
     font-weight: 600;
-    margin-left: 54em;
+    margin-left: 50em;
     border-radius: 0.5em;
     padding-top: 0.8em;
     padding-bottom: 0.8em;

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>SnapTicket - Dashboard</title>  
+    <link rel="icon" href="../assets/favicon.png">
+              <link href="../css/style.css" rel="stylesheet">
+              <link href="../css/dashboard.css" rel="stylesheet">
+          </head>
+
+<body>
+<header class="menu">
+  <div class="menu_header">
+    <img src="../assets/logo.png" alt="SnapTicket Logo" class="logo" />
+    <label for="menu-toggle" class="menu-icon"></label>
+    <input type="checkbox" id="menu-toggle" />
+  </div>
+  <nav>
+      <a href="tickets_dashboard.php" class="tickets-menu" style="color: white">Tickets</a>
+      <a href="faq.php" class="faq-menu" style="color: #808080">Faq</a>
+      <a href="notifications.php" class="notifications-menu" style="color: #808080">Notifications</a>
+      <a href="profile.php" class="profile_link">
+  </nav>
+        <div class="profile">
+          <img src="/../assets/profile_pics_examples/jessica_ramirez.jpg" alt="Profile image" />
+          <span class="profile_name">JessicaRamirez15</span>
+        </div>  
+  </a>   
+</header>
+<main class="main_content">
+  <div class="tickets_search">
+    <input type="text" placeholder="Search..." class="input_box">
+    <button type="submit" class="input_box">Add Filter</button>
+    <button type="submit" class="create_ticket">Create Ticket</button>
+  </div>
+<table class="tickets_table">
+    <tr class="tickets_header">
+      <td>ID</td>
+      <td>Assignee</td>
+      <td>Description</td>
+    </tr>
+          <tr>
+      <td class="tickets_id">595</td>
+      <td class="tickets_assignee"></td>
+      <td class="tickets_description">
+        <div class="tickets_description_title">Promotion code not working</div>
+        <div class="tickets_description_details">
+          <div class="tickets_description_department">Sales</div>
+          <div class="tickets_description_client">Jessica Ramirez</div>
+        </div>
+      </td>
+    </tr>
+          <tr>
+      <td class="tickets_id">592</td>
+      <td class="tickets_assignee">TWilliams</td>
+      <td class="tickets_description">
+        <div class="tickets_description_title">Having trouble connecting to the companys email</div>
+        <div class="tickets_description_details">
+          <div class="tickets_description_department">Sales</div>
+          <div class="tickets_description_client">Jessica Ramirez</div>
+        </div>
+      </td>
+    </tr>
+      </table>
+</body>
+</html>

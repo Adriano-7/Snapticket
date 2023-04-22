@@ -31,7 +31,7 @@
           <a href="profile.php" class="profile_link">
       </nav>
             <div class="profile">
-              <img src="/../actions/display_pic.action.php" alt="Profile image" />
+              <img src="/../actions/display_profile_pic.action.php" alt="Profile image" />
               <span class="profile_name"><?php echo $user_name ?></span>
             </div>  
       </a>   

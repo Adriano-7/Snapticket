@@ -49,15 +49,5 @@
           $statement->bindParam(':user_image', $image, PDO::PARAM_LOB);
           $statement->execute();
         }
-
-        static function getProfileImage(PDO $db, string $username) {
-          $stmt = $db->prepare('SELECT user_image FROM Client WHERE username = :username');
-          $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-          $stmt->execute();
-          $row = $stmt->fetch(PDO::FETCH_ASSOC);
-          return $row ? $row['user_image'] : null;
-        }
     }
-
-
 ?>

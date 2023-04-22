@@ -13,21 +13,22 @@ body {
   display: grid;
   grid-template-columns: 1fr 5fr;
   min-height: 100%;
+  overflow-y: auto;
 }
 
 .menu{
     grid-column-start: 1;
     grid-column-end: 2;
     background-color: #000000;
-    height: 100%;
+    position: sticky;
+    top: 0;
 }
 
 .main_content{
     grid-column-start: 2;
     grid-column-end: 7;
     background-color: #111111;
-    height: 100%;
-    overflow-y: scroll;
+    height:100%;
 }
 
 .logo {
@@ -89,17 +90,18 @@ nav a {
 }
 
 .profile img {
-  /*i want the height and width equal for every picture, but needs to work with different size screens*/
   width: 4em;
   height: 4em;
   border-radius: 50%;
   margin-right: 0.6em;
+  position: relative;
+  bottom: 2em;
 }
 
 .profile .profile_name {
   font-size: 17;
   position: relative;
-  bottom: 1.5em;
+  bottom: 3.5em;
 }
 
 #menu-toggle {
