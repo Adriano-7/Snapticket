@@ -17,7 +17,8 @@ CREATE TABLE Client (
     name TEXT NOT NULL, 
     username TEXT PRIMARY KEY, 
     email TEXT, 
-    password TEXT
+    password TEXT,
+    user_image BLOB
 );
 
 DROP TABLE IF EXISTS Agent;
