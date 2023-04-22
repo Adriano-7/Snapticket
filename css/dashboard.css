@@ -21,11 +21,13 @@
   background-position: 95% 50%;
 }
 
-
-
 .input_box:nth-child(2)::after{
   content: url("../assets/add-icon.svg");
   margin-left: 1em;
+}
+
+.input_box:nth-child(2):hover{
+  cursor: pointer;
 }
 
 .input_box:focus{
@@ -52,6 +54,11 @@ input[type=text]::-webkit-input-placeholder {
     color: #ffffff;
     background-color: #82B7DC;
     border: 1px solid #82B7DC;
+}
+.tickets_search > *:last-child:hover{
+  background-color: #6289a4;
+  border: 1px solid #6289a4;
+  cursor: pointer;
 }
 
 .tickets_table {
