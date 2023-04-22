@@ -1,4 +1,3 @@
-
 <?php function drawSearchBar() { ?>
   <main class="main_content">
       <div class="tickets_search">
@@ -15,7 +14,7 @@
           <td>Description</td>
         </tr>
       <?php foreach ($tickets as $ticket) { ?>
-        <tr>
+        <tr class="ticket_row" onclick="window.location.href='ticket.php?id=<?php echo $ticket->getId(); ?>'">
           <td class="tickets_id">
           <div style="display: flex; align-items: center;">
             <?php echo $ticket->getId(); ?>

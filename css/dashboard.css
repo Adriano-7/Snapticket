@@ -85,6 +85,10 @@ td {
   border-bottom: 0.5px solid #5C6165;
 }
 
+tr:not(.tickets_header) {
+  cursor: pointer;
+}
+
 .tickets_id {
   width: 10%;
   color: white;
