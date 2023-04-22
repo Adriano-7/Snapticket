@@ -42,16 +42,15 @@ input[type=text]::-webkit-input-placeholder {
 
 .tickets_search > *:last-child{
     font-weight: 600;
-    position: absolute;
-    right: 0;
-    margin-right: 5em;
-    color: #ffffff;
-    background-color: #82B7DC;
+    margin-left: 54em;
     border-radius: 0.5em;
     padding-top: 0.8em;
     padding-bottom: 0.8em;
     padding-left: 1em;
     padding-right: 1em;
+
+    color: #ffffff;
+    background-color: #82B7DC;
     border: 1px solid #82B7DC;
 }
 

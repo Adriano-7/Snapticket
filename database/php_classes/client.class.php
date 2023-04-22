@@ -27,6 +27,21 @@
           }
           return null;
         }
+
+        static function getClientName(PDO $db, string $username) : string{
+            $query = $db->prepare('
+            SELECT name
+            FROM Client
+            WHERE lower(username) = ?
+          ');
+    
+          $query->execute(array(strtolower($username)));
+
+          if($client = $query->fetch()){
+            return $client['name'];
+          }
+          return '';
+        }
     }
 
 

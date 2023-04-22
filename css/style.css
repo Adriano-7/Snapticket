@@ -5,28 +5,37 @@
   margin: 0;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   display: grid;
   grid-template-columns: 1fr 5fr;
+  min-height: 100%;
 }
 
 .menu{
     grid-column-start: 1;
     grid-column-end: 2;
     background-color: #000000;
+    height: 100%;
 }
 
 .main_content{
     grid-column-start: 2;
     grid-column-end: 7;
     background-color: #111111;
-    height: 100vh;
+    height: 100%;
+    overflow-y: scroll;
 }
 
 .logo {
-  width: 60%;
-  margin-top: 2em;
+  width: 70%;
+  height: auto;
   margin-left: 2em;
+  margin-top: 2em;
+  text-align: center;
 }
 
 nav {
@@ -70,7 +79,7 @@ nav a {
 
 .profile {
     color: white;
-    margin-top: 21em;
+    margin-top: 23em;
     margin-bottom: 0;
     margin-left: 2em;
 }
@@ -80,7 +89,7 @@ nav a {
 }
 
 .profile img {
-  width:27%;
+  width: 27%;
   height: auto;
   border-radius: 50%;
   margin-right: 0.6em;
