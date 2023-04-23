@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
-    <title>SnapTicket - Notifications</title>
+    <title>SnapTicket - Profile</title>
     <link rel="icon" href="../assets/favicon.png">
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/profile.css" rel="stylesheet">
     <script src="../js/menu-colors.js" defer></script>
+    <script src="../js/submit-image.js" defer></script>
 </head>
+
 <body>
     <header class="menu">
         <div class="menu_header">
@@ -22,69 +25,69 @@
             </a>
 
             <a href="faq.php" class="faq-menu">
-                <img src="../assets/menu_icons/faq-white-icon.svg" alt="FAQ" class="faq-icon" />
+                <img src="../assets/menu_icons/faq-gray-icon.svg" alt="FAQ" class="faq-icon" />
                 FAQ
             </a>
 
             <a href="notifications.php" class="notifications-menu">
-                <img src="../assets/menu_icons/notifications-gray-icon.svg" alt="Notifications" class="notifications-icon" />
+                <img src="../assets/menu_icons/notifications-gray-icon.svg" alt="Notifications"
+                    class="notifications-icon" />
                 Notifications
             </a>
+
         </nav>
         <a href="profile.php" class="profile_link">
             <div class="profile">
-                <img src="/../assets/profile_pics_examples/andrew_peterson.jpg" alt="Profile image" />
-                <span class="profile_name">Andrew Peterson</span>
+                <img src="/../assets/profile_pics_examples/jessica_ramirez.jpg" alt="Profile image" />
+                <span class="profile_name">Jessica Ramirez</span>
             </div>
         </a>
     </header>
     <main class="main_content">
         <div class="user-info">
             <div class="profile-pic">
-                <img src="../assets/profile_pics_examples/andrew_peterson.jpg" alt="Profile image" />
+                <img src="/../assets/profile_pics_examples/jessica_ramirez.jpg" alt="Profile image" />
             </div>
             <div class="user-details">
-                <h2>Andrew Peterson</h2>
-                <h3>@APeterson12</h3>
+                <h2>Jessica Ramirez</h2>
+                <h3>JessicaRamirez15</h3>
             </div>
         </div>
         <div class="edit-forms">
             <div class="edit-form">
-                <div class="edit-input">
-                    <input type="text" value="Andrew Peterson" />
-                    <button><img src="../assets/edit-icon.svg" alt="edit-button"></button>
-                </div>
+                <form action="../actions/edit_name.action.php" method="post">
+                    <input type="text" name="name" value="Jessica Ramirez" />
+                    <button type="submit"  class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
+                </form>
             </div>
             <div class="edit-form">
-                <div class="edit-input">
-                    <input type="text" value="@APeterson12" />
-                    <button><img src="../assets/edit-icon.svg" alt="edit-button"></button>
-                </div>
+                <form action="../actions/edit_username.action.php" method="post">
+                    <input type="text" name="username" value=JessicaRamirez15 />
+                    <button type="submit"  class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
+                </form>
             </div>
             <div class="edit-form">
-                <div class="edit-input">
-                    <input type="email" value="peterson_andrew@snapticket.com" />
-                    <button><img src="../assets/edit-icon.svg" alt="edit-button"></button>
-                </div>
+                <form action="../actions/edit_email.action.php" method="post">
+                    <input type="email" name="email" value=jessica_ramirez@snapticket.com />
+                    <button type="submit"  class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
+                </form>
             </div>
             <div class="edit-form">
-                <div class="edit-input">
-                    <input type="password" placeholder="**********" />
-                    <button><img src="../assets/edit-icon.svg" alt="edit-button"></button>
-                </div>
+                <form action="../actions/edit_password.action.php" method="post">
+                    <input type="password" name="password" placeholder="**********" />
+                    <button type="submit" class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
+                </form>
             </div>
         </div>
         <div class="change-profile-pic">
-            <h4>Change Profile Image</h4>
-            <form>
-                <div class="edit-input">
-                    <input type="file" accept="image/*" />
-                    <button type="submit">Submit</button>
-                </div>
+            <form action="../actions/edit_profile_photo.php">
+                <input type="file" id="file-input" style="display:none">
+                <label for="file-input" id="file-label">Change profile image</label>
+                <button id="upload-btn">Upload</button>
             </form>
-        </div>    
+        </div>
         <div class="logout">
-            <form action="../php/logout.php" method="post">
+            <form action="../actions/logout.action.php" method="post">
                 <button type="submit">Logout</button>
             </form>
         </div>

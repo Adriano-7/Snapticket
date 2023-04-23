@@ -1,11 +1,14 @@
 .profile-pic {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 6%;
+    margin-bottom: 1em;
 }
 
+
 .profile-pic img {
-    width: 15%;
+    width: 9.625em;
+    height: 9.625em;
     border-radius: 50%;
 }
 
@@ -13,46 +16,139 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
 }
-
+    
 .user-details {
-    color: white;
-    margin-top: 15px;
+    text-align: center;
+    color: #ffffff;
 }
-
-.user-details h2{
-    font-size: 30px;
+    
+.user-details h2 {
+    font-size: 2.2em;
     font-weight: 400;
+    margin-bottom: 0.20em;
 }
-
-.user-details h3{
-    font-size: 20px;
+    
+.user-details h3 {
+    font-size: 1.2em;
     font-weight: 100;
-    padding-left: 3em;
+    margin-bottom: 1.4em;
 }
-
+    
+.edit-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+    
 .edit-form {
     display: flex;
     flex-direction: row;
 
     background-color: #333537;
-    width: 30%;
+    width: 26em;
 
-    margin-top: 20px;
-    margin-left: 33%;
-    padding: 10px;
+    height: 2.3em;
     border-radius: 10px;
-}
 
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.04em;
+    padding-bottom: 0.01em;
+
+    margin-bottom: 20px;
+    margin-left: 32.5%;
+}
+    
 .edit-form input {
     background: transparent;
-    color: white;
+    width: 20em;
+    color: #ffffff;
     border: none;
+    font-size: 13px;
+    margin-top: 1.8%;
+    height: fit-content;
+    position: relative;
+    top: 0.4em;
 }
 
 .edit-form button {
     border: none;
     background-color: transparent;
-    margin-left: 15em;
+    width: 7%;
+    position: relative;
+    top: 0.4em;
+    left: 10em;
+}
+
+.edit-icon{
+    cursor: pointer;
+}
+
+.change-profile-pic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+#file-label, #upload-btn {
+    display: inline-block;
+    vertical-align: middle;
+    border:none;
+}
+
+#file-label {
+    width: 15em;
+    height: 1.3em;
+    padding: 10px;
+    font-size: 13px;
+    background-color: #333537;
+    color: #ffffff;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#upload-btn{
+    width: 17.5em;
+    height: 2.85em;
+    padding: 10px;
+    margin-left: 0;
+    margin-top: 0;
+    font-size: 13px;
+    border-radius: 0 10px 10px 0;
+    background-color: #82B7DC;
+    color: #000000;
+    cursor: pointer;
+    text-align: center;
+}
+
+#upload-btn:hover{
+    background-color: #97cff7;
+    color: #000000;
+}
+  
+.logout button{
+    position: absolute;
+    bottom: 2.5em;
+    right: 3em;
+    cursor: pointer;
+
+    border: none;
+    font-weight: 400;
+    margin-left: 50em;
+    border-radius: 0.5em;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    padding-left: 1em;
+    padding-right: 1em;
+
+    color: #000000;
+    background-color: #82B7DC;
+}
+
+.logout button:hover{
+    background-color: #97cff7;
+    color: #000000;
 }

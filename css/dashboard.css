@@ -38,27 +38,23 @@ input[type=text]::-webkit-input-placeholder {
     color: #ffffff;
 }
 
-.tickets_search > *:first-child{
-    margin-right: 1em;
-}
-
 .tickets_search > *:last-child{
-    font-weight: 600;
+    font-weight: 400;
     margin-left: 50em;
     border-radius: 0.5em;
     padding-top: 0.8em;
     padding-bottom: 0.8em;
     padding-left: 1em;
     padding-right: 1em;
+    cursor: pointer;
 
-    color: #ffffff;
+    color: #000000;
     background-color: #82B7DC;
     border: 1px solid #82B7DC;
 }
 .tickets_search > *:last-child:hover{
-  background-color: #6289a4;
-  border: 1px solid #6289a4;
-  cursor: pointer;
+  background-color: #97cff7;
+  color: #000000;
 }
 
 .tickets_table {

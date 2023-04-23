@@ -16,8 +16,11 @@
   
   $db = connectToDatabase();
 
-  createHead('Profile', ['style'], ['menu-colors']);
+  createHead('Profile', ['style', 'profile'], ['menu-colors', 'submit-image']);
   drawMenu(Client::getClientName($db, $session->getUsername()), $db);
+  //var_dump(Client::getClientInfo($db, $session->getUsername()));
+  drawUserInfo(Client::getClientInfo($db, $session->getUsername()));
+  drawUserForms(Client::getClientInfo($db, $session->getUsername()));
+  drawChangeProfilePic();
   drawLogOut();
-  drawChangePic();
 ?>

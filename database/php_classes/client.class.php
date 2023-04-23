@@ -13,6 +13,56 @@
             $this->password = $password;
         }
         
+        static function changeName(PDO $db, string $username, string $name) : bool{
+            $query = $db->prepare('
+            UPDATE Client
+            SET name = ?
+            WHERE lower(username) = ?
+          ');
+    
+          return $query->execute(array($name, strtolower($username)));
+        }
+
+        static function changeUsername(PDO $db, string $username, string $newUsername) : bool{
+            $query = $db->prepare('
+            UPDATE Client
+            SET username = ?
+            WHERE lower(username) = ?
+          ');
+    
+          return $query->execute(array($newUsername, strtolower($username)));
+        }
+
+        static function changeEmail(PDO $db, string $username, string $email) : bool{
+            $query = $db->prepare('
+            UPDATE Client
+            SET email = ?
+            WHERE lower(username) = ?
+          ');
+    
+          return $query->execute(array($email, strtolower($username)));
+        }
+
+        static function changePassword(PDO $db, string $username, string $password) : bool{
+            $query = $db->prepare('
+            UPDATE Client
+            SET password = ?
+            WHERE lower(username) = ?
+          ');
+    
+          return $query->execute(array(sha1($password), strtolower($username)));
+        }
+
+        static function changeProfilePhoto(PDO $db, string $username, $image_blob) {
+          $query = $db->prepare('
+          UPDATE Client
+          SET user_image = ?
+          WHERE lower(username) = ?
+          ');
+
+          return $query->execute(array($image_blob, strtolower($username)));
+        }
+        
         static function getClientWithPassword(PDO $db, string $username, string $password) : ?Client{
             $query = $db->prepare('
             SELECT name, username, email, password
@@ -43,11 +93,20 @@
           return '';
         }
 
-        static function alterProfileImage(PDO $db, string $username, $image) {
-          $statement = $db->prepare('UPDATE Client SET user_image = :user_image WHERE username = :username');
-          $statement->bindParam(':username', $username, PDO::PARAM_STR);
-          $statement->bindParam(':user_image', $image, PDO::PARAM_LOB);
-          $statement->execute();
+        static function getClientInfo(PDO $db, string $username) : array{
+            $query = $db->prepare('
+            SELECT name, username, email
+            FROM Client
+            WHERE lower(username) = ?
+          ');
+    
+          $query->execute(array(strtolower($username)));
+
+          if($client = $query->fetch()){
+            //var_dump($client['name']);
+            return array('name' => $client['name'], 'username' => $client['username'], 'email' => $client['email']);
+          }
+          return array();
         }
     }
 ?>
