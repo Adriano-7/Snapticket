@@ -54,9 +54,10 @@ header {
   padding: 1rem;
   margin-top: 1rem;
   width: 220%;
-  border: none;
   cursor: pointer;
 }
+
+
 
 .register_container button[type="submit"]:hover{
   background-color: #006699;
@@ -70,4 +71,13 @@ header {
 .register_container p a {
   color: #82B7DC;
   text-decoration: none;
+}
+
+.error_msg{
+  padding-bottom: 1.5em;  
+  color: #9d2219;
+}
+
+.error_box{
+  border: 3.1px solid #9d2219;
 }
