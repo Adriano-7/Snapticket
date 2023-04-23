@@ -68,7 +68,6 @@
   padding: 1rem;
   margin-bottom: 1rem;
   width: 55%;
-  border: none;
   outline: none;
 }
 
@@ -97,6 +96,16 @@
 .login_container .right form p a {
   color: #82B7DC;
   text-decoration: none;
+}
+
+.error_msg{
+  padding-left: 10%;
+  padding-bottom: 1em;  
+  color: #9d2219;
+}
+
+.error_box{
+  border: 3.1px solid #9d2219;
 }
 
 @media only screen and (max-width: 1000px) {

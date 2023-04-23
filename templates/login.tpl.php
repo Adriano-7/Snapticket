@@ -24,11 +24,12 @@
     <h2>Improve your productivity with our ticket management solution!</h2>
 <?php } ?>
 
-<?php function drawLoginForm(){ ?>
+<?php function drawLoginForm($failedLogin) { ?>
+    <?php if ($failedLogin) { ?><p class="error_msg">Invalid username or password</p><?php } ?>
     <form action="../actions/login.action.php" method="post">
-        <input type="text" name="username" placeholder="username">
+        <input type="text" name="username" placeholder="username" <?php if ($failedLogin) { ?> class="error_box" <?php } ?>>
         <br>
-        <input type="password" name="password" placeholder="password">
+        <input type="password" name="password" placeholder="password" <?php if ($failedLogin) { ?> class="error_box" <?php } ?>>
         <button type="submit">Login</button>
         <p>Don't you have an account? <a href="register.php">Sign Up</a></p>
     </form>

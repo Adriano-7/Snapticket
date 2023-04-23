@@ -6,5 +6,4 @@ fileInput.addEventListener('change', function() {
     const filename = fileInput.value.split('\\').pop();
     fileLabel.innerText = filename;
   } 
-  else {fileLabel.innerText = 'Choose file';}
 });
