@@ -12,6 +12,15 @@
             $this->email = $email;
             $this->password = $password;
         }
+
+        static function register(PDO $db, string $name, string $username, string $email, string $password) : bool{
+            $query = $db->prepare('
+            INSERT INTO Client(name, username, email, password)
+            VALUES (?, ?, ?, ?)
+          ');
+    
+          return $query->execute(array($name, $username, $email, sha1($password)));
+        }
         
         static function getClientWithPassword(PDO $db, string $username, string $password) : ?Client{
             $query = $db->prepare('

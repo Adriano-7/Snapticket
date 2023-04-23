@@ -16,13 +16,14 @@
 <?php } ?>
 
 <?php function drawRegisterForm() { ?>
-    <form action="../actions/register.action.php" method="post">
-            <input type="text" name="name" placeholder="name">
-            <input type="password" name="username" placeholder="username">
-            <input type="password" name="email" placeholder="email">
-            <input type="text" name="password" placeholder="password">
-            <input type="text" name="confirm password" placeholder="confirm password">
-            <button type="submit">Register</button>
+            <form action="../actions/register.action.php" method="post">
+                <input type="text" name="name" placeholder="name" required>
+                <input type="text" name="username" placeholder="username" required>
+                <input type="text" name="email" placeholder="email" required>
+                <input type="password" name="password" placeholder="password" required>
+                <input type="password" name="confirm password" placeholder="confirm password" required>            
+                <button type="submit">Register</button>
+            </form>
             <p>Already have an account? <a href="login.php">Login</a></p>
         </div>
     </body>
