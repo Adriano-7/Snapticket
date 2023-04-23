@@ -25,7 +25,7 @@ INSERT INTO Client VALUES ('Andrew Patel', 'APatel', 'APat@snapticket.com', '7c4
 INSERT INTO Client VALUES ('Mattew Cooper', 'MCooper', 'MCooper12@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
 INSERT INTO Client VALUES ('Ethan Chen', 'EChen', 'EthanChen1@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
 INSERT INTO Client VALUES ('Benjamin Collins', 'BenjCollins', 'BCollins@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Tyer Williams', 'TWilliams', 'TWilliams@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
+INSERT INTO Client VALUES ('Tyler Williams', 'TWilliams', 'TWilliams@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
 
 --Agents Table
 INSERT INTO Agent VALUES ('JamesDavis');
