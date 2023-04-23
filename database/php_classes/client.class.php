@@ -22,6 +22,18 @@
           return $query->execute(array($name, $username, $email, sha1($password)));
         }
         
+        static function clientExists(PDO $db, string $username) : bool{
+            $query = $db->prepare('
+            SELECT username
+            FROM Client
+            WHERE lower(username) = ?
+          ');
+    
+          $query->execute(array(strtolower($username)));
+    
+          return $query->fetch() !== false;
+        }
+        
         static function changeName(PDO $db, string $username, string $name) : bool{
             $query = $db->prepare('
             UPDATE Client
@@ -112,7 +124,6 @@
           $query->execute(array(strtolower($username)));
 
           if($client = $query->fetch()){
-            //var_dump($client['name']);
             return array('name' => $client['name'], 'username' => $client['username'], 'email' => $client['email']);
           }
           return array();
