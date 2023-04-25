@@ -15,7 +15,12 @@
     <h1>You're a step closer</h1>
 <?php } ?>
 
-<?php function drawRegisterForm() { ?>
+<?php function drawRegisterForm($usernameExists) { ?>
+            <div class="error_box">
+                <?php if ($usernameExists) { ?>
+                    <p class="error">Username already exists</p>
+                <?php } ?>
+            </div>
             <form action="../actions/register.action.php" method="post">
                 <input type="text" name="name" placeholder="name" required>
                 <input type="text" name="username" placeholder="username" required>

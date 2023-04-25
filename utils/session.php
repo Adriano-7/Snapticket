@@ -18,11 +18,21 @@
     public function setFailedLogin() {
       $_SESSION['failed_login'] = true;
     }
-    public function getFailedLogin() : bool {
-      return isset($_SESSION['failed_login']) ? $_SESSION['failed_login'] : false;
-    }
-    public function setSuccessfullLogin() {
+    public function setSuccessLogin() {
       $_SESSION['failed_login'] = false;
+    }
+    public function getFailedLogin() : bool {
+      return isset($_SESSION['failed_login']);
+    }
+
+    public function setDuplicateUsername() {
+      $_SESSION['duplicate_username'] = true;
+    }
+    public function setSuccessRegister() {
+      $_SESSION['duplicate_username'] = false;
+    }
+    public function getDuplicateUsername() : bool {
+      return isset($_SESSION['duplicate_username']) ? $_SESSION['duplicate_username'] : false; //if null, return false
     }
   }
 ?>

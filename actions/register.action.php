@@ -9,8 +9,14 @@
 
     $db = connectToDatabase();
 
+    if (Client::clientExists($db, $_POST['username'])) {
+        $session->setDuplicateUsername();
+        header('Location: ../pages/register.php');
+    }
+
     Client::register($db, $_POST['name'], $_POST['username'], $_POST['email'], $_POST['password']);
 
     $session->setUsername( $_POST['username']);
+    $session->setSuccessRegister();
     header('Location: ../pages/tickets_dashboard.php');
 ?>

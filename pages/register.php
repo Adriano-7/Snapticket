@@ -3,9 +3,12 @@
 
   require_once(__DIR__ . '/../templates/common.tpl.php');
   require_once(__DIR__ . '/../templates/register.tpl.php');
+  require_once(__DIR__ . '/../database/connection.db.php');
 
-  createHead('Register', ['register'], ['reg_password_errors']);
+  $session = new Session();
+
+  createHead('Register', ['register'], ['register-check']);
   drawLogo();
   drawIntroductionText();
-  drawRegisterForm();
+  drawRegisterForm($session->getDuplicateUsername());
 ?>

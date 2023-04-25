@@ -13,6 +13,7 @@
 
     if($client){
         $session->setUsername($client->username);
+        $session->setSuccessLogin();
         header('Location: ../pages/tickets_dashboard.php');
     }
     else{

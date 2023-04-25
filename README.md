@@ -7,6 +7,13 @@ You can also see the project's requirements in the following <a href="https://we
 ## Class Diagram
 <img src="docs\Database_uml.jpg" height="300">
 
+# Credentials
+For now, every user has password Qwerty12. Here is the list  with some of our current users:
+- APeterson12 (User)
+- JessicaRamirez15 (User)
+- JamesDavis (Agent)
+- JMurphy (Admin)
+
 ## Mockups
 
 <img src="docs\Mockup_Tickets.jpg" height="500"> <img src="docs\Mockup_Ticket.jpg" height="500">

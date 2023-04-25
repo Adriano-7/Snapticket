@@ -73,11 +73,12 @@ header {
   text-decoration: none;
 }
 
-.error_msg{
-  padding-bottom: 1.5em;  
-  color: #9d2219;
+.error_box {
+  margin-bottom: 2em;
 }
 
-.error_box{
-  border: 3.1px solid #9d2219;
+.error_box p {
+  color: #9d2219;
+  font-size: 0.8rem;
+  margin: 0.1em;
 }
