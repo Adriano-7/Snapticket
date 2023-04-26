@@ -75,8 +75,9 @@ nav a {
 
 .notifications-icon{
   position: relative;
-  top: 0.25em;
+  top: 0.55em;
   margin-right: 0.1em;
+  height: 2em;
 }
 
 .profile {
@@ -113,7 +114,6 @@ nav a {
     display: none;
 }
 
-/*Making the scrollbar prettier*/
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;

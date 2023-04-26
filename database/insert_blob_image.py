@@ -41,8 +41,3 @@ update_image(build_image_path('michael_brown.jpg'), 'MBrown1')
 update_image(build_image_path('samantha_kim.jpg'), 'SKim')
 update_image(build_image_path('sarah_johnson.jpg'), 'SarahJohnson7')
 update_image(build_image_path('tyler_williams.jpg'), 'TWilliams')
-
-
-
-
-

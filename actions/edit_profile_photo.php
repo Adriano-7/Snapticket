@@ -14,6 +14,5 @@
 
   Client::changeProfilePhoto($db, $session->getUsername(), $image_blob);
   
-
   header('Location: ../pages/profile.php')
 ?>
