@@ -10,22 +10,22 @@ INSERT INTO Department VALUES ('Sales');
 INSERT INTO Hashtag VALUES ('#LackPermissions');
 
 --Client Table
-INSERT INTO Client VALUES ('Andrew Peterson', 'APeterson12', 'peterson_andrew@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Emily Davis', 'EmilyDavis', 'EmilyDavis15@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Adam Green', 'AGreen', 'Agreen@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Jessica Ramirez', 'JessicaRamirez15', 'jessica_ramirez@snapticket.com','7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Daniel Wilson', 'DWilson14', 'DWilson14@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('James Davis', 'JamesDavis', 'james_davis7@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Jessica Murphy', 'JMurphy', 'jessica_murphy@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Michael Brown', 'MBrown1', 'michael_brown24@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Sarah Johnson', 'SarahJohnson7', 'sarah_johnson7@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Christopher Chen', 'CChen', 'christopher_chen2@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Samantha Kim', 'SKim', 'SKim@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Andrew Patel', 'APatel', 'APat@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Mattew Cooper', 'MCooper', 'MCooper12@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Ethan Chen', 'EChen', 'EthanChen1@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Benjamin Collins', 'BenjCollins', 'BCollins@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
-INSERT INTO Client VALUES ('Tyler Williams', 'TWilliams', 'TWilliams@snapticket.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', NULL);
+INSERT INTO Client VALUES ('Andrew Peterson', 'APeterson12', 'peterson_andrew@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Emily Davis', 'EmilyDavis', 'EmilyDavis15@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Adam Green', 'AGreen', 'Agreen@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Jessica Ramirez', 'JessicaRamirez15', 'jessica_ramirez@snapticket.com','22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Daniel Wilson', 'DWilson14', 'DWilson14@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('James Davis', 'JamesDavis', 'james_davis7@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Jessica Murphy', 'JMurphy', 'jessica_murphy@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Michael Brown', 'MBrown1', 'michael_brown24@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Sarah Johnson', 'SarahJohnson7', 'sarah_johnson7@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Christopher Chen', 'CChen', 'christopher_chen2@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Samantha Kim', 'SKim', 'SKim@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Andrew Patel', 'APatel', 'APat@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Mattew Cooper', 'MCooper', 'MCooper12@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Ethan Chen', 'EChen', 'EthanChen1@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Benjamin Collins', 'BenjCollins', 'BCollins@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
+INSERT INTO Client VALUES ('Tyler Williams', 'TWilliams', 'TWilliams@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
 
 --Agents Table
 INSERT INTO Agent VALUES ('JamesDavis');

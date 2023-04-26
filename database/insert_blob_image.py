@@ -1,7 +1,6 @@
 import sqlite3
 import os
 
-
 def update_image(filepath, username):
     try:
         with open(filepath, 'rb') as f:
