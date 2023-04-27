@@ -1,13 +1,13 @@
-<?php 
-    declare(strict_types = 1);
-    
-    require_once(__DIR__ . '/../utils/session.php');
-    $session = new Session();
+<?php
+declare(strict_types=1);
 
-    if ($session->isLoggedIn()) {
-        header('Location: pages/tickets_dashboard.php');
-        exit();
-    }
+require_once(__DIR__ . '/../utils/session.php');
+$session = new Session();
 
-    header('Location: pages/login.php');
+if ($session->isLoggedIn()) {
+    header('Location: pages/dashboard.php');
+    exit();
+}
+
+header('Location: pages/login.php');
 ?>

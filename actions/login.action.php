@@ -1,24 +1,23 @@
-<?php 
-    declare(strict_types = 1);
-    
-    require_once(__DIR__ . '/../utils/session.php');
-    $session = new Session();
+<?php
+declare(strict_types=1);
 
-    require_once(__DIR__ . '/../database/connection.db.php');
-    require_once(__DIR__ . '/../database/php_classes/client.class.php');
-    
+require_once(__DIR__ . '/../utils/session.php');
+$session = new Session();
 
-    $db = connectToDatabase();
-    $client = Client::getClientWithPassword($db, $_POST['username'], $_POST['password']);
+require_once(__DIR__ . '/../database/connection.db.php');
+require_once(__DIR__ . '/../database/php_classes/client.class.php');
 
-    if($client){
-        $session->setUsername($client->username);
-        $session->setSuccessLogin();
-        header('Location: ../pages/tickets_dashboard.php');
-    }
-    else{
-        $session->setFailedLogin();
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-    }
-    
+
+$db = connectToDatabase();
+$client = Client::getClientWithPassword($db, $_POST['username'], $_POST['password']);
+
+if ($client) {
+    $session->setUsername($client->username);
+    $session->setSuccessLogin();
+    header('Location: ../pages/dashboard.php');
+} 
+else {
+    $session->setFailedLogin();
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+}
 ?>

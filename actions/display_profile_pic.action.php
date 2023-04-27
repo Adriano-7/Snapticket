@@ -14,8 +14,9 @@ if ($imageData === null) {
     $defaultImagePath = __DIR__ . '/../assets/profile_pics_examples/default.jpg';
     header('Content-Type: image/jpeg');
     readfile($defaultImagePath);
-    
-} else {
+
+} 
+else {
     header('Content-Type: image/jpeg');
     echo $imageData;
 }

@@ -5,7 +5,6 @@
     margin-bottom: 1em;
 }
 
-
 .profile-pic img {
     width: 9.625em;
     height: 9.625em;
@@ -17,30 +16,30 @@
     flex-direction: column;
     align-items: center;
 }
-    
+
 .user-details {
     text-align: center;
     color: #ffffff;
 }
-    
+
 .user-details h2 {
     font-size: 2.2em;
     font-weight: 400;
     margin-bottom: 0.20em;
 }
-    
+
 .user-details h3 {
     font-size: 1.2em;
     font-weight: 100;
     margin-bottom: 1.4em;
 }
-    
+
 .edit-section {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-    
+
 .edit-form {
     display: flex;
     flex-direction: row;
@@ -59,7 +58,7 @@
     margin-bottom: 20px;
     margin-left: 32.5%;
 }
-    
+
 .edit-form input {
     background: transparent;
     width: 20em;
@@ -81,21 +80,22 @@
     left: 10em;
 }
 
-.edit-icon{
+.edit-icon {
     cursor: pointer;
 }
 
-.change-profile-pic{
+.change-profile-pic {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
 }
 
-#file-label, #upload-btn {
+#file-label,
+#upload-btn {
     display: inline-block;
     vertical-align: middle;
-    border:none;
+    border: none;
 }
 
 #file-label {
@@ -110,7 +110,7 @@
     text-align: center;
 }
 
-#upload-btn{
+#upload-btn {
     width: 17.5em;
     height: 2.85em;
     padding: 10px;
@@ -124,12 +124,12 @@
     text-align: center;
 }
 
-#upload-btn:hover{
+#upload-btn:hover {
     background-color: #97cff7;
     color: #000000;
 }
-  
-.logout button{
+
+.logout button {
     position: absolute;
     bottom: 2.5em;
     right: 3em;
@@ -148,7 +148,7 @@
     background-color: #82B7DC;
 }
 
-.logout button:hover{
+.logout button:hover {
     background-color: #97cff7;
     color: #000000;
 }

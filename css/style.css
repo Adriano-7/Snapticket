@@ -5,7 +5,8 @@
   margin: 0;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -15,19 +16,19 @@ body {
   min-height: 100%;
 }
 
-.menu{
-    grid-column-start: 1;
-    grid-column-end: 2;
-    background-color: #000000;
-    height: 100%;
+.menu {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  background-color: #000000;
+  height: 100%;
 }
 
-.main_content{
-    grid-column-start: 2;
-    grid-column-end: 7;
-    background-color: #111111;
-    height: 100%;
-    overflow-y: scroll;
+.main_content {
+  grid-column-start: 2;
+  grid-column-end: 7;
+  background-color: #111111;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 .logo {
@@ -49,31 +50,31 @@ nav a {
   padding: 1em;
 }
 
-.tickets-menu{
+.dashboard-menu {
   text-decoration: none;
 }
 
-.tickets-icon{
+.dashboard-icon {
   position: relative;
   top: 0.30em;
   margin-right: 0.1em;
 }
 
-.faq-menu{
+.faq-menu {
   text-decoration: none;
 }
 
-.faq-icon{
+.faq-icon {
   position: relative;
   top: 0.45em;
   margin-right: 0.1em;
 }
 
-.notifications-menu{
+.notifications-menu {
   text-decoration: none;
 }
 
-.notifications-icon{
+.notifications-icon {
   position: relative;
   top: 0.55em;
   margin-right: 0.1em;
@@ -81,13 +82,13 @@ nav a {
 }
 
 .profile {
-    color: white;
-    margin-top: 21em;
-    margin-bottom: 0;
-    margin-left: 2em;
+  color: white;
+  margin-top: 21em;
+  margin-bottom: 0;
+  margin-left: 2em;
 }
 
-.profile_link{
+.profile_link {
   text-decoration: none;
 }
 
@@ -107,11 +108,11 @@ nav a {
 }
 
 #menu-toggle {
-    display: none;
+  display: none;
 }
 
 .menu-icon {
-    display: none;
+  display: none;
 }
 
 ::-webkit-scrollbar {

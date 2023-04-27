@@ -1,33 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
-*{
-    background-color: #111111;
-    font-family: 'Lato', sans-serif;
-    color: white;
+* {
+  background-color: #111111;
+  font-family: 'Lato', sans-serif;
+  color: white;
 }
 
 header {
-    margin-top:2.5rem;
-    margin-left: 4rem;
+  margin-top: 2.5rem;
+  margin-left: 4rem;
 }
 
 .register_container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-  
+
 .register_container h1 {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    margin-left: 0;
-    padding-left: 37.5%;
-    align-self: flex-start;
-    font-size: 1.5rem;
-    font-weight: 400;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 0;
+  padding-left: 37.5%;
+  align-self: flex-start;
+  font-size: 1.5rem;
+  font-weight: 400;
 }
-  
+
 .register_container form {
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@ header {
 }
 
 .register_container input[type="text"],
-.register_container input[type="password"]{
+.register_container input[type="password"] {
   border-radius: 20px;
   color: black;
   background-color: white;
@@ -47,7 +47,7 @@ header {
   outline: none;
 }
 
-.register_container button[type="submit"]{
+.register_container button[type="submit"] {
   background-color: #82B7DC;
   color: white;
   border-radius: 20px;
@@ -59,7 +59,7 @@ header {
 
 
 
-.register_container button[type="submit"]:hover{
+.register_container button[type="submit"]:hover {
   background-color: #006699;
 }
 
