@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>SnapTicket - Notifications </title>
+    <link rel="icon" href="../assets/favicon.png">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/notifications.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="menu">
+        <div class="menu_header">
+            <a href="../pages/dashboard.php">
+                <img src="../assets/logo.png" alt="SnapTicket Logo" class="logo" />
+            </a>
+            <input type="checkbox" id="menu-toggle" />
+        </div>
+        <nav>
+            <a href="dashboard.php" class="dashboard-menu" style="color:#808080">
+                <img src="../assets/menu_icons/dashboard-gray-icon.svg" alt="Dashboard" class="dashboard-icon" />
+                Dashboard
+            </a>
+            <a href="faq.php" class="faq-menu" style="color:#808080">
+                <img src="../assets/menu_icons/faq-gray-icon.svg" alt="Faq" class="faq-icon" />
+                FAQ
+            </a>
+            <a href="notifications.php" class="notifications-menu" style="color:#FFFFFF">
+                <img src="../assets/menu_icons/notifications-white-icon.svg" alt="Notifications" class="notifications-icon" />
+                Notifications
+            </a>
+        </nav>
+        <a href="profile.php" class="profile_link">
+            <div class="profile">
+                <img src="/../assets/profile_pics_examples/andrew_peterson.jpg" alt="Profile image" />
+                <span class="profile_name"> Andrew Peterson </span>
+            </div>
+        </a>
+    </header>
+    <main class="main_content">
+        <div id="notification_container">
+            <a href="ticket.php?id=600" class="notification">
+                <img src="../assets/profile_pics_examples/james_davis.jpg" alt="Profile image" />
+                <span class="notification_name"> James Davis </span>
+                <span class="notification_text"> Responded to your ticket "Need access to financial reports" </span>
+                <span class="notification_time"> 11 May 2023 </span>
+            </a>
+            <a href="ticket.php?id=588" class="notification">
+                <img src="../assets/profile_pics_examples/christopher_chen.jpg" alt="Profile image" />
+                <span class="notification_name"> Christopher Chen </span>
+                <span class="notification_text"> Closed your ticket "Inquiry about accounting treatment for leasehold improvements" </span>
+                <span class="notification_time"> 6 April 2023 </span>
+            </a>
+        </div>
+    </main>
+</body>
+
+</html>

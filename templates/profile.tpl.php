@@ -2,7 +2,7 @@
 <main class="main_content">
     <div class="user-info">
         <div class="profile-pic">
-            <img src="../actions/display_profile_pic.action.php" alt="Profile image" />
+            <img src="../actions/display_profile_pic.action.php?username=<?php echo $client_info['username'] ?>" alt="Profile image" />
         </div>
         <div class="user-details">
             <h2>

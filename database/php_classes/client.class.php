@@ -128,5 +128,20 @@ class Client{
     }
     return array();
   }
+
+  static function getClient(PDO $db, string $username): ?Client{
+    $query = $db->prepare('
+            SELECT name, username, email, password
+            FROM Client
+            WHERE lower(username) = ?
+          ');
+
+    $query->execute(array(strtolower($username)));
+
+    if ($client = $query->fetch()) {
+      return new Client($client['name'], $client['username'], $client['email'], $client['password']);
+    }
+    return null;
+  }
 }
 ?>

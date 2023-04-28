@@ -98,14 +98,14 @@ CREATE TABLE AgentQuestion (
 CREATE TRIGGER new_assignee_notification AFTER UPDATE OF assignee ON Ticket
 BEGIN
     INSERT INTO Notification (date, content, recipient, sender)
-    SELECT datetime('now'), 'Ticket ' || NEW.ticket_id || ' has been assigned to ' || NEW.assignee, 
+    SELECT strftime('%d %b %Y', datetime('now')), 'Ticket ' || NEW.ticket_id || ' has been assigned to ' || NEW.assignee, 
            (SELECT username FROM Client WHERE username = OLD.username),
            (SELECT assignee FROM Ticket WHERE ticket_id = NEW.ticket_id)
     FROM Ticket
     WHERE ticket_id = NEW.ticket_id;
 
     INSERT INTO Notification (date, content, recipient, sender)
-    SELECT datetime('now'), 'You have been assigned to ticket ' || NEW.ticket_id, 
+    SELECT strftime('%d %b %Y', datetime('now')), 'You have been assigned to ticket ' || NEW.ticket_id, 
            (SELECT assignee FROM Ticket WHERE ticket_id = NEW.ticket_id),
            (SELECT username FROM Client WHERE username = OLD.username)
     FROM Ticket
@@ -115,14 +115,14 @@ END;
 CREATE TRIGGER new_status_notification AFTER UPDATE OF status ON Ticket
 BEGIN
     INSERT INTO Notification (date, content, recipient, sender)
-    SELECT datetime('now'), 'Ticket ' || NEW.ticket_id || ' has the new status ' || NEW.status, 
+    SELECT datetime('now'), 'Ticket ' || NEW.ticket_id || ' status was changed to ' || NEW.status, 
            (SELECT username FROM Client WHERE username = OLD.username),
            (SELECT assignee FROM Ticket WHERE ticket_id = NEW.ticket_id)
     FROM Ticket
     WHERE ticket_id = NEW.ticket_id;
 
     INSERT INTO Notification (date, content, recipient, sender)
-    SELECT datetime('now'), 'Ticket ' || NEW.ticket_id || ' has the new status ' || NEW.status, 
+    SELECT datetime('now'), 'Ticket ' || NEW.ticket_id || ' status was changed to ' || NEW.status, 
            (SELECT assignee FROM Ticket WHERE ticket_id = NEW.ticket_id),
            (SELECT username FROM Client WHERE username = OLD.username)
     FROM Ticket
@@ -132,14 +132,14 @@ END;
 CREATE TRIGGER new_comment_notification AFTER INSERT ON Comment
 BEGIN
     INSERT INTO Notification (date, content, recipient, sender)
-    SELECT datetime('now'), 'Ticket ' || NEW.ticket_id || ' - ' || NEW.username || ' has commented "' || NEW.content || '" in your ticket', 
-           username,
-           NEW.username
+    SELECT datetime('now'), 'Responded to your ticket "' || 
+           (SELECT ticket_name FROM Ticket WHERE ticket_id = NEW.ticket_id) || '"' || ' with comment "' || NEW.content || '"', 
+           (SELECT username FROM Client WHERE username = (SELECT username FROM Ticket WHERE ticket_id = NEW.ticket_id)),
+           (SELECT username FROM Client WHERE username = NEW.username)
     FROM Ticket
     WHERE ticket_id = NEW.ticket_id
       AND username != NEW.username;
 END;
-
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;
