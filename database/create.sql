@@ -21,6 +21,15 @@ CREATE TABLE Client (
     user_image BLOB
 );
 
+DROP TABLE IF EXISTS Notification;
+CREATE TABLE Notification (
+    notification_id INTEGER PRIMARY KEY, 
+    date TEXT, 
+    content TEXT, 
+    recipient REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE,
+    sender REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 DROP TABLE IF EXISTS Agent;
 CREATE TABLE Agent (
     username TEXT PRIMARY KEY REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE
@@ -85,6 +94,52 @@ CREATE TABLE AgentQuestion (
     username REFERENCES Agent (username) ON DELETE SET NULL ON UPDATE CASCADE,
     quest_id INTEGER REFERENCES Question (quest_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+CREATE TRIGGER new_assignee_notification AFTER UPDATE OF assignee ON Ticket
+BEGIN
+    INSERT INTO Notification (date, content, recipient, sender)
+    SELECT datetime('now'), 'Ticket ' || NEW.ticket_id || ' has been assigned to ' || NEW.assignee, 
+           (SELECT username FROM Client WHERE username = OLD.username),
+           (SELECT assignee FROM Ticket WHERE ticket_id = NEW.ticket_id)
+    FROM Ticket
+    WHERE ticket_id = NEW.ticket_id;
+
+    INSERT INTO Notification (date, content, recipient, sender)
+    SELECT datetime('now'), 'You have been assigned to ticket ' || NEW.ticket_id, 
+           (SELECT assignee FROM Ticket WHERE ticket_id = NEW.ticket_id),
+           (SELECT username FROM Client WHERE username = OLD.username)
+    FROM Ticket
+    WHERE ticket_id = NEW.ticket_id;
+END;
+
+CREATE TRIGGER new_status_notification AFTER UPDATE OF status ON Ticket
+BEGIN
+    INSERT INTO Notification (date, content, recipient, sender)
+    SELECT datetime('now'), 'Ticket ' || NEW.ticket_id || ' has the new status ' || NEW.status, 
+           (SELECT username FROM Client WHERE username = OLD.username),
+           (SELECT assignee FROM Ticket WHERE ticket_id = NEW.ticket_id)
+    FROM Ticket
+    WHERE ticket_id = NEW.ticket_id;
+
+    INSERT INTO Notification (date, content, recipient, sender)
+    SELECT datetime('now'), 'Ticket ' || NEW.ticket_id || ' has the new status ' || NEW.status, 
+           (SELECT assignee FROM Ticket WHERE ticket_id = NEW.ticket_id),
+           (SELECT username FROM Client WHERE username = OLD.username)
+    FROM Ticket
+    WHERE ticket_id = NEW.ticket_id;
+END;
+
+CREATE TRIGGER new_comment_notification AFTER INSERT ON Comment
+BEGIN
+    INSERT INTO Notification (date, content, recipient, sender)
+    SELECT datetime('now'), 'Ticket ' || NEW.ticket_id || ' - ' || NEW.username || ' has commented "' || NEW.content || '" in your ticket', 
+           username,
+           NEW.username
+    FROM Ticket
+    WHERE ticket_id = NEW.ticket_id
+      AND username != NEW.username;
+END;
+
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;
