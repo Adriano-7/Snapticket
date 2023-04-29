@@ -5,22 +5,29 @@
 }
 
 .notification{
-    color:white;
-    font-size: 1em;
     background-color: #232526;
     border-radius: 0.5em;
     margin-bottom: 1.2em;
-    padding: 0.5em;
-    text-decoration: none;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 
     display: flex;
     align-items: center;
 }
 
-.notification img {
+.notification a:first-of-type{
+    color:white;
+    font-size: 1em;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.notification_profile_pic {
     width: 3em;
     height: 3em;
     border-radius: 50%;
+    padding-left: 0.5em;
 }
 
 .notification_name{
@@ -32,18 +39,35 @@
 
 .notification_text{
     text-indent: 1em;
-    width: 45em;
+    width: 47.5em;
     
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-
-
-
 }
+
 .notification_time{
     margin-left: auto;
     margin-right: 1em;
     font-size: 0.8em;
+}
+
+.three_dots_icon{
+    width: 1em;
+}
+
+.notification_unread{
+    background-color: #82B7DC;
+    width: 0.2em;
+    height: 2.8em;
+    margin-right: 0em;
+}
+
+.notification_delete img{
+    width: 1em;
+}
+
+.notification_read img{
+    width: 1em;
 }
