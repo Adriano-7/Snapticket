@@ -13,14 +13,14 @@ require_once(__DIR__ . '/../database/php_classes/ticket.class.php');
 $db = connectToDatabase();
 $session = new Session();
 
-if (!$session->isLoggedIn() || !Client::clientExists($db, $session->getUsername())) {
+if (!$session->isLoggedIn()) {
   header('Location: login.php');
   die();
 }
 
-$tickets = Ticket::getClientTickets($db, $session->getUsername());
+$tickets = Ticket::getTickets($db, $session->getUsername());
 
-createHead('Dashboard', ['style', 'dashboard']);
+createHead('Dashboard', ['style', 'dashboard'], ['page_exists']);
 drawMenu(Client::getClientName($db, $session->getUsername()), $db);
 drawSearchBar();
 drawTicketsTable($tickets, $db);

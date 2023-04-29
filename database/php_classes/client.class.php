@@ -129,7 +129,11 @@ class Client{
     return array();
   }
 
-  static function getClient(PDO $db, string $username): ?Client{
+  static function getClient(PDO $db, ?string $username): ?Client{
+    if ($username === null) {
+      return null;
+    }
+
     $query = $db->prepare('
             SELECT name, username, email, password
             FROM Client

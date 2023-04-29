@@ -37,6 +37,12 @@ CREATE TABLE Agent (
     username TEXT PRIMARY KEY REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+DROP TABLE IF EXISTS AgentDepartment;
+CREATE TABLE AgentDepartment (
+    username REFERENCES Agent(username) ON DELETE CASCADE ON UPDATE CASCADE,
+    name_department REFERENCES Department (name) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 DROP TABLE IF EXISTS Admin;
 CREATE TABLE Admin (
     username TEXT PRIMARY KEY  REFERENCES Agent(username) ON DELETE CASCADE ON UPDATE CASCADE
@@ -50,11 +56,11 @@ CREATE TABLE Ticket (
     priority TEXT, 
     assignee TEXT REFERENCES Agent(username) ON DELETE SET NULL ON UPDATE CASCADE, 
     status TEXT, 
-    username REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE
+    creator REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS DepartmentTicket;
-CREATE TABLE DepartmentTicket (
+CREATE TABLE TicketDepartment (
     name_department REFERENCES Department (name) ON DELETE CASCADE ON UPDATE CASCADE,
     ticket_id INTEGER REFERENCES Ticket (ticket_id) ON DELETE CASCADE ON UPDATE CASCADE
 );

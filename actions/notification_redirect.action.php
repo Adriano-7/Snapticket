@@ -11,14 +11,19 @@ $db = connectToDatabase();
 
 $notification_id = intval($_GET['notification_id']);
 if (!isset($notification_id) || empty($notification_id)) {
-    header('Location: ../pages/dashboard.php');
+    header('Location: ../pages/error_page.php');
 }
 
 $notification = Notification::getNotification($db, $notification_id);
+if ($notification === null) {
+    header('Location: ../pages/error_page.php');
+    die();
+}
+
 $isAuthorised = Notification::isAuthorised($db, $notification, $session->getUsername());
 
-if (!$isAuthorised) {
-    header('Location: ../pages/notifications.php');
+if($isAuthorised===false){
+    header('Location: ../pages/error_page.php');
     die();
 }
 

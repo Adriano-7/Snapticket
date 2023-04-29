@@ -37,6 +37,11 @@ class Notification{
         foreach($result as $row){
             $recipient = Client::getClient($db, $row['recipient']);
             $sender = Client::getClient($db, $row['sender']);
+
+            if($recipient === null || $sender === null){
+                throw new Exception('Error: recipient or sender is null');
+            }
+
             $notifications[] = new Notification($row['notification_id'], $row['date'], $row['content'], (bool)$row['isVisited'], $recipient, $sender, $row['ticket_id']);
         }
 
@@ -62,7 +67,7 @@ class Notification{
         $query->execute(array($notification_id));
     }
 
-    public static function getNotification(PDO $db, int $notification_id) : Notification{
+    public static function getNotification(PDO $db, int $notification_id) : ?Notification{
         $query = $db->prepare('
             SELECT notification_id, date, content, isVisited, recipient, sender, ticket_id
             FROM Notification
@@ -71,6 +76,10 @@ class Notification{
 
         $query->execute(array($notification_id));
         $result = $query->fetch();
+
+        if($result === false){
+            return null;
+        }
 
         $recipient = Client::getClient($db, $result['recipient']);
         $sender = Client::getClient($db, $result['sender']);
@@ -83,8 +92,6 @@ class Notification{
     }
 
     public static function isAuthorised(PDO $db, Notification $notification, string $username): bool{
-        var_dump($notification->recipient->username);
-        var_dump($username);
         return $notification->recipient->username === $username;
     }
 

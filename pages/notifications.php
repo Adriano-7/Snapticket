@@ -15,7 +15,7 @@ require_once(__DIR__ . '/../database/php_classes/notifications.class.php');
 $db = connectToDatabase();
 $session = new Session();
 
-if (!$session->isLoggedIn() || !Client::clientExists($db, $session->getUsername())) {
+if (!$session->isLoggedIn()) {
   header('Location: login.php');
   die();
 }

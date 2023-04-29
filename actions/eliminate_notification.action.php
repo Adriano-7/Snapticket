@@ -15,10 +15,15 @@ if (!isset($notification_id) || empty($notification_id)) {
 }
 
 $notification = Notification::getNotification($db, $notification_id);
+if ($notification === null) {
+    header('Location: ../pages/error_page.php');
+    die();
+}
+
 $isAuthorised = Notification::isAuthorised($db, $notification, $session->getUsername());
 
 if (!$isAuthorised) {
-    header('Location: ../pages/notifications.php');
+    header('Location: ../pages/error_page.php');
     die();
 }
 
