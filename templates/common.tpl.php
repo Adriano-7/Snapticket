@@ -32,7 +32,6 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
         <a href="../pages/dashboard.php">
           <img src="../assets/logo.png" alt="SnapTicket Logo" class="logo" />
         </a>
-        <input type="checkbox" id="menu-toggle" />
       </div>
       <nav>
         <?php if ($_SERVER['REQUEST_URI'] == '/pages/dashboard.php') { ?>
@@ -71,7 +70,7 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
       </nav>
       <a href="profile.php" class="profile_link">
         <div class="profile">
-          <img src="/../actions/display_profile_pic.action.php" alt="Profile image" />
+          <img src="/../actions/display_profile_pic.action.php?username=<?php echo $_SESSION['username']?>" alt="Profile image" />
           <span class="profile_name">
             <?php echo $user_name ?>
           </span>

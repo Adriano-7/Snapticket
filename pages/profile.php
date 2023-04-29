@@ -17,7 +17,7 @@ if (!$session->isLoggedIn() || !Client::clientExists($db, $session->getUsername(
   die();
 }
 
-createHead('Profile', ['style', 'profile'], ['menu-colors', 'submit-image']);
+createHead('Profile', ['style', 'profile'], ['submit-image']);
 drawMenu(Client::getClientName($db, $session->getUsername()), $db);
 drawUserInfo(Client::getClientInfo($db, $session->getUsername()));
 drawUserForms(Client::getClientInfo($db, $session->getUsername()));

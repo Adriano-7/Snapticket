@@ -16,7 +16,7 @@ if (!$session->isLoggedIn() || !Client::clientExists($db, $session->getUsername(
   die();
 }
 
-createHead('Notifications', ['style'], ['menu-colors']);
+createHead('Notifications', ['style']);
 drawMenu(Client::getClientName($db, $session->getUsername()), $db);
 drawFooter();
 ?>

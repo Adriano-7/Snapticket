@@ -21,6 +21,17 @@ CREATE TABLE Client (
     user_image BLOB
 );
 
+DROP TABLE IF EXISTS Notification;
+CREATE TABLE Notification (
+    notification_id INTEGER PRIMARY KEY, 
+    date TEXT, 
+    content TEXT,
+    isVisited INTEGER DEFAULT 0, 
+    recipient REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE,
+    sender REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE,
+    ticket_id INTEGER REFERENCES Ticket(ticket_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 DROP TABLE IF EXISTS Agent;
 CREATE TABLE Agent (
     username TEXT PRIMARY KEY REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE
@@ -35,7 +46,7 @@ DROP TABLE IF EXISTS Ticket;
 CREATE TABLE Ticket (
     ticket_id INTEGER PRIMARY KEY, 
     ticket_name TEXT,
-    date TEXT, 
+    date TEXT,
     priority TEXT, 
     assignee TEXT REFERENCES Agent(username) ON DELETE SET NULL ON UPDATE CASCADE, 
     status TEXT, 
