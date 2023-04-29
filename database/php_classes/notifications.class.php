@@ -27,7 +27,7 @@ class Notification{
             SELECT notification_id, date, content, isVisited, recipient, sender, ticket_id
             FROM Notification
             WHERE lower(recipient) = ?
-            ORDER BY notification_id DESC
+            ORDER BY notification_id ASC
         ');
 
         $query->execute(array(strtolower($username)));
@@ -86,6 +86,41 @@ class Notification{
         var_dump($notification->recipient->username);
         var_dump($username);
         return $notification->recipient->username === $username;
+    }
+
+    public static function getNiceDate(Notification $notification): string{
+        $now = new DateTime();
+        $date = new DateTime($notification->date);
+        $interval = $now->diff($date);
+
+        $minutes = $interval->i;
+        $hours = $interval->h;
+        $days = $interval->d;
+        $weeks = floor($days / 7);
+        $months = $interval->m;
+        $years = $interval->y;
+
+        if($years>0){
+            return $years . ' years ago';
+        }
+        elseif($months>0){
+            return $months . ' months ago';
+        }
+        elseif($weeks>0){
+            return $weeks . ' weeks ago';
+        }
+        elseif($days>0){
+            return $days . ' days ago';
+        }
+        elseif($hours>0){
+            return $hours . ' hours ago';
+        }
+        elseif($minutes>0){
+            return $minutes . ' minutes ago';
+        }
+        else{
+            return 'Just now';
+        }
     }
 }
 ?>

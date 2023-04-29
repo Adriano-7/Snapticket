@@ -8,7 +8,7 @@
                 <img class="notification_profile_pic" src="../actions/display_profile_pic.action.php?username=<?php echo $notification->sender->username ?>" alt="Profile image" />
                 <span class="notification_name"> <?php echo $notification->sender->name ?> </span>
                 <span class="notification_text"> <?php echo $notification->content ?> </span>
-                <span class="notification_time"> <?php echo date('d M Y', strtotime($notification->date)) ?> </span>
+                <span class="notification_time"> <?php echo Notification::getNiceDate($notification) ?> </span>
             </a>
             <a class="notification_delete" href="../actions/eliminate_notification.action.php?notification_id=<?php echo $notification->notification_id ?>"> <img src="../assets/cross-icon.svg"> </a>
         </div>
