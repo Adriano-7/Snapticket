@@ -107,5 +107,18 @@ class Ticket{
         }
         return false;
     }
+
+    static public function searchTickets(PDO $db, string $search): array{
+        $stmt = $db->prepare('SELECT * FROM Ticket WHERE ticket_name LIKE ?');
+        $stmt->execute(['%' . $search . '%']);
+        $tickets = $stmt->fetchAll();
+        $client_tickets = array();
+        foreach($tickets as $ticket){
+            $creator = Client::getClient($db, $ticket['creator']);
+            $assignee = Client::getClient($db, $ticket['assignee']);
+            $client_tickets[] = new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator);
+        }
+        return $client_tickets;
+    }
 }
 ?>
