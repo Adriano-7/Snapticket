@@ -1,19 +1,28 @@
 <?php
 declare(strict_types=1);
-class Client{
+class Client
+{
   public string $name;
   public string $username;
   public string $email;
   public string $password;
+  public bool $isAgent;
+  public bool $isAdmin;
+  public array $departments;
 
-  public function __construct(string $name, string $username, string $email, string $password){
+  public function __construct(string $name, string $username, string $email, string $password, bool $isAgent = false, bool $isAdmin = false, array $departments = [])
+  {
     $this->name = $name;
     $this->username = $username;
     $this->email = $email;
     $this->password = $password;
+    $this->isAgent = $isAgent;
+    $this->isAdmin = $isAdmin;
+    $this->departments = $departments;
   }
 
-  static function register(PDO $db, string $name, string $username, string $email, string $password): bool{
+  static function register(PDO $db, string $name, string $username, string $email, string $password): bool
+  {
     $query = $db->prepare('
             INSERT INTO Client(name, username, email, password)
             VALUES (?, ?, ?, ?)
@@ -22,7 +31,8 @@ class Client{
     return $query->execute(array($name, $username, $email, sha1($password)));
   }
 
-  static function clientExists(PDO $db, string $username): bool{
+  static function usernameExists(PDO $db, string $username): bool
+  {
     $query = $db->prepare('
             SELECT username
             FROM Client
@@ -34,7 +44,8 @@ class Client{
     return $query->fetch() !== false;
   }
 
-  static function changeName(PDO $db, string $username, string $name): bool{
+  static function changeName(PDO $db, string $username, string $name): bool
+  {
     $query = $db->prepare('
             UPDATE Client
             SET name = ?
@@ -44,7 +55,8 @@ class Client{
     return $query->execute(array($name, strtolower($username)));
   }
 
-  static function changeUsername(PDO $db, string $username, string $newUsername): bool{
+  static function changeUsername(PDO $db, string $username, string $newUsername): bool
+  {
     $query = $db->prepare('
             UPDATE Client
             SET username = ?
@@ -54,7 +66,8 @@ class Client{
     return $query->execute(array($newUsername, strtolower($username)));
   }
 
-  static function changeEmail(PDO $db, string $username, string $email): bool{
+  static function changeEmail(PDO $db, string $username, string $email): bool
+  {
     $query = $db->prepare('
             UPDATE Client
             SET email = ?
@@ -64,7 +77,8 @@ class Client{
     return $query->execute(array($email, strtolower($username)));
   }
 
-  static function changePassword(PDO $db, string $username, string $password): bool{
+  static function changePassword(PDO $db, string $username, string $password): bool
+  {
     $query = $db->prepare('
             UPDATE Client
             SET password = ?
@@ -74,7 +88,8 @@ class Client{
     return $query->execute(array(sha1($password), strtolower($username)));
   }
 
-  static function changeProfilePhoto(PDO $db, string $username, $image_blob){
+  static function changeProfilePhoto(PDO $db, string $username, $image_blob)
+  {
     $query = $db->prepare('
           UPDATE Client
           SET user_image = ?
@@ -84,7 +99,8 @@ class Client{
     return $query->execute(array($image_blob, strtolower($username)));
   }
 
-  static function getClientWithPassword(PDO $db, string $username, string $password): ?Client{
+  static function getClientWithPassword(PDO $db, string $username, string $password): ?Client
+  {
     $query = $db->prepare('
             SELECT name, username, email, password
             FROM Client
@@ -99,22 +115,8 @@ class Client{
     return null;
   }
 
-  static function getClientInfo(PDO $db, string $username): array{
-    $query = $db->prepare('
-            SELECT name, username, email
-            FROM Client
-            WHERE lower(username) = ?
-          ');
-
-    $query->execute(array(strtolower($username)));
-
-    if ($client = $query->fetch()) {
-      return array('name' => $client['name'], 'username' => $client['username'], 'email' => $client['email']);
-    }
-    return array();
-  }
-
-  static function getClient(PDO $db, ?string $username): ?Client{
+  static function getClient(PDO $db, ?string $username): ?Client
+  {
     if ($username === null) {
       return null;
     }
@@ -124,29 +126,89 @@ class Client{
             FROM Client
             WHERE lower(username) = ?
           ');
-
     $query->execute(array(strtolower($username)));
 
     if ($client = $query->fetch()) {
-      return new Client($client['name'], $client['username'], $client['email'], $client['password']);
-    }
-    return null;
-  }
+      $isAgent = false;
+      $isAdmin = false;
 
-  function isAdmin(PDO $db): bool{
-    $query = $db->prepare('
+      $query = $db->prepare('
+            SELECT *
+            FROM Agent
+            WHERE lower(username) = ?
+          ');
+      $query->execute(array(strtolower($username)));
+      $isAgent = $query->fetch() !== false;
+
+      $query = $db->prepare('
             SELECT *
             FROM Admin
             WHERE lower(username) = ?
           ');
+      $query->execute(array(strtolower($username)));
+      $isAdmin = $query->fetch() !== false;
+
+      $query = $db->prepare('
+            SELECT name_department
+            FROM ClientDepartment
+            WHERE lower(username) = ?
+          ');
+      $query->execute(array(strtolower($username)));
+      $departments = array();
+      while ($department = $query->fetch()) {
+        array_push($departments, $department['name_department']);
+      }
+
+
+      return new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments);
+    }
+
+    return null;
+  }
+
+  function getAllClients(PDO $db): array{
+    $query = $db->prepare('
+            SELECT *
+            FROM Client
+            WHERE lower(username) != ?
+          ');
 
     $query->execute(array(strtolower($this->username)));
 
-    return $query->fetch() !== false;
+    $clients = array();
+
+    while ($client = $query->fetch()) {
+      $query1 = $db->prepare('
+              SELECT *
+              FROM Agent
+              WHERE lower(username) = ?
+            ');
+      $query1->execute(array(strtolower($client['username'])));
+      $isAgent = $query->fetch() !== false;
+
+      $query1 = $db->prepare('
+              SELECT *
+              FROM Admin
+              WHERE lower(username) = ?
+            ');
+      $query1->execute(array(strtolower($client['username'])));
+      $isAdmin = $query1->fetch() !== false;
+
+      $query1 = $db->prepare('
+              SELECT name_department
+              FROM ClientDepartment
+              WHERE lower(username) = ?
+            ');
+      $query1->execute(array(strtolower($client['username'])));
+      $departments = array();
+      while ($department = $query1->fetch()) {
+        array_push($departments, $department['name_department']);
+      }
+
+      $clients[] = new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments);
+    }
+
+    return $clients;
   }
-
-  /*Returns a array of every client except itself*/
-  function getMembers(PDO $db): 
-
 }
 ?>

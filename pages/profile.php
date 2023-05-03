@@ -11,6 +11,7 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
 $session = new Session();
+$client = Client::getClient($db, $session->getUsername());
 
 if (!$session->isLoggedIn()) {
   header('Location: login.php');
@@ -18,9 +19,9 @@ if (!$session->isLoggedIn()) {
 }
 
 createHead('Profile', ['style', 'profile'], ['submit-image']);
-drawMenu(Client::getClient($db, $session->getUsername()), $db);
-drawUserInfo(Client::getClientInfo($db, $session->getUsername()));
-drawUserForms(Client::getClientInfo($db, $session->getUsername()));
+drawMenu($client);
+drawUserInfo($client);
+drawUserForms($client);
 drawChangeProfilePic();
 drawLogOut();
 ?>

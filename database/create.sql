@@ -37,9 +37,9 @@ CREATE TABLE Agent (
     username TEXT PRIMARY KEY REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS AgentDepartment;
-CREATE TABLE AgentDepartment (
-    username REFERENCES Agent(username) ON DELETE CASCADE ON UPDATE CASCADE,
+DROP TABLE IF EXISTS ClientDepartment;
+CREATE TABLE ClientDepartment (
+    username REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE,
     name_department REFERENCES Department (name) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

@@ -16,7 +16,6 @@
     margin: 2em;
 }
 
-
 #search_bar:focus {
     outline: none;
 }
@@ -45,6 +44,7 @@
 
 .members_table{
     border-collapse: collapse;
+    width: 100%;
 }
 
 .table_profile_pic{
@@ -56,9 +56,6 @@
 
 thead {
     color: #5C6165;
-    text-align: left;
-    height: 3em;
-    padding: 0.5em 1em;
 }
 
 td {
@@ -67,7 +64,6 @@ td {
 }
 
 .member_name{
-    width: 10em;
     color: white;
     font-size: 14px;
     font-weight: 400;
@@ -75,6 +71,19 @@ td {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.user_details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user_details a{
+    text-decoration: none;
+    font-size: 10px;
+    color: #5C6165;
+    margin-top: 0.4em;
 }
 
 .member_username{

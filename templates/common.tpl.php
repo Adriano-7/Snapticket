@@ -23,7 +23,7 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
   </head>
 <?php } ?>
 
-<?php function drawMenu(Client $client, PDO $db)
+<?php function drawMenu(Client $client)
 { ?>
 
   <body>
@@ -67,23 +67,23 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
           Notifications
         </a>
         <?php } ?>
-        <?php if (Client::isAdmin($db, $client) && $_SERVER['REQUEST_URI'] == '/pages/members.php') { ?>
+        <?php if ($client->isAdmin && $_SERVER['REQUEST_URI'] == '/pages/members.php') { ?>
         <a href="members.php" style="color:#FFFFFF">
           <img src="../assets/menu_icons/members-white-icon.svg" alt="Members" class="menu-icon" />
           Members
         </a>
-        <?php } else if (Client::isAdmin($db, $client)) { ?>
+        <?php } else if ($client->isAdmin) { ?>
         <a href="members.php" style="color:#808080">
           <img src="../assets/menu_icons/members-gray-icon.svg" alt="Members" class="menu-icon" />
           Members
         </a>
         <?php } ?>
-        <?php if (Client::isAdmin($db, $client) && $_SERVER['REQUEST_URI'] == '/pages/departments.php') { ?>
+        <?php if ($client->isAdmin && $_SERVER['REQUEST_URI'] == '/pages/departments.php') { ?>
         <a href="departments.php" style="color:#FFFFFF">
           <img src="../assets/menu_icons/departments-white-icon.svg" alt="Departments" class="menu-icon" />
           Departments
         </a>
-        <?php } else if (Client::isAdmin($db, $client)) { ?>
+        <?php } else if ($client->isAdmin) { ?>
         <a href="departments.php" style="color:#808080">
           <img src="../assets/menu_icons/departments-gray-icon.svg" alt="Departments" class="menu-icon" />
           Departments

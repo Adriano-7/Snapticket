@@ -42,7 +42,9 @@
             </div>
             <div class="tickets_description_details">
               <div class="tickets_description_department">
-                <?php echo $ticket->getDepartment($db); ?>
+                <?php foreach($ticket->departments as $department) { ?>
+                  <?php echo $department['name_department']; ?>
+                <?php } ?>
               </div>
               <div class="tickets_description_client">
                 <?php echo $ticket->creator->name; ?>

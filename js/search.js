@@ -72,7 +72,14 @@ function createDescriptionCell(ticket) {
   descriptionCell.classList.add('tickets_description');
 
   const title = createTitle(ticket.ticket_name);
-  const details = createDetails(ticket.department_name, ticket.creator.name);
+  let departmentText = '';
+  ticket.departments.forEach(department => {
+    departmentText += department.name_department + ' ';
+  });
+
+  console.log(departmentText);
+
+  const details = createDetails(departmentText, ticket.creator.username);
 
   descriptionCell.appendChild(title);
   descriptionCell.appendChild(details);

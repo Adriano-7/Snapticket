@@ -14,6 +14,6 @@
     foreach ($tickets as $ticket) {
         Ticket::isAuthorized($db, $ticket->ticket_id, $session->getUsername()) ? $allowedTickets[] = $ticket : null;
     }
-
+    
     echo json_encode($tickets);
 ?>

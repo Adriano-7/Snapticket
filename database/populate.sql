@@ -28,6 +28,7 @@ INSERT INTO Client VALUES ('Benjamin Collins', 'BenjCollins', 'BCollins@snaptick
 INSERT INTO Client VALUES ('Tyler Williams', 'TWilliams', 'TWilliams@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', NULL);
 
 --Agents Table
+INSERT INTO Agent VALUES ('TWilliams');
 INSERT INTO Agent VALUES ('JamesDavis');
 INSERT INTO Agent VALUES ('JMurphy');
 INSERT INTO Agent VALUES ('MBrown1');
@@ -38,23 +39,22 @@ INSERT INTO Agent VALUES ('APatel');
 INSERT INTO Agent VALUES ('MCooper');
 INSERT INTO Agent VALUES ('EChen');
 INSERT INTO Agent VALUES ('BenjCollins');
-INSERT INTO Agent VALUES ('TWilliams');
 
---AgentDepartment Table
-INSERT INTO AgentDepartment VALUES ('JamesDavis', 'Accounting');
-INSERT INTO AgentDepartment VALUES ('MBrown1', 'Accounting');
-INSERT INTO AgentDepartment VALUES ('SarahJohnson7', 'Accounting');
-INSERT INTO AgentDepartment VALUES ('CChen', 'Accounting');
-INSERT INTO AgentDepartment VALUES ('SKim', 'Accounting');
-INSERT INTO AgentDepartment VALUES ('APatel', 'Accounting');
+--ClientDepartment Table
+INSERT INTO ClientDepartment VALUES ('JamesDavis', 'Accounting');
+INSERT INTO ClientDepartment VALUES ('MBrown1', 'Accounting');
+INSERT INTO ClientDepartment VALUES ('SarahJohnson7', 'Accounting');
+INSERT INTO ClientDepartment VALUES ('CChen', 'Accounting');
+INSERT INTO ClientDepartment VALUES ('SKim', 'Accounting');
+INSERT INTO ClientDepartment VALUES ('APatel', 'Accounting');
 
-INSERT INTO AgentDepartment VALUES ('MCooper', 'Sales');
-INSERT INTO AgentDepartment VALUES ('TWilliams', 'Sales');
+INSERT INTO ClientDepartment VALUES ('MCooper', 'Sales');
+INSERT INTO ClientDepartment VALUES ('TWilliams', 'Sales');
 
-INSERT INTO AgentDepartment VALUES ('EChen', 'Legal');
+INSERT INTO ClientDepartment VALUES ('EChen', 'Legal');
 
-INSERT INTO AgentDepartment VALUES ('SarahJohnson7', 'Human Resources');
-INSERT INTO AgentDepartment VALUES ('BenjCollins', 'Human Resources');
+INSERT INTO ClientDepartment VALUES ('SarahJohnson7', 'Human Resources');
+INSERT INTO ClientDepartment VALUES ('BenjCollins', 'Human Resources');
 
 --Admin Table
 INSERT INTO Admin VALUES ('JMurphy');

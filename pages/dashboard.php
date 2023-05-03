@@ -12,6 +12,7 @@ require_once(__DIR__ . '/../database/php_classes/ticket.class.php');
 
 $db = connectToDatabase();
 $session = new Session();
+$client = Client::getClient($db, $session->getUsername());
 
 if (!$session->isLoggedIn()) {
   header('Location: login.php');
@@ -21,7 +22,7 @@ if (!$session->isLoggedIn()) {
 $tickets = Ticket::getTickets($db, $session->getUsername());
 
 createHead('Dashboard', ['style', 'dashboard'], ['search']);
-drawMenu(Client::getClient($db, $session->getUsername()), $db);
+drawMenu($client);
 drawSearchBar();
 drawTicketsTable($tickets, $db);
 ?>

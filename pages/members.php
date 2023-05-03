@@ -5,6 +5,7 @@ require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../database/connection.db.php');
 
 require_once(__DIR__ . '/../templates/common.tpl.php');
+require_once(__DIR__ . '/../templates/members.tpl.php');
 
 require_once(__DIR__ . '/../database/php_classes/client.class.php');
 
@@ -17,15 +18,15 @@ if (!$session->isLoggedIn()) {
   die();
 }
 
-if(!$client->isAdmin($db)){
+if(!$client->isAdmin){
   header('Location: error_page.php');
   die();
 }
 
-$members = $client->getMembers($db);
+$members = $client->getAllClients($db);
+
 createHead('Members', ['style', 'members']);
-drawMenu($client, $db);
+drawMenu($client);
 drawSearchFilters();
 drawMembersTable($members);
-drawFooter();
 ?>

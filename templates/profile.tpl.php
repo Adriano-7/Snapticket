@@ -1,51 +1,51 @@
-<?php function drawUserInfo($client_info){ ?>
+<?php function drawUserInfo(Client $client){ ?>
 <main class="main_content">
     <div class="user-info">
         <div class="profile-pic">
-            <img src="../actions/display_profile_pic.action.php?username=<?php echo $client_info['username'] ?>" alt="Profile image" />
+            <img src="../actions/display_profile_pic.action.php?username=<?php echo $client->username ?>" alt="Profile image" />
         </div>
         <div class="user-details">
             <h2>
-                <?php echo $client_info['name'] ?>
+                <?php echo $client->name ?>
             </h2>
             <h3>
-                <?php echo $client_info['username'] ?>
+                <?php echo $client->username ?>
             </h3>
         </div>
     </div>
 <?php } ?>
 
-<?php function drawUserForms($client_info){
-    drawEditName($client_info);
-    drawEditUsername($client_info);
-    drawEditEmail($client_info);
+<?php function drawUserForms(Client $client){
+    drawEditName($client);
+    drawEditUsername($client);
+    drawEditEmail($client);
     drawEditPassword();
 }
 ?>
 
-<?php function drawEditName($client_info){ ?>
+<?php function drawEditName(Client $client){ ?>
     <div class="edit-forms">
         <div class="edit-form">
             <form action="../actions/edit_name.action.php" method="post">
-                <input type="text" name="name" value="<?php echo $client_info['name'] ?>" />
+                <input type="text" name="name" value="<?php echo $client->name ?>" />
                 <button type="submit" class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
             </form>
         </div>
     <?php } ?>
     
-<?php function drawEditUsername($client_info){ ?>
+<?php function drawEditUsername(Client $client){ ?>
     <div class="edit-form">
         <form action="../actions/edit_username.action.php" method="post">
-            <input type="text" name="username" value=<?php echo $client_info['username'] ?> />
+            <input type="text" name="username" value=<?php echo $client->username ?> />
             <button type="submit" class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
         </form>
     </div>
 <?php } ?>
 
-<?php function drawEditEmail($client_info){ ?>
+<?php function drawEditEmail(Client $client){ ?>
     <div class="edit-form">
         <form action="../actions/edit_email.action.php" method="post">
-            <input type="email" name="email" value=<?php echo $client_info['email'] ?> />
+            <input type="email" name="email" value=<?php echo $client->email ?> />
             <button type="submit" class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
         </form>
     </div>
