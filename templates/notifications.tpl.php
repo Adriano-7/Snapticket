@@ -5,7 +5,7 @@
         <div class="notification">
             <a class="notification_details" href="../actions/notification_redirect.action.php?notification_id=<?php echo $notification->notification_id ?>">
                 <?php if(!$notification->isVisited){ ?><div class="notification_unread"></div><?php } ?>
-                <img class="notification_profile_pic" src="../actions/display_profile_pic.action.php?username=<?php echo $notification->sender->username ?>" alt="Profile image" />
+                <?php $notification->sender->displayProfilePhoto("notification_profile_pic") ?>
                 <span class="notification_name"> <?php echo $notification->sender->name ?> </span>
                 <span class="notification_text"> <?php echo $notification->content ?> </span>
                 <span class="notification_time"> <?php echo Notification::getNiceDate($notification) ?> </span>

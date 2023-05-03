@@ -14,7 +14,7 @@ $db = connectToDatabase();
 $session = new Session();
 $client = Client::getClient($db, $session->getUsername());
 
-if (!$session->isLoggedIn()) {
+if (!$session->isLoggedIn() || $client === null) {
   header('Location: login.php');
   die();
 }

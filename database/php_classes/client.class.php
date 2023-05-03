@@ -11,7 +11,7 @@ class Client
   public array $departments;
   public string $image_blob;
 
-  public function __construct(string $name, string $username, string $email, string $password, bool $isAgent = false, bool $isAdmin = false, array $departments = [], string $image_blob = null)
+  public function __construct(string $name, string $username, string $email, string $password, bool $isAgent = false, bool $isAdmin = false, array $departments = [], string $image_blob = "")
   {
     $this->name = $name;
     $this->username = $username;
@@ -90,15 +90,17 @@ class Client
     return $query->execute(array(sha1($password), strtolower($username)));
   }
 
-  static function changeProfilePhoto(PDO $db, string $username, $image_blob)
-  {
+  function changeProfilePhoto(PDO $db, $image_blob){
     $query = $db->prepare('
           UPDATE Client
           SET user_image = ?
           WHERE lower(username) = ?
           ');
 
-    return $query->execute(array($image_blob, strtolower($username)));
+    $imagePath = "../assets/server_profile_pics/" . $this->username . ".jpg";
+    file_put_contents($imagePath, $image_blob);
+
+    return $query->execute(array($image_blob, strtolower($this->username)));
   }
 
   static function getClientWithPassword(PDO $db, string $username, string $password): ?Client
@@ -162,7 +164,7 @@ class Client
       }
 
 
-      return new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments, $client['user_image']);
+      return new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments, $client['user_image']??'');
     }
 
     return null;
@@ -207,18 +209,22 @@ class Client
         array_push($departments, $department['name_department']);
       }
 
-      $clients[] = new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments, $client['user_image']);
+      $clients[] = new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments, $client['user_image']??'');
     }
 
     return $clients;
   }
 
   function displayProfilePhoto(string $class){
-    if($this->image_blob != null){
-      echo '<img src="data:image/jpeg;base64,'.base64_encode($this->image_blob).'" alt="Profile Photo" class="'.$class.'">';
+    if($this->image_blob != ""){
+      $imagePath = "../assets/server_profile_pics/" . $this->username . ".jpg";
+      if(!file_exists($imagePath)){
+        file_put_contents($imagePath, $this->image_blob);
+      }
+      echo '<img src="'.$imagePath.'" alt="Profile Photo" class="'.$class.'">';
     }
     else{
-      echo '<img src="images/profile.png" alt="Profile Photo" class="'.$class.'">';
+      echo '<img src="../assets/profile_pics_examples/default.jpg" alt="Profile Photo" class="'.$class.'">';
     }
   }
 }
