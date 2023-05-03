@@ -22,8 +22,7 @@
                 <?php foreach ($members as $member) { ?>
                     <tr>
                         <td class="member_name">
-                            <img src="/../actions/display_profile_pic.action.php?username=<?php echo $member->username ?>"
-                                alt="Profile image" class="table_profile_pic" />
+                            <?php $member->displayProfilePhoto("table_profile_pic") ?>
 
                             <div class="user_details">
                                 <?php echo $member->name; ?>

@@ -92,7 +92,7 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
       </nav>
       <a href="profile.php" class="profile_link">
         <div class="profile">
-          <img src="/../actions/display_profile_pic.action.php?username=<?php echo $client->username?>" alt="Profile image" />
+          <?php $client->displayProfilePhoto("profile-photo") ?>
           <span class="profile_name">
             <?php echo $client->name ?>
           </span>

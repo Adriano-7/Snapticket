@@ -9,8 +9,9 @@ class Client
   public bool $isAgent;
   public bool $isAdmin;
   public array $departments;
+  public string $image_blob;
 
-  public function __construct(string $name, string $username, string $email, string $password, bool $isAgent = false, bool $isAdmin = false, array $departments = [])
+  public function __construct(string $name, string $username, string $email, string $password, bool $isAgent = false, bool $isAdmin = false, array $departments = [], string $image_blob = null)
   {
     $this->name = $name;
     $this->username = $username;
@@ -19,6 +20,7 @@ class Client
     $this->isAgent = $isAgent;
     $this->isAdmin = $isAdmin;
     $this->departments = $departments;
+    $this->image_blob = $image_blob;
   }
 
   static function register(PDO $db, string $name, string $username, string $email, string $password): bool
@@ -122,7 +124,7 @@ class Client
     }
 
     $query = $db->prepare('
-            SELECT name, username, email, password
+            SELECT name, username, email, password, user_image
             FROM Client
             WHERE lower(username) = ?
           ');
@@ -160,7 +162,7 @@ class Client
       }
 
 
-      return new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments);
+      return new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments, $client['user_image']);
     }
 
     return null;
@@ -205,10 +207,19 @@ class Client
         array_push($departments, $department['name_department']);
       }
 
-      $clients[] = new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments);
+      $clients[] = new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments, $client['user_image']);
     }
 
     return $clients;
+  }
+
+  function displayProfilePhoto(string $class){
+    if($this->image_blob != null){
+      echo '<img src="data:image/jpeg;base64,'.base64_encode($this->image_blob).'" alt="Profile Photo" class="'.$class.'">';
+    }
+    else{
+      echo '<img src="images/profile.png" alt="Profile Photo" class="'.$class.'">';
+    }
   }
 }
 ?>
