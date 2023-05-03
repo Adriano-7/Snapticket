@@ -50,46 +50,19 @@ nav a {
   padding: 1em;
 }
 
-.dashboard-menu {
-  text-decoration: none;
-}
-
-.dashboard-icon {
+.menu-icon{
   position: relative;
-  top: 0.30em;
+  top: 0.17em;
   margin-right: 0.1em;
-}
-
-.faq-menu {
-  text-decoration: none;
-}
-
-.faq-icon {
-  position: relative;
-  top: 0.45em;
-  margin-right: 0.1em;
-}
-
-.notifications-menu {
-  text-decoration: none;
-}
-
-.notifications-icon {
-  position: relative;
-  top: 0.55em;
-  margin-right: 0.1em;
-  height: 2em;
+  width: 1.5em;
+  height: 1.5em;
 }
 
 .profile {
   color: white;
-  margin-top: 21em;
-  margin-bottom: 0;
   margin-left: 2em;
-}
-
-.profile_link {
-  text-decoration: none;
+  bottom: 1em;
+  position: absolute;
 }
 
 .profile img {
@@ -97,8 +70,7 @@ nav a {
   height: 4em;
   border-radius: 50%;
   margin-right: 0.6em;
-  position: relative;
-  bottom: 0.5em;
+  margin-top: auto;
 }
 
 .profile .profile_name {
@@ -108,10 +80,6 @@ nav a {
 }
 
 #menu-toggle {
-  display: none;
-}
-
-.menu-icon {
   display: none;
 }
 

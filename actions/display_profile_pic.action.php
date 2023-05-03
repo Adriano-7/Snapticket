@@ -11,7 +11,7 @@ if ($username === '') {
 } else {
     $db = connectToDatabase();
     $imageData = getProfileImage($db, $username);
-    
+
     if ($imageData === null) {
         $defaultImagePath = __DIR__ . '/../assets/profile_pics_examples/default.jpg';
         header('Content-Type: image/jpeg');

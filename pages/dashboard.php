@@ -21,7 +21,7 @@ if (!$session->isLoggedIn()) {
 $tickets = Ticket::getTickets($db, $session->getUsername());
 
 createHead('Dashboard', ['style', 'dashboard'], ['search']);
-drawMenu(Client::getClientName($db, $session->getUsername()), $db);
+drawMenu(Client::getClient($db, $session->getUsername()), $db);
 drawSearchBar();
 drawTicketsTable($tickets, $db);
 ?>

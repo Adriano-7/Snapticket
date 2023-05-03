@@ -23,6 +23,6 @@ if (!$session->isLoggedIn()) {
 $notifications = Notification::getNotifications($db, $session->getUsername());
 
 createHead('Notifications', ['style', 'notifications']);
-drawMenu(Client::getClientName($db, $session->getUsername()), $db);
+drawMenu(Client::getClient($db, $session->getUsername()), $db);
 drawNotifications($notifications);
 ?>

@@ -18,7 +18,6 @@ if (search) {
 
 function createRow(ticket) {
   const row = document.createElement('tr');
-  row.classList.add('ticket_row');
   row.addEventListener('click', function() {
     window.location.href = 'ticket.php?ticket_id=' + ticket.ticket_id;
   });
@@ -116,7 +115,7 @@ function createClient(clientText) {
 }
 
 function clearTickets() {
-  const rows = document.querySelectorAll('.ticket_row');
+  const rows = document.querySelectorAll('tbody tr');
   rows.forEach(ticketRow => {
     ticketRow.remove();
   });

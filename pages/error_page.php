@@ -11,6 +11,6 @@ $db = connectToDatabase();
 $session = new Session();
 
 createHead('Error 404', ['style']);
-drawMenu(Client::getClientName($db, $session->getUsername()), $db);
+drawMenu(Client::getClient($db, $session->getUsername()), $db);
 drawErrorAlert();
 ?>

@@ -30,6 +30,6 @@ if (!$isAuthorised) {
 }
 
 createHead('Notifications', ['style']);
-drawMenu(Client::getClientName($db, $session->getUsername()), $db);
+drawMenu(Client::getClient($db, $session->getUsername()), $db);
 drawFooter();
 ?>

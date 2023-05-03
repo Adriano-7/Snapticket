@@ -99,21 +99,6 @@ class Client{
     return null;
   }
 
-  static function getClientName(PDO $db, string $username): string{
-    $query = $db->prepare('
-            SELECT name
-            FROM Client
-            WHERE lower(username) = ?
-          ');
-
-    $query->execute(array(strtolower($username)));
-
-    if ($client = $query->fetch()) {
-      return $client['name'];
-    }
-    return '';
-  }
-
   static function getClientInfo(PDO $db, string $username): array{
     $query = $db->prepare('
             SELECT name, username, email
@@ -147,5 +132,21 @@ class Client{
     }
     return null;
   }
+
+  function isAdmin(PDO $db): bool{
+    $query = $db->prepare('
+            SELECT *
+            FROM Admin
+            WHERE lower(username) = ?
+          ');
+
+    $query->execute(array(strtolower($this->username)));
+
+    return $query->fetch() !== false;
+  }
+
+  /*Returns a array of every client except itself*/
+  function getMembers(PDO $db): 
+
 }
 ?>

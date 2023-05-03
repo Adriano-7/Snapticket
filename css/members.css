@@ -1,0 +1,112 @@
+#search_bar{
+    font-size: 13px;
+    border-radius: 0.5em;
+    background-color: #333537;
+    border: none;
+    color: #ffffff;
+    padding: 1em;
+
+    width: 18%;
+    background-image: url("../assets/search-icon.svg");
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+}
+
+.search {
+    margin: 2em;
+}
+
+
+#search_bar:focus {
+    outline: none;
+}
+
+.add_filter {
+    font-size: 13px;
+    border-radius: 0.5em;
+    background-color: #333537;
+    border: none;
+    color: #ffffff;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-left: 1em;
+  }
+  
+.add_filter::after {
+    content: url("../assets/add-icon.svg");
+    margin-left: 1em;
+}
+  
+.add_filter:hover {
+    cursor: pointer;
+}
+
+.members_table{
+    border-collapse: collapse;
+}
+
+.table_profile_pic{
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+    margin-right: 1em;
+}
+
+thead {
+    color: #5C6165;
+    text-align: left;
+    height: 3em;
+    padding: 0.5em 1em;
+}
+
+td {
+    padding: 1.5em 4em;
+    border-bottom: 0.5px solid #5C6165;
+}
+
+.member_name{
+    width: 10em;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.member_username{
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.member_role{
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.member_department{
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.member_email a{
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.member_action a{
+    text-decoration: none;
+}
+
+.action_icons{
+    width: 1em;
+    text-decoration: none;
+}
