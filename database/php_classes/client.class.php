@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
-class Client
-{
+class Client{
   public string $name;
   public string $username;
   public string $email;
@@ -170,14 +169,50 @@ class Client
     return null;
   }
 
-  function getAllClients(PDO $db): array{
-    $query = $db->prepare('
-            SELECT *
-            FROM Client
-            WHERE lower(username) != ?
-          ');
+  static function searchClients(PDO $db, MemberFilters $memberFilters) : array{
+    $query = "SELECT * FROM Client WHERE lower(username) != ?";
+    $params = array(strtolower($_SESSION['username']));
 
-    $query->execute(array(strtolower($this->username)));
+    if($memberFilters->department != ""){
+      $query .= " AND lower(username) IN (SELECT lower(username) FROM ClientDepartment WHERE lower(name_department) = ?)";
+      $params[] = strtolower($memberFilters->department);
+    }
+
+    if($memberFilters->role != ""){
+      if($memberFilters->role == "Agent"){
+        $query .= " AND lower(username) IN (SELECT lower(username) FROM Agent)";
+      }
+      else if($memberFilters->role == "Admin"){
+        $query .= " AND lower(username) IN (SELECT lower(username) FROM Admin)";
+      }
+      else{
+        $query .= " AND lower(username) NOT IN (SELECT lower(username) FROM Agent) AND lower(username) NOT IN (SELECT lower(username) FROM Admin)";
+      }
+    }
+
+    if($memberFilters->search != ""){
+      $query .= " AND (lower(name) LIKE ? OR lower(username) LIKE ?)";
+      $params[] = "%".strtolower($memberFilters->search)."%";
+      $params[] = "%".strtolower($memberFilters->search)."%";
+    }
+
+    if($memberFilters->orderName != ""){
+      $query .= " ORDER BY lower(name) ".$memberFilters->orderName;
+    }
+    else if($memberFilters->orderUsername != ""){
+      $query .= " ORDER BY lower(username) ".$memberFilters->orderUsername;
+    }
+    else if($memberFilters->orderRole != ""){
+      $query .= " ORDER BY lower(username) IN (SELECT lower(username) FROM Agent) ".$memberFilters->orderRole;
+    }
+    else if($memberFilters->orderDepartment != ""){
+      $query .= " ORDER BY lower(username) IN (SELECT lower(username) FROM ClientDepartment) ".$memberFilters->orderDepartment;
+    }
+
+    $query .= ";";
+
+    $query = $db->prepare($query);
+    $query->execute($params);
 
     $clients = array();
 
@@ -188,7 +223,7 @@ class Client
               WHERE lower(username) = ?
             ');
       $query1->execute(array(strtolower($client['username'])));
-      $isAgent = $query->fetch() !== false;
+      $isAgent = $query1->fetch() !== false;
 
       $query1 = $db->prepare('
               SELECT *
