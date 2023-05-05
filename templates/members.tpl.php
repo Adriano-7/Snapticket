@@ -29,10 +29,10 @@ function drawSearchFilters(array $departments, $roles)
     { ?>
         <table class="members_table">
             <thead>
-                <td>Name</td>
-                <td>Username</td>
-                <td>Role</td>
-                <td>Department</td>
+                <td>Name <img src="../assets/sort.svg" id="name_sort"/></td>
+                <td>Username <img src="../assets/sort.svg" id="username_sort"/></td>
+                <td>Role <img src="../assets/sort.svg" id="role_sort"/></td>
+                <td>Department <img src="../assets/sort.svg" id="department_sort"/> </td>
                 <td>Action</td>
             </thead>
             <tbody>

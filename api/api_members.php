@@ -14,7 +14,12 @@
     $dept = isset($_GET['dept']) ? $_GET['dept'] : "";
     $role = isset($_GET['role']) ? $_GET['role'] : "";
 
-    $members = Client::searchClients($db, new MemberFilters($search, $dept, $role));
+    $orderName = isset($_GET['orderName']) ? $_GET['orderName'] : "";
+    $orderUsername = isset($_GET['orderUsername']) ? $_GET['orderUsername'] : "";
+    $orderRole = isset($_GET['orderRole']) ? $_GET['orderRole'] : "";
+    $orderDepartment = isset($_GET['orderDepartment']) ? $_GET['orderDepartment'] : "";
+
+    $members = Client::searchClients($db, new MemberFilters($search, $dept, $role, $orderName, $orderUsername, $orderRole, $orderDepartment));
     
     echo json_encode($members);
 ?>

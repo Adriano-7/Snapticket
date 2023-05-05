@@ -4,8 +4,11 @@
     background-color: #333537;
     border: none;
     color: #ffffff;
-    padding: 1em;
-
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    padding-left: 1em;
+    padding-right: 1em;
+  
     width: 18%;
     background-image: url("../assets/search-icon.svg");
     background-repeat: no-repeat;
@@ -16,13 +19,13 @@
     margin: 2em;
 }
 
+input[type=text]::-webkit-input-placeholder {
+    color: #ffffff;
+}
+
 #search_bar:focus {
     outline: none;
 }
-
-.dropdown-menu {
-    background-color: #333537;
-  }
 
 select{
     background-color: #333537;
@@ -72,6 +75,10 @@ option:checked{
 
 thead {
     color: #5C6165;
+    text-align: left;
+    height: 3em;
+    padding: 0.5em 1em;
+    font-weight: 600;
 }
 
 td {
@@ -134,4 +141,20 @@ td {
 .action_icons{
     width: 1em;
     text-decoration: none;
+}
+
+#name_sort{
+    cursor: pointer;
+}
+
+#username_sort{
+    cursor: pointer;
+}
+
+#role_sort{
+    cursor: pointer;
+}
+
+#department_sort{
+    cursor: pointer;
 }

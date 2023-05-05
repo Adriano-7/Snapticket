@@ -1,63 +1,89 @@
 const search = document.getElementById('search_bar');
-dept = document.getElementById('dept_select');
-role = document.getElementById('role_select');
+const dept = document.getElementById('dept_select');
+const role = document.getElementById('role_select');
+
+const nameSort = document.getElementById('name_sort');
+const usernameSort = document.getElementById('username_sort');
+const roleSort = document.getElementById('role_sort');
+const departmentSort = document.getElementById('department_sort');
+
+let nameSortValue = "";
+let usernameSortValue = "";
+let roleSortValue = "";
+let departmentSortValue = "";
+
+function updateMembers() {
+    fetch(`../api/api_members.php?search=${search.value}&dept=${dept.value}&role=${role.value}&orderName=${nameSortValue}&orderUsername=${usernameSortValue}&orderRole=${roleSortValue}&orderDepartment=${departmentSortValue}`)
+        .then(response => response.json())
+        .then(data => {
+            clearMembers();
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+            data.forEach(member => {
+                const row = createRow(member);
+                tbody.appendChild(row);
+            });
+        });
+}
 
 if (search) {
+    search.addEventListener('input', updateMembers);
+    dept.addEventListener('change', updateMembers);
+    role.addEventListener('change', updateMembers);
+}
 
-    search.addEventListener('input', async function() {
-        const response = await fetch('../api/api_members.php?search=' + this.value + '&dept=' + dept.value + '&role=' + role.value);
-        const data = await response.json();
-        
-        clearMembers();
-
-        const tbody = document.querySelector('tbody');
-        tbody.innerHTML = '';
-
-        data.forEach(member => {
-            const row = createRow(member);
-            tbody.appendChild(row);
-        });
-    });
-
-    dept.addEventListener('change', async function() {
-        const response = await fetch('../api/api_members.php?search=' + search.value + '&dept=' + this.value + '&role=' + role.value);
-        const data = await response.json();
-        
-        clearMembers();
-
-        const tbody = document.querySelector('tbody');
-        tbody.innerHTML = '';
-
-        data.forEach(member => {
-            const row = createRow(member);
-            tbody.appendChild(row);
-        });
-    });
-
-    role.addEventListener('change', async function() {
-        const response = await fetch('../api/api_members.php?search=' + search.value + '&dept=' + dept.value + '&role=' + this.value);
-        const data = await response.json();
-        
-        clearMembers();
-
-        const tbody = document.querySelector('tbody');
-        tbody.innerHTML = '';
-
-        data.forEach(member => {
-            const row = createRow(member);
-            tbody.appendChild(row);
-        });
+if (nameSort) {
+    nameSort.addEventListener('click', () => {
+        nameSortValue = toggleSortValue(nameSortValue, nameSort);
+        updateMembers();
     });
 }
+
+if (usernameSort) {
+    usernameSort.addEventListener('click', () => {
+        usernameSortValue = toggleSortValue(usernameSortValue, usernameSort);
+        updateMembers();
+    });
+}
+
+if (roleSort) {
+    roleSort.addEventListener('click', () => {
+        roleSortValue = toggleSortValue(roleSortValue, roleSort);
+        updateMembers();
+    });
+}
+
+
+if (departmentSort) {
+    departmentSort.addEventListener('click', () => {
+        departmentSortValue = toggleSortValue(departmentSortValue, departmentSort);
+        updateMembers();
+    });
+}
+
+function toggleSortValue(sortValue, sortIcon) {
+    if (sortValue === "") {
+      sortValue = "ASC";
+      sortIcon.src = "../assets/sort-up.svg";
+    } else if (sortValue === "ASC") {
+      sortValue = "DESC";
+      sortIcon.src = "../assets/sort-down.svg";
+    } else {
+      sortValue = "";
+      sortIcon.src = "../assets/sort.svg";
+    }
+    
+    return sortValue;
+}  
+
 
 function clearMembers() {
     const members = document.querySelectorAll('.member');
     members.forEach(member => member.remove());
 }
 
-function createRow(member){
+function createRow(member) {
     const row = document.createElement('tr');
-    
     const nameCell = createNameCell(member);
     const usernameCell = createUsernameCell(member);
     const roleCell = createRoleCell(member);
@@ -73,35 +99,30 @@ function createRow(member){
     return row;
 }
 
-function createNameCell(member){
+function createNameCell(member) {
     const nameCell = document.createElement('td');
     nameCell.classList.add('member_name');
-
     const profilePic = document.createElement('img');
-    profilePic.src = '../actions/display_pic.action.php?id=' + member.image_id;
+    profilePic.src = `../actions/display_pic.action.php?id=${member.image_id}`;
     profilePic.alt = 'Profile Photo';
     profilePic.classList.add('table_profile_pic');
-
     const userDetails = document.createElement('div');
     userDetails.classList.add('user_details');
-
     const name = document.createElement('span');
     name.innerText = member.name;
-
     const email = document.createElement('a');
-    email.href = 'mailto:' + member.email;
+    email.href = `mailto:${member.email}`;
     email.innerText = member.email;
 
     userDetails.appendChild(name);
     userDetails.appendChild(email);
-
     nameCell.appendChild(profilePic);
     nameCell.appendChild(userDetails);
 
     return nameCell;
 }
 
-function createUsernameCell(member){
+function createUsernameCell(member) {
     const usernameCell = document.createElement('td');
     usernameCell.classList.add('member_username');
     usernameCell.innerText = member.username;
@@ -109,14 +130,15 @@ function createUsernameCell(member){
     return usernameCell;
 }
 
-function createRoleCell(member){
+function createRoleCell(member) {
     const roleCell = document.createElement('td');
     roleCell.classList.add('member_role');
     roleCell.innerText = member.isAdmin ? 'Admin' : member.isAgent ? 'Agent' : 'User';
+
     return roleCell;
 }
 
-function createDepartmentCell(member){
+function createDepartmentCell(member) {
     const departmentCell = document.createElement('td');
     departmentCell.classList.add('member_department');
 
@@ -130,7 +152,7 @@ function createDepartmentCell(member){
     return departmentCell;
 }
 
-function createActionCell(member){
+function createActionCell(member) {
     const actionCell = document.createElement('td');
     actionCell.classList.add('member_action');
 
