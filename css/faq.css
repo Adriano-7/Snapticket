@@ -7,49 +7,45 @@
   }
 
 h2 {
-    font-weight : 350;
+    font-weight : 400;
 }
 
 .choose_button {
     background-color: #82B7DC;
     border: none;
-    float : right;
+    float: right;
     color: #FFFFFF;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-weight: bold;
+    font-size: 0.35em;
     border-radius: 0.5em;
-    padding: 1em 0.5em;
+    padding: 0.8em 1em;
     cursor: pointer;
   }
 
 .faq_question {
     background-color: #333537;
     color : #FFFFFF;
-    margin-left: 4em;
-    margin-right: 8em;
+    margin-left: 6em;
+    margin-right: 12em;
     margin-bottom: 2em;
     text-align: left;
     height: 2em;
+    padding-left : 2em;
     padding-top: 1em;
     padding-bottom: 1em;
-    border: 1px solid #82B7DC;
-    border-radius: 0.5em;
+    padding-right: 1em;
+    border-radius: 1em;
     cursor: pointer;
   }
 
 .add_button {
     background-color: #333537;
-    border: none;
-    float : right;
-    color: #FFFFFF;
     text-align: center;
+    border: none;
+    float: right;
+    padding-top: 0.25em;
     text-decoration: none;
-    display: inline-block;
-    font-weight: bold;
-    padding-bottom : 0.5em;
-    padding-left : 0.5em;
-    padding-right : 0.5em;
     cursor: pointer;
   }

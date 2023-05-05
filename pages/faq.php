@@ -7,6 +7,7 @@ require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../templates/common.tpl.php');
 
 require_once(__DIR__ . '/../database/php_classes/client.class.php');
+require_once(__DIR__ . '/../database/php_classes/faq.class.php');
 
 $db = connectToDatabase();
 $session = new Session();
@@ -19,4 +20,5 @@ if (!$session->isLoggedIn() || !Client::clientExists($db, $session->getUsername(
 createHead('Notifications', ['style'], ['menu-colors']);
 drawMenu(Client::getClientName($db, $session->getUsername()), $db);
 drawFooter();
+drawFAQ($FAQ, $db);
 ?>
