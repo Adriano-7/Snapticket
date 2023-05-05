@@ -136,8 +136,6 @@ function createDescriptionCell(ticket) {
     departmentText += department.name_department + ' ';
   });
 
-  console.log(departmentText);
-
   const details = createDetails(departmentText, ticket.creator.username);
 
   descriptionCell.appendChild(title);

@@ -1,35 +1,37 @@
-<?php function drawSearchBar(){ ?>
+<?php function drawSearchBar($departments, $status, $assignee, $hashtags){ ?>
 <main class="main_content">
   <div class="tickets_search">
     <input type="text" placeholder="Search..." id="search_bar">
     <button type="submit" class="add_filter">
       <select name="dept" id="dept_select">
         <option value="">Department</option>
-        <option value="Accounting">Accounting</option>
-        <option value="Legal">Legal</option>
-        <option value="Human Resources">Human Resources</option>
-        <option value="Sales">Sales</option>
+        <?php foreach ($departments as $department) { ?>
+          <option value="<?= $department ?>"><?= $department ?></option>
+        <?php } ?>
       </select>
     </button>
     <button type="submit" class="add_filter">
       <select name="status" id="status_select">
         <option value="">Status</option>
-        <option value="Open">Open</option>
-        <option value="Assigned">Assigned</option>
-        <option value="Closed">Closed</option>
+        <?php foreach ($status as $stat) { ?>
+          <option value="<?= $stat ?>"><?= $stat ?></option>
+        <?php } ?>
       </select>
     </button>
     <button type="submit" class="add_filter">
       <select name="status" id="assignee_select">
-        <option value="">Asssignee</option>
-        <option value="Open">JMurphy</option>
-        <option value="Assigned">APeterson12</option>
-        <option value="Closed">JamesDavis</option>
+        <option value="">Assignee</option>
+        <?php foreach ($assignee as $assign) { ?>
+          <option value="<?= $assign ?>"><?= $assign ?></option>
+        <?php } ?>    
       </select>
     </button>
     <button type="submit" class="add_filter">
       <select name="status" id="hashtag_select">
         <option value="">Hashtag</option>
+        <?php foreach ($hashtags as $hashtag) { ?>
+          <option value="<?= $hashtag ?>"><?= $hashtag ?></option>
+        <?php } ?>
       </select>
     </button>
     <button type="submit" class="create_ticket">Create Ticket</button>
@@ -76,7 +78,7 @@
                 <?php } ?>
               </div>
               <div class="tickets_description_client">
-                <?php echo $ticket->creator->name; ?>
+                <?php echo $ticket->creator->username; ?>
               </div>
             </div>
           </td>
@@ -85,3 +87,4 @@
     </tbody>
   </table>
 <?php } ?>
+

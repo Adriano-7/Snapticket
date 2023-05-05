@@ -66,3 +66,4 @@ BEGIN
     FROM Ticket
     WHERE ticket_id = NEW.ticket_id AND (SELECT creator FROM Ticket WHERE ticket_id = NEW.ticket_id) != NEW.username;
 END;
+

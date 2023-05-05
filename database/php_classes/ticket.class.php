@@ -105,12 +105,26 @@ class Ticket
             $params[] = $filters->hashtag;
         }
 
-        if ($filters->orderId != "") {
+        if($filters->orderId != ""){
             $query .= " ORDER BY ticket_id " . $filters->orderId;
-        } else if ($filters->orderAssignee != "") {
-            $query .= " ORDER BY assignee " . $filters->orderAssignee;
-        } else if ($filters->orderDescription != "") {
-            $query .= " ORDER BY ticket_name " . $filters->orderDescription;
+        }
+        
+        if($filters->orderAssignee != ""){
+            if($filters->orderId == ""){
+                $query .= " ORDER BY assignee " . $filters->orderAssignee;
+            }
+            else{
+                $query .= ", assignee " . $filters->orderAssignee;
+            }
+        }
+
+        if($filters->orderDescription != ""){
+            if($filters->orderId == "" && $filters->orderAssignee == ""){
+                $query .= " ORDER BY ticket_name " . $filters->orderDescription;
+            }
+            else{
+                $query .= ", ticket_name " . $filters->orderDescription;
+            }
         }
 
         $stmt = $db->prepare($query);
@@ -139,6 +153,51 @@ class Ticket
         }
         
         return $client_tickets;
+    }
+
+    static function getAssignees(array $tickets){
+        $assignees = array();
+        foreach ($tickets as $ticket) {
+            if($ticket->assignee !== NULL && !in_array($ticket->assignee->username, $assignees)){
+                $assignees[] = $ticket->assignee->username;
+            }
+        }
+        return $assignees;
+    }
+    
+    static function getStatuses(array $tickets){
+        $statuses = array();
+        foreach ($tickets as $ticket) {
+            if (!in_array($ticket->status, $statuses)) {
+                $statuses[] = $ticket->status;
+            }
+        }
+        return $statuses;
+    }
+
+    static function getDepartments(array $tickets){
+        $departments = array();
+        foreach ($tickets as $ticket) {
+            foreach ($ticket->departments as $department) {
+                if (!in_array($department['name_department'], $departments)) {
+                    $departments[] = $department['name_department'];
+                }
+            }
+        }
+        return $departments;
+    }
+
+
+    static function getHashtags(array $tickets){
+        $hashtags = array();
+        foreach ($tickets as $ticket) {
+            foreach ($ticket->hashtags as $hashtag) {
+                if (!in_array($hashtag['name'], $hashtags)) {
+                    $hashtags[] = $hashtag['name'];
+                }
+            }
+        }
+        return $hashtags;
     }
 }
 ?>

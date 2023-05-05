@@ -10,7 +10,7 @@ INSERT INTO Department VALUES ('Human Resources');
 INSERT INTO Department VALUES ('Sales');
 
 --Hashtag Table
-INSERT INTO Hashtag VALUES ('#LackPermissions');
+INSERT INTO Hashtag VALUES ('LackPermissions');
 
 --Client Table
 INSERT INTO Client (name,username,email,password) VALUES ('Andrew Peterson', 'APeterson12', 'peterson_andrew@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76');
@@ -104,7 +104,7 @@ INSERT INTO TicketDepartment VALUES ('Human Resources', 8);
 INSERT INTO TicketDepartment VALUES ('Human Resources', 11);
 
 --TicketHashtag Table
-INSERT INTO TicketHashtag VALUES (17, '#LackPermissions');
+INSERT INTO TicketHashtag VALUES (17, 'LackPermissions');
 
 --FAQ Table
 INSERT INTO FAQ (name_department) VALUES ('Accounting');
