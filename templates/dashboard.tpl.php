@@ -39,9 +39,9 @@
 <?php function drawTicketsTable(array $tickets, PDO $db){ ?>
   <table class="tickets_table">
     <thead>
-      <td>ID</td>
-      <td>Assignee</td>
-      <td>Description</td>
+      <td>ID <img src="../assets/sort.svg" id="id_sort" /></td>
+      <td>Assignee <img src="../assets/sort.svg" id="assignee_sort" /></td>
+      <td>Description <img src="../assets/sort.svg" id="description_sort" /></td>
     </thead>
     <tbody>
       <?php foreach ($tickets as $ticket) { ?>

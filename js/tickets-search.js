@@ -1,24 +1,78 @@
 const search = document.querySelector('#search_bar');
+const dept = document.querySelector('#dept_select');
+const status_ = document.querySelector('#status_select');
+const assignee = document.querySelector('#assignee_select');
+const hashtag = document.querySelector('#hashtag_select');
 
-if (search) {
-  search.addEventListener('input', async function() {
-    clearTickets();
-    const response = await fetch('../api/api_tickets.php?search=' + this.value);
-    const tickets = await response.json();
+const idSort = document.querySelector('#id_sort');
+const assigneeSort = document.querySelector('#assignee_sort');
+const descriptionSort = document.querySelector('#description_sort');
 
-    const tbody = document.querySelector('tbody');
-    tbody.innerHTML = '';
+let idSortValue = '';
+let assigneeSortValue = '';
+let descriptionSortValue = '';
 
-    tickets.forEach(ticket => {
-        const ticketRow = createRow(ticket);
-        tbody.appendChild(ticketRow);
-    });
-  });
+function updateMembers() {
+    fetch(`../api/api_tickets.php?search=${search.value}&dept=${dept.value}&status=${status_.value}&priority=&assignee=${assignee.value}&hashtag=${hashtag.value}&orderId=${idSortValue}&orderAssignee=${assigneeSortValue}&orderDescription=${descriptionSortValue}`)
+        .then(response => response.json())
+        .then(data => {
+            clearTickets();
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+            data.forEach(member => {
+                const row = createRow(member);
+                tbody.appendChild(row);
+            });
+        });
+}
+
+if(search) {
+    search.addEventListener('input', updateMembers);
+    dept.addEventListener('change', updateMembers);
+    status_.addEventListener('change', updateMembers);
+    assignee.addEventListener('change', updateMembers);
+    hashtag.addEventListener('change', updateMembers);
+}
+
+function toggleSortValue(sortValue, sortIcon) {
+    if (sortValue === "") {
+      sortValue = "ASC";
+      sortIcon.src = "../assets/sort-up.svg";
+    } else if (sortValue === "ASC") {
+      sortValue = "DESC";
+      sortIcon.src = "../assets/sort-down.svg";
+    } else {
+      sortValue = "";
+      sortIcon.src = "../assets/sort.svg";
+    }
+    
+    return sortValue;
+}  
+
+if(idSort) {
+    idSort.addEventListener('click', () => {
+        idSortValue = toggleSortValue(idSortValue, idSort);
+        updateMembers();}
+    );
+}
+
+if(assigneeSort) {
+    assigneeSort.addEventListener('click', () => {
+        assigneeSortValue = toggleSortValue(assigneeSortValue, assigneeSort);
+        updateMembers();}
+    );
+}
+
+if(descriptionSort) {
+    descriptionSort.addEventListener('click', () => {
+        descriptionSortValue = toggleSortValue(descriptionSortValue, descriptionSort);
+        updateMembers();}
+    );
 }
 
 function clearTickets() {
-  const rows = document.querySelectorAll('tbody tr');
-  rows.forEach(ticketRow => {ticketRow.remove();});
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(ticketRow => {ticketRow.remove();});
 }
 
 function createRow(ticket) {

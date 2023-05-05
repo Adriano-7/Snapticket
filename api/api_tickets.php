@@ -24,5 +24,5 @@
 
     $tickets = Ticket::searchTickets($db, new TicketFilters($search, $dept, $status, $priority, $assignee, $hashtag, $orderId, $orderAssignee, $orderDescription), $client);
     
-    echo json_encode($allowedTickets);
+    echo json_encode($tickets);
 ?>
