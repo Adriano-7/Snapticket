@@ -23,7 +23,7 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
   </head>
 <?php } ?>
 
-<?php function drawMenu(string $user_name, PDO $db)
+<?php function drawMenu(PDO $db, Client $client)
 { ?>
 
   <body>
@@ -35,44 +35,66 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
       </div>
       <nav>
         <?php if ($_SERVER['REQUEST_URI'] == '/pages/dashboard.php') { ?>
-        <a href="dashboard.php" class="dashboard-menu" style="color:#FFFFFF">
-          <img src="../assets/menu_icons/dashboard-white-icon.svg" alt="Dashboard" class="dashboard-icon" />
+        <a href="dashboard.php" style="color:#FFFFFF">
+          <img src="../assets/menu_icons/dashboard-white-icon.svg" alt="Dashboard" class="menu-icon" />
           Dashboard
         </a>
         <?php } else { ?>
-        <a href="dashboard.php" class="dashboard-menu" style="color:#808080">
-          <img src="../assets/menu_icons/dashboard-gray-icon.svg" alt="Dashboard" class="dashboard-icon" />
+        <a href="dashboard.php" style="color:#808080">
+          <img src="../assets/menu_icons/dashboard-gray-icon.svg" alt="Dashboard" class="menu-icon" />
           Dashboard
         </a>
         <?php } ?>
         <?php if ($_SERVER['REQUEST_URI'] == '/pages/faq.php') { ?>
-        <a href="faq.php" class="faq-menu" style="color:#FFFFFF">
-          <img src="../assets/menu_icons/faq-white-icon.svg" alt="Faq" class="faq-icon" />
+        <a href="faq.php" style="color:#FFFFFF">
+          <img src="../assets/menu_icons/faq-white-icon.svg" alt="Faq" class="menu-icon" />
           FAQ
         </a>
         <?php } else { ?>
-        <a href="faq.php" class="faq-menu" style="color:#808080">
-          <img src="../assets/menu_icons/faq-gray-icon.svg" alt="Faq" class="faq-icon" />
+        <a href="faq.php" style="color:#808080">
+          <img src="../assets/menu_icons/faq-gray-icon.svg" alt="Faq" class="menu-icon" />
           FAQ
         </a>
         <?php } ?>
         <?php if ($_SERVER['REQUEST_URI'] == '/pages/notifications.php') { ?>
-        <a href="notifications.php" class="notifications-menu" style="color:#FFFFFF">
-          <img src="../assets/menu_icons/notifications-white-icon.svg" alt="Notifications" class="notifications-icon" />
+        <a href="notifications.php" style="color:#FFFFFF">
+          <img src="../assets/menu_icons/notifications-white-icon.svg" alt="Notifications" class="menu-icon" />
           Notifications
         </a>
         <?php } else { ?>
-        <a href="notifications.php" class="notifications-menu" style="color:#808080">
-          <img src="../assets/menu_icons/notifications-gray-icon.svg" alt="Notifications" class="notifications-icon" />
+        <a href="notifications.php" style="color:#808080">
+          <img src="../assets/menu_icons/notifications-gray-icon.svg" alt="Notifications" class="menu-icon" />
           Notifications
+        </a>
+        <?php } ?>
+        <?php if ($client->isAdmin && $_SERVER['REQUEST_URI'] == '/pages/members.php') { ?>
+        <a href="members.php" style="color:#FFFFFF">
+          <img src="../assets/menu_icons/members-white-icon.svg" alt="Members" class="menu-icon" />
+          Members
+        </a>
+        <?php } else if ($client->isAdmin) { ?>
+        <a href="members.php" style="color:#808080">
+          <img src="../assets/menu_icons/members-gray-icon.svg" alt="Members" class="menu-icon" />
+          Members
+        </a>
+        <?php } ?>
+        <?php if ($client->isAdmin && $_SERVER['REQUEST_URI'] == '/pages/departments.php') { ?>
+        <a href="departments.php" style="color:#FFFFFF">
+          <img src="../assets/menu_icons/departments-white-icon.svg" alt="Departments" class="menu-icon" />
+          Departments
+        </a>
+        <?php } else if ($client->isAdmin) { ?>
+        <a href="departments.php" style="color:#808080">
+          <img src="../assets/menu_icons/departments-gray-icon.svg" alt="Departments" class="menu-icon" />
+          Departments
         </a>
         <?php } ?>
       </nav>
       <a href="profile.php" class="profile_link">
         <div class="profile">
-          <img src="/../actions/display_profile_pic.action.php?username=<?php echo $_SESSION['username']?>" alt="Profile image" />
+          <?php $client->displayProfilePhoto($db, "profile-photo") ?>
           <span class="profile_name">
-            <?php echo $user_name ?>
+            <?php echo $client->name ?>
           </span>
         </div>
       </a>

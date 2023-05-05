@@ -21,7 +21,6 @@ if ($notification === null) {
 }
 
 $isAuthorised = Notification::isAuthorised($db, $notification, $session->getUsername());
-
 if (!$isAuthorised) {
     header('Location: ../pages/error_page.php');
     die();

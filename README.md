@@ -5,7 +5,7 @@ This website will enable users to submit, track, and resolve tickets promptly an
 You can also see the project's requirements in the following <a href="https://web.fe.up.pt/~arestivo/page/courses/ltw/project/">page.</a>
 
 ## Class Diagram
-<img src="docs\Database_uml.jpg" height="300">
+<img src="docs\Database_uml.jpg" height="375">
 
 # Credentials
 For now, every user has password Qwerty12. Here is the list  with some of our current users:
@@ -15,7 +15,6 @@ For now, every user has password Qwerty12. Here is the list  with some of our cu
 - JMurphy (Admin)
 
 ## Mockups
-
 <img src="docs\Mockup_Dashboard.png" height="500"> <img src="docs\Mockup_Ticket.png" height="500">
 
 Check out the full <a href="https://www.figma.com/file/uDBj08hPKx92RlbTRj0ScS/LTW---Ticket?node-id=0%3A1&t=4C9HZdWOnx5rpN5W-1">mockups</a>!

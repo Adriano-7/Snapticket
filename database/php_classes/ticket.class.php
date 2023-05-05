@@ -11,6 +11,8 @@ class Ticket
     public ?Client $assignee;
     public string $status;
     public ?Client $creator;
+    public array $departments;
+    public array $hashtags;
 
 
     public function __construct(int $ticket_id, string $ticket_name, string $date, string $priority, ?Client $assignee, string $status, ?Client $creator, array $departments = [], array $hashtags = []){
@@ -21,7 +23,10 @@ class Ticket
         $this->assignee = $assignee;
         $this->status = $status;
         $this->creator = $creator;
+        $this->departments = $departments;
+        $this->hashtags = $hashtags;
     }
+
     static public function isAuthorized(PDO $db, int $ticket_id, string $creator): bool{
         //The user is admin
         $stmt = $db->prepare('SELECT * FROM Admin WHERE username = ?');
@@ -31,7 +36,7 @@ class Ticket
         }
 
         //The ticket belongs to the department of the agent
-        $stmt = $db->prepare('SELECT * FROM AgentDepartment WHERE username = ? AND name_department = (SELECT name_department FROM TicketDepartment WHERE ticket_id = ?)');
+        $stmt = $db->prepare('SELECT * FROM CLientDepartment WHERE username = ? AND name_department = (SELECT name_department FROM TicketDepartment WHERE ticket_id = ?)');
         $stmt->execute([$creator, $ticket_id]);
         if ($stmt->fetch()) {
             return true;
@@ -132,7 +137,7 @@ class Ticket
                 $client_tickets[] = $ticket;
             }
         }
-
+        
         return $client_tickets;
     }
 }

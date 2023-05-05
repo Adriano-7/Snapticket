@@ -18,7 +18,7 @@ CREATE TABLE Client (
     username TEXT PRIMARY KEY, 
     email TEXT, 
     password TEXT,
-    user_image BLOB
+    image_id INTEGER REFERENCES File (file_id) ON DELETE SET NULL ON UPDATE CASCADE NOT NULL DEFAULT 1
 );
 
 DROP TABLE IF EXISTS Notification;
@@ -37,9 +37,9 @@ CREATE TABLE Agent (
     username TEXT PRIMARY KEY REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS AgentDepartment;
-CREATE TABLE AgentDepartment (
-    username REFERENCES Agent(username) ON DELETE CASCADE ON UPDATE CASCADE,
+DROP TABLE IF EXISTS ClientDepartment;
+CREATE TABLE ClientDepartment (
+    username REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE,
     name_department REFERENCES Department (name) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -101,6 +101,16 @@ DROP TABLE IF EXISTS AgentQuestion;
 CREATE TABLE AgentQuestion (
     username REFERENCES Agent (username) ON DELETE SET NULL ON UPDATE CASCADE,
     quest_id INTEGER REFERENCES Question (quest_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+DROP TABLE IF EXISTS File;
+CREATE TABLE File (
+    file_id INTEGER PRIMARY KEY, 
+    file_name TEXT, 
+    date TEXT,
+    file_type TEXT,
+    ticket_id INTEGER REFERENCES Ticket (ticket_id) ON DELETE CASCADE ON UPDATE CASCADE DEFAULT NULL,
+    content BLOB
 );
 
 COMMIT TRANSACTION;

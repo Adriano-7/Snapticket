@@ -9,7 +9,7 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
 
-if (Client::clientExists($db, $_POST['username'])) {
+if (Client::usernameExists($db, $_POST['username'])) {
     $session->setDuplicateUsername();
     header('Location: ../pages/register.php');
 }

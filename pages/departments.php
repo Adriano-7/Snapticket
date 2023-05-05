@@ -6,7 +6,7 @@ require_once(__DIR__ . '/../database/connection.db.php');
 
 require_once(__DIR__ . '/../templates/common.tpl.php');
 
-require_once(__DIR__ . '/../database/php_classes/ticket.class.php');
+require_once(__DIR__ . '/../database/php_classes/faq.class.php');
 
 $db = connectToDatabase();
 $session = new Session();
@@ -17,15 +17,7 @@ if (!$session->isLoggedIn()) {
   die();
 }
 
-if(!isset($_GET['ticket_id'])) {
-  header('Location: ' . $_SERVER['HTTP_REFERER']);
-  die();
-}
-
-
-
-$isAuthorised = Ticket::isAuthorized($db, intval($_GET['ticket_id']), $session->getUsername());
-if (!$isAuthorised) {
+if(!$client->isAdmin){
   header('Location: error_page.php');
   die();
 }

@@ -13,8 +13,7 @@ if (isset($_POST['email']) && !empty($_POST['email'])) {
   $name = $_POST['email'];
   Client::changeEmail($db, $session->getUsername(), $name);
   header('Location: ../pages/profile.php');
-} 
-else {
+} else {
   echo "Email is empty";
 }
 ?>

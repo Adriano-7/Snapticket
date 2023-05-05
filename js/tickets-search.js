@@ -16,9 +16,13 @@ if (search) {
   });
 }
 
+function clearTickets() {
+  const rows = document.querySelectorAll('tbody tr');
+  rows.forEach(ticketRow => {ticketRow.remove();});
+}
+
 function createRow(ticket) {
   const row = document.createElement('tr');
-  row.classList.add('ticket_row');
   row.addEventListener('click', function() {
     window.location.href = 'ticket.php?ticket_id=' + ticket.ticket_id;
   });
@@ -73,7 +77,14 @@ function createDescriptionCell(ticket) {
   descriptionCell.classList.add('tickets_description');
 
   const title = createTitle(ticket.ticket_name);
-  const details = createDetails(ticket.department_name, ticket.creator.name);
+  let departmentText = '';
+  ticket.departments.forEach(department => {
+    departmentText += department.name_department + ' ';
+  });
+
+  console.log(departmentText);
+
+  const details = createDetails(departmentText, ticket.creator.username);
 
   descriptionCell.appendChild(title);
   descriptionCell.appendChild(details);
@@ -113,11 +124,4 @@ function createClient(clientText) {
   client.classList.add('tickets_description_client');
   client.appendChild(document.createTextNode(clientText));
   return client;
-}
-
-function clearTickets() {
-  const rows = document.querySelectorAll('.ticket_row');
-  rows.forEach(ticketRow => {
-    ticketRow.remove();
-  });
 }
