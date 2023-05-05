@@ -6,19 +6,20 @@
     error_reporting(E_ALL);
 
 function drawTitle(Ticket $ticket, PDO $db) { ?>
+
     <main class="main_content">
     <div class="ticket-header">
-        <h1 class="ticket-title"> <?php echo $ticket->getTitle(); ?> </h1>
+        <h1 class="ticket-title"> <?php echo $ticket->ticket_name; ?> </h1>
         <div class="ticket-info">
-            <p><?php echo $ticket->getDepartment($db);?> • <?php echo $ticket->getClientName(); ?> • <?php echo $ticket->getDate(); ?> • <?php echo $ticket->getId(); ?></p>
-            <p>Assignees: <?php echo $ticket->getAssignee(); ?> </p>
+            <p><?php foreach($ticket->departments as $department) {echo $department['name_department'] . " ";}?> • <?php echo $ticket->creator->name; ?> • <?php echo $ticket->date; ?> • <?php echo $ticket->ticket_id; ?></p>
+            <p>Assignees: <?php echo $ticket->assignee->name; ?> </p>
         </div>
     </div>
     <?php
 }
 
 function drawComments(Ticket $ticket, PDO $db) {
-    $comments = getCommentsFromTicket($db, $ticket->getId());
+    $comments = getCommentsFromTicket($db, $ticket->ticket_id);
     //print comments log
     var_dump($comments);
     foreach($comments as $comment) {
@@ -30,10 +31,10 @@ function drawComment(Comment $comment) { ?>
     <div class="comment">
         <div class="comment-header">
             <img src="../assets/profile_pics_examples/sarah_johnson.jpg" alt="Profile image" class="comment-profile-pic" />
-            <p class="comment-author"> <?php echo $comment->getClientName(); ?> </p>
-            <p class="comment-date"> <?php echo $comment->getDate(); ?> </p>
+            <p class="comment-author"> <?php echo $comment->client->name; ?> </p>
+            <p class="comment-date"> <?php echo $comment->date; ?> </p>
         </div>
-        <p class="comment-text"> <?php echo $comment->getContent(); ?> </p>
+        <p class="comment-text"> <?php echo $comment->content; ?> </p>
     </div>
     <?php
 }

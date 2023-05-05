@@ -5,6 +5,8 @@ require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../database/connection.db.php');
 
 require_once(__DIR__ . '/../templates/common.tpl.php');
+require_once(__DIR__ . '/../templates/ticket.tpl.php');
+
 
 require_once(__DIR__ . '/../database/php_classes/ticket.class.php');
 
@@ -22,19 +24,17 @@ if(!isset($_GET['ticket_id'])) {
   die();
 }
 
-
-
 $isAuthorised = Ticket::isAuthorized($db, intval($_GET['ticket_id']), $session->getUsername());
 if (!$isAuthorised) {
   header('Location: error_page.php');
   die();
 }
 
-$ticket = Ticket::getTicketById($db, $_GET['id']);
-$page_name = 'Ticket ' . $ticket->getId();
+$ticket = Ticket::getTicket($db, $_GET['ticket_id']);
+$page_name = 'Ticket ' . $ticket->ticket_id;
 
 createHead($page_name, ['style','ticket'], ['menu-colors']);
-drawMenu(Client::getClientName($db, $session->getUsername()), $db);
+drawMenu($db, $client);
 
 drawTitle($ticket, $db);
 drawComments($ticket, $db);

@@ -105,7 +105,7 @@ class Ticket{
         return $client_tickets;
     }
 
-    static public function getTicket(PDO $db, int $ticket_id): ?Ticket{
+    static public function getTicket(PDO $db, string $ticket_id): ?Ticket{
         $stmt = $db->prepare('SELECT * FROM Ticket WHERE ticket_id = ?');
         $stmt->execute([$ticket_id]);
         $ticket = $stmt->fetch();
