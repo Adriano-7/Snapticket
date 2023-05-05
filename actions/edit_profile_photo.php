@@ -8,11 +8,12 @@ require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
+$client = Client::getClient($db, $session->getUsername());
 
 $image = $_FILES['image']['tmp_name'];
 $image_blob = file_get_contents($image);
 
-Client::changeProfilePhoto($db, $session->getUsername(), $image_blob);
+$client->changeProfilePhoto($db, $image_blob);
 
 header('Location: ../pages/profile.php')
-  ?>
+?>

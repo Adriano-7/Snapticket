@@ -18,12 +18,29 @@ CREATE TABLE Client (
     username TEXT PRIMARY KEY, 
     email TEXT, 
     password TEXT,
-    user_image BLOB
+    image_id INTEGER REFERENCES File (file_id) ON DELETE SET NULL ON UPDATE CASCADE NOT NULL DEFAULT 1
+);
+
+DROP TABLE IF EXISTS Notification;
+CREATE TABLE Notification (
+    notification_id INTEGER PRIMARY KEY, 
+    date TEXT, 
+    content TEXT,
+    isVisited INTEGER DEFAULT 0, 
+    recipient REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE,
+    sender REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE,
+    ticket_id INTEGER REFERENCES Ticket(ticket_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS Agent;
 CREATE TABLE Agent (
     username TEXT PRIMARY KEY REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+DROP TABLE IF EXISTS ClientDepartment;
+CREATE TABLE ClientDepartment (
+    username REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE,
+    name_department REFERENCES Department (name) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS Admin;
@@ -35,15 +52,15 @@ DROP TABLE IF EXISTS Ticket;
 CREATE TABLE Ticket (
     ticket_id INTEGER PRIMARY KEY, 
     ticket_name TEXT,
-    date TEXT, 
+    date TEXT,
     priority TEXT, 
     assignee TEXT REFERENCES Agent(username) ON DELETE SET NULL ON UPDATE CASCADE, 
     status TEXT, 
-    username REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE
+    creator REFERENCES Client(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS DepartmentTicket;
-CREATE TABLE DepartmentTicket (
+CREATE TABLE TicketDepartment (
     name_department REFERENCES Department (name) ON DELETE CASCADE ON UPDATE CASCADE,
     ticket_id INTEGER REFERENCES Ticket (ticket_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -84,6 +101,16 @@ DROP TABLE IF EXISTS AgentQuestion;
 CREATE TABLE AgentQuestion (
     username REFERENCES Agent (username) ON DELETE SET NULL ON UPDATE CASCADE,
     quest_id INTEGER REFERENCES Question (quest_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+DROP TABLE IF EXISTS File;
+CREATE TABLE File (
+    file_id INTEGER PRIMARY KEY, 
+    file_name TEXT, 
+    date TEXT,
+    file_type TEXT,
+    ticket_id INTEGER REFERENCES Ticket (ticket_id) ON DELETE CASCADE ON UPDATE CASCADE DEFAULT NULL,
+    content BLOB
 );
 
 COMMIT TRANSACTION;

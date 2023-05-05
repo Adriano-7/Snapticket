@@ -11,14 +11,22 @@ require_once(__DIR__ . '/../database/php_classes/faq.class.php');
 
 $db = connectToDatabase();
 $session = new Session();
+$client = Client::getClient($db, $session->getUsername());
 
-if (!$session->isLoggedIn() || !Client::clientExists($db, $session->getUsername())) {
+if (!$session->isLoggedIn()) {
   header('Location: login.php');
   die();
 }
 
-createHead('Notifications', ['style'], ['menu-colors']);
-drawMenu(Client::getClientName($db, $session->getUsername()), $db);
+/*
+if(!isset($_GET['department']) || FAQ::isAuthorised($db, $session->getUsername(), $_GET['department'])===false) {
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
+  die();
+}
+*/
+
+createHead('Notifications', ['style']);
+drawMenu($db, $client);
 drawFooter();
 drawFAQ($FAQ, $db);
 ?>

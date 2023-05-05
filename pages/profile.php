@@ -11,16 +11,17 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
 $session = new Session();
+$client = Client::getClient($db, $session->getUsername());
 
-if (!$session->isLoggedIn() || !Client::clientExists($db, $session->getUsername())) {
+if (!$session->isLoggedIn()) {
   header('Location: login.php');
   die();
 }
 
-createHead('Profile', ['style', 'profile'], ['menu-colors', 'submit-image']);
-drawMenu(Client::getClientName($db, $session->getUsername()), $db);
-drawUserInfo(Client::getClientInfo($db, $session->getUsername()));
-drawUserForms(Client::getClientInfo($db, $session->getUsername()));
+createHead('Profile', ['style', 'profile'], ['submit-image']);
+drawMenu($db, $client);
+drawUserInfo($db, $client);
+drawUserForms($client);
 drawChangeProfilePic();
 drawLogOut();
 ?>
