@@ -23,6 +23,6 @@ if(!$client->isAdmin){
 }
 
 createHead('Notifications', ['style']);
-drawMenu($client);
+drawMenu($db, $client);
 drawFooter();
 ?>

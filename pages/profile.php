@@ -19,8 +19,8 @@ if (!$session->isLoggedIn()) {
 }
 
 createHead('Profile', ['style', 'profile'], ['submit-image']);
-drawMenu($client);
-drawUserInfo($client);
+drawMenu($db, $client);
+drawUserInfo($db, $client);
 drawUserForms($client);
 drawChangeProfilePic();
 drawLogOut();

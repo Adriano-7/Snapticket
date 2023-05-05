@@ -25,6 +25,6 @@ if(!isset($_GET['department']) || FAQ::isAuthorised($db, $session->getUsername()
 */
 
 createHead('Notifications', ['style']);
-drawMenu($client);
+drawMenu($db, $client);
 drawFooter();
 ?>

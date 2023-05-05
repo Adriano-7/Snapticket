@@ -10,7 +10,7 @@ require_once(__DIR__ . '/../templates/members.tpl.php');
 require_once(__DIR__ . '/../database/php_classes/client.class.php');
 require_once(__DIR__ . '/../database/php_classes/department.class.php');
 
-require_once('C:\Users\adria_ek1ciji\Desktop\Projetos\2y_2s\LTW\Project_LTW\api\filter_members.php');
+require_once(__DIR__ . '/../api/filter_members.php');
 
 $db = connectToDatabase();
 $session = new Session();
@@ -30,8 +30,8 @@ if(!$client->isAdmin){
 
 $members = $client->searchClients($db, new MemberFilters());
 
-createHead('Members', ['style', 'members']);
-drawMenu($client);
+createHead('Members', ['style', 'members'], ['members-search']);
+drawMenu($db, $client);
 drawSearchFilters($departments, $roles);
-drawMembersTable($members);
+drawMembersTable($db, $members);
 ?>

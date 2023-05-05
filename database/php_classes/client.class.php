@@ -8,10 +8,9 @@ class Client{
   public bool $isAgent;
   public bool $isAdmin;
   public array $departments;
-  public string $image_blob;
+  public int $image_id;
 
-  public function __construct(string $name, string $username, string $email, string $password, bool $isAgent = false, bool $isAdmin = false, array $departments = [], string $image_blob = "")
-  {
+  public function __construct(string $name, string $username, string $email, string $password, bool $isAgent = false, bool $isAdmin = false, array $departments = [], int $image_id = 1){
     $this->name = $name;
     $this->username = $username;
     $this->email = $email;
@@ -19,7 +18,7 @@ class Client{
     $this->isAgent = $isAgent;
     $this->isAdmin = $isAdmin;
     $this->departments = $departments;
-    $this->image_blob = $image_blob;
+    $this->image_id = $image_id;
   }
 
   static function register(PDO $db, string $name, string $username, string $email, string $password): bool
@@ -45,8 +44,7 @@ class Client{
     return $query->fetch() !== false;
   }
 
-  static function changeName(PDO $db, string $username, string $name): bool
-  {
+  static function changeName(PDO $db, string $username, string $name): bool{
     $query = $db->prepare('
             UPDATE Client
             SET name = ?
@@ -89,17 +87,14 @@ class Client{
     return $query->execute(array(sha1($password), strtolower($username)));
   }
 
-  function changeProfilePhoto(PDO $db, $image_blob){
+  function changeProfilePhoto(PDO $db, $image_id){
     $query = $db->prepare('
           UPDATE Client
-          SET user_image = ?
+          SET image_id = ?
           WHERE lower(username) = ?
           ');
 
-    $imagePath = "../assets/server_profile_pics/" . $this->username . ".jpg";
-    file_put_contents($imagePath, $image_blob);
-
-    return $query->execute(array($image_blob, strtolower($this->username)));
+    return $query->execute(array($image_id, strtolower($this->username)));
   }
 
   static function getClientWithPassword(PDO $db, string $username, string $password): ?Client
@@ -125,7 +120,7 @@ class Client{
     }
 
     $query = $db->prepare('
-            SELECT name, username, email, password, user_image
+            SELECT name, username, email, password, image_id
             FROM Client
             WHERE lower(username) = ?
           ');
@@ -162,8 +157,7 @@ class Client{
         array_push($departments, $department['name_department']);
       }
 
-
-      return new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments, $client['user_image']??'');
+      return new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments, $client['image_id']??1);
     }
 
     return null;
@@ -244,23 +238,15 @@ class Client{
         array_push($departments, $department['name_department']);
       }
 
-      $clients[] = new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments, $client['user_image']??'');
+      $clients[] = new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments, $client['image_id']??1);
     }
 
     return $clients;
   }
 
-  function displayProfilePhoto(string $class){
-    if($this->image_blob != ""){
-      $imagePath = "../assets/server_profile_pics/" . $this->username . ".jpg";
-      if(!file_exists($imagePath)){
-        file_put_contents($imagePath, $this->image_blob);
-      }
-      echo '<img src="'.$imagePath.'" alt="Profile Photo" class="'.$class.'">';
-    }
-    else{
-      echo '<img src="../assets/profile_pics_examples/default.jpg" alt="Profile Photo" class="'.$class.'">';
-    }
+  function displayProfilePhoto(PDO $db, string $class){
+    require_once('file.class.php');
+    echo '<img src="../actions/display_pic.action.php?id=' . $this->image_id . '" alt="Profile Photo" class="' . $class . '">';  
   }
 }
 ?>

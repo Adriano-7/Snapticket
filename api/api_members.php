@@ -6,7 +6,7 @@
 
     require_once(__DIR__ . '/../database/connection.db.php');
     require_once(__DIR__ . '/../database/php_classes/client.class.php');
-    require_once(__DIR__ . 'filters_members.php');
+    require_once(__DIR__ . '/filter_members.php');
 
     $db = connectToDatabase();
 

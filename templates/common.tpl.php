@@ -23,7 +23,7 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
   </head>
 <?php } ?>
 
-<?php function drawMenu(Client $client)
+<?php function drawMenu(PDO $db, Client $client)
 { ?>
 
   <body>
@@ -92,7 +92,7 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
       </nav>
       <a href="profile.php" class="profile_link">
         <div class="profile">
-          <?php $client->displayProfilePhoto("profile-photo") ?>
+          <?php $client->displayProfilePhoto($db, "profile-photo") ?>
           <span class="profile_name">
             <?php echo $client->name ?>
           </span>

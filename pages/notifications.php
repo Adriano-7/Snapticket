@@ -15,14 +15,15 @@ require_once(__DIR__ . '/../database/php_classes/notifications.class.php');
 $db = connectToDatabase();
 $session = new Session();
 
-if (!$session->isLoggedIn()) {
+if (!$session->isLoggedIn() || $session->getUsername() === null) {
   header('Location: login.php');
   die();
 }
 
+$client = Client::getClient($db, $session->getUsername());
 $notifications = Notification::getNotifications($db, $session->getUsername());
 
 createHead('Notifications', ['style', 'notifications']);
-drawMenu(Client::getClient($db, $session->getUsername()));
-drawNotifications($notifications);
+drawMenu($db, $client);
+drawNotifications($db, $notifications);
 ?>

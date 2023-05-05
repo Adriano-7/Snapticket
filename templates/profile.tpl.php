@@ -1,8 +1,8 @@
-<?php function drawUserInfo(Client $client){ ?>
+<?php function drawUserInfo(PDO $db, Client $client){ ?>
 <main class="main_content">
     <div class="user-info">
         <div class="profile-pic">
-            <?php $client->displayProfilePhoto("") ?>
+            <?php $client->displayProfilePhoto($db, "") ?>
         </div>
         <div class="user-details">
             <h2>

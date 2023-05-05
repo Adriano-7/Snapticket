@@ -1,5 +1,6 @@
 import sqlite3
 import os
+import datetime
 
 def update_image(filepath, username):
     try:
@@ -11,9 +12,13 @@ def update_image(filepath, username):
 
     conn = sqlite3.connect('database.db')
 
-    query = "UPDATE Client SET user_image = ? WHERE username = ?"
-    params = (imageData, username)
-    conn.execute(query, params)
+    query1 = "INSERT INTO File (file_name, date, file_type, content) VALUES (?, ?, ?, ?)"
+    params1 = (username, datetime.datetime.now(), 'jpg', imageData)
+    conn.execute(query1, params1)
+
+    query2 = "UPDATE Client SET image_id = (SELECT file_id FROM File WHERE file_name = ?) WHERE username = ?"
+    params2 = (username, username)
+    conn.execute(query2, params2)
 
     conn.commit()
     conn.close()

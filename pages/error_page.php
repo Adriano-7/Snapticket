@@ -12,6 +12,6 @@ $session = new Session();
 $client = Client::getClient($db, $session->getUsername());
 
 createHead('Error 404', ['style']);
-drawMenu($client);
+drawMenu($db, $client);
 drawErrorAlert();
 ?>

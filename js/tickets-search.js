@@ -16,6 +16,11 @@ if (search) {
   });
 }
 
+function clearTickets() {
+  const rows = document.querySelectorAll('tbody tr');
+  rows.forEach(ticketRow => {ticketRow.remove();});
+}
+
 function createRow(ticket) {
   const row = document.createElement('tr');
   row.addEventListener('click', function() {
@@ -119,11 +124,4 @@ function createClient(clientText) {
   client.classList.add('tickets_description_client');
   client.appendChild(document.createTextNode(clientText));
   return client;
-}
-
-function clearTickets() {
-  const rows = document.querySelectorAll('tbody tr');
-  rows.forEach(ticketRow => {
-    ticketRow.remove();
-  });
 }
