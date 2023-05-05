@@ -23,24 +23,37 @@
   outline: none;
 }
 
-#add_filter {
+select{
+  background-color: #333537;
+  color: white;
+  border: none;
+}
+
+select:focus{
+  outline: none;
+}
+
+option:checked{
+  background-color: #333537;
+}
+
+.same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.add_filter {
+  background-color: #333537;
   font-size: 13px;
   border-radius: 0.5em;
-  background-color: #333537;
   border: none;
-  color: #ffffff;
   padding-top: 0.8em;
   padding-bottom: 0.8em;
   padding-left: 1em;
   padding-right: 1em;
-}
-
-#add_filter::after {
-  content: url("../assets/add-icon.svg");
   margin-left: 1em;
 }
 
-#add_filter:hover {
+.add_filter:hover {
   cursor: pointer;
 }
 
@@ -48,9 +61,9 @@ input[type=text]::-webkit-input-placeholder {
   color: #ffffff;
 }
 
-.tickets_search>*:last-child {
+.create_ticket {
   font-weight: 400;
-  margin-left: 50em;
+  margin-left: 21em;
   border-radius: 0.5em;
   padding-top: 0.8em;
   padding-bottom: 0.8em;
@@ -61,11 +74,6 @@ input[type=text]::-webkit-input-placeholder {
   color: #000000;
   background-color: #82B7DC;
   border: 1px solid #82B7DC;
-}
-
-.tickets_search>*:last-child:hover {
-  background-color: #97cff7;
-  color: #000000;
 }
 
 .tickets_table {
@@ -97,7 +105,7 @@ tr:not(thead) {
 }
 
 .tickets_id {
-  width: 10%;
+  width: 13%;
   color: white;
   font-size: 14px;
   font-weight: 400;

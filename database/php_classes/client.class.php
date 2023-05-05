@@ -98,37 +98,6 @@ class Client{
     }
     return null;
   }
-
-  static function getClientName(PDO $db, string $username): string{
-    $query = $db->prepare('
-            SELECT name
-            FROM Client
-            WHERE lower(username) = ?
-          ');
-
-    $query->execute(array(strtolower($username)));
-
-    if ($client = $query->fetch()) {
-      return $client['name'];
-    }
-    return '';
-  }
-
-  static function getClientInfo(PDO $db, string $username): array{
-    $query = $db->prepare('
-            SELECT name, username, email
-            FROM Client
-            WHERE lower(username) = ?
-          ');
-
-    $query->execute(array(strtolower($username)));
-
-    if ($client = $query->fetch()) {
-      return array('name' => $client['name'], 'username' => $client['username'], 'email' => $client['email']);
-    }
-    return array();
-  }
-
   static function getClient(PDO $db, ?string $username): ?Client{
     if ($username === null) {
       return null;

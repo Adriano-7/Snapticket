@@ -6,14 +6,23 @@
 
     require_once(__DIR__ . '/../database/connection.db.php');
     require_once(__DIR__ . '/../database/php_classes/ticket.class.php');
+    require_once(__DIR__ . '/filter_tickets.php');
 
     $db = connectToDatabase();
-    $tickets = Ticket::searchTickets($db, $_GET['search']);
+    $client = Client::getClient($db, $session->getUsername());
 
-    $allowedTickets = array();
-    foreach ($tickets as $ticket) {
-        Ticket::isAuthorized($db, $ticket->ticket_id, $session->getUsername()) ? $allowedTickets[] = $ticket : null;
-    }
+    $search = isset($_GET['search']) ? $_GET['search'] : "";
+    $dept = isset($_GET['dept']) ? $_GET['dept'] : "";
+    $status = isset($_GET['status']) ? $_GET['status'] : "";
+    $priority = isset($_GET['priority']) ? $_GET['priority'] : "";
+    $assignee = isset($_GET['assignee']) ? $_GET['assignee'] : "";
+    $hashtag = isset($_GET['hashtag']) ? $_GET['hashtag'] : "";
 
-    echo json_encode($tickets);
+    $orderId = isset($_GET['orderId']) ? $_GET['orderId'] : "";
+    $orderAssignee = isset($_GET['orderAssignee']) ? $_GET['orderAssignee'] : "";
+    $orderDescription = isset($_GET['orderDescription']) ? $_GET['orderDescription'] : "";
+
+    $tickets = Ticket::searchTickets($db, new TicketFilters($search, $dept, $status, $priority, $assignee, $hashtag, $orderId, $orderAssignee, $orderDescription), $client);
+    
+    echo json_encode($allowedTickets);
 ?>
