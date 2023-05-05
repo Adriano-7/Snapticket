@@ -36,6 +36,17 @@
             }
             return $tickets;
         }
+        static function getTicketById(PDO $db, string $id) : ?Ticket{
+            $stmt = $db->prepare('SELECT * FROM Ticket WHERE ticket_id = ?');
+            $stmt->execute([$id]);
+            $ticket = $stmt->fetch();
+            if($ticket){
+                $client_name = Client::getClientName($db, $ticket['username']);
+                return new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $ticket['assignee'] ?? '', $ticket['status'], $client_name);
+            }
+            return null;
+        }
+
         public function getId() : int {
             return $this->ticket_id;
         }
@@ -64,5 +75,20 @@
             $department = $stmt->fetch();
             return $department['name_department'] ?? '';
         }
+
+        public function getHashtags(PDO $db) : array{
+            $stmt = $db->prepare('SELECT name
+            FROM Hashtag
+            JOIN TicketHashtag ON TicketHashtag.name = Hashtag.name
+            WHERE ticket_id = :ticket_id
+            ');
+            $stmt->execute([$this->ticket_id]);
+        
+            $hashtags = array();
+            while($hashtag = $stmt->fetch()){
+                $hashtags[] = $hashtag['hashtag_text'];
+            }
+            return $hashtags;
+        }        
     }
 ?>
