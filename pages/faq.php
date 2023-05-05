@@ -18,6 +18,9 @@ if (!$session->isLoggedIn()) {
   die();
 }
 
+$department = $_GET['department'] ?? null;
+$questions = FAQ::getQuestions($db, $department);
+
 /*
 if(!isset($_GET['department']) || FAQ::isAuthorised($db, $session->getUsername(), $_GET['department'])===false) {
   header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -25,8 +28,10 @@ if(!isset($_GET['department']) || FAQ::isAuthorised($db, $session->getUsername()
 }
 */
 
+
 createHead('Notifications', ['style']);
 drawMenu($db, $client);
 drawFooter();
+drawFAQ($questions);
 drawFAQ($FAQ, $db);
 ?>
