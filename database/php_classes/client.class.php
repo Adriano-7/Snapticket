@@ -4,17 +4,15 @@ class Client{
   public string $name;
   public string $username;
   public string $email;
-  public string $password;
   public bool $isAgent;
   public bool $isAdmin;
   public array $departments;
   public int $image_id;
 
-  public function __construct(string $name, string $username, string $email, string $password, bool $isAgent = false, bool $isAdmin = false, array $departments = [], int $image_id = 1){
+  public function __construct(string $name, string $username, string $email, bool $isAgent = false, bool $isAdmin = false, array $departments = [], int $image_id = 1){
     $this->name = $name;
     $this->username = $username;
     $this->email = $email;
-    $this->password = $password;
     $this->isAgent = $isAgent;
     $this->isAdmin = $isAdmin;
     $this->departments = $departments;
@@ -100,7 +98,7 @@ class Client{
   static function getClientWithPassword(PDO $db, string $username, string $password): ?Client
   {
     $query = $db->prepare('
-            SELECT name, username, email, password
+            SELECT *
             FROM Client
             WHERE lower(username) = ? AND password = ?
           ');
@@ -108,7 +106,7 @@ class Client{
     $query->execute(array(strtolower($username), sha1($password)));
 
     if ($client = $query->fetch()) {
-      return new Client($client['name'], $client['username'], $client['email'], $client['password']);
+      return new Client($client['name'], $client['username'], $client['email']);
     }
     return null;
   }
@@ -120,7 +118,7 @@ class Client{
     }
 
     $query = $db->prepare('
-            SELECT name, username, email, password, image_id
+            SELECT *
             FROM Client
             WHERE lower(username) = ?
           ');
@@ -157,7 +155,7 @@ class Client{
         array_push($departments, $department['name_department']);
       }
 
-      return new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments, $client['image_id']??1);
+      return new Client($client['name'], $client['username'], $client['email'], $isAgent, $isAdmin, $departments, $client['image_id']??1);
     }
 
     return null;
@@ -238,7 +236,7 @@ class Client{
         array_push($departments, $department['name_department']);
       }
 
-      $clients[] = new Client($client['name'], $client['username'], $client['email'], $client['password'], $isAgent, $isAdmin, $departments, $client['image_id']??1);
+      $clients[] = new Client($client['name'], $client['username'], $client['email'], $isAgent, $isAdmin, $departments, $client['image_id']??1);
     }
 
     return $clients;
