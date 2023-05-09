@@ -37,56 +37,56 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
         <?php if ($_SERVER['REQUEST_URI'] == '/pages/dashboard.php') { ?>
         <a href="dashboard.php" style="color:#FFFFFF">
           <img src="../assets/menu_icons/dashboard-white-icon.svg" alt="Dashboard" class="menu-icon" />
-          Dashboard
+          <span class="menu-text">Dashboard</span>
         </a>
         <?php } else { ?>
         <a href="dashboard.php" style="color:#808080">
           <img src="../assets/menu_icons/dashboard-gray-icon.svg" alt="Dashboard" class="menu-icon" />
-          Dashboard
+          <span class="menu-text">Dashboard</span>
         </a>
         <?php } ?>
         <?php if ($_SERVER['REQUEST_URI'] == '/pages/faq.php') { ?>
         <a href="faq.php" style="color:#FFFFFF">
           <img src="../assets/menu_icons/faq-white-icon.svg" alt="Faq" class="menu-icon" />
-          FAQ
+          <span class="menu-text">FAQ</span>
         </a>
         <?php } else { ?>
         <a href="faq.php" style="color:#808080">
           <img src="../assets/menu_icons/faq-gray-icon.svg" alt="Faq" class="menu-icon" />
-          FAQ
+          <span class="menu-text">FAQ</span>
         </a>
         <?php } ?>
         <?php if ($_SERVER['REQUEST_URI'] == '/pages/notifications.php') { ?>
         <a href="notifications.php" style="color:#FFFFFF">
           <img src="../assets/menu_icons/notifications-white-icon.svg" alt="Notifications" class="menu-icon" />
-          Notifications
+          <span class="menu-text">Notifications</span>
         </a>
         <?php } else { ?>
         <a href="notifications.php" style="color:#808080">
           <img src="../assets/menu_icons/notifications-gray-icon.svg" alt="Notifications" class="menu-icon" />
-          Notifications
+          <span class="menu-text">Notifications</span>
         </a>
         <?php } ?>
         <?php if ($client->isAdmin && $_SERVER['REQUEST_URI'] == '/pages/members.php') { ?>
         <a href="members.php" style="color:#FFFFFF">
           <img src="../assets/menu_icons/members-white-icon.svg" alt="Members" class="menu-icon" />
-          Members
+          <span class="menu-text">Members</span>
         </a>
         <?php } else if ($client->isAdmin) { ?>
         <a href="members.php" style="color:#808080">
           <img src="../assets/menu_icons/members-gray-icon.svg" alt="Members" class="menu-icon" />
-          Members
+          <span class="menu-text">Members</span>
         </a>
         <?php } ?>
         <?php if ($client->isAdmin && $_SERVER['REQUEST_URI'] == '/pages/departments.php') { ?>
         <a href="departments.php" style="color:#FFFFFF">
           <img src="../assets/menu_icons/departments-white-icon.svg" alt="Departments" class="menu-icon" />
-          Departments
+          <span class="menu-text">Departments</span>
         </a>
         <?php } else if ($client->isAdmin) { ?>
         <a href="departments.php" style="color:#808080">
           <img src="../assets/menu_icons/departments-gray-icon.svg" alt="Departments" class="menu-icon" />
-          Departments
+          <span class="menu-text">Departments</span>
         </a>
         <?php } ?>
       </nav>
