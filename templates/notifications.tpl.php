@@ -10,7 +10,7 @@
                 <span class="notification_text"> <?php echo $notification->content ?> </span>
                 <span class="notification_time"> <?php echo Notification::getNiceDate($notification) ?> </span>
             </a>
-            <a class="notification_delete" href="../actions/eliminate_notification.action.php?notification_id=<?php echo $notification->notification_id ?>"> <img src="../assets/cross-icon.svg"> </a>
+            <a class="notification_delete" href="../actions/eliminate_notification.action.php?notification_id=<?php echo $notification->notification_id ?>"> <img src="../assets/cross-icon.svg" alt="Remove notification"> </a>
         </div>
     <?php } ?>
     </div>

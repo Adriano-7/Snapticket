@@ -6,22 +6,18 @@ function drawSearchFilters(array $departments, $roles)
     <main class="main_content">
         <div class="search">
             <input type="text" placeholder="Search..." id="search_bar">
-            <button type="submit" class="add_filter">
-                <select name="dept" id="dept_select">
-                    <option value="">Department</option>
-                    <?php foreach ($departments as $department) { ?>
-                        <option value="<?php echo $department->name ?>"><?php echo $department->name ?></option>
-                    <?php } ?>
-                </select>
-            </button>
-            <button type="submit" class="add_filter">
-                <select name="role" id="role_select">
-                    <option value="">User Role</option>
-                    <?php foreach ($roles as $role) { ?>
-                        <option value="<?php echo $role ?>"><?php echo $role ?></option>
-                    <?php } ?>
-                </select>
-            </button>
+            <select name="dept" class="add_filter" id="dept_select">
+                <option value="">Department</option>
+                <?php foreach ($departments as $department) { ?>
+                    <option value="<?php echo $department->name ?>"><?php echo $department->name ?></option>
+                <?php } ?>
+            </select>
+            <select name="role" class="add_filter" id="role_select">
+                <option value="">User Role</option>
+                <?php foreach ($roles as $role) { ?>
+                    <option value="<?php echo $role ?>"><?php echo $role ?></option>
+                <?php } ?>
+            </select>
         </div>
     <?php } ?>
 
@@ -29,11 +25,13 @@ function drawSearchFilters(array $departments, $roles)
     { ?>
         <table class="members_table">
             <thead>
-                <td>Name <img src="../assets/sort.svg" id="name_sort"/></td>
-                <td>Username <img src="../assets/sort.svg" id="username_sort"/></td>
-                <td>Role <img src="../assets/sort.svg" id="role_sort"/></td>
-                <td>Department <img src="../assets/sort.svg" id="department_sort"/> </td>
-                <td>Action</td>
+                <tr>
+                    <td>Name <img src="../assets/sort.svg" id="name_sort" alt="Sort by name"></td>
+                    <td>Username <img src="../assets/sort.svg" id="username_sort" alt="Sort by username"></td>
+                    <td>Role <img src="../assets/sort.svg" id="role_sort" alt="Sort by role"></td>
+                    <td>Department <img src="../assets/sort.svg" id="department_sort" alt="Sort by department"> </td>
+                    <td>Action</td>
+                </tr>
             </thead>
             <tbody>
                 <?php foreach ($members as $member) { ?>
@@ -62,10 +60,10 @@ function drawSearchFilters(array $departments, $roles)
                         </td>
                         <td class="member_action">
                             <a href="edit_member.php">
-                                <img src="../assets/edit-icon.svg" alt="Edit" class="action_icons" />
+                                <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                             </a>
                             <a href="delete_member.php">
-                                <img src="../assets/delete-icon.svg" alt="Delete" class="action_icons" />
+                                <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                             </a>
                         </td>
                     </tr>
