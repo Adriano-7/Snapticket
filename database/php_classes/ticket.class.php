@@ -52,7 +52,11 @@ class Ticket
     }
 
     static public function searchTickets(PDO $db, TicketFilters $filters, Client $client): array{
-        $query = "SELECT * FROM Ticket";
+        $query = "SELECT Ticket.*, Client.username AS assignee_username
+                  FROM Ticket
+                  LEFT JOIN Agent ON Ticket.assignee = Agent.user_id
+                  LEFT JOIN Client ON Agent.user_id = Client.user_id";
+
         $params = array();
 
         if ($filters->search != "") {
@@ -90,9 +94,9 @@ class Ticket
 
         if ($filters->assignee != "") {
             if ($filters->search == "" && $filters->department == "" && $filters->status == "" && $filters->priority == "") {
-                $query .= " WHERE assignee = ?";
+                $query .= " WHERE assignee_username = ?";
             } else {
-                $query .= " AND assignee = ?";
+                $query .= " AND assignee_username = ?";
             }
             $params[] = $filters->assignee;
         }
@@ -112,10 +116,10 @@ class Ticket
         
         if($filters->orderAssignee != ""){
             if($filters->orderId == ""){
-                $query .= " ORDER BY assignee " . $filters->orderAssignee;
+                $query .= " ORDER BY assignee_username " . $filters->orderAssignee;
             }
             else{
-                $query .= ", assignee " . $filters->orderAssignee;
+                $query .= ", assignee_username " . $filters->orderAssignee;
             }
         }
 
@@ -188,7 +192,6 @@ class Ticket
         }
         return $departments;
     }
-
 
     static function getHashtags(array $tickets){
         $hashtags = array();
