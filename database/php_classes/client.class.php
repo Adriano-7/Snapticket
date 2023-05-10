@@ -260,9 +260,7 @@ class Client
   }
 
 
-  function displayProfilePhoto(string $class)
-  {
-    require_once('file.class.php');
+  function displayProfilePhoto(string $class){
     echo '<img src="../actions/display_pic.action.php?id=' . $this->image_id . '" alt="Profile Photo" class="' . $class . '">';
   }
 }
