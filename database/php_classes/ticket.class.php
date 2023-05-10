@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
-require_once 'client.class.php';
+require_once(__DIR__ . '/comment.class.php');
 
-class Ticket
-{
+class Ticket{
     public int $ticket_id;
     public string $ticket_name;
     public string $date;
@@ -13,9 +12,10 @@ class Ticket
     public ?Client $creator;
     public array $departments;
     public array $hashtags;
+    public array $comments;
 
 
-    public function __construct(int $ticket_id, string $ticket_name, string $date, string $priority, ?Client $assignee, string $status, ?Client $creator, array $departments = [], array $hashtags = []){
+    public function __construct(int $ticket_id, string $ticket_name, string $date, string $priority, ?Client $assignee, string $status, ?Client $creator, array $departments = [], array $hashtags = [], array $comments = []){
         $this->ticket_id = $ticket_id;
         $this->ticket_name = $ticket_name;
         $this->date = $date;
@@ -25,18 +25,42 @@ class Ticket
         $this->creator = $creator;
         $this->departments = $departments;
         $this->hashtags = $hashtags;
+        $this->comments = $comments;
     }
 
-    static public function isAuthorized(PDO $db, int $ticket_id, string $creator): bool{
+    static public function getTicket(PDO $db, int $ticket_id): ?Ticket{
+        $stmt = $db->prepare('SELECT * FROM Ticket WHERE ticket_id = ?');
+        $stmt->execute([$ticket_id]);
+        $ticket = $stmt->fetch();
+        if(!$ticket){
+            return null;
+        }
+        $creator = Client::getClient($db, $ticket['creator'], null);
+        $assignee = Client::getClient($db, $ticket['assignee'], null);
+
+        $departments = array();
+        $stmt = $db->prepare('SELECT d.name FROM TicketDepartment td JOIN Department d ON td.department_id = d.department_id WHERE ticket_id = ?');
+        $stmt->execute([$ticket['ticket_id']]);
+        $departments = $stmt->fetchAll();
+
+        $hashtags = array();
+        $stmt = $db->prepare('SELECT name FROM TicketHashtag WHERE ticket_id = ?');
+        $stmt->execute([$ticket['ticket_id']]);
+        $hashtags = $stmt->fetchAll();
+
+        return new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags, Ticket::getComments($db, $ticket['ticket_id']));
+    }
+    
+    static public function isAuthorized(PDO $db, int $ticket_id, int $creator): bool{
         //The user is admin
-        $stmt = $db->prepare('SELECT * FROM Admin WHERE username = ?');
+        $stmt = $db->prepare('SELECT * FROM Admin WHERE user_id = ?');
         $stmt->execute([$creator]);
         if ($stmt->fetch()) {
             return true;
         }
 
         //The ticket belongs to the department of the agent
-        $stmt = $db->prepare('SELECT * FROM CLientDepartment WHERE username = ? AND name_department = (SELECT name_department FROM TicketDepartment WHERE ticket_id = ?)');
+        $stmt = $db->prepare('SELECT * FROM CLientDepartment WHERE user_id = ? AND department_id = (SELECT department_id FROM TicketDepartment WHERE ticket_id = ?)');
         $stmt->execute([$creator, $ticket_id]);
         if ($stmt->fetch()) {
             return true;
@@ -52,7 +76,11 @@ class Ticket
     }
 
     static public function searchTickets(PDO $db, TicketFilters $filters, Client $client): array{
-        $query = "SELECT * FROM Ticket";
+        $query = "SELECT Ticket.*, Client.username AS assignee_username
+                  FROM Ticket
+                  LEFT JOIN Agent ON Ticket.assignee = Agent.user_id
+                  LEFT JOIN Client ON Agent.user_id = Client.user_id";
+
         $params = array();
 
         if ($filters->search != "") {
@@ -62,9 +90,10 @@ class Ticket
 
         if ($filters->department != "") {
             if ($filters->search == "") {
-                $query .= " WHERE ticket_id IN (SELECT ticket_id FROM TicketDepartment WHERE name_department = ?)";
-            } else {
-                $query .= " AND ticket_id IN (SELECT ticket_id FROM TicketDepartment WHERE name_department = ?)";
+                $query .= " WHERE ticket_id IN (SELECT ticket_id FROM TicketDepartment WHERE department_id = (SELECT department_id FROM Department where name = ?))";
+            } 
+            else {
+                $query .= " AND ticket_id IN (SELECT ticket_id FROM TicketDepartment WHERE department_id = (SELECT department_id FROM Department where name = ?))";
             }
             $params[] = $filters->department;
         }
@@ -89,9 +118,9 @@ class Ticket
 
         if ($filters->assignee != "") {
             if ($filters->search == "" && $filters->department == "" && $filters->status == "" && $filters->priority == "") {
-                $query .= " WHERE assignee = ?";
+                $query .= " WHERE assignee_username = ?";
             } else {
-                $query .= " AND assignee = ?";
+                $query .= " AND assignee_username = ?";
             }
             $params[] = $filters->assignee;
         }
@@ -111,10 +140,10 @@ class Ticket
         
         if($filters->orderAssignee != ""){
             if($filters->orderId == ""){
-                $query .= " ORDER BY assignee " . $filters->orderAssignee;
+                $query .= " ORDER BY assignee_username " . $filters->orderAssignee;
             }
             else{
-                $query .= ", assignee " . $filters->orderAssignee;
+                $query .= ", assignee_username " . $filters->orderAssignee;
             }
         }
 
@@ -132,12 +161,13 @@ class Ticket
         $tickets = $stmt->fetchAll();
 
         $client_tickets = array();
+
         foreach ($tickets as $ticket) {
-            $creator = Client::getClient($db, $ticket['creator']);
-            $assignee = Client::getClient($db, $ticket['assignee']);
+            $creator = Client::getClient($db, $ticket['creator'], null);
+            $assignee = Client::getClient($db, $ticket['assignee'], null);
 
             $departments = array();
-            $stmt = $db->prepare('SELECT name_department FROM TicketDepartment WHERE ticket_id = ?');
+            $stmt = $db->prepare('SELECT d.name FROM TicketDepartment td JOIN Department d ON td.department_id = d.department_id WHERE ticket_id = ?');
             $stmt->execute([$ticket['ticket_id']]);
             $departments = $stmt->fetchAll();
 
@@ -146,8 +176,8 @@ class Ticket
             $stmt->execute([$ticket['ticket_id']]);
             $hashtags = $stmt->fetchAll();
 
-            $ticket = new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags);
-            if (Ticket::isAuthorized($db, $ticket->ticket_id, $client->username)) {
+            $ticket = new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags, Ticket::getComments($db, $ticket['ticket_id']));
+            if (Ticket::isAuthorized($db, $ticket->ticket_id, $client->user_id)) {
                 $client_tickets[] = $ticket;
             }
         }
@@ -179,14 +209,13 @@ class Ticket
         $departments = array();
         foreach ($tickets as $ticket) {
             foreach ($ticket->departments as $department) {
-                if (!in_array($department['name_department'], $departments)) {
-                    $departments[] = $department['name_department'];
+                if (!in_array($department['name'], $departments)) {
+                    $departments[] = $department['name'];
                 }
             }
         }
         return $departments;
     }
-
 
     static function getHashtags(array $tickets){
         $hashtags = array();
@@ -198,6 +227,21 @@ class Ticket
             }
         }
         return $hashtags;
+    }
+
+    static function getComments(PDO $db, int $ticket_id): array{
+        $stmt = $db->prepare('SELECT * FROM Comment WHERE ticket_id = ? ORDER BY comment_id ASC');
+        $stmt->execute([$ticket_id]);
+        $comments = $stmt->fetchAll();
+
+        $ticket_comments = array();
+
+        foreach ($comments as $comment) {
+            $client = Client::getClient($db, $comment['user_id'], null);
+            $ticket_comments[] = new Comment($comment['comment_id'], $comment['date'], $comment['content'], $client);
+        }
+
+        return $ticket_comments;
     }
 }
 ?>

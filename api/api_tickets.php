@@ -9,7 +9,7 @@
     require_once(__DIR__ . '/filter_tickets.php');
 
     $db = connectToDatabase();
-    $client = Client::getClient($db, $session->getUsername());
+    $client = Client::getClient($db, $session->getUserId(), null);
 
     $search = isset($_GET['search']) ? $_GET['search'] : "";
     $dept = isset($_GET['dept']) ? $_GET['dept'] : "";

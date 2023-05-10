@@ -8,10 +8,11 @@ require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
+$client = Client::getClient($db, $session->getUserId(), NULL);
 
 if (isset($_POST['password']) && !empty($_POST['password'])) {
-  $name = $_POST['password'];
-  Client::changePassword($db, $session->getUsername(), $name);
+  $password = $_POST['password'];
+  $client->changePassword($db, $password);
   header('Location: ../pages/profile.php');
 } 
 else {

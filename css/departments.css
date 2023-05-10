@@ -1,0 +1,91 @@
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.member_photo {
+    width: 10%;
+    border-radius: 25px;
+}
+
+.create_department {
+    border: 1px solid #333537;
+
+    width: 15em;
+    height: 15em;
+    margin: 1em;
+    border-radius: 15px;
+    padding: 1em;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4em;
+}
+
+.create_department a img {
+    display: block;
+    height: 40%;
+    margin-left: 25%;
+    margin-top: 2em;
+}
+
+.create_department a span {
+    margin-top: 1em;
+    font-size: 1.2em;
+    font-weight: 360;
+    display: block;
+}
+
+.department_card {
+    background-color: #333537;
+    width: 15em;
+    height: 15em;
+    margin: 1em;
+    border-radius: 15px;
+    padding: 1em;
+
+    display: flex;
+    flex-direction: column;
+    margin-top: 4em;
+}
+
+.department_card a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-around;
+}
+
+.department_card .more_options {
+    align-self: flex-end;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 2em;
+}
+
+.more_options {
+    height: 1em;
+}
+
+.department_name span {
+    font-size: 1.5em;
+}
+
+.department_name img {
+    height: 1.4em;
+}
+
+.members_photos {
+    margin-top: 1em;
+}
+
+@media screen and (max-width: 1000px) {
+    main {
+        justify-content: center;
+    }
+}

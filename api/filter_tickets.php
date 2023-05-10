@@ -24,5 +24,6 @@ class TicketFilters{
         $this->orderAssignee = $orderAssignee;
         $this->orderDescription = $orderDescription;
     }
+    
 }
 ?>

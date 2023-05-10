@@ -1,0 +1,101 @@
+.comment-profile-pic{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  float: left;
+}
+
+*{
+  color: white;
+}
+
+.main_content{
+ padding-left: 3em;
+ padding-right: 3em;
+}
+.ticket-title{
+  margin-top: 2.5em;
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.ticket-header{
+  margin-bottom: 3em;
+}
+
+.ticket-info p{
+  color: #5C6165;
+}
+
+.comment{
+  margin-bottom: 2em;
+  text-shadow: none;
+  
+}
+
+.comment-header{
+  margin-bottom: 1.5em;
+  display: flex;
+  align-items: center;
+}
+
+body > main > div.comments > div > p{
+  font-weight: 300;
+}
+
+.comment-date {
+  margin-left: auto;
+
+}
+
+.comment-container {
+  display: flex;
+  margin: auto;
+}
+
+.comment-bar {
+  display: flex;
+  background-color: #5C6165;
+  border-radius: 0.5em;
+  padding: 0.1em;
+  padding: 1em;
+  margin-bottom: 1em;
+  width: 90%;
+}
+
+.comment-textarea {
+  flex: 1;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 1em;
+  color: black;
+  background-color: #5C6165;
+}
+
+.attachment-button {
+  margin-right: 10px;
+  border: none;
+  background-color: transparent;
+}
+
+.send-button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* add this line */
+  margin-left: 3em;
+
+
+}
+
+.send-button {
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+}

@@ -9,6 +9,7 @@
     require_once(__DIR__ . '/filter_members.php');
 
     $db = connectToDatabase();
+    $client = Client::getClient($db, $session->getUserId(), null);
 
     $search = isset($_GET['search']) ? $_GET['search'] : "";
     $dept = isset($_GET['dept']) ? $_GET['dept'] : "";
@@ -19,7 +20,7 @@
     $orderRole = isset($_GET['orderRole']) ? $_GET['orderRole'] : "";
     $orderDepartment = isset($_GET['orderDepartment']) ? $_GET['orderDepartment'] : "";
 
-    $members = Client::searchClients($db, new MemberFilters($search, $dept, $role, $orderName, $orderUsername, $orderRole, $orderDepartment));
+    $members = $client->searchClients($db, new MemberFilters($search, $dept, $role, $orderName, $orderUsername, $orderRole, $orderDepartment));
     
     echo json_encode($members);
 ?>

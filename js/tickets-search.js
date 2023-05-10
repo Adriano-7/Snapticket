@@ -133,7 +133,7 @@ function createDescriptionCell(ticket) {
   const title = createTitle(ticket.ticket_name);
   let departmentText = '';
   ticket.departments.forEach(department => {
-    departmentText += department.name_department + ' ';
+    departmentText += department.name + ' ';
   });
 
   const details = createDetails(departmentText, ticket.creator.username);
