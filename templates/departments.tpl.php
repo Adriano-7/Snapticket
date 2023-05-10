@@ -1,3 +1,9 @@
+<?php
+declare(strict_types=1);
+require_once(__DIR__ . '/../utils/session.php');
+require_once(__DIR__ . '/../database/php_classes/department.class.php');
+?>
+
 <?php function drawCreateDept(){ ?>
 <main>
     <div class="create_department">
@@ -24,16 +30,16 @@
                         <?php echo count($department->members); ?> Members
                     </span>
                     <div class="members_photos">
-                        <?php if (count($department->members) > 5) { ?>
-                            <?php for ($i = 0; $i < 5; $i++) { ?>
-                                <?php $department->members[$i]->displayIcon('member_photo'); ?>
+                        <?php if (count($department->members) > 6) { ?>
+                            <?php for ($i = 0; $i < 6; $i++) { ?>
+                                <?php $department->members[$i]->displayProfilePhoto('member_photo'); ?>
                             <?php } ?>
                             <span class="more_members">+
-                                <?php echo count($department->members) - 5; ?>
+                                <?php echo count($department->members) - 6; ?>
                             </span>
                         <?php } else { ?>
                             <?php foreach ($department->members as $member) { ?>
-                                <?php $member->displayIcon('member_photo'); ?>
+                                <?php $member->displayProfilePhoto('member_photo'); ?>
                             <?php } ?>
                         <?php } ?>
                     </div>
