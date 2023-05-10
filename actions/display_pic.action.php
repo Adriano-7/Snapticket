@@ -6,15 +6,14 @@ $id = isset($_GET['id']) ? $_GET['id'] : '';
 
 if ($id !== '') {
     $db = connectToDatabase();
-    $imageData = File::getFile($db, $id);
-    
-    if ($imageData === null) {
+    $file = File::getFile($db, $id);
+    if ($file === null) {
         $defaultImagePath = __DIR__ . '/../assets/profile_pics_examples/default.jpg';
-        header('Content-Type: image/jpeg');
         readfile($defaultImagePath);
-    } 
+    }
     else {
-        header('Content-Type: image/jpeg');
-        echo $imageData;
+        header('Content-Type: image/'. $file->file_type);
+        header('Content-Length: ' . strlen($file->content));
+        echo $file->content;
     }
 }

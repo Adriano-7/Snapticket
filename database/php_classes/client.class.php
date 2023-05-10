@@ -11,8 +11,7 @@ class Client
   public array $departments;
   public int $image_id;
 
-  public function __construct(int $user_id, string $name, string $username, string $email, bool $isAgent = false, bool $isAdmin = false, array $departments = [], int $image_id = 1)
-  {
+  public function __construct(int $user_id, string $name, string $username, string $email, bool $isAgent = false, bool $isAdmin = false, array $departments = [], int $image_id=0){
     $this->user_id = $user_id;
     $this->name = $name;
     $this->username = $username;
