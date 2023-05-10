@@ -77,7 +77,6 @@ CREATE TABLE TicketHashtag (
 DROP TABLE IF EXISTS Comment;
 CREATE TABLE Comment (
     comment_id INTEGER PRIMARY KEY,
-    num INTEGER, 
     date TEXT DEFAULT (datetime('now', 'localtime')), 
     content TEXT, 
     user_id INTEGER REFERENCES Client(user_id) ON DELETE SET NULL ON UPDATE CASCADE NOT NULL, 

@@ -30,7 +30,7 @@ if (!$isAuthorised) {
   die();
 }
 
-$ticket = Ticket::getTicket($db, $_GET['ticket_id']);
+$ticket = Ticket::getTicket($db, intval($_GET['ticket_id']));
 $page_name = 'Ticket ' . $ticket->ticket_id;
 
 createHead($page_name, ['style','ticket'], ['menu-colors']);
@@ -38,6 +38,4 @@ drawMenu($db, $client);
 
 drawTitle($ticket, $db);
 drawComments($ticket, $db);
-
-drawFooter();
 ?>

@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
-require_once 'client.class.php';
+require_once(__DIR__ . '/comment.class.php');
 
-class Ticket
-{
+class Ticket{
     public int $ticket_id;
     public string $ticket_name;
     public string $date;
@@ -13,9 +12,10 @@ class Ticket
     public ?Client $creator;
     public array $departments;
     public array $hashtags;
+    public array $comments;
 
 
-    public function __construct(int $ticket_id, string $ticket_name, string $date, string $priority, ?Client $assignee, string $status, ?Client $creator, array $departments = [], array $hashtags = []){
+    public function __construct(int $ticket_id, string $ticket_name, string $date, string $priority, ?Client $assignee, string $status, ?Client $creator, array $departments = [], array $hashtags = [], array $comments = []){
         $this->ticket_id = $ticket_id;
         $this->ticket_name = $ticket_name;
         $this->date = $date;
@@ -25,6 +25,7 @@ class Ticket
         $this->creator = $creator;
         $this->departments = $departments;
         $this->hashtags = $hashtags;
+        $this->comments = $comments;
     }
 
     static public function getTicket(PDO $db, int $ticket_id): ?Ticket{
@@ -38,7 +39,7 @@ class Ticket
         $assignee = Client::getClient($db, $ticket['assignee'], null);
 
         $departments = array();
-        $stmt = $db->prepare('SELECT name FROM TicketDepartment WHERE ticket_id = ?');
+        $stmt = $db->prepare('SELECT d.name FROM TicketDepartment td JOIN Department d ON td.department_id = d.department_id WHERE ticket_id = ?');
         $stmt->execute([$ticket['ticket_id']]);
         $departments = $stmt->fetchAll();
 
@@ -47,7 +48,7 @@ class Ticket
         $stmt->execute([$ticket['ticket_id']]);
         $hashtags = $stmt->fetchAll();
 
-        return new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags);
+        return new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags, Ticket::getComments($db, $ticket['ticket_id']));
     }
     
     static public function isAuthorized(PDO $db, int $ticket_id, int $creator): bool{
@@ -175,7 +176,7 @@ class Ticket
             $stmt->execute([$ticket['ticket_id']]);
             $hashtags = $stmt->fetchAll();
 
-            $ticket = new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags);
+            $ticket = new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags, Ticket::getComments($db, $ticket['ticket_id']));
             if (Ticket::isAuthorized($db, $ticket->ticket_id, $client->user_id)) {
                 $client_tickets[] = $ticket;
             }
@@ -226,6 +227,21 @@ class Ticket
             }
         }
         return $hashtags;
+    }
+
+    static function getComments(PDO $db, int $ticket_id): array{
+        $stmt = $db->prepare('SELECT * FROM Comment WHERE ticket_id = ? ORDER BY comment_id ASC');
+        $stmt->execute([$ticket_id]);
+        $comments = $stmt->fetchAll();
+
+        $ticket_comments = array();
+
+        foreach ($comments as $comment) {
+            $client = Client::getClient($db, $comment['user_id'], null);
+            $ticket_comments[] = new Comment($comment['comment_id'], $comment['date'], $comment['content'], $client);
+        }
+
+        return $ticket_comments;
     }
 }
 ?>
