@@ -25,16 +25,16 @@ nav a {
 
 .profile {
   color: white;
-  margin-left: 2em;
 }
 
 .profile img {
   border-radius: 50%;
 }
 
-.profile .profile_name {
-  position: relative;
-  bottom: 2em;
+.profile_name {
+  margin-left: 1em;
+  position: fixed;
+  bottom: 2.5em;
 }
 
 main {
@@ -71,6 +71,12 @@ main {
     grid-column-start: 1;
     grid-column-end: 2;
     overflow-x: hidden;
+    overflow-y: hidden;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   main {
@@ -99,23 +105,24 @@ main {
 
   nav {
     margin-top: 10%;
-    margin-left: 4em;
+  }
+
+  nav a:not(.profile) {
+    margin-left: 25%;
   }
 
   .profile {
-    position: absolute;
+    position: fixed;
     bottom: 0;
   }
 
   .profile img {
     width: 4em;
     height: 4em;
-    margin-right: 0.6em;
-    margin-top: auto;
   }
 }
 
-@media screen and (max-width: 1309px) and (min-width: 600px) {
+@media screen and (max-width: 1309px) and (min-width: 1000px) {
   body {
     display: grid;
     grid-template-columns: 1fr 5fr;
@@ -153,7 +160,10 @@ main {
 
   nav {
     margin-top: 10%;
-    margin-left: 30%;
+  }
+
+  nav a:not(.profile) {
+    margin-left: 25%;
   }
 
   .menu-text {
@@ -161,8 +171,9 @@ main {
   }
 
   .profile {
-    position: absolute;
+    position: fixed;
     bottom: 0;
+    margin-left: 3%;
   }
 
   .profile_name {
@@ -176,7 +187,7 @@ main {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1000px) {
   body {
     display: grid;
     grid-template-columns: 1fr;
@@ -191,9 +202,9 @@ main {
   .menu {
     grid-row-start: 2;
     grid-row-end: 3;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    display: grid;
+    align-content: center;
+    justify-content: space-around;
   }
   
   .logo {
@@ -206,7 +217,7 @@ main {
 
   .menu-icon {
     width: 2em;
-    padding-right: 1em;
+    padding:1em;
   }
 
   .profile_name {
@@ -214,7 +225,8 @@ main {
   }
 
   .profile img {
-    width: 3em;
-    height: 3em;
+    width: 2.5em;
+    height: 2.5em;
+    padding:1em;
   }
 }

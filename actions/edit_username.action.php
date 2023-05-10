@@ -8,8 +8,9 @@ require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
-Client::changeUsername($db, $session->getUsername(), $_POST['username']);
-$session->setUsername($_POST['username']);
+$client = Client::getClient($db, $session->getUserId(), NULL);
+
+$client->changeUsername($db, $_POST['username']);
 
 header('Location: ../pages/profile.php')
 ?>

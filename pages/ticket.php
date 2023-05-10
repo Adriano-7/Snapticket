@@ -10,7 +10,7 @@ require_once(__DIR__ . '/../database/php_classes/ticket.class.php');
 
 $db = connectToDatabase();
 $session = new Session();
-$client = Client::getClient($db, $session->getUsername());
+$client = Client::getClient($db, $session->getUserId(), null);
 
 if (!$session->isLoggedIn()) {
   header('Location: login.php');
@@ -23,8 +23,7 @@ if(!isset($_GET['ticket_id'])) {
 }
 
 
-
-$isAuthorised = Ticket::isAuthorized($db, intval($_GET['ticket_id']), $session->getUsername());
+$isAuthorised = Ticket::isAuthorized($db, intval($_GET['ticket_id']), $session->getUserId());
 if (!$isAuthorised) {
   header('Location: error_page.php');
   die();

@@ -15,8 +15,9 @@ if (Client::usernameExists($db, $_POST['username'])) {
 }
 
 Client::register($db, $_POST['name'], $_POST['username'], $_POST['email'], $_POST['password']);
+$client = Client::getClient($db, null, $_POST['username']);
 
-$session->setUsername($_POST['username']);
+$session->setUserId($_POST['username']);
 $session->setSuccessRegister();
 header('Location: ../pages/dashboard.php');
 ?>

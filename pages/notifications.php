@@ -15,13 +15,13 @@ require_once(__DIR__ . '/../database/php_classes/notifications.class.php');
 $db = connectToDatabase();
 $session = new Session();
 
-if (!$session->isLoggedIn() || $session->getUsername() === null) {
+if (!$session->isLoggedIn()) {
   header('Location: login.php');
   die();
 }
 
-$client = Client::getClient($db, $session->getUsername());
-$notifications = Notification::getNotifications($db, $session->getUsername());
+$client = Client::getClient($db, $session->getUserId(), null);
+$notifications = Notification::getNotifications($db, $session->getUserId());
 
 createHead('Notifications', ['style', 'notifications']);
 drawMenu($db, $client);

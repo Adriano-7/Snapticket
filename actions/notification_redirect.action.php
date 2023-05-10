@@ -20,7 +20,7 @@ if ($notification === null) {
     die();
 }
 
-$isAuthorised = Notification::isAuthorised($db, $notification, $session->getUsername());
+$isAuthorised = Notification::isAuthorised($db, $notification, $session->getUserId());
 
 if($isAuthorised===false){
     header('Location: ../pages/error_page.php');

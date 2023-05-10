@@ -14,7 +14,7 @@ require_once(__DIR__ . '/../api/filter_members.php');
 
 $db = connectToDatabase();
 $session = new Session();
-$client = Client::getClient($db, $session->getUsername());
+$client = Client::getClient($db, $session->getUserId(), null);
 $departments = Department::getDepartments($db);
 $roles = ['Admin', 'Agent', 'User'];
 

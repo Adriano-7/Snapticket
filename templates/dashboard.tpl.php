@@ -70,7 +70,7 @@
               <div class="tickets_description_details">
                 <div class="tickets_description_department">
                   <?php foreach ($ticket->departments as $department) { ?>
-                    <?php echo $department['name_department']; ?>
+                    <?php echo $department['name']; ?>
                   <?php } ?>
                 </div>
                 <div class="tickets_description_client">

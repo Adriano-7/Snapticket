@@ -2,7 +2,7 @@
 <main class="main_content">
     <div class="user-info">
         <div class="profile-pic">
-            <?php $client->displayProfilePhoto($db, "") ?>
+            <?php $client->displayProfilePhoto("") ?>
         </div>
         <div class="user-details">
             <h2>

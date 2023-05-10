@@ -37,7 +37,7 @@ function drawSearchFilters(array $departments, $roles)
                 <?php foreach ($members as $member) { ?>
                     <tr>
                         <td class="member_name">
-                            <?php $member->displayProfilePhoto($db, "table_profile_pic") ?>
+                            <?php $member->displayProfilePhoto("table_profile_pic") ?>
                             <div class="user_details">
                                 <?php echo $member->name; ?>
                                 <a href="mailto:<?php echo $member->email ?>"><?php echo $member->email ?></a>

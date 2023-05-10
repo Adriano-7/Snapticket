@@ -12,7 +12,7 @@ $db = connectToDatabase();
 $client = Client::getClientWithPassword($db, $_POST['username'], $_POST['password']);
 
 if ($client) {
-    $session->setUsername($client->username);
+    $session->setUserId($client->user_id);
     $session->setSuccessLogin();
     header('Location: ../pages/dashboard.php');
 } 

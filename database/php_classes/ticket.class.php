@@ -27,16 +27,16 @@ class Ticket
         $this->hashtags = $hashtags;
     }
 
-    static public function isAuthorized(PDO $db, int $ticket_id, string $creator): bool{
+    static public function isAuthorized(PDO $db, int $ticket_id, int $creator): bool{
         //The user is admin
-        $stmt = $db->prepare('SELECT * FROM Admin WHERE username = ?');
+        $stmt = $db->prepare('SELECT * FROM Admin WHERE user_id = ?');
         $stmt->execute([$creator]);
         if ($stmt->fetch()) {
             return true;
         }
 
         //The ticket belongs to the department of the agent
-        $stmt = $db->prepare('SELECT * FROM CLientDepartment WHERE username = ? AND name_department = (SELECT name_department FROM TicketDepartment WHERE ticket_id = ?)');
+        $stmt = $db->prepare('SELECT * FROM CLientDepartment WHERE user_id = ? AND department_id = (SELECT department_id FROM TicketDepartment WHERE ticket_id = ?)');
         $stmt->execute([$creator, $ticket_id]);
         if ($stmt->fetch()) {
             return true;
@@ -62,9 +62,10 @@ class Ticket
 
         if ($filters->department != "") {
             if ($filters->search == "") {
-                $query .= " WHERE ticket_id IN (SELECT ticket_id FROM TicketDepartment WHERE name_department = ?)";
-            } else {
-                $query .= " AND ticket_id IN (SELECT ticket_id FROM TicketDepartment WHERE name_department = ?)";
+                $query .= " WHERE ticket_id IN (SELECT ticket_id FROM TicketDepartment WHERE department_id = (SELECT department_id FROM Department where name = ?))";
+            } 
+            else {
+                $query .= " AND ticket_id IN (SELECT ticket_id FROM TicketDepartment WHERE department_id = (SELECT department_id FROM Department where name = ?))";
             }
             $params[] = $filters->department;
         }
@@ -132,12 +133,13 @@ class Ticket
         $tickets = $stmt->fetchAll();
 
         $client_tickets = array();
+
         foreach ($tickets as $ticket) {
-            $creator = Client::getClient($db, $ticket['creator']);
-            $assignee = Client::getClient($db, $ticket['assignee']);
+            $creator = Client::getClient($db, $ticket['creator'], null);
+            $assignee = Client::getClient($db, $ticket['assignee'], null);
 
             $departments = array();
-            $stmt = $db->prepare('SELECT name_department FROM TicketDepartment WHERE ticket_id = ?');
+            $stmt = $db->prepare('SELECT d.name FROM TicketDepartment td JOIN Department d ON td.department_id = d.department_id WHERE ticket_id = ?');
             $stmt->execute([$ticket['ticket_id']]);
             $departments = $stmt->fetchAll();
 
@@ -147,7 +149,7 @@ class Ticket
             $hashtags = $stmt->fetchAll();
 
             $ticket = new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags);
-            if (Ticket::isAuthorized($db, $ticket->ticket_id, $client->username)) {
+            if (Ticket::isAuthorized($db, $ticket->ticket_id, $client->user_id)) {
                 $client_tickets[] = $ticket;
             }
         }
@@ -179,8 +181,8 @@ class Ticket
         $departments = array();
         foreach ($tickets as $ticket) {
             foreach ($ticket->departments as $department) {
-                if (!in_array($department['name_department'], $departments)) {
-                    $departments[] = $department['name_department'];
+                if (!in_array($department['name'], $departments)) {
+                    $departments[] = $department['name'];
                 }
             }
         }
