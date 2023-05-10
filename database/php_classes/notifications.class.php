@@ -22,21 +22,21 @@ class Notification{
         $this->ticket_id = $ticket_id;
     }
 
-    public static function getNotifications(PDO $db, string $username): array{
+    public static function getNotifications(PDO $db, int $user_id): array{
         $query = $db->prepare('
             SELECT notification_id, date, content, isVisited, recipient, sender, ticket_id
             FROM Notification
-            WHERE lower(recipient) = ?
+            WHERE recipient = ?
             ORDER BY notification_id ASC
         ');
 
-        $query->execute(array(strtolower($username)));
+        $query->execute(array($user_id));
         $result = $query->fetchAll();
         $notifications = array();
 
         foreach($result as $row){
-            $recipient = Client::getClient($db, $row['recipient']);
-            $sender = Client::getClient($db, $row['sender']);
+            $recipient = Client::getClient($db, $row['recipient'], null);
+            $sender = Client::getClient($db, $row['sender'], null);
 
             if($recipient === null || $sender === null){
                 throw new Exception('Error: recipient or sender is null');
@@ -81,8 +81,8 @@ class Notification{
             return null;
         }
 
-        $recipient = Client::getClient($db, $result['recipient']);
-        $sender = Client::getClient($db, $result['sender']);
+        $recipient = Client::getClient($db, $result['recipient'], null);
+        $sender = Client::getClient($db, $result['sender'], null);
         if($recipient === null || $sender === null){
             throw new Exception('Error: recipient or sender is null');
         }
@@ -91,8 +91,8 @@ class Notification{
         return $notification;
     }
 
-    public static function isAuthorised(PDO $db, Notification $notification, string $username): bool{
-        return $notification->recipient->username === $username;
+    public static function isAuthorised(PDO $db, Notification $notification, int $user_id): bool{
+        return $notification->recipient->user_id === $user_id;
     }
 
     public static function getNiceDate(Notification $notification): string{

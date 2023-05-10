@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
-class Client{
+class Client
+{
+  public int $user_id;
   public string $name;
   public string $username;
   public string $email;
@@ -9,7 +11,8 @@ class Client{
   public array $departments;
   public int $image_id;
 
-  public function __construct(string $name, string $username, string $email, bool $isAgent = false, bool $isAdmin = false, array $departments = [], int $image_id = 1){
+  public function __construct(int $user_id, string $name, string $username, string $email, bool $isAgent = false, bool $isAdmin = false, array $departments = [], int $image_id=0){
+    $this->user_id = $user_id;
     $this->name = $name;
     $this->username = $username;
     $this->email = $email;
@@ -42,50 +45,52 @@ class Client{
     return $query->fetch() !== false;
   }
 
-  static function changeName(PDO $db, string $username, string $name): bool{
+  function changeName(PDO $db, string $name): bool
+  {
     $query = $db->prepare('
             UPDATE Client
             SET name = ?
-            WHERE lower(username) = ?
+            WHERE user_id = ?
           ');
 
-    return $query->execute(array($name, strtolower($username)));
+    return $query->execute(array($name, $this->user_id));
   }
 
-  static function changeUsername(PDO $db, string $username, string $newUsername): bool
+  function changeUsername(PDO $db, string $newUsername): bool
   {
     $query = $db->prepare('
             UPDATE Client
             SET username = ?
-            WHERE lower(username) = ?
+            WHERE user_id = ?
           ');
 
-    return $query->execute(array($newUsername, strtolower($username)));
+    return $query->execute(array($newUsername, $this->user_id));
   }
 
-  static function changeEmail(PDO $db, string $username, string $email): bool
+  function changeEmail(PDO $db, string $email): bool
   {
     $query = $db->prepare('
             UPDATE Client
             SET email = ?
-            WHERE lower(username) = ?
+            WHERE user_id = ?
           ');
 
-    return $query->execute(array($email, strtolower($username)));
+    return $query->execute(array($email, $this->user_id));
   }
 
-  static function changePassword(PDO $db, string $username, string $password): bool
+  function changePassword(PDO $db, string $password): bool
   {
     $query = $db->prepare('
             UPDATE Client
             SET password = ?
-            WHERE lower(username) = ?
+            WHERE user_id = ?
           ');
 
-    return $query->execute(array(sha1($password), strtolower($username)));
+    return $query->execute(array(sha1($password), $this->user_id));
   }
 
-  function changeProfilePhoto(PDO $db, $image_blob){
+  function changeProfilePhoto(PDO $db, $image_blob)
+  {
     $query = $db->prepare('
           UPDATE File
           SET content = ?
@@ -106,141 +111,157 @@ class Client{
     $query->execute(array(strtolower($username), sha1($password)));
 
     if ($client = $query->fetch()) {
-      return new Client($client['name'], $client['username'], $client['email']);
+      return new Client($client['user_id'], $client['name'], $client['username'], $client['email']);
     }
     return null;
   }
 
-  static function getClient(PDO $db, ?string $username): ?Client{
-    if ($username === null) {
+  static function getClient(PDO $db, ?int $user_id, ?string $username): ?Client
+  {
+    if ($user_id === null && $username === null) {
       return null;
     }
 
-    $query = $db->prepare('
-            SELECT *
-            FROM Client
-            WHERE lower(username) = ?
-          ');
-    $query->execute(array(strtolower($username)));
+    if ($user_id !== null) {
+      $query = "SELECT c.user_id, c.name as user_name, c.username, c.email, c.password, c.image_id, d.name as department_name, 
+      CASE  WHEN ad.user_id IS NOT NULL THEN 'Admin' 
+            WHEN a.user_id IS NOT NULL THEN 'Agent' 
+            ELSE 'Client' 
+      END AS role
+      FROM Client c
+      LEFT JOIN ClientDepartment cd ON c.user_id = cd.user_id
+      LEFT JOIN Department d ON cd.department_id = d.department_id
+      LEFT JOIN Agent a ON c.user_id = a.user_id
+      LEFT JOIN Admin ad ON a.user_id = ad.user_id
+      WHERE c.user_id = ?";
 
-    if ($client = $query->fetch()) {
-      $isAgent = false;
-      $isAdmin = false;
+      $query = $db->prepare($query);
+      $query->execute(array($user_id));
+    } 
+    
+    else if ($username !== null) {
+      $query = "SELECT c.user_id, c.name as user_name, c.username, c.email, c.password, c.image_id, d.name as department_name, 
+      CASE  WHEN ad.user_id IS NOT NULL THEN 'Admin' 
+            WHEN a.user_id IS NOT NULL THEN 'Agent' 
+            ELSE 'Client' 
+      END AS role
+      FROM Client c
+      LEFT JOIN ClientDepartment cd ON c.user_id = cd.user_id
+      LEFT JOIN Department d ON cd.department_id = d.department_id
+      LEFT JOIN Agent a ON c.user_id = a.user_id
+      LEFT JOIN Admin ad ON a.user_id = ad.user_id
+      WHERE lower(c.username) = ?";
 
-      $query = $db->prepare('
-            SELECT *
-            FROM Agent
-            WHERE lower(username) = ?
-          ');
+      $query = $db->prepare($query);
       $query->execute(array(strtolower($username)));
-      $isAgent = $query->fetch() !== false;
-
-      $query = $db->prepare('
-            SELECT *
-            FROM Admin
-            WHERE lower(username) = ?
-          ');
-      $query->execute(array(strtolower($username)));
-      $isAdmin = $query->fetch() !== false;
-
-      $query = $db->prepare('
-            SELECT name_department
-            FROM ClientDepartment
-            WHERE lower(username) = ?
-          ');
-      $query->execute(array(strtolower($username)));
-      $departments = array();
-      while ($department = $query->fetch()) {
-        array_push($departments, $department['name_department']);
-      }
-
-      return new Client($client['name'], $client['username'], $client['email'], $isAgent, $isAdmin, $departments, $client['image_id']??1);
     }
 
-    return null;
+    $client = null;
+    while ($row = $query->fetch()) {
+      if ($client === null) {
+        $client = new Client($row['user_id'], $row['user_name'], $row['username'], $row['email'], $row['role'] == 'Agent', $row['role'] == 'Admin', array($row['department_name']), $row['image_id']);
+      } else {
+        $client->departments[] = $row['department_name'];
+      }
+    }
+
+    return $client;
   }
 
-  static function searchClients(PDO $db, MemberFilters $memberFilters) : array{
-    $subquery = "SELECT c.name, c.username, c.email, c.password, c.image_id, cd.name_department, 
-                 CASE WHEN a.username IS NOT NULL THEN 'Agent' WHEN ad.username IS NOT NULL THEN 'Admin' ELSE 'Client' END AS role
-                 FROM Client c
-                 LEFT JOIN ClientDepartment cd ON c.username = cd.username
-                 LEFT JOIN Agent a ON c.username = a.username
-                 LEFT JOIN Admin ad ON a.username = ad.username
-                 WHERE lower(c.username) != ?";
+  function searchClients(PDO $db, MemberFilters $memberFilters): array{
+    $subquery ="SELECT c.user_id, c.name as user_name, c.username, c.email, c.password, c.image_id, d.name as department_name, 
+                CASE  WHEN ad.user_id IS NOT NULL THEN 'Admin' 
+                      WHEN a.user_id IS NOT NULL THEN 'Agent' 
+                      ELSE 'Client' 
+                END AS role
+                FROM Client c
+                LEFT JOIN ClientDepartment cd ON c.user_id = cd.user_id
+                LEFT JOIN Department d ON cd.department_id = d.department_id
+                LEFT JOIN Agent a ON c.user_id = a.user_id
+                LEFT JOIN Admin ad ON a.user_id = ad.user_id
+                WHERE c.user_id != ?";
 
-    $params = array(strtolower($_SESSION['username']));
+    $params = array($this->user_id);
 
-    if($memberFilters->department != ""){
-      $subquery .= " AND lower(cd.name_department) = ?";
+    if ($memberFilters->department != "") {
+      $subquery .= " AND department_name = ?)";
       $params[] = strtolower($memberFilters->department);
     }
 
-    if($memberFilters->role != ""){
-      if($memberFilters->role == "Agent"){
-        $subquery .= " AND lower(a.username) IS NOT NULL";
-      }
-      else if($memberFilters->role == "Admin"){
-        $subquery .= " AND lower(ad.username) IS NOT NULL";
-      }
-      else{
-        $subquery .= " AND lower(a.username) IS NULL AND lower(ad.username) IS NULL";
+    if ($memberFilters->role != "") {
+      if ($memberFilters->role == "Agent") {
+        $subquery .= " AND role = 'Agent'";
+      } else if ($memberFilters->role == "Admin") {
+        $subquery .= " AND role = 'Admin'";
+      } else {
+        $subquery .= " AND role = 'Client'";
       }
     }
 
-    if($memberFilters->search != ""){
-      $subquery .= " AND (lower(c.name) LIKE ? OR lower(c.username) LIKE ?)";
-      $params[] = "%".strtolower($memberFilters->search)."%";
-      $params[] = "%".strtolower($memberFilters->search)."%";
+    if ($memberFilters->search != "") {
+      $subquery .= " AND (lower(user_name) LIKE ? OR lower(c.username) LIKE ?)";
+      $params[] = "%" . strtolower($memberFilters->search) . "%";
+      $params[] = "%" . strtolower($memberFilters->search) . "%";
     }
 
-    if($memberFilters->orderName != ""){
-      $subquery .= " ORDER BY lower(c.name) ".$memberFilters->orderName;
+    if ($memberFilters->orderName != "") {
+      $subquery .= " ORDER BY lower(user_name) " . $memberFilters->orderName;
     }
 
-    if($memberFilters->orderUsername != ""){
-      if($memberFilters->orderName == ""){
-        $subquery .= " ORDER BY lower(c.username) ".$memberFilters->orderUsername;
-      }
-      else{
-        $subquery .= ", lower(c.username) ".$memberFilters->orderUsername;
-      }
-    }
-
-    if($memberFilters->orderRole != ""){
-      if($memberFilters->orderName == "" && $memberFilters->orderUsername == ""){
-        $subquery .= " ORDER BY lower(role) ".$memberFilters->orderRole;
-      }
-      else{
-        $subquery .= ", lower(role) ".$memberFilters->orderRole;
+    if ($memberFilters->orderUsername != "") {
+      if ($memberFilters->orderName == "") {
+        $subquery .= " ORDER BY lower(c.username) " . $memberFilters->orderUsername;
+      } else {
+        $subquery .= ", lower(c.username) " . $memberFilters->orderUsername;
       }
     }
 
-    if($memberFilters->orderDepartment != ""){
-      if($memberFilters->orderName == "" && $memberFilters->orderUsername == "" && $memberFilters->orderRole == ""){
-        $subquery .= " ORDER BY lower(cd.name_department) ".$memberFilters->orderDepartment;
+    if ($memberFilters->orderRole != "") {
+      if ($memberFilters->orderName == "" && $memberFilters->orderUsername == "") {
+        $subquery .= " ORDER BY lower(role) " . $memberFilters->orderRole;
+      } else {
+        $subquery .= ", lower(role) " . $memberFilters->orderRole;
       }
-      else{
-        $subquery .= ", lower(cd.name_department) ".$memberFilters->orderDepartment;
+    }
+
+    if ($memberFilters->orderDepartment != "") {
+      if ($memberFilters->orderName == "" && $memberFilters->orderUsername == "" && $memberFilters->orderRole == "") {
+        $subquery .= " ORDER BY lower(department_name) " . $memberFilters->orderDepartment;
+      } else {
+        $subquery .= ", lower(department_name) " . $memberFilters->orderDepartment;
       }
     }
 
     $query = "SELECT * FROM ($subquery) subquery;";
     $query = $db->prepare($query);
     $query->execute($params);
-    $clients = array();
 
+    $clients = array();
+    
     while ($client = $query->fetch()) {
-      $clients[] = new Client($client['name'], $client['username'], $client['email'], $client['role'] == 'Agent', $client['role'] == 'Admin', array($client['name_department']), $client['image_id']??1);
+      $clientExists = false;
+
+      foreach ($clients as $c) {
+        if ($c->user_id == $client['user_id']) {
+          $clientExists = true;
+          if (!in_array($client['department_name'], $c->departments)) {
+            array_push($c->departments, $client['department_name']);
+          }
+          break;
+        }
+      }
+
+      if (!$clientExists) {
+        array_push($clients, new Client($client['user_id'], $client['user_name'], $client['username'], $client['email'], $client['role'] == 'Agent', $client['role'] == 'Admin', array($client['department_name']), $client['image_id'] ?? 1));
+      }
     }
 
     return $clients;
   }
 
 
-  function displayProfilePhoto(PDO $db, string $class){
-    require_once('file.class.php');
-    echo '<img src="../actions/display_pic.action.php?id=' . $this->image_id . '" alt="Profile Photo" class="' . $class . '">';  
+  function displayProfilePhoto(string $class){
+    echo '<img src="../actions/display_pic.action.php?id=' . $this->image_id . '" alt="Profile Photo" class="' . $class . '">';
   }
 }
 ?>

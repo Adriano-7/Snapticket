@@ -13,7 +13,7 @@ require_once(__DIR__ . '/../api/filter_tickets.php');
 
 $db = connectToDatabase();
 $session = new Session();
-$client = Client::getClient($db, $session->getUsername());
+$client = Client::getClient($db, $session->getUserId(), null);
 
 if (!$session->isLoggedIn() || $client === null) {
   header('Location: login.php');

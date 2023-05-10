@@ -9,7 +9,8 @@ require_once(__DIR__ . '/../templates/error.tpl.php');
 
 $db = connectToDatabase();
 $session = new Session();
-$client = Client::getClient($db, $session->getUsername());
+
+$client = Client::getClient($db, $session->getUserId(), null);
 
 createHead('Error 404', ['style']);
 drawMenu($db, $client);

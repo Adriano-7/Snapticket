@@ -2,7 +2,7 @@
 <main class="main_content">
     <div class="user-info">
         <div class="profile-pic">
-            <?php $client->displayProfilePhoto($db, "") ?>
+            <?php $client->displayProfilePhoto("") ?>
         </div>
         <div class="user-details">
             <h2>
@@ -27,7 +27,7 @@
     <div class="edit-forms">
         <div class="edit-form">
             <form action="../actions/edit_name.action.php" method="post">
-                <input type="text" name="name" value="<?php echo $client->name ?>" />
+                <input type="text" name="name" value="<?php echo $client->name ?>">
                 <button type="submit" class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
             </form>
         </div>
@@ -36,7 +36,7 @@
 <?php function drawEditUsername(Client $client){ ?>
     <div class="edit-form">
         <form action="../actions/edit_username.action.php" method="post">
-            <input type="text" name="username" value=<?php echo $client->username ?> />
+            <input type="text" name="username" value=<?php echo $client->username ?>>
             <button type="submit" class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
         </form>
     </div>
@@ -45,7 +45,7 @@
 <?php function drawEditEmail(Client $client){ ?>
     <div class="edit-form">
         <form action="../actions/edit_email.action.php" method="post">
-            <input type="email" name="email" value=<?php echo $client->email ?> />
+            <input type="email" name="email" value=<?php echo $client->email ?>>
             <button type="submit" class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
         </form>
     </div>
@@ -54,7 +54,7 @@
 <?php function drawEditPassword(){ ?>
     <div class="edit-form">
         <form action="../actions/edit_password.action.php" method="post">
-            <input type="password" name="password" placeholder="**********" />
+            <input type="password" name="password" placeholder="**********">
             <button type="submit" class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
         </form>
     </div>

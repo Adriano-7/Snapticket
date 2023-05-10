@@ -27,11 +27,7 @@ input[type=text]::-webkit-input-placeholder {
     outline: none;
 }
 
-select{
-    background-color: #333537;
-    color: white;
-    border: none;
-}
+
 
 select:focus{
     outline: none;
@@ -47,6 +43,7 @@ option:checked{
 
 .add_filter {
     background-color: #333537;
+    color: white;
     font-size: 13px;
     border-radius: 0.5em;
     border: none;
