@@ -4,8 +4,20 @@ a {
 }
 
 .member_photo {
-    width: 10%;
+    width: 1.7em;
+    height: 1.7em;
     border-radius: 25px;
+}
+
+.more_members{
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 25px;
+    background-color: #82B7DC;
+    display: inline-block;
+
+    font-size: 1em;
+    padding: 0.14em;
 }
 
 .create_department {
@@ -81,6 +93,7 @@ main {
 }
 
 .members_photos {
+    display: flex;
     margin-top: 1em;
 }
 
