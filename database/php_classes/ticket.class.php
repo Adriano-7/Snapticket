@@ -230,9 +230,9 @@ class Ticket{
     }
 
     static function getComments(PDO $db, int $ticket_id): array{
-        $stmt = $db->prepare('SELECT * FROM Comment WHERE ticket_id = ? ORDER BY comment_id ASC');
-        $stmt->execute([$ticket_id]);
-        $comments = $stmt->fetchAll();
+        $query = $db->prepare('SELECT * FROM Comment WHERE ticket_id = ? ORDER BY comment_id ASC');
+        $query->execute([$ticket_id]);
+        $comments = $query->fetchAll();
 
         $ticket_comments = array();
 
