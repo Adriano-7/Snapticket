@@ -27,7 +27,8 @@ class Department{
 
     static function getMembers(PDO $db, int $department_id): array{
         $stmt = $db->prepare('SELECT * FROM ClientDepartment WHERE department_id = ?');
-        $stmt->execute([$department_id]);
+        $stmt->bindParam(1, $department_id, PDO::PARAM_INT);
+        $stmt->execute();
         
         $members = [];
         while($row = $stmt->fetch()){
