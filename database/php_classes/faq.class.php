@@ -62,5 +62,16 @@ class FAQ{
         $query->execute();
         return $query->fetch() !== false;
     }
+
+    static function getDepartments(PDO $db){
+        $query = $db->prepare('Select d.department_id, d.name, d.image_id FROM Department d JOIN FAQ f ON d.department_id = f.department_id');
+        $query->execute();
+
+        $departments = array();
+        while($row = $query->fetch()){
+            $departments[] = new Department($row['department_id'], $row['name'], $row['image_id'], Department::getMembers($db, $row['department_id']));
+        }
+        return $departments;
+    }
 }
 ?>

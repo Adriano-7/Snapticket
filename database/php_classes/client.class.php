@@ -159,7 +159,7 @@ class Client
     $client = null;
     while ($row = $query->fetch()) {
       if ($client === null) {
-        $client = new Client($row['user_id'], $row['user_name'], $row['username'], $row['email'], $row['role'] == 'Agent', $row['role'] == 'Admin', array($row['department_name']), $row['image_id']);
+        $client = new Client($row['user_id'], $row['user_name'], $row['username'], $row['email'], ($row['role'] == 'Agent' || $row['role'] == 'Admin'), $row['role'] == 'Admin', array($row['department_name']), $row['image_id']);
       } else {
         $client->departments[] = $row['department_name'];
       }

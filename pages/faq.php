@@ -20,6 +20,7 @@ if (!$session->isLoggedIn()) {
 }
 
 $department = isset($_GET['department']) ? intval($_GET['department']) : null;
+$departments = FAQ::getDepartments($db);
 $questions = FAQ::getQuestions($db, $department);
 
 
@@ -29,7 +30,8 @@ if(!FAQ::exists($db, $department)) {
 }
 
 
-createHead('Notifications', ['style']);
+createHead('Notifications', ['style'], ['faq']);
 drawMenu($db, $client);
+drawFAQHeader($department, $departments, $client);
 drawFAQ($questions);
 ?>
