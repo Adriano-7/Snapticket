@@ -1,7 +1,7 @@
 <?php function drawFAQHeader($CurDepartment, $departments, $client){ ?>
   <main class="main_content">
     <header class="header">
-      <h1>FAQ</h1>
+      <h1 class="faq_title">FAQ</h1>
       <?php if ($client->isAgent) { ?>
         <form action="../actions/addFAQ.php" method="post">
           <input type="hidden" name="department" value="<?= $CurDepartment ?>">

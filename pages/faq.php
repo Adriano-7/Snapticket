@@ -30,7 +30,7 @@ if(!FAQ::exists($db, $department)) {
 }
 
 
-createHead('Notifications', ['style'], ['faq']);
+createHead('Notifications', ['style', 'faq'], ['faq']);
 drawMenu($db, $client);
 drawFAQHeader($department, $departments, $client);
 drawFAQ($questions);

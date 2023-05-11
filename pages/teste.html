@@ -1,0 +1,105 @@
+html:
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>SnapTicket - Notifications </title>
+    <link rel="icon" href="../assets/favicon.png">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/faq.css" rel="stylesheet">
+    <script src="../js/faq.js" defer></script>
+</head>
+
+<body>
+    <header class="menu">
+        <div class="menu_header">
+            <a href="../pages/dashboard.php">
+                <img src="../assets/logo.png" alt="SnapTicket Logo" class="logo">
+            </a>
+        </div>
+        <nav>
+            <a href="dashboard.php" style="color:#808080">
+                <img src="../assets/menu_icons/dashboard-gray-icon.svg" alt="Dashboard" class="menu-icon">
+                <span class="menu-text">Dashboard</span>
+            </a>
+            <a href="faq.php" style="color:#808080">
+                <img src="../assets/menu_icons/faq-gray-icon.svg" alt="Faq" class="menu-icon">
+                <span class="menu-text">FAQ</span>
+            </a>
+            <a href="notifications.php" style="color:#808080">
+                <img src="../assets/menu_icons/notifications-gray-icon.svg" alt="Notifications" class="menu-icon">
+                <span class="menu-text">Notifications</span>
+            </a>
+            <a href="members.php" style="color:#808080">
+                <img src="../assets/menu_icons/members-gray-icon.svg" alt="Members" class="menu-icon">
+                <span class="menu-text">Members</span>
+            </a>
+            <a href="departments.php" style="color:#808080">
+                <img src="../assets/menu_icons/departments-gray-icon.svg" alt="Departments" class="menu-icon">
+                <span class="menu-text">Departments</span>
+            </a>
+            <a href="profile.php" class="profile">
+                <img src="../assets/profile_pics_examples/JMurphy.jpg" alt="Profile Photo" class="profile-photo"> <span
+                    class="profile_name">
+                    Jessica Murphy </span>
+            </a>
+        </nav>
+    </header>
+    <main class="main_content">
+        <header class="header">
+            <h1>FAQ</h1>
+            <form action="../actions/addFAQ.php" method="post">
+                <input type="hidden" name="department" value="1">
+                <input type="submit" value="Add">
+            </form>
+            <select name="department" id="dept_select" onchange="updateURL()">
+                <option value="">Departments</option>
+                <option value="1" selected>Accounting</option>
+                <option value="2">Legal</option>
+                <option value="3">Human Resources</option>
+                <option value="4">Sales</option>
+            </select>
+        </header>
+        <ul class="faq">
+            <li>
+                <div class="faq_question" onclick="toggleAnswer(this)">
+                <div class="question">
+                    <span class="question_text">Q1 What is the deadline for submitting expense reports?</span>
+                    <span class="plus-sign">+</span>
+                </div>
+                <div class="answer" style="display: block;">
+                    <span class="answer_text">Our company requires expense reports to be submitted within 30 days of
+                        incurring the expense. Any expenses submitted after this deadline may not be reimbursed.</span>
+                </div>
+            </div>
+            </li>
+            <li>
+                <div class="faq_question" onclick="toggleAnswer(this)">
+                <div class="question">
+                    <span class="question_text">Q2 How do I reconcile my bank statement?</span>
+                    <span class="plus-sign">+</span>
+                </div>
+                <div class="answer" style="display: block;">
+                    <span class="answer_text">To reconcile your bank statement, you need to compare the transactions in
+                        your bank statement to the transactions in your accounting records. Any discrepancies between
+                        the two should be investigated and resolved. Once all discrepancies have been resolved, you can
+                        mark the bank statement as reconciled.</span>
+                </div>
+            </div>
+            </li>
+            <li>
+                <div class="question" onclick="toggleAnswer(this)">
+                    <span class="question_text">Q3 How do I update my tax withholding information?</span>
+                    <span class="plus-sign">+</span>
+                </div>
+                <div class="answer" style="display: none;">
+                    <span class="answer_text">To update your tax withholding information, please log into the HR portal
+                        and navigate to the "Payroll" section. From there, you can update your tax withholding
+                        information and submit the changes for approval.</span>
+                </div>
+            </li>
+        </ul>
+    </main>
+</body>
+
+</html>
