@@ -22,7 +22,7 @@
     <?php foreach($questions as $question) { ?>
       <li>
         <div class="question" onclick="toggleAnswer(this)">
-          <span class="question_text">Q<?= $question->num ?> <?= $question->title ?></span>
+          <span class="question_text">Q<?= $question->num ?>: <?= $question->title ?></span>
           <span class="plus-sign">+</span>
         </div>
         <div class="answer" style="display: none;">
