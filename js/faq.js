@@ -1,4 +1,3 @@
-//Redirect to the department's FAQ page
 function updateURL() {
     var department = document.getElementById("dept_select").value;
 
@@ -10,16 +9,24 @@ function updateURL() {
     }
 }
 
-//Open the answer to the faq question
 function toggleAnswer(questionDiv) {
-    const answer = questionDiv.nextElementSibling;
-    const plus = questionDiv.querySelector('.plus-sign');
-    if (answer.style.display === 'none') {
-      answer.style.display = 'block';
-      plus.textContent = '-';
-    } 
-    else {
-      answer.style.display = 'none';
-      plus.textContent = '+';
-    }
+  const answer = questionDiv.querySelector(".answer");
+  const downSign = questionDiv.querySelector(".down-sign");
+  const answers = document.querySelectorAll(".answer");
+
+  if (answer.style.display == "none") {
+      answers.forEach((answer) => {
+          answer.style.display = "none";
+      });
+      answer.style.display = "block";
+      downSign.classList.add("rotate");
+      downSign.classList.remove("initialPosition");
+  }
+  else {
+      answers.forEach((answer) => {
+          answer.style.display = "none";
+      });
+      downSign.classList.remove("rotate");
+      downSign.classList.add("initialPosition");
+  }
 }

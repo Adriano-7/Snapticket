@@ -1,4 +1,3 @@
-html:
 <!DOCTYPE html>
 <html lang="en-US">
 
@@ -22,8 +21,8 @@ html:
                 <img src="../assets/menu_icons/dashboard-gray-icon.svg" alt="Dashboard" class="menu-icon">
                 <span class="menu-text">Dashboard</span>
             </a>
-            <a href="faq.php" style="color:#808080">
-                <img src="../assets/menu_icons/faq-gray-icon.svg" alt="Faq" class="menu-icon">
+            <a href="faq.php" style="color:#FFFFFF">
+                <img src="../assets/menu_icons/faq-white-icon.svg" alt="Faq" class="menu-icon">
                 <span class="menu-text">FAQ</span>
             </a>
             <a href="notifications.php" style="color:#808080">
@@ -39,63 +38,71 @@ html:
                 <span class="menu-text">Departments</span>
             </a>
             <a href="profile.php" class="profile">
-                <img src="../assets/profile_pics_examples/JMurphy.jpg" alt="Profile Photo" class="profile-photo"> <span
-                    class="profile_name">
-                    Jessica Murphy </span>
+                <img src="../assets/profile_pics_examples/JMurphy.jpg" alt="Profile Photo" class="profile-photo">
+                <span class="profile_name"> Jessica Murphy </span>
             </a>
         </nav>
     </header>
     <main class="main_content">
-        <header class="header">
+        <div class="faq_header">
             <h1>FAQ</h1>
-            <form action="../actions/addFAQ.php" method="post">
-                <input type="hidden" name="department" value="1">
-                <input type="submit" value="Add">
-            </form>
-            <select name="department" id="dept_select" onchange="updateURL()">
-                <option value="">Departments</option>
-                <option value="1" selected>Accounting</option>
-                <option value="2">Legal</option>
-                <option value="3">Human Resources</option>
-                <option value="4">Sales</option>
-            </select>
-        </header>
-        <ul class="faq">
-            <li>
-                <div class="faq_question" onclick="toggleAnswer(this)">
-                <div class="question">
-                    <span class="question_text">Q1 What is the deadline for submitting expense reports?</span>
-                    <span class="plus-sign">+</span>
-                </div>
-                <div class="answer" style="display: block;">
-                    <span class="answer_text">Our company requires expense reports to be submitted within 30 days of
-                        incurring the expense. Any expenses submitted after this deadline may not be reimbursed.</span>
-                </div>
+            <div class="Buttons">
+                <form action="../actions/addFAQ.php" method="post">
+                    <input type="hidden" name="department" value="3">
+                    <input type="submit" value="Add">
+                </form>
+                <select name="department" id="dept_select" onchange="updateURL()">
+                    <option value="">Departments</option>
+                    <option value="1">Accounting</option>
+                    <option value="2">Legal</option>
+                    <option value="3" selected>Human Resources</option>
+                    <option value="4">Sales</option>
+                </select>
             </div>
-            </li>
-            <li>
-                <div class="faq_question" onclick="toggleAnswer(this)">
+        </div>
+        <ul>
+            <li onclick="toggleAnswer(this)">
                 <div class="question">
-                    <span class="question_text">Q2 How do I reconcile my bank statement?</span>
-                    <span class="plus-sign">+</span>
+                    <span class="question_text">Q1: What is the companys policy on vacation time?</span>
+                    <img src="../assets/arrow-down.svg" class="down-sign">
                 </div>
-                <div class="answer" style="display: block;">
-                    <span class="answer_text">To reconcile your bank statement, you need to compare the transactions in
-                        your bank statement to the transactions in your accounting records. Any discrepancies between
-                        the two should be investigated and resolved. Once all discrepancies have been resolved, you can
-                        mark the bank statement as reconciled.</span>
+                <div class="answer">
+                    Our company policy allows employees to accrue vacation time based on their length of service.
+                    Please refer to the employee handbook for more details on how vacation time is calculated and
+                    how to request time off.
                 </div>
-            </div>
             </li>
-            <li>
-                <div class="question" onclick="toggleAnswer(this)">
-                    <span class="question_text">Q3 How do I update my tax withholding information?</span>
-                    <span class="plus-sign">+</span>
+            <li onclick="toggleAnswer(this)">
+                <div class="question">
+                    <span class="question_text">Q2: How do I enroll in health insurance?</span>
+                    <img src="../assets/arrow-down.svg" class="down-sign">
                 </div>
                 <div class="answer" style="display: none;">
-                    <span class="answer_text">To update your tax withholding information, please log into the HR portal
-                        and navigate to the "Payroll" section. From there, you can update your tax withholding
-                        information and submit the changes for approval.</span>
+                    To enroll in health insurance, please log into the HR portal and navigate to the "Benefits"
+                    section. From there, you can review the available plans and enroll in the one that best fits
+                    your needs.
+                </div>
+            </li>
+            <li onclick="toggleAnswer(this)">
+                <div class="question">
+                    <span class="question_text">Q3: How do I report a complaint or issue with a coworker?</span>
+                    <img src="../assets/arrow-down.svg" class="down-sign">
+                </div>
+                <div class="answer" style="display: none;">
+                    If you have a complaint or issue with a coworker, please report it to your manager or HR
+                    representative. They will investigate the issue and take appropriate action to resolve
+                    it.
+                </div>
+            </li>
+            <li onclick="toggleAnswer(this)">
+                <div class="question">
+                    <span class="question_text">Q4: What is the companys policy on remote work?</span>
+                    <img src="../assets/arrow-down.svg" class="down-sign">
+                </div>
+                <div class="answer" style="display: none;">
+                    Our company has a flexible work policy that allows employees to work from home or other remote
+                    locations, subject to manager approval. Please refer to the employee handbook for more details
+                    on how to request remote work and what the requirements are.
                 </div>
             </li>
         </ul>
