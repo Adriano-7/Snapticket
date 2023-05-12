@@ -2,11 +2,12 @@
 <html lang="en-US">
 
 <head>
-    <title>SnapTicket - Notifications </title>
+    <title>SnapTicket -
+        Incorrect tax filling submitted to IRS for client </title>
     <link rel="icon" href="../assets/favicon.png">
     <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/faq.css" rel="stylesheet">
-    <script src="../js/faq.js" defer></script>
+    <link href="../css/ticket.css" rel="stylesheet">
+    <script src="../js/status-color.js" defer></script>
 </head>
 
 <body>
@@ -21,91 +22,105 @@
                 <img src="../assets/menu_icons/dashboard-gray-icon.svg" alt="Dashboard" class="menu-icon">
                 <span class="menu-text">Dashboard</span>
             </a>
-            <a href="faq.php" style="color:#FFFFFF">
-                <img src="../assets/menu_icons/faq-white-icon.svg" alt="Faq" class="menu-icon">
+            <a href="faq.php" style="color:#808080">
+                <img src="../assets/menu_icons/faq-gray-icon.svg" alt="Faq" class="menu-icon">
                 <span class="menu-text">FAQ</span>
             </a>
             <a href="notifications.php" style="color:#808080">
                 <img src="../assets/menu_icons/notifications-gray-icon.svg" alt="Notifications" class="menu-icon">
                 <span class="menu-text">Notifications</span>
             </a>
-            <a href="members.php" style="color:#808080">
-                <img src="../assets/menu_icons/members-gray-icon.svg" alt="Members" class="menu-icon">
-                <span class="menu-text">Members</span>
-            </a>
-            <a href="departments.php" style="color:#808080">
-                <img src="../assets/menu_icons/departments-gray-icon.svg" alt="Departments" class="menu-icon">
-                <span class="menu-text">Departments</span>
-            </a>
             <a href="profile.php" class="profile">
-                <img src="../assets/profile_pics_examples/JMurphy.jpg" alt="Profile Photo" class="profile-photo">
-                <span class="profile_name"> Jessica Murphy </span>
+                <img src="../assets/profile_pics_examples/APeterson12.jpg" alt="Profile Photo" class="profile-photo"> <span
+                    class="profile_name">
+                    Andrew Peterson </span>
             </a>
         </nav>
     </header>
-    <main class="main_content">
-        <div class="faq_header">
-            <h1>FAQ</h1>
-            <div class="Buttons">
-                <form action="../actions/addFAQ.php" method="post">
-                    <input type="hidden" name="department" value="3">
-                    <input type="submit" value="Add">
-                </form>
-                <select name="department" id="dept_select" onchange="updateURL()">
-                    <option value="">Departments</option>
-                    <option value="1">Accounting</option>
-                    <option value="2">Legal</option>
-                    <option value="3" selected>Human Resources</option>
-                    <option value="4">Sales</option>
-                </select>
+    <main>
+        <div class="ticket-header">
+            <div class="ticket-info">
+                <h1 class="ticket-title">
+                    Incorrect tax filling submitted to IRS for client </h1>
+                <p>
+                    Accounting ·
+                    Andrew Peterson ·
+                    12 May 2023 ·
+                    15 </p>
+                <p>Assignees:Michael Brown</p>
+                <div class="ticket-hashtag">
+                </div>
+            </div>
+            <div class="ticket-status" style="background-color: #4a7155">
+                Assigned </div>
+        </div>
+        <div class="comments">
+            <div class="comment">
+                <div class="comment-header">
+                    <img src="../assets/profile_pics_examples/APeterson12.jpg" alt="Profile Photo" class="comment-profile-pic">
+                    <p class="comment-author">Andrew Peterson</p>
+                    <p class="comment-date">12 May 2023</p>
+                </div>
+                <p class="comment-text">I have assigned you to ticket #15 regarding an incorrect tax filing submitted to
+                    the IRS for a client. Please let me know if you have any questions or need further information.</p>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <img src="../assets/profile_pics_examples/MBrown1.jpg" alt="Profile Photo" class="comment-profile-pic">
+                    <p class="comment-author">Michael Brown</p>
+                    <p class="comment-date">12 May 2023</p>
+                </div>
+                <p class="comment-text">Thanks for assigning the ticket to me. Could you please provide me with the
+                    client name and the details of the incorrect filing?</p>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <img src="../assets/profile_pics_examples/APeterson12.jpg" alt="Profile Photo" class="comment-profile-pic">
+                    <p class="comment-author">Andrew Peterson</p>
+                    <p class="comment-date">12 May 2023</p>
+                </div>
+                <p class="comment-text">The client name is John Smith, and the incorrect filing was related to their
+                    business tax return. I have uploaded the relevant documents to the ticket for your reference.</p>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <img src="../assets/profile_pics_examples/MBrown1.jpg" alt="Profile Photo" class="comment-profile-pic">
+                    <p class="comment-author">Michael Brown</p>
+                    <p class="comment-date">12 May 2023</p>
+                </div>
+                <p class="comment-text">Thank you for the information. I will review the documents and work on resolving
+                    the issue. Ill keep you updated on my progress.</p>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <img src="../assets/profile_pics_examples/MBrown1.jpg" alt="Profile Photo" class="comment-profile-pic">
+                    <p class="comment-author">Michael Brown</p>
+                    <p class="comment-date">12 May 2023</p>
+                </div>
+                <p class="comment-text">I have reviewed the documents and have identified the issue. I will submit a
+                    revised tax filing to the IRS. I will also update the client on the status of the filing. Please let
+                    me know if you have any questions or need further information.</p>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <img src="../assets/profile_pics_examples/APeterson12.jpg" alt="Profile Photo" class="comment-profile-pic">
+                    <p class="comment-author">Andrew Peterson</p>
+                    <p class="comment-date">12 May 2023</p>
+                </div>
+                <p class="comment-text">Thanks for your help.</p>
             </div>
         </div>
-        <ul>
-            <li onclick="toggleAnswer(this)">
-                <div class="question">
-                    <span class="question_text">Q1: What is the companys policy on vacation time?</span>
-                    <img src="../assets/arrow-down.svg" class="down-sign">
-                </div>
-                <div class="answer">
-                    Our company policy allows employees to accrue vacation time based on their length of service.
-                    Please refer to the employee handbook for more details on how vacation time is calculated and
-                    how to request time off.
-                </div>
-            </li>
-            <li onclick="toggleAnswer(this)">
-                <div class="question">
-                    <span class="question_text">Q2: How do I enroll in health insurance?</span>
-                    <img src="../assets/arrow-down.svg" class="down-sign">
-                </div>
-                <div class="answer" style="display: none;">
-                    To enroll in health insurance, please log into the HR portal and navigate to the "Benefits"
-                    section. From there, you can review the available plans and enroll in the one that best fits
-                    your needs.
-                </div>
-            </li>
-            <li onclick="toggleAnswer(this)">
-                <div class="question">
-                    <span class="question_text">Q3: How do I report a complaint or issue with a coworker?</span>
-                    <img src="../assets/arrow-down.svg" class="down-sign">
-                </div>
-                <div class="answer" style="display: none;">
-                    If you have a complaint or issue with a coworker, please report it to your manager or HR
-                    representative. They will investigate the issue and take appropriate action to resolve
-                    it.
-                </div>
-            </li>
-            <li onclick="toggleAnswer(this)">
-                <div class="question">
-                    <span class="question_text">Q4: What is the companys policy on remote work?</span>
-                    <img src="../assets/arrow-down.svg" class="down-sign">
-                </div>
-                <div class="answer" style="display: none;">
-                    Our company has a flexible work policy that allows employees to work from home or other remote
-                    locations, subject to manager approval. Please refer to the employee handbook for more details
-                    on how to request remote work and what the requirements are.
-                </div>
-            </li>
-        </ul>
+        <div class="comment-container">
+            <div class="comment-bar">
+                <textarea class="comment-textarea" placeholder="Your reply"></textarea>
+                <button class="faq-button">FAQ</button>
+                <button class="attachment-button"><img src=../assets/attachment-icon.svg
+                        alt="Attach Files"></button>
+            </div>
+            <div class="send-button-container">
+                <button class="send-button">Send</button>
+            </div>
+        </div>
     </main>
 </body>
 

@@ -1,5 +1,5 @@
 <?php function drawUserInfo(PDO $db, Client $client){ ?>
-<main class="main_content">
+<main>
     <div class="user-info">
         <div class="profile-pic">
             <?php $client->displayProfilePhoto("") ?>

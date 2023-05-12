@@ -31,11 +31,11 @@ if (!$isAuthorised) {
 }
 
 $ticket = Ticket::getTicket($db, intval($_GET['ticket_id']));
-$page_name = 'Ticket ' . $ticket->ticket_id;
 
-createHead($page_name, ['style','ticket'], ['menu-colors']);
+createHead($ticket->ticket_name, ['style','ticket'], ['status-color']);
 drawMenu($db, $client);
 
-drawTitle($ticket, $db);
+drawTitle($ticket, $db, $client);
 drawComments($ticket, $db);
+drawTextContainer();
 ?>
