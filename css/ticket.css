@@ -62,7 +62,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin-bottom: 5em;
 }
+
 
 .comment{
   color: white;
@@ -141,6 +144,10 @@
   background: none;
 }
 
+textarea{
+  color: white;
+}
+
 .comment-textarea::placeholder{
   color: white;
 }
@@ -170,6 +177,7 @@
     width: 65%;
     position: absolute;
     bottom: 1em;
+    left: 25%;
   }
 }
 
@@ -182,5 +190,6 @@
     width: 80%;
     position: absolute;
     bottom: 6em;
+    left: 10%;
   }
 }

@@ -29,7 +29,7 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
             </div>
         </div>
     <?php if ($client->isAgent) { ?>
-        <select class="ticket-status" style="background-color: #994A4C">
+        <select class="ticket-status" style="background-color: <?php if($ticket->status==="Open"){echo '#4a7155';} elseif($ticket->status==="Assigned"){echo '#c59c69';}elseif($ticket->status==="Closed"){echo '#994A4C';}?>">
             <option value="Open" <?php if ($ticket->status === "Open")
                 echo "selected"; ?>>Open</option>
             <option value="Assigned" <?php if ($ticket->status === "Assigned")
@@ -38,7 +38,7 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
                 echo "selected"; ?>>Closed</option>
         </select>
     <?php } else { ?>
-        <div class="ticket-status" style="background-color: <?php if($ticket->status==="Open"){echo '#84C596';} elseif($ticket->status==="Assigned"){echo '#FFC277';}elseif($ticket->status==="Closed"){echo '#994A4C';}?>">
+        <div class="ticket-status" style="background-color: <?php if($ticket->status==="Open"){echo '#4a7155';} elseif($ticket->status==="Assigned"){echo '#c59c69';}elseif($ticket->status==="Closed"){echo '#994A4C';}?>">
             <?php echo $ticket->status; ?>
         </div>
     <?php } ?>
@@ -58,7 +58,7 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
             </div>
             <?php
         } ?>
-        
+        </div>
 <?php } ?>
 
 <?php function drawTextContainer(){  ?>
@@ -71,7 +71,6 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
                 <div class="send-button-container">
                     <button class="send-button">Send</button>
                 </div>
-            </div>
         </div>
     </main>
 </body>
