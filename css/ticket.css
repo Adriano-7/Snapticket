@@ -57,6 +57,12 @@ form{
   transform: translateX(-50%);
 }
 
+div.ticket-status{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .ticket-status:focus{
   outline: none;
 }
