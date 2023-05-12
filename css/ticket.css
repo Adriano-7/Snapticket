@@ -107,7 +107,7 @@ div.ticket-status{
   margin-top: 1.5em;
 }
 
-.comment-container{
+#comment-container{
   width: 80%;
   display: flex;
   flex-direction: row;
@@ -127,7 +127,7 @@ div.ticket-status{
   width: 86%;
 }
 
-.send-button-container{
+#send-button-container{
   background-color: #82B7DC;
   width: 13%;
   margin-left: 1%;
@@ -139,7 +139,7 @@ div.ticket-status{
   height: 3em;
 }
 
-.send-button{
+#send-button{
   border: none;
   background-color: transparent;
   color: white;
@@ -161,7 +161,7 @@ textarea{
   color: white;
 }
 
-.faq-button{
+#faq-button{
   border: none;
   background-color: transparent;
   color: white;
@@ -169,7 +169,7 @@ textarea{
   margin-right: 0.5em;
 }
 
-.attachment-button{
+#attachment-button{
   border: none;
   background-color: transparent;
   color: white;
@@ -182,7 +182,7 @@ textarea{
     grid-template-columns: 90% 5% 5%;
   }
 
-  .comment-container{
+  #comment-container{
     width: 65%;
     position: absolute;
     bottom: 1em;
@@ -200,7 +200,7 @@ textarea{
     grid-template-columns: 80% 10% 10%;
   }
 
-  .comment-container{
+  #comment-container{
     width: 80%;
     position: absolute;
     bottom: 6em;
