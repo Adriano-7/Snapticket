@@ -1,0 +1,151 @@
+.faq_header {
+  padding-top: 10%;
+}
+
+.faq_header h1 {
+  color: white;
+  font-size: 3em;
+}
+
+.faq_header input[type=submit] {
+  background-color: #82B7DC;
+  border: none;
+  color: white;
+  
+  border-radius: 0.5em;
+}
+
+.faq_header select {
+  background-color: #82B7DC;
+  border: none;
+  color: white;
+  border-radius: 0.5em;
+
+  text-align: center;
+}
+
+ul{
+  margin-top: 4em;
+}
+
+li {
+  background-color: #333537;
+  margin-bottom: 1em;
+  color: white;
+  list-style-type: none;
+  width: 80%;
+  border-radius: 0.5em;
+
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+li:hover {
+  background-color: #4b4e51;
+
+}
+
+li span{
+  margin-left: 1em;
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.answer {
+  margin-top: 2em;
+  padding-left: 1em;
+}
+
+.rotate {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.initialPosition {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+@media screen and (min-width: 1000px) {
+  .faq_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .faq_header h1 {
+    flex-grow: 1;
+    text-align: center;
+    margin-left: 5em;
+  }
+  
+  .faq_header input[type=submit] {  
+    padding-right: 3.5em;
+    padding-left: 3.5em;
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+  
+    margin-right: 1em;
+  }
+  
+  .faq_header select {
+    padding-top: 0.8em;
+    padding-bottom: 0.7em;
+    padding-right: 0.1em;
+    padding-left: 0.1em;
+  
+    margin-right: 4em;
+  }
+  
+  .Buttons{
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .faq_header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .faq_header h1{
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  .faq_header input[type=submit]{
+    margin-bottom: 1em;
+    
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 2em;
+    padding-left: 2em;
+  }
+
+  .faq_header select {
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    padding-right: 0.1em;
+    padding-left: 0.1em;
+    margin-left: 1em;
+
+    height: 3.3em;
+  }
+
+  .Buttons{
+    display: flex;
+    flex-direction: row;
+  }
+}

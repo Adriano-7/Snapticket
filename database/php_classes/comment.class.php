@@ -1,8 +1,6 @@
 <?php
 declare(strict_types = 1);
-require_once 'client.class.php';
-require_once 'ticket.class.php';
-
+require_once(__DIR__ . '/client.class.php');
     class Comment {
         public int $comment_id;
         public string $date;

@@ -5,7 +5,9 @@ require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../database/connection.db.php');
 
 require_once(__DIR__ . '/../templates/common.tpl.php');
+require_once(__DIR__ . '/../templates/faq.tpl.php');
 
+require_once(__DIR__ . '/../database/php_classes/client.class.php');
 require_once(__DIR__ . '/../database/php_classes/faq.class.php');
 
 $db = connectToDatabase();
@@ -17,14 +19,19 @@ if (!$session->isLoggedIn()) {
   die();
 }
 
-/*
-if(!isset($_GET['department']) || FAQ::isAuthorised($db, $session->getUsername(), $_GET['department'])===false) {
-  header('Location: ' . $_SERVER['HTTP_REFERER']);
+$department = isset($_GET['department']) ? intval($_GET['department']) : null;
+$departments = FAQ::getDepartments($db);
+$questions = FAQ::getQuestions($db, $department);
+
+
+if(!FAQ::exists($db, $department)) {
+  header('Location: error_page.php');
   die();
 }
-*/
 
-createHead('Notifications', ['style']);
+
+createHead('Notifications', ['style', 'faq'], ['faq']);
 drawMenu($db, $client);
-drawFooter();
+drawFAQHeader($department, $departments, $client);
+drawFAQ($questions);
 ?>
