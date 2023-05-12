@@ -27,7 +27,7 @@
             <option value="<?= $hashtag ?>"><?= $hashtag ?></option>
           <?php } ?>
         </select>
-      <button type="submit" class="create_ticket">Create Ticket</button>
+      <button onclick="window.location.href='../pages/createTicket.php'" class="create_ticket">Create Ticket</button>
     </div>
   <?php } ?>
 

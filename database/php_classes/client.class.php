@@ -259,9 +259,37 @@ class Client
     return $clients;
   }
 
-
   function displayProfilePhoto(string $class){
     echo '<img src="../actions/display_pic.action.php?id=' . $this->image_id . '" alt="Profile Photo" class="' . $class . '">';
+  }
+
+  static function getAllAgents(PDO $db){
+    $query = "SELECT c.user_id, c.name as user_name, c.username, c.email, c.password, c.image_id, d.name as department_name, 
+    CASE  WHEN ad.user_id IS NOT NULL THEN 'Admin' 
+          WHEN a.user_id IS NOT NULL THEN 'Agent' 
+          ELSE 'Client' 
+    END AS role
+    FROM Client c
+    LEFT JOIN ClientDepartment cd ON c.user_id = cd.user_id
+    LEFT JOIN Department d ON cd.department_id = d.department_id
+    LEFT JOIN Agent a ON c.user_id = a.user_id
+    LEFT JOIN Admin ad ON a.user_id = ad.user_id
+    WHERE a.user_id IS NOT NULL";
+
+    $query = $db->prepare($query);
+    $query->execute();
+
+    $agents = array();
+    while ($row = $query->fetch()) {
+      if (!array_key_exists($row['user_id'], $agents)) {
+        $agents[$row['user_id']] = new Client($row['user_id'], $row['user_name'], $row['username'], $row['email'], $row['role'] == 'Agent', $row['role'] == 'Admin', array($row['department_name']), $row['image_id']);
+      } 
+      else {
+        $agents[$row['user_id']]->departments[] = $row['department_name'];
+      }
+    }
+
+    return $agents;
   }
 }
 ?>

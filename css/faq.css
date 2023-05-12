@@ -43,11 +43,11 @@ li {
 
   margin-left: auto;
   margin-right: auto;
+  cursor: pointer;
 }
 
 li:hover {
   background-color: #4b4e51;
-
 }
 
 li span{
@@ -58,7 +58,6 @@ li span{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
 }
 
 .answer {
