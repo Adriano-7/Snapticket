@@ -1,6 +1,5 @@
 <?php
-declare(strict_types = 1);
-require_once(__DIR__ . '/client.class.php');
+    declare(strict_types = 1);
     class Comment {
         public int $comment_id;
         public string $date;
@@ -17,6 +16,11 @@ require_once(__DIR__ . '/client.class.php');
         function getformattedDate() {
             $dateObj = DateTime::createFromFormat('Y-m-d H:i:s', $this->date);
             return $dateObj->format('d M Y');
+        }
+
+        static function writeComment(PDO $db, int $ticket_id, int $user_id, string $comment){
+            $stmt = $db->prepare('INSERT INTO Comment (content, user_id, ticket_id) VALUES (?, ?, ?)');
+            $stmt->execute(array($comment, $user_id, $ticket_id));
         }
     }
 ?>
