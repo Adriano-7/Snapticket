@@ -11,3 +11,7 @@ selectStatus.addEventListener('change', () => {
     selectStatus.style.backgroundColor = '#994A4C';
   }
 });
+
+function changeStatus(){
+  document.getElementById("status-form").submit();
+}

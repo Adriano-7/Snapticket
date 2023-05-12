@@ -248,5 +248,10 @@ class Ticket{
 
         return $ticket_comments;
     }
+
+    function changeStatus(PDO $db, string $status){
+        $query = $db->prepare('UPDATE Ticket SET status = ? WHERE ticket_id = ?');
+        $query->execute([$status, $this->ticket_id]);
+    }
 }
 ?>

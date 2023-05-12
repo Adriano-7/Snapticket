@@ -39,7 +39,7 @@ BEGIN
     INSERT INTO Notification (date, content, recipient, sender, ticket_id)
     SELECT datetime('now'), 'Your ticket "' || 
            (SELECT ticket_name FROM Ticket WHERE ticket_id = NEW.ticket_id) || '"' || ' status was changed to ' || NEW.status, 
-           (SELECT user_id FROM Client WHERE user_id = OLD.cretor),
+           (SELECT user_id FROM Client WHERE user_id = OLD.creator),
            (SELECT assignee FROM Ticket WHERE ticket_id = NEW.ticket_id),
             NEW.ticket_id
     FROM Ticket

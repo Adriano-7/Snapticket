@@ -40,6 +40,10 @@
   font-size: 0.55em;
 }
 
+form{
+  display: inline;
+}
+
 .ticket-status{
   color: white;
   border: none;
@@ -49,9 +53,8 @@
   min-width: fit-content;
   height: 3.5em;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .ticket-status:focus{
@@ -179,6 +182,11 @@ textarea{
     bottom: 1em;
     left: 25%;
   }
+
+  .ticket-status{
+    padding-left: 2em;
+    padding-right: 2em;
+  }
 }
 
 @media screen and (max-width: 1000px){
@@ -191,5 +199,9 @@ textarea{
     position: absolute;
     bottom: 6em;
     left: 10%;
+  }
+  .ticket-status{
+    padding-left: 0.5em;
+    padding-right: 0.5em;
   }
 }
