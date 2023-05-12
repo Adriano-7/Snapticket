@@ -5,7 +5,7 @@
       <h1>FAQ</h1>
       <div class="Buttons">
         <?php if ($client->isAgent) { ?>
-          <form action="../actions/addFAQ.php" method="post">
+          <form action="../actions/faq/add_faq.action.php" method="post">
             <input type="hidden" name="department" value="<?= $CurDepartment ?>">
             <input type="submit" value="Add">
           </form>

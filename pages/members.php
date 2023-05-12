@@ -30,7 +30,7 @@ if(!$client->isAdmin){
 
 $members = $client->searchClients($db, new MemberFilters());
 
-createHead('Members', ['style', 'members'], ['members-search']);
+createHead('Members', ['style', 'members'], ['members-search', 'script']);
 drawMenu($db, $client);
 drawSearchFilters($departments, $roles);
 drawMembersTable($db, $members);

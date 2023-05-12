@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 require_once(__DIR__ . '/comment.class.php');
+require_once(__DIR__ .'/../../database/php_classes/client.class.php');
 
 class Ticket{
     public int $ticket_id;

@@ -7,6 +7,7 @@ $session = new Session();
 require_once(__DIR__ . '/../../database/connection.db.php');
 require_once(__DIR__ . '/../../database/php_classes/ticket.class.php');
 
+
 $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 

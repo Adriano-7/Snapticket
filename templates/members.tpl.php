@@ -59,10 +59,10 @@ function drawSearchFilters(array $departments, $roles)
                                 echo $department . "<br>"; ?>
                         </td>
                         <td class="member_action">
-                            <a href="edit_member.php">
+                            <a href="../pages/edit_member.php">
                                 <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                             </a>
-                            <a href="delete_member.php">
+                            <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=<?php echo $member->user_id?>');">
                                 <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                             </a>
                         </td>

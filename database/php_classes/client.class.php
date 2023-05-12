@@ -100,6 +100,16 @@ class Client
     $query->execute(array($image_blob, $this->image_id));
   }
 
+  static function eliminateClient(PDO $db, int $user_id): bool
+  {
+    $query = $db->prepare('
+            DELETE FROM Client
+            WHERE user_id = ?
+          ');
+
+    return $query->execute(array($user_id));
+  }
+
   static function getClientWithPassword(PDO $db, string $username, string $password): ?Client
   {
     $query = $db->prepare('

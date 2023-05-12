@@ -79,7 +79,7 @@ CREATE TABLE Comment (
     comment_id INTEGER PRIMARY KEY,
     date TEXT DEFAULT (datetime('now', 'localtime')), 
     content TEXT, 
-    user_id INTEGER REFERENCES Client(user_id) ON DELETE SET NULL ON UPDATE CASCADE NOT NULL, 
+    user_id INTEGER REFERENCES Client(user_id) ON DELETE CASCADE ON UPDATE CASCADE NOT NULL, 
     ticket_id INTEGER REFERENCES Ticket(ticket_id) ON DELETE CASCADE ON UPDATE CASCADE NOT NULL
 );
 

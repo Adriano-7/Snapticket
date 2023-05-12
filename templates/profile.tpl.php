@@ -26,7 +26,7 @@
 <?php function drawEditName(Client $client){ ?>
     <div class="edit-forms">
         <div class="edit-form">
-            <form action="../actions/edit_name.action.php" method="post">
+            <form action="../actions/profile/edit_name.action.php" method="post">
                 <input type="text" name="name" value="<?php echo $client->name ?>">
                 <button type="submit" class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
             </form>
@@ -35,7 +35,7 @@
     
 <?php function drawEditUsername(Client $client){ ?>
     <div class="edit-form">
-        <form action="../actions/edit_username.action.php" method="post">
+        <form action="../actions/profile/edit_username.action.php" method="post">
             <input type="text" name="username" value=<?php echo $client->username ?>>
             <button type="submit" class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
         </form>
@@ -44,7 +44,7 @@
 
 <?php function drawEditEmail(Client $client){ ?>
     <div class="edit-form">
-        <form action="../actions/edit_email.action.php" method="post">
+        <form action="../actions/profile/edit_email.action.php" method="post">
             <input type="email" name="email" value=<?php echo $client->email ?>>
             <button type="submit" class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
         </form>
@@ -53,7 +53,7 @@
 
 <?php function drawEditPassword(){ ?>
     <div class="edit-form">
-        <form action="../actions/edit_password.action.php" method="post">
+        <form action="../actions/profile/edit_password.action.php" method="post">
             <input type="password" name="password" placeholder="**********">
             <button type="submit" class="edit-icon"><img src="../assets/edit-icon.svg" alt="edit-button"></button>
         </form>
@@ -63,7 +63,7 @@
 
 <?php function drawChangeProfilePic(){ ?>
     <div class="change-profile-pic">
-        <form action="../actions/edit_profile_photo.php" method="post" enctype="multipart/form-data">
+        <form action="../actions/profile/edit_profile_photo.php" method="post" enctype="multipart/form-data">
             <input type="file" id="file-input" name="image" style="display:none">
             <label for="file-input" id="file-label">Change profile image</label>
             <button id="upload-btn">Upload</button>

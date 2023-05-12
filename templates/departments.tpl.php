@@ -7,7 +7,7 @@ require_once(__DIR__ . '/../database/php_classes/department.class.php');
 <?php function drawCreateDept(){ ?>
 <main>
     <div class="create_department">
-        <a href="../actions/create_department.php">
+        <a href="../actions/department/create_department.action.php">
             <img src="../assets/plus-icon.svg" alt="Create Department">
             <span>Create Department</span>
         </a>

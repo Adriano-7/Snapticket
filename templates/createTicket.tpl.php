@@ -13,7 +13,7 @@
                     <?php foreach($departments as $department) { ?>
                     <button class="option" type="button" onclick="select(this)" value="<?php echo $department->department_id?>"><?php echo $department->name ?></button>
                     <?php } ?>
-                    <button id="create_dept" class="option" type="button" onclick="window.location.href='../actions/createDepartment.php'"> Create + </button> </button>
+                    <button id="create_dept" class="option" type="button" onclick="window.location.href='../actions/department/create_department.action.php'"> Create + </button> </button>
                 </div>
             </div>
             <div class="container">
