@@ -194,8 +194,8 @@ class Client
     $params = array($this->user_id);
 
     if ($memberFilters->department != "") {
-      $subquery .= " AND department_name = ?)";
-      $params[] = strtolower($memberFilters->department);
+      $subquery .= " AND department_name = ?";
+      $params[] = $memberFilters->department;
     }
 
     if ($memberFilters->role != "") {
@@ -203,11 +203,10 @@ class Client
         $subquery .= " AND role = 'Agent'";
       } else if ($memberFilters->role == "Admin") {
         $subquery .= " AND role = 'Admin'";
-      } else {
-        $subquery .= " AND role = 'Client'";
-      }
+      } 
     }
 
+    
     if ($memberFilters->search != "") {
       $subquery .= " AND (lower(user_name) LIKE ? OR lower(c.username) LIKE ?)";
       $params[] = "%" . strtolower($memberFilters->search) . "%";
@@ -241,11 +240,10 @@ class Client
         $subquery .= ", lower(department_name) " . $memberFilters->orderDepartment;
       }
     }
-
-    $query = "SELECT * FROM ($subquery) subquery;";
-    $query = $db->prepare($query);
+    
+    $query = $db->prepare($subquery);
     $query->execute($params);
-
+    
     $clients = array();
     
     while ($client = $query->fetch()) {
@@ -265,6 +263,8 @@ class Client
         array_push($clients, new Client($client['user_id'], $client['user_name'], $client['username'], $client['email'], $client['role'] == 'Agent', $client['role'] == 'Admin', array($client['department_name']), $client['image_id'] ?? 1));
       }
     }
+
+    
 
     return $clients;
   }

@@ -15,7 +15,7 @@ function drawSearchFilters(array $departments, $roles)
             <select name="role" class="add_filter" id="role_select">
                 <option value="">User Role</option>
                 <?php foreach ($roles as $role) { ?>
-                    <option value="f<?php echo $role ?>"><?php echo $role ?></option>
+                    <option value="<?php echo $role ?>"><?php echo $role ?></option>
                 <?php } ?>
             </select>
         </div>
