@@ -1,6 +1,6 @@
 <?php function drawSearchBar($departments, $status, $assignee, $hashtags)
 { ?>
-  <main class="main_content">
+  <main>
     <div class="tickets_search">
       <input type="text" placeholder="Search..." id="search_bar">
         <select name="dept" class="add_filter" id="dept_select">

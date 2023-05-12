@@ -185,6 +185,11 @@ class Ticket{
         return $client_tickets;
     }
 
+    function getformattedDate() {
+        $dateObj = DateTime::createFromFormat('Y-m-d H:i:s', $this->date);
+        return $dateObj->format('d M Y');
+    }
+
     static function getAssignees(array $tickets){
         $assignees = array();
         foreach ($tickets as $ticket) {

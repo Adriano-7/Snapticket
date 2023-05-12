@@ -1,6 +1,6 @@
 <?php function drawFAQHeader($CurDepartment, $departments, $client)
 { ?>
-  <main class="main_content">
+  <main>
     <div class="faq_header">
       <h1>FAQ</h1>
       <div class="Buttons">

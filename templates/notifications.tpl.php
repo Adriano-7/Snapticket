@@ -1,5 +1,5 @@
 <?php function drawNotifications($db, $notifications){ ?>
-<main class="main_content">
+<main>
     <div id="notification_container">
     <?php foreach($notifications as $notification){ ?>
         <div class="notification">

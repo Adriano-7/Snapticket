@@ -101,7 +101,7 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
 
   <?php function drawFooter()
   { ?>
-    <main class="main_content">
+    <main>
     </main>
   </body>
 

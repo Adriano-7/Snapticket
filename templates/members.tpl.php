@@ -3,7 +3,7 @@ declare(strict_types=1);
 require_once(__DIR__ . '/../database/php_classes/department.class.php');
 function drawSearchFilters(array $departments, $roles)
 { ?>
-    <main class="main_content">
+    <main>
         <div class="search">
             <input type="text" placeholder="Search..." id="search_bar">
             <select name="dept" class="add_filter" id="dept_select">
@@ -15,7 +15,7 @@ function drawSearchFilters(array $departments, $roles)
             <select name="role" class="add_filter" id="role_select">
                 <option value="">User Role</option>
                 <?php foreach ($roles as $role) { ?>
-                    <option value="<?php echo $role ?>"><?php echo $role ?></option>
+                    <option value="f<?php echo $role ?>"><?php echo $role ?></option>
                 <?php } ?>
             </select>
         </div>
