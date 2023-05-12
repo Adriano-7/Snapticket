@@ -1,0 +1,121 @@
+main{
+    display: flex;
+    flex-direction: column;
+}
+
+.border{
+    width: 100%;
+    border-bottom: 1px solid #5C6165;
+    margin-bottom: 1em;
+}
+
+div h1{
+    color:white;
+    font-size: 0.85em;
+
+    margin-top:3em;
+
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 1.7em;
+    padding-right: 0;
+}
+
+textarea{
+    background-color: #333537;
+    border-radius: 1em;
+    border: none;
+    color: white;
+    resize: none;
+}
+
+textarea::placeholder{
+    color: white;
+}
+
+textarea:focus{
+    outline: none;
+}
+
+#name_textarea{
+    padding-top: 1.1em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+
+    margin-left: 1.7em;
+    width: 40%;
+}
+
+.option{
+    border: none;
+    background-color: #333537;
+    color: white;
+    border-radius: 1em;
+
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+
+    margin-left: 1em;
+}
+
+.option.selected {
+    background-color: #82B7DC;
+}
+
+.options_row{
+    display: flex;   
+}
+
+#create_hastag{
+    background-color: #333537;
+}
+
+#create_hastag:focus{
+    outline: none;
+}
+
+#create_hastag::after{
+    content: "+";
+    padding-left: 0.5em;
+}
+
+.select{
+    color: white;
+    background-color: #333537;
+    border: none;
+    border-radius: 1em;
+    text-align: center;
+  
+    min-width: fit-content;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+
+    margin-left: 1em;
+}
+
+#submit_button{
+    background-color: #82B7DC;
+    border: none;
+    border-radius: 1em;
+    cursor: pointer;
+
+    color: white;
+    width: 10em;
+    height: 3.5em;
+
+    margin-top: 2em;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.error_box{
+    border: 1px solid #9d2219;
+}
+
+#create_dept{
+    cursor: pointer;
+}

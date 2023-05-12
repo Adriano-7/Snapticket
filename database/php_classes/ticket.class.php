@@ -253,5 +253,46 @@ class Ticket{
         $query = $db->prepare('UPDATE Ticket SET status = ? WHERE ticket_id = ?');
         $query->execute([$status, $this->ticket_id]);
     }
+
+    static function createTicket(PDO $db, string $title, int $user_id, array $departments, string $priority, int $assignee, array $hashtags) : int{
+        //if priority is '' set it to NULL, if assignee is '' set it to NULL, if hashtags is '' set it to NULL
+        $query = $db->prepare('INSERT INTO Ticket (ticket_name, priority, assignee, status, creator) VALUES (?, ?, ?, ?, ?)');
+
+        if($priority == ''){
+            $priority = NULL;
+        }
+        if($assignee == ''){
+            $assignee = NULL;
+        }
+        if($hashtags == ''){
+            $hashtags = NULL;
+        }
+
+        $query->bindParam(1, $title);
+        $query->bindParam(2, $priority);
+        $query->bindParam(3, $assignee);
+        $query->bindValue(4, "Open");
+        $query->bindParam(5, $user_id);
+
+        $query->execute();
+        
+        $ticket_id = $db->lastInsertId();
+
+        foreach ($departments as $department) {
+            $query = $db->prepare('INSERT INTO TicketDepartment (department_id, ticket_id) VALUES (?, ?)');
+            $query->bindParam(1, $department);
+            $query->bindParam(2, $ticket_id);
+            $query->execute();
+        }
+
+        foreach ($hashtags as $hashtag) {
+            $query = $db->prepare('INSERT INTO TicketHashtag (ticket_id, name) VALUES (?, ?)');
+            $query->bindParam(1, $ticket_id);
+            $query->bindParam(2, $hashtag);
+            $query->execute();
+        }
+
+        return intval($ticket_id);
+    }
 }
 ?>
