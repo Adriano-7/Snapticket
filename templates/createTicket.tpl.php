@@ -1,10 +1,10 @@
-<?php function drawForm($departments, $hashtags, $agents, $empty){ ?>
+<?php function drawForm($departments, $hashtags, $agents, $error){ ?>
     <main>
         <form action="../actions/ticket/create_ticket.action.php" method="post">
             <div class="container">
                 <h1>Ticket Name</h1>
                 <div class="border"></div>
-                <textarea id="name_textarea" placeholder="Name" name="title" <?php if($empty){echo 'class="error_box"';}?>></textarea>
+                <textarea id="name_textarea" placeholder="Name" name="title" <?php if($error){echo 'class="error_box"';}?>></textarea>
             </div>
             <div class="container">
                 <h1>Department</h1>

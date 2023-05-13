@@ -22,6 +22,6 @@ createHead('Profile', ['style', 'profile'], ['submit-image']);
 drawMenu($db, $client);
 drawUserInfo($db, $client);
 drawUserForms($client);
-drawChangeProfilePic();
+drawChangeProfilePic($client);
 drawLogOut();
 ?>

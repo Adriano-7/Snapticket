@@ -177,6 +177,12 @@ textarea{
   margin-right: 0.5em;
 }
 
+#ticket-edit-button{
+  height: 0.7em;
+  margin-left: 0.5em;
+}
+
+
 @media screen and (min-width: 1000px){
   .comment-bar{
     grid-template-columns: 90% 5% 5%;

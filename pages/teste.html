@@ -3,12 +3,12 @@
 
 <head>
     <title>SnapTicket -
-        Members </title>
+        Hey Jude </title>
     <link rel="icon" href="../assets/favicon.png">
     <link href="../css/style.css" rel="stylesheet">
-    <link href="../css/members.css" rel="stylesheet">
-    <script src="../js/members-search.js" defer></script>
-    <script src="../js/script.js" defer></script>
+    <link href="../css/ticket.css" rel="stylesheet">
+    <script src="../js/status.js" defer></script>
+    <script src="../js/comments.js" defer></script>
 </head>
 
 <body>
@@ -31,8 +31,8 @@
                 <img src="../assets/menu_icons/notifications-gray-icon.svg" alt="Notifications" class="menu-icon">
                 <span class="menu-text">Notifications</span>
             </a>
-            <a href="members.php" style="color:#FFFFFF">
-                <img src="../assets/menu_icons/members-white-icon.svg" alt="Members" class="menu-icon">
+            <a href="members.php" style="color:#808080">
+                <img src="../assets/menu_icons/members-gray-icon.svg" alt="Members" class="menu-icon">
                 <span class="menu-text">Members</span>
             </a>
             <a href="departments.php" style="color:#808080">
@@ -40,390 +40,52 @@
                 <span class="menu-text">Departments</span>
             </a>
             <a href="profile.php" class="profile">
-                <img src="../assets/profile_pics_examples/JMurphy.jpg" alt="Profile Photo" class="profile-photo"> <span
+                <img src="../actions/display_pic.action.php?id=8" alt="Profile Photo" class="profile-photo"> <span
                     class="profile_name">
                     Jessica Murphy </span>
             </a>
         </nav>
     </header>
     <main>
-        <div class="search">
-            <input type="text" placeholder="Search..." id="search_bar">
-            <select name="dept" class="add_filter" id="dept_select">
-                <option value="">Department</option>
-                <option value="Accounting">Accounting</option>
-                <option value="Legal">Legal</option>
-                <option value="Human Resources">Human Resources</option>
-                <option value="Sales">Sales</option>
-            </select>
-            <select name="role" class="add_filter" id="role_select">
-                <option value="">User Role</option>
-                <option value="Admin">Admin</option>
-                <option value="Agent">Agent</option>
-                <option value="User">User</option>
-            </select>
+        <div class="ticket-header">
+            <div class="ticket-info">
+                <h1 class="ticket-title">
+                    Hey Jude <a href="../pages/editTicket.php?ticket_id=18"><img src="../assets/edit-icon.svg"
+                            id="ticket-edit-button" alt="Edit ticket"></a>
+                </h1>
+                <p>
+                    Accounting ·
+                    Jessica Murphy ·
+                    13 May 2023 ·
+                    18 </p>
+                <p>Assignees:Samantha Kim</p>
+                <div class="ticket-hashtag">
+                    <div class="hashtag">#
+                        LackPermissions </div>
+                </div>
+            </div>
+            <form action="../actions/ticket/change_status.action.php" id="status-form" method="post">
+                <input type="hidden" name="ticket_id" value="18">
+                <select class="ticket-status" name="status" onchange="changeStatus()" style="background-color: #4a7155">
+                    <option value="Open" selected>Open</option>
+                    <option value="Assigned">Assigned</option>
+                    <option value="Closed">Closed</option>
+                </select>
+            </form>
         </div>
-        <table class="members_table">
-            <thead>
-                <tr>
-                    <td>Name <img src="../assets/sort.svg" id="name_sort" alt="Sort by name"></td>
-                    <td>Username <img src="../assets/sort.svg" id="username_sort" alt="Sort by username"></td>
-                    <td>Role <img src="../assets/sort.svg" id="role_sort" alt="Sort by role"></td>
-                    <td>Department <img src="../assets/sort.svg" id="department_sort" alt="Sort by department"> </td>
-                    <td>Action</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr onclick="window.location.href='dashboard.php?user_id=<?php echo $member->user_id; ?>'">
-                    <td class="member_name">
-                        <img src="../assets/profile_pics_examples/APeterson12.jpg" alt="Profile Photo" class="table_profile_pic">
-                        <div class="user_details">
-                            Andrew Peterson <a
-                                href="mailto:peterson_andrew@snapticket.com">peterson_andrew@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        APeterson12 </td>
-                    <td class="member_role">
-                        User </td>
-                    <td class="member_department">
-                        <br>
-                    </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=1">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=1');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=3" alt="Profile Photo" class="table_profile_pic">
-                        <div class="user_details">
-                            Emily Davis <a href="mailto:EmilyDavis15@snapticket.com">EmilyDavis15@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        EmilyDavis </td>
-                    <td class="member_role">
-                        User </td>
-                    <td class="member_department">
-                        <br>
-                    </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=2">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=2');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=4" alt="Profile Photo" class="table_profile_pic">
-                        <div class="user_details">
-                            Adam Green <a href="mailto:Agreen@snapticket.com">Agreen@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        AGreen </td>
-                    <td class="member_role">
-                        User </td>
-                    <td class="member_department">
-                        <br>
-                    </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=3">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=3');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=5" alt="Profile Photo" class="table_profile_pic">
-                        <div class="user_details">
-                            Jessica Ramirez <a
-                                href="mailto:jessica_ramirez@snapticket.com">jessica_ramirez@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        JessicaRamirez15 </td>
-                    <td class="member_role">
-                        User </td>
-                    <td class="member_department">
-                        <br>
-                    </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=4">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=4');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=6" alt="Profile Photo" class="table_profile_pic">
-                        <div class="user_details">
-                            Daniel Wilson <a href="mailto:DWilson14@snapticket.com">DWilson14@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        DWilson14 </td>
-                    <td class="member_role">
-                        User </td>
-                    <td class="member_department">
-                        <br>
-                    </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=5">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=5');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=7" alt="Profile Photo" class="table_profile_pic">
-                        <div class="user_details">
-                            James Davis <a href="mailto:james_davis7@snapticket.com">james_davis7@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        JamesDavis </td>
-                    <td class="member_role">
-                        Agent </td>
-                    <td class="member_department">
-                        Accounting<br> </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=6">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=6');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=9" alt="Profile Photo" class="table_profile_pic">
-                        <div class="user_details">
-                            Michael Brown <a
-                                href="mailto:michael_brown24@snapticket.com">michael_brown24@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        MBrown1 </td>
-                    <td class="member_role">
-                        Agent </td>
-                    <td class="member_department">
-                        Accounting<br> </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=8">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=8');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=10" alt="Profile Photo"
-                            class="table_profile_pic">
-                        <div class="user_details">
-                            Sarah Johnson <a
-                                href="mailto:sarah_johnson7@snapticket.com">sarah_johnson7@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        SarahJohnson7 </td>
-                    <td class="member_role">
-                        Agent </td>
-                    <td class="member_department">
-                        Accounting<br>Human Resources<br> </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=9">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=9');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=11" alt="Profile Photo"
-                            class="table_profile_pic">
-                        <div class="user_details">
-                            Christopher Chen <a
-                                href="mailto:christopher_chen2@snapticket.com">christopher_chen2@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        CChen </td>
-                    <td class="member_role">
-                        Agent </td>
-                    <td class="member_department">
-                        Accounting<br> </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=10">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=10');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=12" alt="Profile Photo"
-                            class="table_profile_pic">
-                        <div class="user_details">
-                            Samantha Kim <a href="mailto:SKim@snapticket.com">SKim@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        SKim </td>
-                    <td class="member_role">
-                        Agent </td>
-                    <td class="member_department">
-                        Accounting<br> </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=11">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=11');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=13" alt="Profile Photo"
-                            class="table_profile_pic">
-                        <div class="user_details">
-                            Andrew Patel <a href="mailto:APat@snapticket.com">APat@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        APatel </td>
-                    <td class="member_role">
-                        Agent </td>
-                    <td class="member_department">
-                        Accounting<br> </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=12">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=12');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=14" alt="Profile Photo"
-                            class="table_profile_pic">
-                        <div class="user_details">
-                            Mattew Cooper <a href="mailto:MCooper12@snapticket.com">MCooper12@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        MCooper </td>
-                    <td class="member_role">
-                        Agent </td>
-                    <td class="member_department">
-                        Sales<br> </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=13">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=13');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=15" alt="Profile Photo"
-                            class="table_profile_pic">
-                        <div class="user_details">
-                            Ethan Chen <a href="mailto:EthanChen1@snapticket.com">EthanChen1@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        EChen </td>
-                    <td class="member_role">
-                        Agent </td>
-                    <td class="member_department">
-                        Legal<br> </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=14">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=14');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=16" alt="Profile Photo"
-                            class="table_profile_pic">
-                        <div class="user_details">
-                            Benjamin Collins <a href="mailto:BCollins@snapticket.com">BCollins@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        BenjCollins </td>
-                    <td class="member_role">
-                        Agent </td>
-                    <td class="member_department">
-                        Human Resources<br> </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=15">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=15');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=17" alt="Profile Photo"
-                            class="table_profile_pic">
-                        <div class="user_details">
-                            Tyler Williams <a href="mailto:TWilliams@snapticket.com">TWilliams@snapticket.com</a>
-                        </div>
-                    </td>
-                    <td class="member_username">
-                        TWilliams </td>
-                    <td class="member_role">
-                        Agent </td>
-                    <td class="member_department">
-                        Sales<br> </td>
-                    <td class="member_action">
-                        <a href="../pages/edit_member.php?id=16">
-                            <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
-                        </a>
-                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=16');">
-                            <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="comments">
+        </div>
+        <form action="../actions/ticket/submit_comment.action.php" id="comment-container" method="post">
+            <input type="hidden" name="ticket_id" value="18">
+            <div class="comment-bar">
+                <textarea class="comment-textarea" placeholder="Your reply" name="comment"></textarea>
+                <button id="faq-button">FAQ</button>
+                <button id="attachment-button"><img src=../assets/attachment-icon.svg alt="Attach Files"></button>
+            </div>
+            <div id="send-button-container">
+                <button id="send-button">Send</button>
+            </div>
+        </form>
     </main>
 </body>
 

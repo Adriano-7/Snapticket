@@ -256,7 +256,6 @@ class Ticket{
     }
 
     static function createTicket(PDO $db, string $title, int $user_id, array $departments, string $priority, int $assignee, array $hashtags) : int{
-        //if priority is '' set it to NULL, if assignee is '' set it to NULL, if hashtags is '' set it to NULL
         $query = $db->prepare('INSERT INTO Ticket (ticket_name, priority, assignee, status, creator) VALUES (?, ?, ?, ?, ?)');
 
         if($priority == ''){
@@ -294,6 +293,38 @@ class Ticket{
         }
 
         return intval($ticket_id);
+    }
+
+    function alterTicket(PDO $db, string $title, array $departments, string $priority, int $assignee, array $hashtags){
+        $query = $db->prepare('UPDATE Ticket SET ticket_name = ?, priority = ?, assignee = ? WHERE ticket_id = ?');
+        $query->bindParam(1, $title, PDO::PARAM_STR);
+        $query->bindParam(2, $priority, PDO::PARAM_STR);
+        $query->bindParam(3, $assignee, PDO::PARAM_INT);
+        $query->bindParam(4, $this->ticket_id, PDO::PARAM_INT);
+
+        $query->execute();
+
+        $query = $db->prepare('DELETE FROM TicketDepartment WHERE ticket_id = ?');
+        $query->bindParam(1, $this->ticket_id, PDO::PARAM_INT);
+        $query->execute();
+
+        foreach ($departments as $department) {
+            $query = $db->prepare('INSERT INTO TicketDepartment (department_id, ticket_id) VALUES (?, ?)');
+            $query->bindParam(1, $department, PDO::PARAM_INT);
+            $query->bindParam(2, $this->ticket_id, PDO::PARAM_INT);
+            $query->execute();
+        }
+
+        $query = $db->prepare('DELETE FROM TicketHashtag WHERE ticket_id = ?');
+        $query->bindParam(1, $this->ticket_id, PDO::PARAM_INT);
+        $query->execute();
+
+        foreach ($hashtags as $hashtag) {
+            $query = $db->prepare('INSERT INTO TicketHashtag (ticket_id, name) VALUES (?, ?)');
+            $query->bindParam(1, $this->ticket_id, PDO::PARAM_INT);
+            $query->bindParam(2, $hashtag, PDO::PARAM_STR);
+            $query->execute();
+        }
     }
 }
 ?>

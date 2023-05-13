@@ -10,6 +10,9 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
         <div class="ticket-info">
             <h1 class="ticket-title">
                 <?php echo $ticket->ticket_name; ?>
+                <?php if ($client->isAgent) { ?>
+                    <a href="../pages/editTicket.php?ticket_id=<?php echo $ticket->ticket_id; ?>"><img src="../assets/edit-icon.svg" id="ticket-edit-button" alt="Edit ticket"></a>
+                <?php } ?>
             </h1>
             <p>
                 <?php foreach ($ticket->departments as $department) {echo $department['name'] . " ";} ?> ·
