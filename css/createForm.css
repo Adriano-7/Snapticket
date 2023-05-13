@@ -107,9 +107,7 @@ textarea:focus{
     width: 10em;
     height: 3.5em;
 
-    margin-top: 2em;
-    margin-left: 50%;
-    transform: translateX(-50%);
+    position: fixed;
 }
 
 .error_box{
@@ -118,4 +116,30 @@ textarea:focus{
 
 #create_dept{
     cursor: pointer;
+}
+
+.options_row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  
+.options_row::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+@media screen and (min-width: 1000px){
+    #submit_button{
+        bottom: 0.7em;
+        left: 50%;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    #submit_button{
+        bottom: 7em;
+        left: 35%;
+    }
 }

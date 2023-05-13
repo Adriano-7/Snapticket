@@ -44,7 +44,7 @@
                 <select class="select" name="assignee">
                     <option value="">Assignee</option>
                     <?php foreach($agents as $agent) { ?>
-                    <option value="<?php echo $agent->user_id ?>" <?php if($agent->user_id===$ticket->assignee->user_id){echo 'selected';} ?>><?php echo $agent->username ?></option>
+                    <option value="<?php echo $agent->user_id ?>" <?php if($ticket->assignee !== NULL && $agent->user_id===$ticket->assignee->user_id){echo 'selected';} ?>><?php echo $agent->username ?></option>
                     <?php } ?>
                 </select>
             </div>

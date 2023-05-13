@@ -27,7 +27,7 @@ class Notification{
             SELECT notification_id, date, content, isVisited, recipient, sender, ticket_id
             FROM Notification
             WHERE recipient = ?
-            ORDER BY notification_id ASC
+            ORDER BY notification_id DESC
         ');
 
         $query->execute(array($user_id));

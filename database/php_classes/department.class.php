@@ -40,5 +40,31 @@ class Department{
     function displayIcon(string $class){
       echo '<img src="../actions/display_pic.action.php?id=' . $this->image_id . '" alt="Profile Photo" class="' . $class . '">';
     }
+
+    static function createDepartment(PDO $db, string $title, array $members, $image){
+        $image = ['type' => $image['type'], 'content' => file_get_contents($image['tmp_name'])];
+
+        $query = $db->prepare('INSERT INTO File (file_name, file_type, content) VALUES (?, ?, ?)');
+        $query->bindParam(1, $title, PDO::PARAM_STR);
+        $query->bindParam(2, $image['type'], PDO::PARAM_STR);
+        $query->bindParam(3, $image['content'], PDO::PARAM_LOB);
+        $query->execute();
+
+        $image_id = $db->lastInsertId();
+
+        $query = $db->prepare('INSERT INTO Department (name, image_id) VALUES (?, ?)');
+        $query->bindParam(1, $title, PDO::PARAM_STR);
+        $query->bindParam(2, $image_id, PDO::PARAM_INT);
+        $query->execute();
+
+        //insert members
+        $department_id = $db->lastInsertId();
+        foreach($members as $member){
+            $query = $db->prepare('INSERT INTO ClientDepartment (user_id, department_id) VALUES (?, ?)');
+            $query->bindParam(1, $member, PDO::PARAM_INT);
+            $query->bindParam(2, $department_id, PDO::PARAM_INT);
+            $query->execute();
+        }
+    }
 }
 ?>

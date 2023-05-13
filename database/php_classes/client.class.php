@@ -176,6 +176,34 @@ class Client {
     return $client;
   }
 
+  static function getClients(PDO $db): array{
+    $query = "Select c.user_id, c.name as user_name, c.username, c.email, c.password, c.image_id, d.name as department_name, 
+              CASE  WHEN ad.user_id IS NOT NULL THEN 'Admin' 
+                    WHEN a.user_id IS NOT NULL THEN 'Agent' 
+                    ELSE 'Client' 
+              END AS role
+              FROM Client c
+              LEFT JOIN ClientDepartment cd ON c.user_id = cd.user_id
+              LEFT JOIN Department d ON cd.department_id = d.department_id
+              LEFT JOIN Agent a ON c.user_id = a.user_id
+              LEFT JOIN Admin ad ON a.user_id = ad.user_id;";
+    
+    $query = $db->prepare($query);
+    $query->execute();
+
+    $clients = array();
+    while ($row = $query->fetch()) {
+      if (!isset($clients[$row['user_id']])) {
+        $clients[$row['user_id']] = new Client($row['user_id'], $row['user_name'], $row['username'], $row['email'], ($row['role'] == 'Agent' || $row['role'] == 'Admin'), $row['role'] == 'Admin', array($row['department_name']), $row['image_id']);
+      } 
+      else {
+        $clients[$row['user_id']]->departments[] = $row['department_name'];
+      }
+    }
+
+    return $clients;
+  }
+
   function searchClients(PDO $db, MemberFilters $memberFilters): array{
     $subquery ="SELECT c.user_id, c.name as user_name, c.username, c.email, c.password, c.image_id, d.name as department_name, 
                 CASE  WHEN ad.user_id IS NOT NULL THEN 'Admin' 

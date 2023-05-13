@@ -7,11 +7,7 @@ require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../templates/common.tpl.php');
 require_once(__DIR__ . '/../templates/createForm.tpl.php');
 
-
-require_once(__DIR__ . '/../database/php_classes/ticket.class.php');
 require_once(__DIR__ . '/../database/php_classes/department.class.php');
-require_once(__DIR__ . '/../database/php_classes/hashtag.class.php');
-
 
 $db = connectToDatabase();
 $session = new Session();
@@ -22,13 +18,11 @@ if (!$session->isLoggedIn()) {
   die();
 }
 
-$departments = Department::getDepartments($db);
-$hashtags = Hashtag::getAllHashtags($db);
-$agents = Client::getAllAgents($db);
+$clients = Client::getClients($db);
 $error = isset($_GET['error']);
 
-createHead("Create a ticket", ['style','createForm'], ['createForm']);
+createHead("Create a department", ['style','createForm'], ['createForm']);
 drawMenu($db, $client);
 
-drawTicketForm($departments, $hashtags, $agents, $error);
+drawDepartmentForm($clients, $error);
 ?>
