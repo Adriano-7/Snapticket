@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
-class Client
-{
+class Client {
   public int $user_id;
   public string $name;
   public string $username;
@@ -22,8 +21,7 @@ class Client
     $this->image_id = $image_id;
   }
 
-  static function register(PDO $db, string $name, string $username, string $email, string $password): bool
-  {
+  static function register(PDO $db, string $name, string $username, string $email, string $password): bool{
     $query = $db->prepare('
             INSERT INTO Client(name, username, email, password)
             VALUES (?, ?, ?, ?)
@@ -264,8 +262,6 @@ class Client
       }
     }
 
-    
-
     return $clients;
   }
 
@@ -300,6 +296,59 @@ class Client
     }
 
     return $agents;
+  }
+
+  function changeRole(PDO $db, string $role,) : bool{
+    $currentRole = $this->isAgent ? 'Agent' : ($this->isAdmin ? 'Admin' : 'Client');
+
+    switch ($role) {
+      case 'Client':
+        if($this->isAgent){
+          $query = "DELETE FROM Agent WHERE user_id = ?";
+          $stmt = $db->prepare($query);
+          $stmt->execute([$this->user_id]);
+        }
+
+        else if($this->isAdmin){
+          $query = "DELETE FROM Admin WHERE user_id = ?";
+          $stmt = $db->prepare($query);
+          $stmt->execute([$this->user_id]);
+        }
+        break;
+
+      case 'Agent':
+        if($this->isAdmin){
+          $query = "DELETE FROM Admin WHERE user_id = ?";
+          $stmt = $db->prepare($query);
+          $stmt->execute([$this->user_id]);
+        }
+
+        if(!$this->isAgent){
+          $query = "INSERT INTO Agent (user_id) VALUES (?)";
+          $stmt = $db->prepare($query);
+          $stmt->execute([$this->user_id]);
+        }
+        break;
+
+      case 'Admin':
+        if(!$this->isAgent){
+          $query = "DELETE FROM Agent WHERE user_id = ?";
+          $stmt = $db->prepare($query);
+          $stmt->execute([$this->user_id]);
+        }
+
+        if(!$this->isAdmin){
+          $query = "INSERT INTO Admin (user_id) VALUES (?)";
+          $stmt = $db->prepare($query);
+          $stmt->execute([$this->user_id]);
+        }
+        break;
+
+      default:
+        return false;
+    }
+
+    return true;
   }
 }
 ?>

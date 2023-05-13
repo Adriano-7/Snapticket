@@ -35,7 +35,7 @@ function drawSearchFilters(array $departments, $roles)
             </thead>
             <tbody>
                 <?php foreach ($members as $member) { ?>
-                    <tr>
+                    <tr onclick="window.location.href='dashboard.php?username=<?php echo $member->username; ?>'">
                         <td class="member_name">
                             <?php $member->displayProfilePhoto("table_profile_pic") ?>
                             <div class="user_details">
@@ -59,7 +59,7 @@ function drawSearchFilters(array $departments, $roles)
                                 echo $department . "<br>"; ?>
                         </td>
                         <td class="member_action">
-                            <a href="../pages/edit_member.php">
+                            <a href="../pages/edit_member.php?id=<?php echo $member->user_id ?>">
                                 <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                             </a>
                             <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=<?php echo $member->user_id?>');">

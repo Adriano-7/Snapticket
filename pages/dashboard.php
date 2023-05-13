@@ -20,7 +20,21 @@ if (!$session->isLoggedIn() || $client === null) {
   die();
 }
 
-$tickets = Ticket::searchTickets($db, new TicketFilters(), $client);
+if(isset($_GET['username'])){
+  $username = htmlspecialchars($_GET['username']);
+  if(preg_match('/^[a-zA-Z0-9_]+$/', $username)){
+    $tickets = Ticket::searchTickets($db, new TicketFilters("", "", "", "", $username), $client);
+    
+  }
+  else{
+    header('Location: dashboard.php');
+    die();
+  }
+}
+
+else{
+  $tickets = Ticket::searchTickets($db, new TicketFilters(), $client);
+}
 
 $departments = Ticket::getDepartments($tickets);
 $status = Ticket::getStatuses($tickets);

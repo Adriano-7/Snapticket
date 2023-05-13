@@ -27,7 +27,9 @@ input[type=text]::-webkit-input-placeholder {
     outline: none;
 }
 
-
+tr{
+    cursor: pointer;
+}
 
 select:focus{
     outline: none;

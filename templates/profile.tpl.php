@@ -61,9 +61,9 @@
 </div>
 <?php } ?>
 
-<?php function drawChangeProfilePic(){ ?>
+<?php function drawChangeProfilePic($target){ ?>
     <div class="change-profile-pic">
-        <form action="../actions/profile/edit_profile_photo.php" method="post" enctype="multipart/form-data">
+        <form action="../actions/profile/edit_profile_photo.php?<?php echo $target->user_id?>" method="post">
             <input type="file" id="file-input" name="image" style="display:none">
             <label for="file-input" id="file-label">Change profile image</label>
             <button id="upload-btn">Upload</button>
@@ -77,6 +77,20 @@
             <button type="submit">Log Out</button>
         </form>
     </div>
+</main>
+</body>
+</html>
+<?php } ?>
+
+<?php function drawRole(Client $target){ ?>
+    <form action="../actions/profile/change_role.action.php" id="role-form" method="post">
+        <input type="hidden" name="id" value="<?php echo $target->user_id ?>">
+        <select class="client-role" name="role" onchange="changeRole()">
+            <option value="Client" <?php if (!$target->isAdmin && !$target->isAgent) echo "selected"; ?>>Client</option>
+            <option value="Agent" <?php if ($target->isAgent && !$target->isAdmin) echo "selected"; ?>>Agent</option>
+            <option value="Admin" <?php if ($target->isAdmin) echo "selected"; ?>>Admin</option>
+        </select>
+    </form>
 </main>
 </body>
 </html>

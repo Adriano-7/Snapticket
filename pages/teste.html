@@ -8,6 +8,7 @@
     <link href="../css/style.css" rel="stylesheet">
     <link href="../css/members.css" rel="stylesheet">
     <script src="../js/members-search.js" defer></script>
+    <script src="../js/script.js" defer></script>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
                 <span class="menu-text">Departments</span>
             </a>
             <a href="profile.php" class="profile">
-                <img src="../actions/display_pic.action.php?id=8" alt="Profile Photo" class="profile-photo"> <span
+                <img src="../assets/profile_pics_examples/JMurphy.jpg" alt="Profile Photo" class="profile-photo"> <span
                     class="profile_name">
                     Jessica Murphy </span>
             </a>
@@ -57,9 +58,9 @@
             </select>
             <select name="role" class="add_filter" id="role_select">
                 <option value="">User Role</option>
-                <option value="fAdmin">Admin</option>
-                <option value="fAgent">Agent</option>
-                <option value="fUser">User</option>
+                <option value="Admin">Admin</option>
+                <option value="Agent">Agent</option>
+                <option value="User">User</option>
             </select>
         </div>
         <table class="members_table">
@@ -73,9 +74,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr onclick="window.location.href='dashboard.php?user_id=<?php echo $member->user_id; ?>'">
                     <td class="member_name">
-                        <img src="../actions/display_pic.action.php?id=2" alt="Profile Photo" class="table_profile_pic">
+                        <img src="../assets/profile_pics_examples/APeterson12.jpg" alt="Profile Photo" class="table_profile_pic">
                         <div class="user_details">
                             Andrew Peterson <a
                                 href="mailto:peterson_andrew@snapticket.com">peterson_andrew@snapticket.com</a>
@@ -89,10 +90,10 @@
                         <br>
                     </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=1">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=1');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -112,10 +113,10 @@
                         <br>
                     </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=2">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=2');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -135,10 +136,10 @@
                         <br>
                     </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=3">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=3');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -159,10 +160,10 @@
                         <br>
                     </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=4">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=4');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -182,10 +183,10 @@
                         <br>
                     </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=5">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=5');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -204,10 +205,10 @@
                     <td class="member_department">
                         Accounting<br> </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=6">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=6');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -227,10 +228,10 @@
                     <td class="member_department">
                         Accounting<br> </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=8">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=8');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -251,10 +252,10 @@
                     <td class="member_department">
                         Accounting<br>Human Resources<br> </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=9">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=9');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -275,10 +276,10 @@
                     <td class="member_department">
                         Accounting<br> </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=10">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=10');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -298,10 +299,10 @@
                     <td class="member_department">
                         Accounting<br> </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=11">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=11');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -321,10 +322,10 @@
                     <td class="member_department">
                         Accounting<br> </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=12">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=12');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -344,10 +345,10 @@
                     <td class="member_department">
                         Sales<br> </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=13">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=13');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -367,10 +368,10 @@
                     <td class="member_department">
                         Legal<br> </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=14">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=14');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -390,10 +391,10 @@
                     <td class="member_department">
                         Human Resources<br> </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=15">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=15');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
@@ -413,10 +414,10 @@
                     <td class="member_department">
                         Sales<br> </td>
                     <td class="member_action">
-                        <a href="../pages/edit_member.php">
+                        <a href="../pages/edit_member.php?id=16">
                             <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
                         </a>
-                        <a onclick="confirmDelete();">
+                        <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=16');">
                             <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
                         </a>
                     </td>
