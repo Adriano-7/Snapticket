@@ -43,10 +43,10 @@
       </thead>
       <tbody>
         <?php foreach ($tickets as $ticket) { ?>
-          <tr onclick="window.location.href='ticket.php?ticket_id=<?php echo $ticket->ticket_id; ?>'">
+          <tr onclick="window.location.href='ticket.php?ticket_id=<?=$ticket->ticket_id?>'">
             <td class="tickets_id">
               <div style="display: flex; align-items: center;">
-                <?php echo $ticket->ticket_id; ?>
+                <?=$ticket->ticket_id?>
                 <?php if (strtolower($ticket->status) === 'open') { ?>
                   <span class="tickets_status_open">•</span>
                 <?php } else if (strtolower($ticket->status) === 'assigned') { ?>
@@ -57,24 +57,21 @@
               </div>
             </td>
             <td class="tickets_assignee">
-              <?php if ($ticket->assignee === null) {
-                echo '';
-              } else {
-                echo $ticket->assignee->username;
-              } ?>
+              <?php if ($ticket->assignee === null) {echo '';} 
+              else {echo $ticket->assignee->username;} ?>
             </td>
             <td class="tickets_description">
               <div class="tickets_description_title">
-                <?php echo $ticket->ticket_name; ?>
+                <?=$ticket->ticket_name?>
               </div>
               <div class="tickets_description_details">
                 <div class="tickets_description_department">
                   <?php foreach ($ticket->departments as $department) { ?>
-                    <?php echo $department['name']; ?>
+                    <?=$department['name']?>
                   <?php } ?>
                 </div>
                 <div class="tickets_description_client">
-                  <?php echo $ticket->creator->username; ?>
+                  <?=$ticket->creator->username?>
                 </div>
               </div>
             </td>

@@ -1,5 +1,4 @@
-<?php function drawTicketForm($departments, $hashtags, $agents, $error)
-{ ?>
+<?php function drawTicketForm($departments, $hashtags, $agents, $error){ ?>
     <main>
         <form action="../actions/ticket/create_ticket.action.php" method="post">
             <div class="container">
@@ -13,7 +12,7 @@
                 <div class="options_row" onmousedown="scrollHorizontally(event)">
                     <?php foreach ($departments as $department) { ?>
                         <button class="option" type="button" onclick="select(this)"
-                            value="<?php echo $department->department_id ?>"><?php echo $department->name ?></button>
+                            value="<?=$department->department_id?>"><?=$department->name?></button>
                     <?php } ?>
                     <button id="create_dept" class="option" type="button"
                         onclick="window.location.href='../actions/department/create_department.action.php'"> Create +
@@ -24,12 +23,10 @@
                 <h1>Hashtag</h1>
                 <div class="border"></div>
                 <div class="options_row" onmousedown="scrollHorizontally(event)">
-                    <?php foreach ($hashtags as $hashtag) { ?>
-                        <button class="option" type="button" onclick="select(this)">
-                            <?php echo $hashtag->name ?>
-                        </button>
-                    <?php } ?>
-                    <div id="create_hastag" class="option" contenteditable="true"> Create </div>
+                <?php foreach ($hashtags as $hashtag) { ?>
+                <button class="option" type="button" onclick="select(this)"><?=$hashtag->name?></button>
+                <?php } ?>
+                <div id="create_hastag" class="option" contenteditable="true"> Create </div>
                 </div>
             </div>
             <div class="container">
@@ -47,7 +44,7 @@
                 <select class="select" name="assignee">
                     <option value="">Assignee</option>
                     <?php foreach ($agents as $agent) { ?>
-                        <option value="<?php echo $agent->user_id ?>"><?php echo $agent->username ?></option>
+                        <option value="<?=$agent->user_id?>"><?=$agent->username?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -56,7 +53,7 @@
     </main>
     </body>
 
-    </html>
+</html>
 <?php } ?>
 
 <?php function drawDepartmentForm($clients, $error){ ?>
@@ -78,7 +75,7 @@
                 <div class="border"></div>
                 <div class="options_row" onmousedown="scrollHorizontally(event)">
                     <?php foreach($clients as $client){ ?>
-                        <button class="option" type="button" onclick="select(this)" value="<?php echo $client->user_id?>"><?php echo $client->username?></button>
+                        <button class="option" type="button" onclick="select(this)" value="<?=$client->user_id?>"><?=$client->username?></button>
                     <?php } ?>
                 </div>
             </div>

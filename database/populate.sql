@@ -128,34 +128,6 @@ INSERT INTO TicketDepartment VALUES (3, 11);
 --TicketHashtag Table
 INSERT INTO TicketHashtag VALUES (17, 'LackPermissions');
 
---FAQ/Question Table
---Default
-INSERT INTO Question (num, title, content, faq_id) VALUES (1, 'How do I reset my password?','Go to your profile, fill the password and click the edit button', null);
-
---Accounting
-INSERT INTO FAQ (faq_id, department_id) VALUES (1, 1);
-INSERT INTO Question (num, title, content, faq_id) VALUES (1, 'What is the deadline for submitting expense reports?','Our company requires expense reports to be submitted within 30 days of incurring the expense. Any expenses submitted after this deadline may not be reimbursed.', 1);
-INSERT INTO Question (num, title, content, faq_id) VALUES (2, 'How do I reconcile my bank statement?','To reconcile your bank statement, you need to compare the transactions in your bank statement to the transactions in your accounting records. Any discrepancies between the two should be investigated and resolved. Once all discrepancies have been resolved, you can mark the bank statement as reconciled.', 1);
-INSERT INTO Question (num, title, content, faq_id) VALUES (3, 'How do I update my tax withholding information?','To update your tax withholding information, please log into the HR portal and navigate to the "Payroll" section. From there, you can update your tax withholding information and submit the changes for approval.', 1);
-
---Legal
-INSERT INTO FAQ (faq_id, department_id) VALUES (2, 2);
-INSERT INTO Question (num, title, content, faq_id) VALUES (1, 'How do I enforce a contract?','To enforce a contract, you may need to take legal action against the other party if they are not fulfilling their obligations under the contract. This can include filing a lawsuit, seeking mediation or arbitration, or other legal remedies.', 2);
-INSERT INTO Question (num, title, content, faq_id) VALUES (2, 'What is a non-disclosure agreement?','A non-disclosure agreement (NDA) is a contract that prohibits one or more parties from disclosing confidential information to third parties. This can be used to protect trade secrets, client information, and other sensitive information.', 2);
-INSERT INTO Question (num, title, content, faq_id) VALUES (3, 'What is a trademark?','A trademark is a word, phrase, symbol, or design that identifies and distinguishes the source of goods or services. It can be registered with the US Patent and Trademark Office to provide legal protection against infringement.', 2);
-
---Human Resources
-INSERT INTO FAQ (faq_id, department_id) VALUES (3, 3);
-INSERT INTO Question (num, title, content, faq_id) VALUES (1, 'What is the companys policy on vacation time?','Our company policy allows employees to accrue vacation time based on their length of service. Please refer to the employee handbook for more details on how vacation time is calculated and how to request time off.', 3);
-INSERT INTO Question (num, title, content, faq_id) VALUES (2, 'How do I enroll in health insurance?','To enroll in health insurance, please log into the HR portal and navigate to the "Benefits" section. From there, you can review the available plans and enroll in the one that best fits your needs.', 3);
-INSERT INTO Question (num, title, content, faq_id) VALUES (3, 'How do I report a complaint or issue with a coworker?','If you have a complaint or issue with a coworker, please report it to your manager or HR representative. They will investigate the issue and take appropriate action to resolve it.', 3);
-INSERT INTO Question (num, title, content, faq_id) VALUES (4, 'What is the companys policy on remote work?','Our company has a flexible work policy that allows employees to work from home or other remote locations, subject to manager approval. Please refer to the employee handbook for more details on how to request remote work and what the requirements are.', 3);
-
---Sales
-INSERT INTO FAQ (faq_id, department_id) VALUES (4, 4);
-INSERT INTO Question (num, title, content, faq_id) VALUES (1, 'How do I create a sales order?','To create a sales order, go to the Sales Orders tab in your CRM software and click "New". Then, enter the customer information, product details, and any other relevant information. Finally, click "Save" to create the sales order.', 4);
-INSERT INTO Question (num, title, content, faq_id) VALUES (2, 'How do I create an invoice?','To create an invoice, go to the Invoices tab in your CRM software and click "New". Then, enter the customer information, product details, and any other relevant information. Finally, click "Save" to create the invoice.', 4);
-
 --Comments Table
 INSERT INTO Comment (date, content, user_id, ticket_id) VALUES ('2023-05-01 09:30:15','Hello, I am having an issue with recording credit card transactions in our accounting system. When I try to input the transactions, I keep getting an error message. Can you please help me resolve this?', 1, 1);
 INSERT INTO Comment (date, content, user_id, ticket_id) VALUES ('2023-05-01 10:25:15','Hi Andrew thanks for bringing this to my attention. Can you please provide more details about the error message you are receiving? This will help me better understand the issue and find a solution.', 10, 1);
@@ -214,3 +186,32 @@ INSERT INTO Comment (date, content, user_id, ticket_id) VALUES ('2023-05-13 14:4
 INSERT INTO Comment (date, content, user_id, ticket_id) VALUES ('2023-05-13 14:49:00','Yes, the customer database is accessible now. Thank you for your help!', 2, 16);
 INSERT INTO Comment (date, content, user_id, ticket_id) VALUES ('2023-05-13 15:10:15','Thanks, everything looks good now. Im able to access the financial reports without any issues. I really appreciate your help!', 1, 17);
 INSERT INTO Comment (date, content, user_id, ticket_id) VALUES ('2023-05-13 15:12:15','Youre welcome, Andrew. Glad I could help. Dont hesitate to reach out if you have any further issues.', 6, 17);
+
+--FAQ/Question Table
+--Default
+INSERT INTO FAQ (faq_id, department_id) VALUES (0, NULL);
+INSERT INTO Question (num, title, content, faq_id) VALUES (1, 'How do I reset my password?','Go to your profile, fill the password and click the edit button', 0);
+
+--Accounting
+INSERT INTO FAQ (faq_id, department_id) VALUES (1, 1);
+INSERT INTO Question (num, title, content, faq_id) VALUES (1, 'What is the deadline for submitting expense reports?','Our company requires expense reports to be submitted within 30 days of incurring the expense. Any expenses submitted after this deadline may not be reimbursed.', 1);
+INSERT INTO Question (num, title, content, faq_id) VALUES (2, 'How do I reconcile my bank statement?','To reconcile your bank statement, you need to compare the transactions in your bank statement to the transactions in your accounting records. Any discrepancies between the two should be investigated and resolved. Once all discrepancies have been resolved, you can mark the bank statement as reconciled.', 1);
+INSERT INTO Question (num, title, content, faq_id) VALUES (3, 'How do I update my tax withholding information?','To update your tax withholding information, please log into the HR portal and navigate to the "Payroll" section. From there, you can update your tax withholding information and submit the changes for approval.', 1);
+
+--Legal
+INSERT INTO FAQ (faq_id, department_id) VALUES (2, 2);
+INSERT INTO Question (num, title, content, faq_id) VALUES (1, 'How do I enforce a contract?','To enforce a contract, you may need to take legal action against the other party if they are not fulfilling their obligations under the contract. This can include filing a lawsuit, seeking mediation or arbitration, or other legal remedies.', 2);
+INSERT INTO Question (num, title, content, faq_id) VALUES (2, 'What is a non-disclosure agreement?','A non-disclosure agreement (NDA) is a contract that prohibits one or more parties from disclosing confidential information to third parties. This can be used to protect trade secrets, client information, and other sensitive information.', 2);
+INSERT INTO Question (num, title, content, faq_id) VALUES (3, 'What is a trademark?','A trademark is a word, phrase, symbol, or design that identifies and distinguishes the source of goods or services. It can be registered with the US Patent and Trademark Office to provide legal protection against infringement.', 2);
+
+--Human Resources
+INSERT INTO FAQ (faq_id, department_id) VALUES (3, 3);
+INSERT INTO Question (num, title, content, faq_id) VALUES (1, 'What is the companys policy on vacation time?','Our company policy allows employees to accrue vacation time based on their length of service. Please refer to the employee handbook for more details on how vacation time is calculated and how to request time off.', 3);
+INSERT INTO Question (num, title, content, faq_id) VALUES (2, 'How do I enroll in health insurance?','To enroll in health insurance, please log into the HR portal and navigate to the "Benefits" section. From there, you can review the available plans and enroll in the one that best fits your needs.', 3);
+INSERT INTO Question (num, title, content, faq_id) VALUES (3, 'How do I report a complaint or issue with a coworker?','If you have a complaint or issue with a coworker, please report it to your manager or HR representative. They will investigate the issue and take appropriate action to resolve it.', 3);
+INSERT INTO Question (num, title, content, faq_id) VALUES (4, 'What is the companys policy on remote work?','Our company has a flexible work policy that allows employees to work from home or other remote locations, subject to manager approval. Please refer to the employee handbook for more details on how to request remote work and what the requirements are.', 3);
+
+--Sales
+INSERT INTO FAQ (faq_id, department_id) VALUES (4, 4);
+INSERT INTO Question (num, title, content, faq_id) VALUES (1, 'How do I create a sales order?','To create a sales order, go to the Sales Orders tab in your CRM software and click "New". Then, enter the customer information, product details, and any other relevant information. Finally, click "Save" to create the sales order.', 4);
+INSERT INTO Question (num, title, content, faq_id) VALUES (2, 'How do I create an invoice?','To create an invoice, go to the Invoices tab in your CRM software and click "New". Then, enter the customer information, product details, and any other relevant information. Finally, click "Save" to create the invoice.', 4);

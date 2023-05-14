@@ -5,7 +5,7 @@ require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../database/connection.db.php');
 
 require_once(__DIR__ . '/../templates/common.tpl.php');
-require_once(__DIR__ . '/../templates/editTicket.tpl.php');
+require_once(__DIR__ . '/../templates/editForm.tpl.php');
 
 require_once(__DIR__ . '/../database/php_classes/ticket.class.php');
 require_once(__DIR__ . '/../database/php_classes/department.class.php');
@@ -39,7 +39,7 @@ $hashtags = Hashtag::getAllHashtags($db);
 $agents = Client::getAllAgents($db);
 $error = isset($_GET['error']);
 
-createHead("Editing ticket #".$ticket->ticket_id, ['style','createTicket'], ['createTicket']);
+createHead("Editing ticket #".$ticket->ticket_id, ['style','createForm'], ['createForm']);
 drawMenu($db, $client);
 drawForm($departments, $hashtags, $agents, $error, $ticket);
 ?>

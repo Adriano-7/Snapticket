@@ -86,7 +86,7 @@ CREATE TABLE Comment (
 DROP TABLE IF EXISTS FAQ;
 CREATE TABLE FAQ (
     faq_id INTEGER PRIMARY KEY, 
-    department_id REFERENCES Department (department_id) ON DELETE CASCADE ON UPDATE CASCADE UNIQUE
+    department_id REFERENCES Department (department_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
@@ -97,12 +97,6 @@ CREATE TABLE Question (
     title TEXT, 
     content TEXT,
     faq_id INTEGER REFERENCES FAQ (faq_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-DROP TABLE IF EXISTS AgentQuestion;
-CREATE TABLE AgentQuestion (
-    user_id INTEGER REFERENCES Agent (user_id) ON DELETE SET NULL ON UPDATE CASCADE,
-    quest_id INTEGER REFERENCES Question (quest_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS File;

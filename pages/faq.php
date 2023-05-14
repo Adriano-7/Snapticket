@@ -19,19 +19,29 @@ if (!$session->isLoggedIn()) {
   die();
 }
 
-$department = isset($_GET['department']) ? intval($_GET['department']) : null;
-$departments = FAQ::getDepartments($db);
-$questions = FAQ::getQuestions($db, $department);
+if(!isset($_GET['faq_id'])) {
+  header('Location: error_page.php');
+  die();
+}
+$faq_id = htmlspecialchars($_GET['faq_id']);
 
-
-if(!FAQ::exists($db, $department)) {
+if(!preg_match('/^[0-9]+$/', $faq_id)) {
   header('Location: error_page.php');
   die();
 }
 
+$faq_id = intval($faq_id);
+
+if(!FAQ::exists($db, $faq_id)) {
+  header('Location: error_page.php');
+  die();
+}
+
+$departments = FAQ::getDepartments($db);
+$questions = FAQ::getQuestions($db, $faq_id);
 
 createHead('Notifications', ['style', 'faq'], ['faq']);
 drawMenu($db, $client);
-drawFAQHeader($department, $departments, $client);
+drawFAQHeader($faq_id, $departments, $client);
 drawFAQ($questions);
 ?>

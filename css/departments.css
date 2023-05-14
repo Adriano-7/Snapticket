@@ -10,14 +10,16 @@ a {
 }
 
 .more_members{
-    width: 1.5em;
-    height: 1.5em;
+    min-width: fit-content;
+    height: auto;
+
     border-radius: 25px;
     background-color: #82B7DC;
-    display: inline-block;
 
-    font-size: 1em;
-    padding: 0.14em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9em;
 }
 
 .create_department {
@@ -67,7 +69,6 @@ a {
     display: flex;
     flex-direction: column;
     height: 100%;
-    justify-content: space-around;
 }
 
 .department_card .more_options {

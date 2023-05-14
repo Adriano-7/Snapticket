@@ -4,41 +4,32 @@ require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../database/php_classes/client.class.php');
 ?>
 
-<?php function createHead(string $title, array $stylesheets = [], array $javascript_files = [])
-{ ?>
+<?php function createHead(string $title, array $stylesheets = [], array $javascript_files = []){ ?>
   <!DOCTYPE html>
   <html lang="en-US">
 
   <head>
-    <title>SnapTicket -
-      <?= $title ?>
-    </title>
+    <title>SnapTicket - <?= $title ?></title>
     <link rel="icon" href="../assets/favicon.png">
-    <?php foreach ($stylesheets as $stylesheet) { ?>
-      <link href="../css/<?= $stylesheet ?>.css" rel="stylesheet">
-    <?php } ?>
-    <?php foreach ($javascript_files as $javascript_file) { ?>
-      <script src="../js/<?= $javascript_file ?>.js" defer></script>
-    <?php } ?>
+    <?php foreach ($stylesheets as $stylesheet) { ?><link href="../css/<?= $stylesheet ?>.css" rel="stylesheet"><?php } ?>
+    
+    <?php foreach ($javascript_files as $javascript_file) { ?><script src="../js/<?= $javascript_file ?>.js" defer></script><?php } ?>
+  
   </head>
 <?php } ?>
 
-<?php function drawMenu(PDO $db, Client $client)
-{ ?>
-
+<?php function drawMenu(PDO $db, Client $client){ ?>
   <body>
     <header class="menu">
       <div class="menu_header">
-        <a href="../pages/dashboard.php">
-          <img src="../assets/logo.png" alt="SnapTicket Logo" class="logo">
-        </a>
+        <a href="../pages/dashboard.php"><img src="../assets/logo.png" alt="SnapTicket Logo" class="logo"></a>
       </div>
       <nav>
         <?php if ($_SERVER['REQUEST_URI'] == '/pages/dashboard.php') { ?>
-          <a href="dashboard.php" style="color:#FFFFFF">
-            <img src="../assets/menu_icons/dashboard-white-icon.svg" alt="Dashboard" class="menu-icon">
-            <span class="menu-text">Dashboard</span>
-          </a>
+        <a href="dashboard.php" style="color:#FFFFFF">
+          <img src="../assets/menu_icons/dashboard-white-icon.svg" alt="Dashboard" class="menu-icon">
+          <span class="menu-text">Dashboard</span>
+        </a>
         <?php } else { ?>
           <a href="dashboard.php" style="color:#808080">
             <img src="../assets/menu_icons/dashboard-gray-icon.svg" alt="Dashboard" class="menu-icon">
@@ -46,12 +37,12 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
           </a>
         <?php } ?>
         <?php if ($_SERVER['REQUEST_URI'] == '/pages/faq.php') { ?>
-          <a href="faq.php" style="color:#FFFFFF">
+          <a href="faq.php?faq_id=0" style="color:#FFFFFF">
             <img src="../assets/menu_icons/faq-white-icon.svg" alt="Faq" class="menu-icon">
             <span class="menu-text">FAQ</span>
           </a>
         <?php } else { ?>
-          <a href="faq.php" style="color:#808080">
+          <a href="faq.php?faq_id=0" style="color:#808080">
             <img src="../assets/menu_icons/faq-gray-icon.svg" alt="Faq" class="menu-icon">
             <span class="menu-text">FAQ</span>
           </a>
@@ -92,18 +83,9 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
         <a href="profile.php" class="profile">
           <?php $client->displayProfilePhoto("profile-photo") ?>
           <span class="profile_name">
-            <?php echo $client->name ?>
+            <?=$client->name?>
           </span>
         </a>
       </nav>
     </header>
   <?php } ?>
-
-  <?php function drawFooter()
-  { ?>
-    <main>
-    </main>
-  </body>
-
-  </html>
-<?php } ?>

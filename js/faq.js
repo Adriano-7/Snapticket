@@ -5,7 +5,7 @@ function updateURL() {
         window.location.href = "faq.php";
     }
     else {
-        window.location.href = "faq.php?department=" + department;
+        window.location.href = "faq.php?faq_id=" + department;
     }
 }
 

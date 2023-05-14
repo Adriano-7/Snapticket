@@ -4,7 +4,7 @@
             <div class="container">
                 <h1>Ticket Name</h1>
                 <div class="border"></div>
-                <textarea id="name_textarea" name="title" <?php if($error){echo 'class="error_box"';}?>><?php echo $ticket->ticket_name ?></textarea>
+                <textarea id="name_textarea" name="title" <?php if($error){echo 'class="error_box"';}?>><?=$ticket->ticket_name?></textarea>
             </div>
             <div class="container">
                 <h1>Department</h1>
@@ -12,7 +12,7 @@
                 <div class="options_row">
                 <?php foreach($departments as $department) { ?>
                     <?php $isSelected = in_array($department->name, array_column($ticket->departments, 'name')) ?>
-                    <button class="option <?php echo $isSelected ? 'selected' : '' ?>" type="button" onclick="select(this)" value="<?php echo $department->department_id ?>"><?php echo $department->name ?></button>
+                    <button class="option <?php echo $isSelected ? 'selected' : '' ?>" type="button" onclick="select(this)" value="<?=$department->department_id ?>"><?=$department->name?></button>
                 <?php } ?>
                     <button id="create_dept" class="option" type="button" onclick="window.location.href='../actions/department/create_department.action.php'"> Create + </button> </button>
                 </div>
@@ -48,8 +48,32 @@
                     <?php } ?>
                 </select>
             </div>
-            <button id="submit_button" type="button" onclick="submitForm()">Save</button>
+            <button id="submit_button" type="button" onclick="submitTicketForm()">Save</button>
             <input type="hidden" name="ticket_id" value="<?php echo $ticket->ticket_id ?>">
+        </form>
+    </main>
+</body>
+</html>
+<?php } ?>
+
+<?php function drawFaqForm($questions, $faq_id){ ?>
+    <main>
+        <form action="../actions/faq/edit_faq.action.php" method="post">
+            <?php foreach($questions as $question) { ?>
+            <div class="container">
+                <h1>Question <?php echo $question->num ?></h1>
+                <div class="border"></div>
+                <textarea class="textarea" name="Q[]" required><?php echo $question->title ?></textarea>
+                <textarea class="textarea" name="A[]" rows="3" required><?php echo $question->content ?></textarea>
+            </div>
+            <?php } ?>
+            <div class="container">
+                <h1></h1>
+                <div class="border"></div>
+                <button id="add_button" type="button" onclick="addQuestion()">Add Question</button>
+            </div>
+            <button id="submit_button" type="submit">Save</button>
+            <input type="hidden" name="faq_id" value="<?php echo $faq_id?>">
         </form>
     </main>
 </body>

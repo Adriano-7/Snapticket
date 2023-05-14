@@ -14,27 +14,7 @@ class FAQ{
         $this->questions = $questions;
     }
     
-    static function getQuestions(PDO $db, ?int $department_id) : array{
-        if($department_id === null){
-            $query = $db->prepare('SELECT * FROM Question WHERE faq_id IS NULL ORDER BY num ASC');
-            $query->execute();
-
-            $questions = array();
-            foreach($query->fetchAll() as $question){
-                $questions[] = new Question($question['quest_id'], $question['num'], $question['title'], $question['content']);
-            }
-            return $questions;
-        }
-
-        $query = $db->prepare('SELECT faq_id FROM FAQ WHERE department_id = ?');
-        $query->bindParam(1, $department_id, PDO::PARAM_INT);
-        $query->execute();
-
-        $faq_id = null;
-        while($row = $query->fetch()){
-            $faq_id = $row['faq_id'];
-        }
-
+    static function getQuestions(PDO $db, int $faq_id) : array{
         $query = $db->prepare('SELECT * FROM Question WHERE faq_id = ? ORDER BY num ASC');
         $query->bindParam(1, $faq_id, PDO::PARAM_INT);
         $query->execute();
@@ -47,20 +27,14 @@ class FAQ{
         return $questions;
     }
 
-    static function exists(PDO $db, ?int $department_id) : bool{
-        if($department_id === null){
-            return true;
-        }
-
-        $query = $db->prepare(
-            'SELECT faq_id
-             FROM FAQ
-             WHERE department_id = ?'
-        );
-
-        $query->bindParam(1, $department_id, PDO::PARAM_INT);
+    static function exists(PDO $db, int $faq_id) : bool{
+        $query = $db->prepare('SELECT COUNT(*) FROM FAQ WHERE faq_id = ?');
+        $query->bindParam(1, $faq_id, PDO::PARAM_INT);
         $query->execute();
-        return $query->fetch() !== false;
+
+        $count = $query->fetch()['COUNT(*)'];
+
+        return $count == 1;
     }
 
     static function getDepartments(PDO $db){
@@ -72,6 +46,22 @@ class FAQ{
             $departments[] = new Department($row['department_id'], $row['name'], $row['image_id'], Department::getMembers($db, $row['department_id']));
         }
         return $departments;
+    }
+
+    static function editFaq(PDO $db, int $faq_id, array $questions, array $answers){
+        $query = $db->prepare('DELETE FROM Question WHERE faq_id = ?');
+        $query->bindParam(1, $faq_id, PDO::PARAM_INT);
+        $query->execute();
+
+        for($i = 0; $i < count($questions); $i++){
+            $query = $db->prepare('INSERT INTO Question (num, title, content, faq_id) VALUES (?, ?, ?, ?)');
+            $num = $i+1;
+            $query->bindParam(1, $num, PDO::PARAM_INT);
+            $query->bindParam(2, $questions[$i], PDO::PARAM_STR);
+            $query->bindParam(3, $answers[$i], PDO::PARAM_STR);
+            $query->bindParam(4, $faq_id, PDO::PARAM_INT);
+            $query->execute();
+        }
     }
 }
 ?>
