@@ -11,7 +11,7 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
             <h1 class="ticket-title">
                 <?php echo $ticket->ticket_name; ?>
                 <?php if ($client->isAgent) { ?>
-                    <a href="../pages/editTicket.php?ticket_id=<?php echo $ticket->ticket_id; ?>"><img src="../assets/edit-icon.svg" id="ticket-edit-button" alt="Edit ticket"></a>
+                    <a href="../pages/editTicket.php?ticket_id=<?php echo $ticket->ticket_id; ?>"><img src="../assets/icons/edit-icon.svg" id="ticket-edit-button" alt="Edit ticket"></a>
                 <?php } ?>
             </h1>
             <p>
@@ -73,7 +73,7 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
                 <div class="comment-bar">
                     <textarea class="comment-textarea" placeholder="Your reply" name="comment"></textarea>
                     <button id="faq-button">FAQ</button>
-                    <button id="attachment-button"><img src=../assets/attachment-icon.svg alt="Attach Files"></button>
+                    <button id="attachment-button"><img src=../assets/icons/attachment-icon.svg alt="Attach Files"></button>
                 </div>
                 <div id="send-button-container">
                     <button id="send-button">Send</button>

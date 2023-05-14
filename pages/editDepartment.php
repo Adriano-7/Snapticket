@@ -19,21 +19,23 @@ if (!$session->isLoggedIn()) {
   die();
 }
 
-if (!isset($_POST['faq_id']) || !$client->isAgent) {
+if (!isset($_GET['department']) || !$client->isAdmin) {
     header('Location: ../../pages/error_page.php');
     die();
 }
 
-$faq_id = htmlentities($_POST['faq_id']);
+$department_id = htmlentities($_GET['department']);
 
-if (!preg_match('/^[0-9]+$/', $faq_id)) {
+if (!preg_match('/^[0-9]+$/', $department_id)) {
     header('Location: ../../pages/error_page.php');
     die();
 }
 
-$questions = FAQ::getQuestions($db, intval($faq_id));
+$allClients = Client::getClients($db);
+$members = Department::getMembers($db, intval($department_id));
+$department = Department::getDepartment($db, intval($department_id));
 
-createHead("Editing FAQ", ['style','form', 'editFaq'], ['editFaq']);
+createHead("Editing Department", ['style','form'], ['form', 'script']);
 drawMenu($db, $client);
-drawEditFaqForm($questions, $faq_id);
+drawEditDepartmentForm($department, $allClients);
 ?>

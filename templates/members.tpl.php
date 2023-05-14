@@ -26,10 +26,10 @@ function drawSearchFilters(array $departments, $roles)
         <table class="members_table">
             <thead>
                 <tr>
-                    <td>Name <img src="../assets/sort.svg" id="name_sort" alt="Sort by name"></td>
-                    <td>Username <img src="../assets/sort.svg" id="username_sort" alt="Sort by username"></td>
-                    <td>Role <img src="../assets/sort.svg" id="role_sort" alt="Sort by role"></td>
-                    <td>Department <img src="../assets/sort.svg" id="department_sort" alt="Sort by department"> </td>
+                    <td>Name <img src="../assets/icons/sort.svg" id="name_sort" alt="Sort by name"></td>
+                    <td>Username <img src="../assets/icons/sort.svg" id="username_sort" alt="Sort by username"></td>
+                    <td>Role <img src="../assets/icons/sort.svg" id="role_sort" alt="Sort by role"></td>
+                    <td>Department <img src="../assets/icons/sort.svg" id="department_sort" alt="Sort by department"> </td>
                     <td>Action</td>
                 </tr>
             </thead>
@@ -60,10 +60,10 @@ function drawSearchFilters(array $departments, $roles)
                         </td>
                         <td class="member_action">
                             <a href="../pages/edit_member.php?id=<?php echo $member->user_id ?>">
-                                <img src="../assets/edit-icon.svg" class="action_icons" alt="Edit member">
+                                <img src="../assets/icons/edit-icon.svg" class="action_icons" alt="Edit member">
                             </a>
-                            <a onclick="confirmAction('../actions/profile/eliminate_user.action.php?id=<?php echo $member->user_id?>');">
-                                <img src="../assets/delete-icon.svg" class="action_icons" alt="Delete member">
+                            <a href="../actions/profile/eliminate_user.action.php?id=<?php echo $member->user_id?>" onclick="confirmAction(event);">
+                                <img src="../assets/icons/delete-icon.svg" class="action_icons" alt="Delete member">
                             </a>
                         </td>
                     </tr>

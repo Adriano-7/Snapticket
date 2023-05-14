@@ -5,7 +5,7 @@ require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../database/connection.db.php');
 
 require_once(__DIR__ . '/../templates/common.tpl.php');
-require_once(__DIR__ . '/../templates/createForm.tpl.php');
+require_once(__DIR__ . '/../templates/form.tpl.php');
 
 require_once(__DIR__ . '/../database/php_classes/department.class.php');
 
@@ -21,7 +21,7 @@ if (!$session->isLoggedIn()) {
 $clients = Client::getClients($db);
 $error = isset($_GET['error']);
 
-createHead("Create a department", ['style','createForm'], ['createForm']);
+createHead("Create a department", ['style','form'], ['form']);
 drawMenu($db, $client);
 
 drawDepartmentForm($clients, $error);

@@ -64,13 +64,13 @@ if (departmentSort) {
 function toggleSortValue(sortValue, sortIcon) {
     if (sortValue === "") {
       sortValue = "ASC";
-      sortIcon.src = "../assets/sort-up.svg";
+      sortIcon.src = "../assets/icons/sort-up.svg";
     } else if (sortValue === "ASC") {
       sortValue = "DESC";
-      sortIcon.src = "../assets/sort-down.svg";
+      sortIcon.src = "../assets/icons/sort-down.svg";
     } else {
       sortValue = "";
-      sortIcon.src = "../assets/sort.svg";
+      sortIcon.src = "../assets/icons/sort.svg";
     }
     
     return sortValue;
@@ -160,7 +160,7 @@ function createActionCell(member) {
     editLink.href = 'edit_member.php?id=' + member.id;
 
     const editIcon = document.createElement('img');
-    editIcon.src = '../assets/edit-icon.svg';
+    editIcon.src = '../assets/icons/edit-icon.svg';
     editIcon.alt = 'Edit';
     editIcon.classList.add('action_icons');
 
@@ -170,7 +170,7 @@ function createActionCell(member) {
     deleteLink.href = 'delete_member.php?id=' + member.id;
 
     const deleteIcon = document.createElement('img');
-    deleteIcon.src = '../assets/delete-icon.svg';
+    deleteIcon.src = '../assets/icons/delete-icon.svg';
     deleteIcon.alt = 'Delete';
     deleteIcon.classList.add('action_icons');
 

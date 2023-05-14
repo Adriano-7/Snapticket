@@ -25,7 +25,7 @@
         <li onclick="toggleAnswer(this)">
           <div class="question">
             <span class="question_text">Q<?=$question->num?> : <?=$question->title ?></span>
-            <img src="../assets/arrow-down.svg" class="down-sign">
+            <img src="../assets/icons/arrow-down.svg" class="down-sign">
           </div>
           <div class="answer" style="display: none;"><?=$question->content ?></div>
         </li>

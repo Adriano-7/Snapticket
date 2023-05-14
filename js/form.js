@@ -65,9 +65,18 @@ function submitTicketForm(){
     form.submit();
 }
 
-function submitDepartmentForm(){
-    if (!uploadClicked) {return;}
+function submitDeptIcon(){
+    event.preventDefault();
+    var fileInput = document.getElementById('file-input');
+    fileInput.click();
+    fileInput.addEventListener('change', function() {
+        var uploadButton = document.getElementById('upload-btn');
+        uploadButton.innerHTML = fileInput.files[0].name;
+    }
+    );
+}
 
+function submitDepartmentForm(){
     var form = document.querySelector('form');
 
     var memberButtons = document.querySelectorAll('.container:nth-child(3) .option');
@@ -85,17 +94,4 @@ function submitDepartmentForm(){
     form.appendChild(memberInput);
 
     form.submit();
-}
-
-
-function submitDeptIcon(){
-    event.preventDefault();
-    var fileInput = document.getElementById('file-input');
-    fileInput.click();
-    fileInput.addEventListener('change', function() {
-        var uploadButton = document.getElementById('upload-btn');
-        uploadButton.innerHTML = fileInput.files[0].name;
-        uploadClicked = true;
-    }
-    );
 }

@@ -122,12 +122,12 @@ textarea:focus{
     display: flex;
     flex-wrap: nowrap;
     overflow-y: auto;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
   
 .options_row::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
+    display: none;
 }
 
 @media screen and (min-width: 1000px){

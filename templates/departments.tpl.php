@@ -8,7 +8,7 @@ require_once(__DIR__ . '/../database/php_classes/department.class.php');
 <main>
     <div class="create_department">
         <a href="../pages/createDepartment.php">
-            <img src="../assets/plus-icon.svg" alt="Create Department">
+            <img src="../assets/icons/plus-icon.svg" alt="Create Department">
             <span>Create Department</span>
         </a>
     </div>
@@ -17,9 +17,14 @@ require_once(__DIR__ . '/../database/php_classes/department.class.php');
 <?php function drawCards($departments){ ?>
     <?php foreach ($departments as $department) { ?>
         <div class="department_card" onclick="window.location.href = '../pages/members.php?department=<?=$department->department_id?>'">
-                <a href="../pages/edit_department.php?department=<?=$department->department_id?>">
-                    <img src="../assets/three-dots-vertical.svg" alt="More Options" class="more_options">
+            <div class="department_actions">
+                <a href="../pages/editDepartment.php?department=<?=$department->department_id?>">
+                    <img src="../assets/icons/edit-icon.svg" alt="Edit Department" style="width: 1em;">
                 </a>
+                <a href="../actions/department/remove_department.action.php?department=<?=$department->department_id?>" onclick="confirmAction(event)">
+                    <img src="../assets/icons/delete-icon.svg" alt="Delete Department" style="width: 1em;">
+                </a>
+            </div>
             <a href="../pages/members.php?department=<?=$department->department_id?>" class="card_anchor">
                 <div class="department_name">
                     <span><?=$department->name?></span>

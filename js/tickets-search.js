@@ -37,13 +37,13 @@ if(search) {
 function toggleSortValue(sortValue, sortIcon) {
     if (sortValue === "") {
       sortValue = "ASC";
-      sortIcon.src = "../assets/sort-up.svg";
+      sortIcon.src = "../assets/icons/sort-up.svg";
     } else if (sortValue === "ASC") {
       sortValue = "DESC";
-      sortIcon.src = "../assets/sort-down.svg";
+      sortIcon.src = "../assets/icons/sort-down.svg";
     } else {
       sortValue = "";
-      sortIcon.src = "../assets/sort.svg";
+      sortIcon.src = "../assets/icons/sort.svg";
     }
     
     return sortValue;

@@ -26,7 +26,7 @@ if(!$client->isAdmin){
   die();
 }
 
-createHead('Notifications', ['style', 'departments']);
+createHead('Notifications', ['style', 'departments'], ['script']);
 drawMenu($db, $client);
 drawCreateDept();
 drawCards($departments);

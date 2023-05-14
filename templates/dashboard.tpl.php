@@ -36,9 +36,9 @@
     <table class="tickets_table">
       <thead>
         <tr>
-          <td>ID <img src="../assets/sort.svg" id="id_sort" alt="Sort by id"></td>
-          <td>Assignee <img src="../assets/sort.svg" id="assignee_sort" alt="Sort by assignee"></td>
-          <td>Description <img src="../assets/sort.svg" id="description_sort" alt="Sort by description"></td>
+          <td>ID <img src="../assets/icons/sort.svg" id="id_sort" alt="Sort by id"></td>
+          <td>Assignee <img src="../assets/icons/sort.svg" id="assignee_sort" alt="Sort by assignee"></td>
+          <td>Description <img src="../assets/icons/sort.svg" id="description_sort" alt="Sort by description"></td>
         </tr>
       </thead>
       <tbody>
