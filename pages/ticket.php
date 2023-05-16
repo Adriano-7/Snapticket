@@ -32,7 +32,7 @@ if (!$isAuthorised) {
 
 $ticket = Ticket::getTicket($db, intval($_GET['ticket_id']));
 
-createHead($ticket->ticket_name, ['style','ticket'], ['status', 'comments']);
+createHead($ticket->ticket_name, ['style','ticket'], ['ticket']);
 drawMenu($db, $client);
 
 drawTitle($ticket, $db, $client);

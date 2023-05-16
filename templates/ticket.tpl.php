@@ -30,6 +30,16 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
                     </div>
                 <?php } ?>
             </div>
+            <div id="history-button" onclick="showHistory()">Show History</div>
+            <div id="history" style="display: none;">
+                <?php foreach($ticket->history as $history_row){ ?>
+                    <div class="history-row">
+                        <?php $history_row->user->displayProfilePhoto("") ?>
+                        <span class="history-creator"><?php echo $history_row->user->name?></span>
+                        <span class="history-text"><?php echo $history_row->content; echo $history_row->getNiceDate() ?>
+                    </div>
+                <?php } ?>
+            </div>
         </div>
     <?php if ($client->isAgent) { ?>
         <form action="../actions/ticket/change_status.action.php" id="status-form" method="post">

@@ -182,6 +182,48 @@ textarea{
   margin-left: 0.5em;
 }
 
+#history-button{
+  color: #5c5e6c;
+  padding: 0.2em;
+  font-size: 0.7em;
+  width: fit-content;
+  border-bottom: 1px solid #5c5e6c;
+  cursor: pointer;
+  margin-top: 1em;
+}
+
+#history{
+  border-left: 2px solid #5c5e6c;
+  padding-left: 0.4em;
+  margin-top: 0.5em;
+}
+
+.history-row{
+  display: flex;
+  flex-direction: row;
+  font-size: 0.8em;
+}
+
+.history-row:not(:first-child){
+  margin-top: 1em;
+}
+
+.history-row img{
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 1em;
+  margin-right: 0.4em;
+}
+
+.history-creator{
+  padding-right: 0.4em;
+}
+
+.history-text{
+  color: #5c5e6c;
+  
+}
+
 
 @media screen and (min-width: 1000px){
   .comment-bar{

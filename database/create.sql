@@ -74,6 +74,15 @@ CREATE TABLE TicketHashtag (
     name REFERENCES Hashtag (name)
 );
 
+DROP TABLE IF EXISTS TicketHistory;
+CREATE TABLE TicketHistory (
+    history_id INTEGER PRIMARY KEY,
+    ticket_id INTEGER REFERENCES Ticket (ticket_id) ON DELETE CASCADE ON UPDATE CASCADE, 
+    user_id INTEGER REFERENCES Client(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    date TEXT DEFAULT (datetime('now', 'localtime')), 
+    content TEXT 
+);
+
 DROP TABLE IF EXISTS Comment;
 CREATE TABLE Comment (
     comment_id INTEGER PRIMARY KEY,

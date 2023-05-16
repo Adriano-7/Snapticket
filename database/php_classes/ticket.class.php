@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require_once(__DIR__ . '/comment.class.php');
 require_once(__DIR__ .'/../../database/php_classes/client.class.php');
+require_once(__DIR__ . '/../../database/php_classes/history.class.php');
 
 class Ticket{
     public int $ticket_id;
@@ -14,9 +15,10 @@ class Ticket{
     public array $departments;
     public array $hashtags;
     public array $comments;
+    public array $history;
 
 
-    public function __construct(int $ticket_id, string $ticket_name, string $date, string $priority, ?Client $assignee, string $status, ?Client $creator, array $departments = [], array $hashtags = [], array $comments = []){
+    public function __construct(int $ticket_id, string $ticket_name, string $date, string $priority, ?Client $assignee, string $status, ?Client $creator, array $departments = [], array $hashtags = [], array $comments = [], array $history = []){
         $this->ticket_id = $ticket_id;
         $this->ticket_name = $ticket_name;
         $this->date = $date;
@@ -27,6 +29,7 @@ class Ticket{
         $this->departments = $departments;
         $this->hashtags = $hashtags;
         $this->comments = $comments;
+        $this->history = $history;
     }
 
     static public function getTicket(PDO $db, int $ticket_id): ?Ticket{
@@ -49,7 +52,7 @@ class Ticket{
         $stmt->execute([$ticket['ticket_id']]);
         $hashtags = $stmt->fetchAll();
 
-        return new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags, Ticket::getComments($db, $ticket['ticket_id']));
+        return new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags, Ticket::getComments($db, $ticket['ticket_id']), History::getHistory($db, $ticket['ticket_id']));
     }
     
     static public function isAuthorized(PDO $db, int $ticket_id, int $creator): bool{
@@ -177,7 +180,7 @@ class Ticket{
             $stmt->execute([$ticket['ticket_id']]);
             $hashtags = $stmt->fetchAll();
 
-            $ticket = new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags, Ticket::getComments($db, $ticket['ticket_id']));
+            $ticket = new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags, Ticket::getComments($db, $ticket['ticket_id']), History::getHistory($db, $ticket['ticket_id']));
             if (Ticket::isAuthorized($db, $ticket->ticket_id, $client->user_id)) {
                 $client_tickets[] = $ticket;
             }

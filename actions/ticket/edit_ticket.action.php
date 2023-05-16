@@ -10,6 +10,8 @@ require_once(__DIR__ . '/../../database/php_classes/ticket.class.php');
 require_once(__DIR__ . '/../../database/php_classes/comment.class.php');
 require_once(__DIR__ . '/../../database/php_classes/client.class.php');
 require_once(__DIR__ . '/../../database/php_classes/hashtag.class.php');
+require_once(__DIR__ . '/../../database/php_classes/history.class.php');
+
 
 $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
@@ -64,6 +66,7 @@ else{
 
 $ticket = Ticket::getTicket($db, intval($ticket_id));
 $ticket->alterTicket($db, $title, $department, $priority, intval($assignee), $hashtag);
+History::addEditHistory($db, intval($ticket_id), $client->user_id);
 
 header('Location: ../../pages/ticket.php?ticket_id=' . $ticket_id);
 ?>

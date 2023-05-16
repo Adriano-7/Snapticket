@@ -26,6 +26,7 @@ if (!preg_match('/^(Open|Assigned|Closed)$/', $status) || !preg_match('/^[0-9]+$
 
 $ticket = Ticket::getTicket($db, intval($ticket_id));
 $ticket->changeStatus($db, $status);
+History::addStatusHistory($db, intval($ticket_id), $client->user_id, $status);
 
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

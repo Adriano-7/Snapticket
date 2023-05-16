@@ -1,5 +1,16 @@
 PRAGMA foreign_keys = ON;
 
+--TicketHistory Table
+
+CREATE TRIGGER new_ticket_history AFTER INSERT ON Ticket
+BEGIN
+    INSERT INTO TicketHistory (ticket_id, user_id, content)
+    SELECT NEW.ticket_id, NEW.creator, 'created the ticket'
+    FROM Ticket
+    WHERE ticket_id = NEW.ticket_id;
+END;
+
+-- Notifications Table
 CREATE TRIGGER new_assignee_notification AFTER UPDATE OF assignee ON Ticket
 BEGIN
     INSERT INTO Notification (date, content, recipient, sender, ticket_id)

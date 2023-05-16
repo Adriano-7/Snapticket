@@ -128,6 +128,8 @@ INSERT INTO TicketDepartment VALUES (3, 11);
 --TicketHashtag Table
 INSERT INTO TicketHashtag VALUES (17, 'LackPermissions');
 
+--TicketHistory Table
+
 --Comments Table
 INSERT INTO Comment (date, content, user_id, ticket_id) VALUES ('2023-05-01 09:30:15','Hello, I am having an issue with recording credit card transactions in our accounting system. When I try to input the transactions, I keep getting an error message. Can you please help me resolve this?', 1, 1);
 INSERT INTO Comment (date, content, user_id, ticket_id) VALUES ('2023-05-01 10:25:15','Hi Andrew thanks for bringing this to my attention. Can you please provide more details about the error message you are receiving? This will help me better understand the issue and find a solution.', 10, 1);
