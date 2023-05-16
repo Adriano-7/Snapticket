@@ -62,7 +62,7 @@ function drawSearchFilters(array $departments, $roles)
                             <a href="../pages/edit_member.php?id=<?php echo $member->user_id ?>">
                                 <img src="../assets/icons/edit-icon.svg" class="action_icons" alt="Edit member">
                             </a>
-                            <a href="../actions/profile/eliminate_user.action.php?id=<?php echo $member->user_id?>" onclick="confirmAction(event);">
+                            <a href="../actions/profile/eliminate_user.action.php?id=<?php echo $member->user_id?>" class="confirm-action">
                                 <img src="../assets/icons/delete-icon.svg" class="action_icons" alt="Delete member">
                             </a>
                         </td>

@@ -12,6 +12,9 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
                 <?php echo $ticket->ticket_name; ?>
                 <?php if ($client->isAgent) { ?>
                     <a href="../pages/editTicket.php?ticket_id=<?php echo $ticket->ticket_id; ?>"><img src="../assets/icons/edit-icon.svg" id="ticket-edit-button" alt="Edit ticket"></a>
+                    <a href="../actions/ticket/remove_ticket.action.php?ticket_id=<?php echo  $ticket->ticket_id;?>" class="confirm-action">
+                        <img src="../assets/icons/edit-icon.svg" id="ticket-edit-button" alt="Edit ticket" >
+                    </a>
                 <?php } ?>
             </h1>
             <p>

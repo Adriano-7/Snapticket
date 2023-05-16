@@ -39,7 +39,7 @@ $hashtags = Hashtag::getAllHashtags($db);
 $agents = Client::getAllAgents($db);
 $error = isset($_GET['error']);
 
-createHead("Editing ticket #".$ticket->ticket_id, ['style','form'], ['createForm']);
+createHead("Editing ticket #".$ticket->ticket_id, ['style','form'], ['form']);
 drawMenu($db, $client);
 drawEditTicketForm($departments, $hashtags, $agents, $error, $ticket);
 ?>

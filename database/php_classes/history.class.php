@@ -3,11 +3,11 @@ declare(strict_types=1);
 require_once(__DIR__ . '/../../database/php_classes/client.class.php');
 class History{
     public int $history_id;
-    public Client $user;
+    public ?Client $user;
     public string $date;
     public string $content;
     
-    public function __construct(int $history_id, Client $user, string $date, string $content){
+    public function __construct(int $history_id, ?Client $user, string $date, string $content){
         $this->history_id = $history_id;
         $this->user = $user;
         $this->date = $date;
