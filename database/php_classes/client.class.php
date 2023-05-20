@@ -326,19 +326,19 @@ class Client {
     return $agents;
   }
 
-  function changeRole(PDO $db, string $role,) : bool{
+  function changeRole(PDO $db, string $role,){
     $currentRole = $this->isAgent ? 'Agent' : ($this->isAdmin ? 'Admin' : 'Client');
 
     switch ($role) {
       case 'Client':
-        if($this->isAgent){
-          $query = "DELETE FROM Agent WHERE user_id = ?";
+        if($this->isAdmin){
+          $query = "DELETE FROM Admin WHERE user_id = ?";
           $stmt = $db->prepare($query);
           $stmt->execute([$this->user_id]);
         }
 
-        else if($this->isAdmin){
-          $query = "DELETE FROM Admin WHERE user_id = ?";
+        if($this->isAgent){
+          $query = "DELETE FROM Agent WHERE user_id = ?";
           $stmt = $db->prepare($query);
           $stmt->execute([$this->user_id]);
         }
@@ -356,11 +356,12 @@ class Client {
           $stmt = $db->prepare($query);
           $stmt->execute([$this->user_id]);
         }
+
         break;
 
       case 'Admin':
         if(!$this->isAgent){
-          $query = "DELETE FROM Agent WHERE user_id = ?";
+          $query = "INSERT INTO Agent (user_id) VALUES (?)";
           $stmt = $db->prepare($query);
           $stmt->execute([$this->user_id]);
         }
@@ -371,12 +372,7 @@ class Client {
           $stmt->execute([$this->user_id]);
         }
         break;
-
-      default:
-        return false;
     }
-
-    return true;
   }
 }
 ?>

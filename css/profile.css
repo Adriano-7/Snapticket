@@ -34,51 +34,45 @@
     margin-bottom: 1.4em;
 }
 
-.edit-section {
+.edit-forms{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.edit-form {
-    display: flex;
-    flex-direction: row;
-
+.edit-form{
     background-color: #333537;
-    width: 33%;
-    min-width: fit-content;
-
-    height: 1.7%;
+    margin-bottom: 1em;
+    width: 28em;
+    height: 3em;
     border-radius: 10px;
 
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.04em;
-    padding-bottom: 0.01em;
-
-    margin-bottom: 20px;
-    margin-left: 32.5%;
+    display: flex;
+    flex-direction: row;
 }
 
-.edit-form input {
+.edit-form form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.edit-form input{
     background: transparent;
-    width: 20em;
     color: #ffffff;
     border: none;
     font-size: 13px;
-    margin-top: 1.8%;
     height: fit-content;
-    position: relative;
-    top: 0.4em;
+    width: 90%;
 }
 
-.edit-form button {
+.edit-form button{
     border: none;
-    background-color: transparent;
-    width: 7%;
-    position: relative;
-    top: -1.2em;
-    left: 30em;
+    width: 1.5em;
+    background: transparent;
 }
 
 .edit-icon {
@@ -90,93 +84,115 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    margin-bottom: 1em;
 }
 
-#file-label,
-#upload-btn {
+#file-label, #upload-btn {
     display: inline-block;
     vertical-align: middle;
     border: none;
 }
 
 #file-label {
-    width: 15em;
-    height: 1.3em;
-    padding: 10px;
+    width: 17em;
+    height: 3em;
     font-size: 13px;
     background-color: #333537;
     color: #ffffff;
     border-radius: 10px 0 0 10px;
     cursor: pointer;
     text-align: center;
+    line-height: 3em;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #upload-btn {
-    width: 17.5em;
-    height: 2.85em;
-    padding: 10px;
+    width: 17em;
+    height: 3em;
     margin-left: 0;
     margin-top: 0;
     font-size: 13px;
     border-radius: 0 10px 10px 0;
     background-color: #82B7DC;
-    color: #000000;
+    color: #ffffff;
     cursor: pointer;
     text-align: center;
+    line-height: 3em;
 }
 
 #upload-btn:hover {
     background-color: #97cff7;
-    color: #000000;
 }
 
-.logout button {
-    position: absolute;
-    bottom: 2.5em;
-    right: 3em;
-    cursor: pointer;
+#password_text{
+    color: #ffffff;
+    font-size: 13px;
 
+    cursor: pointer;
+    margin-left: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout button{
+    color: #ffffff;
+    background-color: #82B7DC;
+    cursor: pointer;
     border: none;
     font-weight: 400;
-    margin-left: 50em;
     border-radius: 0.5em;
-    padding-top: 0.8em;
-    padding-bottom: 0.8em;
-    padding-left: 1em;
-    padding-right: 1em;
-
-    color: #000000;
-    background-color: #82B7DC;
+    padding: 0.8em 1em;
 }
 
-.logout button:hover {
-    background-color: #97cff7;
-    color: #000000;
+#password-placeholder{
+    color: #999999;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+    width:91.5%
 }
-
-#role-form{
-    background-color: #333537;
-    border: none;
-    border-radius: 1em;
-    cursor: pointer;
-
-    width: 15%;
-    height: 2.85em;
-
-    margin-top: 2em;
-    margin-left: 50%;
-    transform: translateX(-50%);
-}
-
 
 #role-form select{
     background-color: transparent;
     border: none;
-    margin-left: 50%;
-    transform: translateX(-50%);
-
-    position: relative;
-    top: 0.7em;
     background-color: #333537;
     color: white;
+    width: 100%;
+
+    -webkit-appearance: none;
+    /*change the icon to one i have edit-icon.svg*/
+    background-image: url("../../assets/icons/edit-icon.svg");
+    background-repeat: no-repeat;
+    background-position-x: 99%;
+    background-position-y: 50%;
+
+    /*change the size*/
+    background-size: 0.60em;
+
+}
+
+/*doesnt show the border when selected*/
+#role-form select:focus{
+    outline: none;
+}
+
+@media screen and (min-width: 1000px){
+    .logout button{
+        position: absolute;
+        bottom: 2.5em;
+        right: 3em;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .logout button{
+        margin-top: 2em;
+        margin-left: 43%;
+        margin-bottom: 2em;
+    }
 }

@@ -56,6 +56,13 @@ class Ticket{
     }
     
     static public function isAuthorized(PDO $db, int $ticket_id, int $creator): bool{
+        //The ticket exists
+        $stmt = $db->prepare('SELECT * FROM Ticket WHERE ticket_id = ?');
+        $stmt->execute([$ticket_id]);
+        if (!$stmt->fetch()) {
+            return false;
+        }
+        
         //The user is admin
         $stmt = $db->prepare('SELECT * FROM Admin WHERE user_id = ?');
         $stmt->execute([$creator]);
@@ -328,6 +335,12 @@ class Ticket{
             $query->bindParam(2, $hashtag, PDO::PARAM_STR);
             $query->execute();
         }
+    }
+
+    static function eraseTicket(PDO $db, int $ticket_id){
+        $query = $db->prepare('DELETE FROM Ticket WHERE ticket_id = ?');
+        $query->bindParam(1, $ticket_id, PDO::PARAM_INT);
+        $query->execute();
     }
 }
 ?>

@@ -11,15 +11,16 @@ $db = connectToDatabase();
 $operator = Client::getClient($db, $session->getUserId(), NULL);
 
 $id = htmlspecialchars($_GET['id']);
+
 if (!isset($id) || empty($id) || !preg_match('/^[0-9]+$/', $id)) {
-    header('Location: /../../pages/error_page.php');
+    header('Location: /../../pages/error_page.php?error=invalid_data');
 }
 
 $target = Client::getClient($db, intval($id), NULL);
 
-$isAuthorised = ($operator->isAdmin) || ($operator->user_id && $target->user_id);
+$isAuthorised = ($operator->isAdmin) || ($operator->user_id==$target->user_id);
 if (!$isAuthorised) {
-    header('Location: /../../pages/error_page.php');
+    header('Location: /../../pages/error_page.php?error=unauthorized');
     die();
 }
 

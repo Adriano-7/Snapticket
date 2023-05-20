@@ -8,15 +8,22 @@ require_once(__DIR__ . '/../../database/connection.db.php');
 require_once(__DIR__ . '/../../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
-$client = Client::getClient($db, $session->getUserId(), NULL);
 
-if (isset($_POST['email']) && !empty($_POST['email'])) {
-  $email = $_POST['email'];
-  $client->changeEmail($db, $email);
-  header('Location: ../pages/profile.php');
+if(!isset($_POST['email']) || !isset($_POST['user_id'])){
+  header('Location: ../../pages/error_page.php?error=missing_data');
+  die();
 }
 
-else {
-  header('Location: ../pages/profile.php');
+$user_id = htmlentities($_POST['user_id']);
+$target = Client::getClient($db, intval($user_id), null);
+
+$email = htmlentities($_POST['email']);
+
+if(!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $email)){
+  header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error=invalid_email');
+  die();
 }
+
+$target->changeEmail($db, $email);
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

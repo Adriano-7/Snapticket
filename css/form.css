@@ -37,6 +37,23 @@ textarea:focus{
     outline: none;
 }
 
+input{
+    background-color: #333537;
+    border-radius: 0.5em;
+    border: none;
+    color: white;
+    height: 2em;
+    margin-left: 1.7em;
+}
+
+input::placeholder{
+    color: white;
+}
+
+input:focus{
+    outline: none;
+}
+
 #name_textarea{
     padding-top: 1.1em;
     padding-left: 0.5em;
@@ -135,11 +152,17 @@ textarea:focus{
         bottom: 0.7em;
         left: 50%;
     }
+    input{
+        width: 25%;
+    }
 }
 
 @media screen and (max-width: 1000px){
     #submit_button{
         bottom: 7em;
         left: 35%;
+    }
+    input{
+        width: 50%;
     }
 }

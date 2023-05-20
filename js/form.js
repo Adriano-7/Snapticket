@@ -62,7 +62,19 @@ function submitTicketForm(){
     hashtagInput.value = selectedHashtags.join(',');
     form.appendChild(hashtagInput);
 
-    form.submit();
+    const requiredFields = form.querySelectorAll('[required]');
+    let isValid = true;
+  
+    requiredFields.forEach(function(field) {
+      if (field.value.trim() === '') {
+        isValid = false;
+        field.classList.add('error_box');
+      }
+    });
+  
+    if(isValid) {
+        form.submit();
+    }
 }
 
 function submitDeptIcon(){
@@ -93,5 +105,54 @@ function submitDepartmentForm(){
     memberInput.value = selectedMembers.join(',');
     form.appendChild(memberInput);
 
-    form.submit();
+    const requiredFields = form.querySelectorAll('[required]');
+    let isValid = true;
+  
+    requiredFields.forEach(function(field) {
+      if (field.value.trim() === '') {
+        isValid = false;
+        field.classList.add('error_box');
+      }
+    });
+  
+    if(isValid) {
+        form.submit();
+    }
+}
+
+function submitChangePassword(){    
+    var new_password = document.querySelector('input[name="new_password"]');
+
+    if(!/^(?=.*[A-Z])(?=.*[0-9]).{8,}$/.test(new_password.value)){
+        new_password.classList.add('error_box');
+
+        var p = document.createElement('p');
+        p.id = 'error_message';
+        p.style.textAlign = 'center';
+        p.style.paddingTop = '1em';
+        p.style.color = '#9d2219';
+        p.innerHTML = 'Your password must contain at least 8 characters, one uppercase letter and one number.';
+
+        if(document.getElementById('error_message') != null){document.getElementById('error_message').remove();}
+
+        document.querySelector('form').insertBefore(p, document.querySelector('form').firstChild);
+    }
+
+    else{
+        var form = document.querySelector('form');
+        const requiredFields = form.querySelectorAll('[required]');
+        let isValid = true;
+
+        requiredFields.forEach(function(field) {
+            if (field.value.trim() === '') {
+                isValid = false;
+                field.classList.add('error_box');
+            }
+        }
+        );
+
+        if(isValid) {
+            form.submit();
+        }
+    }
 }

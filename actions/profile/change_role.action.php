@@ -11,31 +11,26 @@ $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), null);
 
 if (!isset($_POST['id']) || !isset($_POST['role'])) {
-  header('Location: ../../pages/members.php');
+  header('Location: ../../pages/error_page.php?error=missing_data');
   die();
 }
 
 $id = htmlentities($_POST['id']);
 $role = htmlentities($_POST['role']);
 
-if (!in_array($role, array('Client', 'Agent', 'Admin')) || !preg_match('/^[0-9]+$/', $id) ) {
-  header('Location: ../../pages/error_page.php');
+if (!preg_match('/^(Client|Agent|Admin|)$/', $role) || !preg_match('/^[0-9]+$/', $id) ) {
+  header('Location: ../../pages/error_page.php?error=invalid_data');
   die();
 }
 
 $target = Client::getClient($db, intval($id), NULL);
 
 if (!$client->isAdmin || $target === NULL) {
-  header('Location: ../../pages/members.php');
+  header('Location: ../../pages/error_page.php?error=unauthorized');
   die();
 }
 
-if($target->changeRole($db, $role)){
-  header('Location: ../../pages/members.php');
-  die();
-} 
-else {
-  header('Location: ../../pages/error_page.php');
-  die();
-}
+$target->changeRole($db, $role);
+header('Location: ' . $_SERVER['HTTP_REFERER']);
+die();
 ?>

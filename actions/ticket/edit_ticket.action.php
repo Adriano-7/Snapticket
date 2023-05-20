@@ -16,8 +16,8 @@ require_once(__DIR__ . '/../../database/php_classes/history.class.php');
 $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
-if (!isset($_POST['title'])) {
-    header('Location: ../../pages/error_page.php');
+if (!isset($_POST['title']) || !isset($_POST['ticket_id'])) {
+    header('Location: ../../pages/error_page.php?error=missing_data');
     die();
 }
 
@@ -26,31 +26,21 @@ $department = htmlspecialchars($_POST['departments']  ?? '');
 $hashtag = htmlspecialchars($_POST['hashtags']  ?? '');
 $priority = htmlspecialchars($_POST['priority']  ?? '');
 $assignee = htmlspecialchars($_POST['assignee']  ?? '');
-$ticket_id = htmlspecialchars($_POST['ticket_id']  ?? '');
+$ticket_id = intval(htmlspecialchars($_POST['ticket_id']  ?? '-1'));
 
-if($title == ''){
-    header('Location: ../../pages/createTicket.php?error=emptyTitle');
+$isAuthorised = Ticket::isAuthorized($db, $ticket_id, $client->user_id) && $client->isAgent;
+
+if(!$isAuthorised){
+    header('Location: ../../pages/error_page.php?error=unauthorized');
     die();
 }
 
-/*
-if(!preg_match('/^[0-9]+$/', $ticket_id) || !preg_match('/^[0-9,]*$/', $department) || !preg_match('/^(Low|Medium|High)$/', $priority) || !preg_match('/^[0-9]*$/', $assignee)){
-    var_dump($title, $department, $hashtag, $priority, $assignee);
-    var_dump(preg_match('/^[0-9,]*$/', $department), preg_match('/^(Low|Medium|High)$/', $priority), preg_match('/^[0-9]*$/', $assignee));
+if(!preg_match('/^[0-9]+$/', (string)$ticket_id) || !preg_match('/^[0-9,]*$/', $department) || !preg_match('/^(Low|Medium|High|)$/', $priority) || !preg_match('/^[0-9]*$/', $assignee)){
+    header('Location: ../../pages/error_page.php?error=invalid_data');
     die();
-    
-    header('Location: ../../pages/error_page.php');
-    die();
-    
 }
-*/
 
-if($department != ''){
-    $department = explode(',', $department);
-}
-else{
-    $department = [];
-}
+$department = $department != '' ? explode(',', $department) : [];
 
 if($hashtag != ''){
     $hashtag = explode(',', $hashtag);

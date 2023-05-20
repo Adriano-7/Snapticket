@@ -4,9 +4,8 @@ declare(strict_types=1);
 require_once(__DIR__ . '/../utils/session.php');
 require_once(__DIR__ . '/../database/connection.db.php');
 
-require_once(__DIR__ . '/../templates/profile.tpl.php');
 require_once(__DIR__ . '/../templates/common.tpl.php');
-
+require_once(__DIR__ . '/../templates/form.tpl.php');
 require_once(__DIR__ . '/../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
@@ -18,10 +17,7 @@ if (!$session->isLoggedIn()) {
   die();
 }
 
-createHead('Profile', ['style', 'profile'], ['profile']);
+createHead("Editing password", ['style','form'], ['form']);
 drawMenu($db, $client);
-drawUserInfo($db, $client);
-drawUserForms($client);
-drawChangeProfilePic($client);
-drawLogOut();
+drawEditPasswordForm();
 ?>

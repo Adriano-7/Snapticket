@@ -9,7 +9,11 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
 
 
 $db = connectToDatabase();
-$client = Client::getClientWithPassword($db, $_POST['username'], $_POST['password']);
+
+$username = htmlspecialchars($_POST['username']);
+$password = htmlspecialchars($_POST['password']);
+
+$client = Client::getClientWithPassword($db, $username, $password);
 
 if ($client) {
     $session->setUserId($client->user_id);

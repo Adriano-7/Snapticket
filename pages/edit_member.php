@@ -30,10 +30,13 @@ if($target===NULL || !$client->isAdmin && $client->user_id != $target->user_id) 
   die();
 }
 
-createHead('Profile', ['style', 'profile'], ['submit-image', 'edit-member']);
+createHead('Profile', ['style', 'profile'], ['edit-member', 'profile']);
 drawMenu($db, $client);
 drawUserInfo($db, $target);
-drawUserForms($target);
-drawChangeProfilePic($target);
+
+drawEditName($target);
+drawEditUsername($target);
 drawRole($target);
+drawEditEmail($target);
+drawChangeProfilePic($target);
 ?>

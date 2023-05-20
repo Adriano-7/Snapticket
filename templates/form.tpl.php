@@ -4,7 +4,7 @@
             <div class="container">
                 <h1>Ticket Name</h1>
                 <div class="border"></div>
-                <textarea id="name_textarea" placeholder="Name" name="title" <?php if ($error) {echo 'class="error_box"';} ?>></textarea>
+                <textarea id="name_textarea" placeholder="Name" name="title" <?php if ($error) {echo 'class="error_box"';} ?> required></textarea>
             </div>
             <div class="container">
                 <h1>Department</h1>
@@ -62,7 +62,7 @@
             <div class="container">
                 <h1>Ticket Name</h1>
                 <div class="border"></div>
-                <textarea id="name_textarea" name="title" <?php if($error){echo 'class="error_box"';}?>><?=$ticket->ticket_name?></textarea>
+                <textarea id="name_textarea" name="title" <?php if($error){echo 'class="error_box"';}?> required><?=$ticket->ticket_name?></textarea>
             </div>
             <div class="container">
                 <h1>Department</h1>
@@ -204,4 +204,25 @@
     </main>
 </body>
 </html>
+<?php } ?>
+
+<?php function drawEditPasswordForm(){ ?>
+    <main>
+        <?php if(isset($_GET['error']) && htmlentities($_GET['error']) == 'wrong_password') { ?>
+                <p style="text-align: center; padding-top: 1em; color: #9d2219;">Wrong password</p>
+            <?php } ?>
+        <form action="../actions/profile/edit_password.action.php" method="post">
+            <div class="container">
+                <h1>Old Password</h1>
+                <div class="border"></div>
+                <input type="password" name="old_password" required>
+            </div>
+            <div class="container">
+                <h1>New Password</h1>
+                <div class="border"></div>
+                <input type="password" name="new_password" required>
+            </div>
+            <button id="submit_button" type="button" onclick="submitChangePassword()">Save</button>
+        </form>
+    </main>
 <?php } ?>

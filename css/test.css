@@ -1,0 +1,149 @@
+.profile-pic {
+    display: flex;
+    justify-content: center;
+    margin-top: 6%;
+    margin-bottom: 1em;
+}
+
+.profile-pic img {
+    width: 9.625em;
+    height: 9.625em;
+    border-radius: 50%;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-details {
+    text-align: center;
+    color: #ffffff;
+}
+
+.user-details h2 {
+    font-size: 2.2em;
+    font-weight: 400;
+    margin-bottom: 0.20em;
+}
+
+.user-details h3 {
+    font-size: 1.2em;
+    font-weight: 100;
+    margin-bottom: 1.4em;
+}
+
+.edit-forms{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-form{
+    background-color: #333537;
+    margin-bottom: 1em;
+    width: 28em;
+    height: 3em;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.edit-form form{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.edit-form input{
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    font-size: 13px;
+    height: fit-content;
+    width: 15em;
+}
+
+.edit-form button{
+    border: none;
+    width: 1.5em;
+    background: transparent;
+}
+
+.edit-icon {
+    cursor: pointer;
+}
+
+.change-profile-pic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+#file-label, #upload-btn {
+    display: inline-block;
+    vertical-align: middle;
+    border: none;
+}
+
+#file-label {
+    width: 17em;
+    height: 3em;
+    font-size: 13px;
+    background-color: #333537;
+    color: #ffffff;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 3em;
+}
+
+#upload-btn {
+    width: 17em;
+    height: 3em;
+    margin-left: 0;
+    margin-top: 0;
+    font-size: 13px;
+    border-radius: 0 10px 10px 0;
+    background-color: #82B7DC;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    line-height: 3em;
+}
+
+#upload-btn:hover {
+    background-color: #97cff7;
+}
+
+.logout button{
+    color: #ffffff;
+    background-color: #82B7DC;
+    cursor: pointer;
+    border: none;
+    font-weight: 400;
+    border-radius: 0.5em;
+    padding: 0.8em 1em;
+}
+
+@media screen and (min-width: 1000px){
+    .logout button{
+        position: absolute;
+        bottom: 2.5em;
+        right: 3em;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .logout button{
+        margin-top: 2em;
+        margin-left: 43%;
+        margin-bottom: 2em;
+    }
+}

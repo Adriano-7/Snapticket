@@ -2,7 +2,7 @@
 require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../database/php_classes/file.class.php');
 
-$id = isset($_GET['id']) ? $_GET['id'] : '';
+$id = isset($_GET['id']) ? htmlentities($_GET['id']) : '';
 
 if ($id !== '') {
     $db = connectToDatabase();

@@ -18,8 +18,8 @@
 <?php function drawUserForms(Client $client){
     drawEditName($client);
     drawEditUsername($client);
-    drawEditEmail($client);
     drawEditPassword();
+    drawEditEmail($client);
 }
 ?>
 
@@ -27,8 +27,9 @@
     <div class="edit-forms">
         <div class="edit-form">
             <form action="../actions/profile/edit_name.action.php" method="post">
-                <input type="text" name="name" value="<?php echo $client->name ?>">
-                <button type="submit" class="edit-icon"><img src="../assets/icons/edit-icon.svg" alt="edit-button"></button>
+                <input type="text" name="name" value="<?php echo $client->name ?>" readonly required>
+                <button type="submit" class="edit-icon" onclick="toggleEditForm(this)"><img src="../assets/icons/edit-icon.svg"alt="edit-button"></button>
+                <input type="hidden" name="user_id" value="<?php echo $client->user_id ?>">
             </form>
         </div>
     <?php } ?>
@@ -36,8 +37,9 @@
 <?php function drawEditUsername(Client $client){ ?>
     <div class="edit-form">
         <form action="../actions/profile/edit_username.action.php" method="post">
-            <input type="text" name="username" value=<?php echo $client->username ?>>
-            <button type="submit" class="edit-icon"><img src="../assets/icons/edit-icon.svg" alt="edit-button"></button>
+            <input type="text" name="username" value=<?php echo $client->username ?> readonly required>
+            <button type="submit" class="edit-icon" onclick="toggleEditForm(this)"><img src="../assets/icons/edit-icon.svg"alt="edit-button"></button>
+            <input type="hidden" name="user_id" value="<?php echo $client->user_id ?>">
         </form>
     </div>
 <?php } ?>
@@ -45,28 +47,28 @@
 <?php function drawEditEmail(Client $client){ ?>
     <div class="edit-form">
         <form action="../actions/profile/edit_email.action.php" method="post">
-            <input type="email" name="email" value=<?php echo $client->email ?>>
-            <button type="submit" class="edit-icon"><img src="../assets/icons/edit-icon.svg" alt="edit-button"></button>
-        </form>
-    </div>
-<?php } ?>
-
-<?php function drawEditPassword(){ ?>
-    <div class="edit-form">
-        <form action="../actions/profile/edit_password.action.php" method="post">
-            <input type="password" name="password" placeholder="**********">
-            <button type="submit" class="edit-icon"><img src="../assets/icons/edit-icon.svg" alt="edit-button"></button>
+            <input type="email" name="email" value=<?php echo $client->email ?> readonly required>
+            <button type="submit" class="edit-icon" onclick="toggleEditForm(this)"><img src="../assets/icons/edit-icon.svg"alt="edit-button"></button>
+            <input type="hidden" name="user_id" value="<?php echo $client->user_id ?>">
         </form>
     </div>
 </div>
 <?php } ?>
 
-<?php function drawChangeProfilePic($target){ ?>
+<?php function drawEditPassword(){ ?>
+    <div class="edit-form">
+        <span id="password-placeholder">**********</span>
+        <button class="edit-icon" onclick="window.location.href='editPassword.php'"><img src="../assets/icons/edit-icon.svg"alt="edit-button"></button>
+    </div>
+<?php } ?>
+
+<?php function drawChangeProfilePic($client){ ?>
     <div class="change-profile-pic">
-        <form action="../actions/profile/edit_profile_photo.php?<?php echo $target->user_id?>" method="post">
+        <form action="../actions/profile/edit_profile_photo.php>" method="post">
             <input type="file" id="file-input" name="image" style="display:none">
             <label for="file-input" id="file-label">Change profile image</label>
             <button id="upload-btn">Upload</button>
+            <input type="hidden" name="user_id" value="<?php echo $client->user_id ?>">
         </form>
     </div>
 <?php } ?>
@@ -82,16 +84,15 @@
 </html>
 <?php } ?>
 
-<?php function drawRole(Client $target){ ?>
-    <form action="../actions/profile/change_role.action.php" id="role-form" method="post">
-        <input type="hidden" name="id" value="<?php echo $target->user_id ?>">
-        <select class="client-role" name="role" onchange="changeRole()">
-            <option value="Client" <?php if (!$target->isAdmin && !$target->isAgent) echo "selected"; ?>>Client</option>
-            <option value="Agent" <?php if ($target->isAgent && !$target->isAdmin) echo "selected"; ?>>Agent</option>
-            <option value="Admin" <?php if ($target->isAdmin) echo "selected"; ?>>Admin</option>
-        </select>
-    </form>
-</main>
-</body>
-</html>
+<?php function drawRole(Client $client){ ?>
+    <div class="edit-form">
+        <form action="../actions/profile/change_role.action.php" id="role-form" method="post">
+            <select class="client-role" name="role" onchange="changeRole()">
+                <option value="Client" <?php if (!$client->isAdmin && !$client->isAgent) echo "selected"; ?>>Client</option>
+                <option value="Agent" <?php if ($client->isAgent && !$client->isAdmin) echo "selected"; ?>>Agent</option>
+                <option value="Admin" <?php if ($client->isAdmin) echo "selected"; ?>>Admin</option>
+            </select>
+            <input type="hidden" name="id" value="<?php echo $client->user_id ?>">
+        </form>
+    </div>
 <?php } ?>

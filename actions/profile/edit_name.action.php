@@ -8,14 +8,22 @@ require_once(__DIR__ . '/../../database/connection.db.php');
 require_once(__DIR__ . '/../../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
-$client = Client::getClient($db, $session->getUserId(), NULL);
 
-if (isset($_POST['name']) && !empty($_POST['name'])) {
-  $name = $_POST['name'];
-  $client->changeName($db, $name);
-  header('Location: ../../pages/profile.php');
-} 
-else {
-  header('Location: ../../pages/profile.php');
+if(!isset($_POST['name']) || !isset($_POST['user_id'])){
+  header('Location: ../../pages/error_page.php?error=missing_data');
+  die();
 }
+
+$user_id = htmlentities($_POST['user_id']);
+$target = Client::getClient($db, intval($user_id), null);
+
+$name = htmlentities($_POST['name']);
+
+if(empty($name)){
+  header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error=invalid_name');
+  die();
+}
+
+$target->changeName($db, $name);
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

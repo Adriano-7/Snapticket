@@ -36,7 +36,7 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
             <span class="menu-text">Dashboard</span>
           </a>
         <?php } ?>
-        <?php if ($_SERVER['REQUEST_URI'] == '/pages/faq.php') { ?>
+        <?php if (strpos($_SERVER['REQUEST_URI'], '/pages/faq.php') === 0) { ?>
           <a href="faq.php?faq_id=0" style="color:#FFFFFF">
             <img src="../assets/menu_icons/faq-white-icon.svg" alt="Faq" class="menu-icon">
             <span class="menu-text">FAQ</span>

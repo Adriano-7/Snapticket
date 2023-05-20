@@ -27,7 +27,9 @@ if (!isset($_GET['ticket_id'])) {
 }
 
 $ticket_id = htmlentities($_GET['ticket_id']);
-if (!preg_match('/^[0-9]+$/', $ticket_id)) {
+$isAuthorised = Ticket::isAuthorized($db, intval($ticket_id), $client->user_id) && $client->isAgent;
+
+if (!preg_match('/^[0-9]+$/', $ticket_id) || !$isAuthorised) {
     header('Location: ../../pages/error_page.php');
     die();
 }

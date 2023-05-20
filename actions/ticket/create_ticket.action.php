@@ -14,7 +14,12 @@ require_once(__DIR__ . '/../../database/php_classes/hashtag.class.php');
 $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
+
+
 if (!isset($_POST['title'])) {
+    var_dump($_POST);
+    die();
+
     header('Location: ../../pages/error_page.php');
     die();
 }
@@ -24,11 +29,6 @@ $department = htmlspecialchars($_POST['departments']  ?? '');
 $hashtag = htmlspecialchars($_POST['hashtags']  ?? '');
 $priority = htmlspecialchars($_POST['priority']  ?? '');
 $assignee = htmlspecialchars($_POST['assignee']  ?? '');
-
-if($title == ''){
-    header('Location: ../../pages/createTicket.php?error=emptyTitle');
-    die();
-}
 
 if(!preg_match('/^[0-9,]*$/', $department) || !preg_match('/^(Low|Medium|High)$/', $priority) || !preg_match('/^[0-9]*$/', $assignee)){
     var_dump($title, $department, $hashtag, $priority, $assignee);

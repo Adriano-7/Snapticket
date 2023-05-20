@@ -13,7 +13,7 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
                 <?php if ($client->isAgent) { ?>
                     <a href="../pages/editTicket.php?ticket_id=<?php echo $ticket->ticket_id; ?>"><img src="../assets/icons/edit-icon.svg" id="ticket-edit-button" alt="Edit ticket"></a>
                     <a href="../actions/ticket/remove_ticket.action.php?ticket_id=<?php echo  $ticket->ticket_id;?>" class="confirm-action">
-                        <img src="../assets/icons/edit-icon.svg" id="ticket-edit-button" alt="Edit ticket" >
+                        <img src="../assets/icons/delete-icon.svg" id="ticket-delete-button" alt="Delete ticket" >
                     </a>
                 <?php } ?>
             </h1>
@@ -84,7 +84,7 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
             <form action = "../actions/ticket/submit_comment.action.php" id="comment-container" method="post">
                 <input type="hidden" name="ticket_id" value="<?php echo $ticket->ticket_id; ?>">
                 <div class="comment-bar">
-                    <textarea class="comment-textarea" placeholder="Your reply" name="comment"></textarea>
+                    <textarea class="comment-textarea" placeholder="Your reply" name="comment" required></textarea>
                     <button id="faq-button">FAQ</button>
                     <button id="attachment-button"><img src=../assets/icons/attachment-icon.svg alt="Attach Files"></button>
                 </div>

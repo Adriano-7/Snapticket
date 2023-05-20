@@ -14,16 +14,22 @@ require_once(__DIR__ . '/../../database/php_classes/client.class.php');
 $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
-if (!isset($_POST['ticket_id']) || !isset($_POST['comment'])) {
-    header('Location: ../../pages/error_page.php');
+if(!isset($_POST['ticket_id']) || !isset($_POST['comment'])){
+    header('Location: ../../pages/error_page.php?error=missing_data');
     die();
 }
 
 $ticket_id = htmlspecialchars($_POST['ticket_id']);
 $comment = htmlspecialchars($_POST['comment']);
 
+$isAuthorised = Ticket::isAuthorized($db, intval($ticket_id), $client->user_id);
+if (!$isAuthorised) {
+    header('Location: ../../pages/error_page.php?error=unauthorized');
+    die();
+}
+
 if (!preg_match('/^[0-9]+$/', $ticket_id) || !Ticket::isAuthorized($db, intval($ticket_id), $client->user_id)) {
-    header('Location: ../../pages/error_page.php');
+    header('Location: ../../pages/error_page.php?error=invalid_data');
     die();
 }
 

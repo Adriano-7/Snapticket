@@ -183,6 +183,11 @@ textarea{
   margin-left: 0.5em;
 }
 
+#ticket-delete-button{
+  height: 0.78em;
+  margin-left: 0.2em;
+}
+
 #history-button{
   color: #5c5e6c;
   padding: 0.2em;
