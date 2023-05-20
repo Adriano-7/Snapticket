@@ -15,7 +15,7 @@
                             value="<?=$department->department_id?>"><?=$department->name?></button>
                     <?php } ?>
                     <button id="create_dept" class="option" type="button"
-                        onclick="window.location.href='../actions/department/create_department.action.php'"> Create +
+                        onclick="window.location.href='../pages/createDepartment.php'"> Create +
                     </button> </button>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 <?php foreach ($hashtags as $hashtag) { ?>
                 <button class="option" type="button" onclick="select(this)"><?=$hashtag->name?></button>
                 <?php } ?>
-                <div id="create_hastag" class="option" contenteditable="true"> Create </div>
+                <button id="create_dept" class="option" type="button" onclick="window.location.href='../pages/editHashtag.php'"> Create +</button> 
                 </div>
             </div>
             <div class="container">
@@ -72,7 +72,7 @@
                     <?php $isSelected = in_array($department->name, array_column($ticket->departments, 'name')) ?>
                     <button class="option <?php echo $isSelected ? 'selected' : '' ?>" type="button" onclick="select(this)" value="<?=$department->department_id ?>"><?=$department->name?></button>
                 <?php } ?>
-                    <button id="create_dept" class="option" type="button" onclick="window.location.href='../actions/department/create_department.action.php'"> Create + </button> </button>
+                    <button id="create_dept" class="option" type="button" onclick="window.location.href='../pages/createDepartment.php'"> Create + </button> </button>
                 </div>
             </div>
             <div class="container">
@@ -83,7 +83,7 @@
                     <?php $isSelected = in_array($hashtag->name, array_column($ticket->hashtags, 'name')) ?>
                     <button class="option <?php echo $isSelected ? 'selected' : '' ?>" type="button" onclick="select(this)" value="<?php echo $hashtag->name ?>"><?php echo $hashtag->name ?></button>
                 <?php } ?>
-                    <div id="create_hastag" class="option" contenteditable="true"> Create </div>
+                <button id="create_dept" class="option" type="button" onclick="window.location.href='../pages/editHashtag.php'"> Create +</button> 
                 </div>
             </div>
             <div class="container">
@@ -206,6 +206,29 @@
 </html>
 <?php } ?>
 
+<?php function drawHashtagsForm($hashtags){ ?>
+    <main>
+        <form action="../actions/hashtags/editHashtag.action.php" method="post">
+            <?php $i = 0; foreach($hashtags as $hashtag){ ?>
+            <div class="container">
+                <h1></h1>
+                <div class="border"></div>
+                <textarea class="textarea" name="H[]" required><?php echo $hashtag->name ?></textarea>
+            </div>
+            <?php $i++; } ?>
+            <div class="container">
+                <h1></h1>
+                <div class="border"></div>
+                <button id="add_button" type="button" onclick="addHashtag()">Add Hashtag</button>
+            </div>
+            <button id="submit_button" type="submit">Save</button>
+        </form>
+    </main>
+</body>
+</html>
+<?php } ?>
+
+
 <?php function drawEditPasswordForm(){ ?>
     <main>
         <?php if(isset($_GET['error']) && htmlentities($_GET['error']) == 'wrong_password') { ?>
@@ -226,3 +249,4 @@
         </form>
     </main>
 <?php } ?>
+

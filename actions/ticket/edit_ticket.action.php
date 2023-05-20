@@ -41,21 +41,10 @@ if(!preg_match('/^[0-9]+$/', (string)$ticket_id) || !preg_match('/^[0-9,]*$/', $
 }
 
 $department = $department != '' ? explode(',', $department) : [];
-
-if($hashtag != ''){
-    $hashtag = explode(',', $hashtag);
-    foreach($hashtag as $tag){
-        if(!Hashtag::hashtagExists($db, $tag)){
-            Hashtag::createHashtag($db, $tag);
-        }
-    }
-}
-else{
-    $hashtag = [];
-}
+$hashtags = $hashtag != '' ? explode(',', $hashtag) : [];
 
 $ticket = Ticket::getTicket($db, intval($ticket_id));
-$ticket->alterTicket($db, $title, $department, $priority, intval($assignee), $hashtag);
+$ticket->alterTicket($db, $title, $department, $priority, intval($assignee), $hashtags);
 History::addEditHistory($db, intval($ticket_id), $client->user_id);
 
 header('Location: ../../pages/ticket.php?ticket_id=' . $ticket_id);

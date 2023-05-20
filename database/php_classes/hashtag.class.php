@@ -17,15 +17,19 @@ class Hashtag{
         return $hashtags;
     }
 
-    static function hashtagExists(PDO $db, string $tag){
+    static function hashtagExists(PDO $db, string $hashtag){
         $stmt = $db->prepare('SELECT * FROM Hashtag WHERE name = ?');
-        $stmt->execute([$tag]);
+        $stmt->execute([$hashtag]);
         return $stmt->fetch() !== false;
     }
 
-    static function createHashtag(PDO $db, string $tag){
-        $stmt = $db->prepare('INSERT INTO Hashtag (name) VALUES (?)');
-        $stmt->execute([$tag]);
+    static function editHashtags(PDO $db, array $hashtags){
+        $query = $db->prepare('DELETE FROM Hashtag');
+        $query->execute();
+        foreach($hashtags as $hashtag){
+            $query = $db->prepare('INSERT INTO Hashtag (name) VALUES (?)');
+            $query->execute([$hashtag]);
+        }
     }
 }
 ?>

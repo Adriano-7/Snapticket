@@ -93,11 +93,6 @@ input:focus{
     outline: none;
 }
 
-#create_hastag::after{
-    content: "+";
-    padding-left: 0.5em;
-}
-
 .select{
     color: white;
     background-color: #333537;
