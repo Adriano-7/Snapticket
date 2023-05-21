@@ -8,9 +8,11 @@
                 <?php $notification->sender->displayProfilePhoto("notification_profile_pic") ?>
                 <span class="notification_name"> <?php echo $notification->sender->name ?> </span>
                 <span class="notification_text"> <?php echo $notification->content ?> </span>
+                <div class="notification_final">
                 <span class="notification_time"> <?php echo Notification::getNiceDate($notification) ?> </span>
+                <a class="notification_delete" href="../actions/notification/eliminate_notification.action.php?notification_id=<?php echo $notification->notification_id ?>"> <img src="../assets/icons/cross-icon.svg" alt="Remove notification"> </a>
+            </div>
             </a>
-            <a class="notification_delete" href="../actions/notification/eliminate_notification.action.php?notification_id=<?php echo $notification->notification_id ?>"> <img src="../assets/icons/cross-icon.svg" alt="Remove notification"> </a>
         </div>
     <?php } ?>
     </div>

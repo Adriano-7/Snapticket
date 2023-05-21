@@ -64,7 +64,7 @@
 
 <?php function drawChangeProfilePic($client){ ?>
     <div class="change-profile-pic">
-        <form action="../actions/profile/edit_profile_photo.php>" method="post">
+        <form action="../actions/profile/edit_profile_photo.php" method="post" enctype="multipart/form-data">
             <input type="file" id="file-input" name="image" style="display:none">
             <label for="file-input" id="file-label">Change profile image</label>
             <button id="upload-btn">Upload</button>

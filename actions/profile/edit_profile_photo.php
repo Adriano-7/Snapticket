@@ -9,6 +9,8 @@ require_once(__DIR__ . '/../../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
 
+
+
 if(!isset($_FILES['image']) || !isset($_POST['user_id'])){
   header('Location: ../../pages/error_page.php?error=missing_data');
   die();
@@ -19,9 +21,10 @@ $user_id = htmlentities($_POST['user_id']);
 $target = Client::getClient($db, intval($user_id), null);
 
 $image = $_FILES['image']['tmp_name'];
+$type = $_FILES['image']['type'];
 
 
-if(!preg_match('/^image\/(jpeg|png|jpg|svg)$/', mime_content_type($image)) || $_FILES['image']['size'] > 200000000){
+if(!preg_match('/^image\/(jpeg|png|jpg|svg)$/', $type) || $_FILES['image']['size'] > 200000000){
   header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error=invalid_image');
   die();
 }
