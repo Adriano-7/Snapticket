@@ -145,7 +145,8 @@ tr:not(thead) {
 }
 
 .tickets_description_department,
-.tickets_description_client {
+.tickets_description_client,
+.ticket_description_priority {
   font-size: 10px;
   color: #5C6165;
 }
@@ -159,7 +160,11 @@ tr:not(thead) {
   margin-right: 0.5em;
 }
 
-.tickets_description_department::after {
+.ticket_description_priority{
+  margin-right: 0.5em;
+}
+
+.tickets_description_department::after, .ticket_description_priority::after {
   content: "•";
   margin-left: 0.5em;
   font-size: 0.7em;

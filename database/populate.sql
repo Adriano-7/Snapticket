@@ -85,23 +85,23 @@ INSERT INTO ClientDepartment VALUES (15, 3);
 INSERT INTO Admin VALUES (7);
 
 --Ticket Table
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Issue with recording credit card transactions in accounting system', '2023-05-01 09:30:15', '', 10, 'Assigned', 1);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Request for clarification on revenue recognition policies for new product lines', '2023-05-02 10:30:15', '', 12, 'Assigned', 1);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Request for assistance with financial due diligence', '2023-05-03 19:30:15', '', 6, 'Closed', 1);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Issue with expense reimbursement for employee travel', '2023-05-03 23:30:15', '', NULL, 'Open', 1);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Inquiry about accounting treatment for leasehold improvements', '2023-05-03 23:30:25', '', 10, 'Closed', 1);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Issue with accounts payable aging report', '2023-05-04 09:30:15', '', NULL, 'Open', 1);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Issue with depreciation calculation for fixed assets', '2023-05-04 10:30:15', '', 9, 'Assigned', 1);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Complying with EU Laws on Disability Accommodations', '2023-05-04 14:30:15', '', 9, 'Assigned', 5);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Having trouble connecting to the companys email', '2023-05-04 16:30:15', '', 16, 'Assigned', 4);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Unable to reconcile bank accounts in QuickBooks', '2023-05-05 19:20:15', '', 11, 'Closed', 1);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Challenges scheduling sales team training request', '2023-05-06 09:36:15', '', 15, 'Assigned', 9);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Promotion code not working', '2023-05-11 10:30:15', '', NULL, 'Open', 4);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Privacy policy update to comply with new GDPR legislation', '2023-05-11 12:30:15', '', 14, 'Assigned', 3);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Intellectual property dispute', '2023-05-11 17:30:15', '', NULL, 'Open', 14);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Incorrect tax filling submitted to IRS for client', '2023-05-12 09:30:15', '', 8, 'Assigned', 1);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Unable to access customer database', '2023-05-13 11:30:15', '', 13, 'Assigned', 2);
-INSERT INTO Ticket (ticket_name, date, priority, assignee, status, creator) VALUES ('Need access to financial reports', '2023-05-13 12:30:15', '', 6, 'Assigned', 1);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (1, 'Issue with recording credit card transactions in accounting system', '2023-05-01 09:30:15', 'High', 10, 'Assigned', 1);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (2, 'Request for clarification on revenue recognition policies for new product lines', '2023-05-02 10:30:15', 'Low', 12, 'Assigned', 1);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (3, 'Request for assistance with financial due diligence', '2023-05-03 19:30:15', 'High', 6, 'Closed', 1);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (4, 'Issue with expense reimbursement for employee travel', '2023-05-03 23:30:15', 'Medium', NULL, 'Open', 1);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (5, 'Inquiry about accounting treatment for leasehold improvements', '2023-05-03 23:30:25', 'Low', 10, 'Closed', 1);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (6, 'Issue with accounts payable aging report', '2023-05-04 09:30:15', 'High', NULL, 'Open', 1);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (7, 'Issue with depreciation calculation for fixed assets', '2023-05-04 10:30:15', 'High', 9, 'Assigned', 1);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (8, 'Complying with EU Laws on Disability Accommodations', '2023-05-04 14:30:15', 'Medium', 9, 'Assigned', 5);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (9, 'Having trouble connecting to the companys email', '2023-05-04 16:30:15', 'Low', 16, 'Assigned', 4);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (10, 'Unable to reconcile bank accounts in QuickBooks', '2023-05-05 19:20:15', 'Low', 11, 'Closed', 1);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (11, 'Challenges scheduling sales team training request', '2023-05-06 09:36:15', 'High', 15, 'Assigned', 9);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (12, 'Promotion code not working', '2023-05-11 10:30:15', 'Medium', NULL, 'Open', 4);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (13, 'Privacy policy update to comply with new GDPR legislation', '2023-05-11 12:30:15', 'Low', 14, 'Assigned', 3);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (14, 'Intellectual property dispute', '2023-05-11 17:30:15', 'Low', NULL, 'Open', 14);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (15, 'Incorrect tax filling submitted to IRS for client', '2023-05-12 09:30:15', 'High', 8, 'Assigned', 1);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (16, 'Unable to access customer database', '2023-05-13 11:30:15', 'High', 13, 'Assigned', 2);
+INSERT INTO Ticket (ticket_id, ticket_name, date, priority, assignee, status, creator) VALUES (17, 'Need access to financial reports', '2023-05-13 12:30:15', 'Low', 6, 'Assigned', 1);
 
 --TicketDepartment Table
 INSERT INTO TicketDepartment VALUES (1, 1);

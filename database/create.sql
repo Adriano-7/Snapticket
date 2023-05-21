@@ -57,7 +57,7 @@ CREATE TABLE Ticket (
     ticket_name TEXT,
     date TEXT DEFAULT (datetime('now', 'localtime')),
     priority TEXT, 
-    assignee INTEGER REFERENCES Agent(user_id) ON DELETE SET NULL ON UPDATE CASCADE, 
+    assignee INTEGER REFERENCES Agent(user_id) ON DELETE CASCADE ON UPDATE CASCADE, 
     status TEXT, 
     creator INTEGER REFERENCES Client(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -71,7 +71,7 @@ CREATE TABLE TicketDepartment (
 DROP TABLE IF EXISTS TicketHashtag;
 CREATE TABLE TicketHashtag (
     ticket_id INTEGER REFERENCES Ticket (ticket_id) ON DELETE CASCADE ON UPDATE CASCADE, 
-    name REFERENCES Hashtag (name)
+    name REFERENCES Hashtag (name) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS TicketHistory;

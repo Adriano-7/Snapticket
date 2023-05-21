@@ -65,9 +65,10 @@
                 <?=$ticket->ticket_name?>
               </div>
               <div class="tickets_description_details">
+                <div class="ticket_description_priority"><?=$ticket->priority?></div>
                 <div class="tickets_description_department">
                   <?php foreach ($ticket->departments as $department) { ?>
-                    <?=$department['name']?>
+                    <?= $department['name']?>
                   <?php } ?>
                 </div>
                 <div class="tickets_description_client">

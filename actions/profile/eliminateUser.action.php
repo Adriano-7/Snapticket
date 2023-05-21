@@ -8,7 +8,7 @@ require_once(__DIR__ . '/../../database/connection.db.php');
 require_once(__DIR__ . '/../../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
-$operator = Client::getClient($db, $session->getUserId(), NULL);
+$client = Client::getClient($db, $session->getUserId(), NULL);
 
 $id = htmlspecialchars($_GET['id']);
 
@@ -18,8 +18,9 @@ if (!isset($id) || empty($id) || !preg_match('/^[0-9]+$/', $id)) {
 
 $target = Client::getClient($db, intval($id), NULL);
 
-$isAuthorised = ($operator->isAdmin) || ($operator->user_id==$target->user_id);
-if (!$isAuthorised || $_SESSION['csrf'] !== $_GET['csrf']) {
+$isAuthorised = ($client->isAdmin) || ($client->user_id == $target->user_id);
+
+if (!$isAuthorised) {
     header('Location: /../../pages/errorPage.php?error=unauthorized');
     die();
 }

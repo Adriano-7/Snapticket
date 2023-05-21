@@ -78,3 +78,10 @@ BEGIN
     FROM Ticket
     WHERE ticket_id = NEW.ticket_id AND (SELECT creator FROM Ticket WHERE ticket_id = NEW.ticket_id) != NEW.user_id;
 END;
+
+CREATE TRIGGER DeleteClientTickets
+BEFORE DELETE ON Client
+FOR EACH ROW
+BEGIN
+    DELETE FROM Ticket WHERE creator = OLD.user_id;
+END;
