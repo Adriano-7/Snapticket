@@ -245,6 +245,10 @@ textarea{
   overflow-x: hidden;
 }
 
+#faq-popup p{
+  cursor: pointer;
+}
+
 #faq-popup h1{
   text-align: center;
 }
@@ -262,6 +266,7 @@ textarea{
 
   position: relative;
   left: 25%;
+  cursor: pointer;
 }
 
 #faq-popup select:focus{

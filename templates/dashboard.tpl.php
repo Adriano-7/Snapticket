@@ -1,8 +1,12 @@
 <?php function drawSearchBar($departments, $status, $assignee, $hashtags)
 { ?>
   <main>
-    <div class="tickets_search">
+    <div id="tickets_search">
       <input type="text" placeholder="Search..." id="search_bar">
+      <button onclick="showFilters()" id="show_filter"><img src="../assets/icons/filters-icon.svg" alt="Filter the results"></button>
+      <button onclick="window.location.href='../pages/createTicket.php'" id="create_ticket">Create Ticket</button>
+    </div>
+    <div id="filter_row" style="display: none;">
         <select name="dept" class="add_filter" id="dept_select">
           <option value="">Department</option>
           <?php foreach ($departments as $department) { ?>
@@ -27,7 +31,6 @@
             <option value="<?= $hashtag ?>"><?= $hashtag ?></option>
           <?php } ?>
         </select>
-      <button onclick="window.location.href='../pages/createTicket.php'" class="create_ticket">Create Ticket</button>
     </div>
   <?php } ?>
 
@@ -44,9 +47,7 @@
       <tbody>
         <?php foreach ($tickets as $ticket) { ?>
           <tr onclick="window.location.href='ticket.php?ticket_id=<?=$ticket->ticket_id?>'">
-            <td class="tickets_id">
-              <div style="display: flex; align-items: center;">
-                <?=$ticket->ticket_id?>
+            <td class="tickets_id"><?=$ticket->ticket_id?>
                 <?php if (strtolower($ticket->status) === 'open') { ?>
                   <span class="tickets_status_open">•</span>
                 <?php } else if (strtolower($ticket->status) === 'assigned') { ?>
@@ -54,7 +55,6 @@
                 <?php } else if (strtolower($ticket->status) === 'closed') { ?>
                       <span class="tickets_status_closed">•</span>
                 <?php } ?>
-              </div>
             </td>
             <td class="tickets_assignee">
               <?php if ($ticket->assignee === null) {echo '';} 
@@ -65,10 +65,10 @@
                 <?=$ticket->ticket_name?>
               </div>
               <div class="tickets_description_details">
-                <div class="ticket_description_priority"><?=$ticket->priority?></div>
+                <div class="ticket_description_priority"><?=$ticket->priority  . " Priority • "?></div>
                 <div class="tickets_description_department">
                   <?php foreach ($ticket->departments as $department) { ?>
-                    <?= $department['name']?>
+                    <?= $department['name']  . " • "?>
                   <?php } ?>
                 </div>
                 <div class="tickets_description_client">

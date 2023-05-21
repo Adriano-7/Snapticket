@@ -177,3 +177,9 @@ function createClient(clientText) {
   client.appendChild(document.createTextNode(clientText));
   return client;
 }
+
+function showFilters() {
+  const filterRow = document.getElementById("filter_row");
+  if (filterRow.style.display === "none") {filterRow.style.display = "block";} 
+  else {filterRow.style.display = "none";}
+}
