@@ -1,6 +1,6 @@
 <?php function drawTicketForm($departments, $hashtags, $agents, $error){ ?>
     <main>
-        <form action="../actions/ticket/create_ticket.action.php" method="post">
+        <form action="../actions/ticket/createTicket.action.php" method="post">
             <div class="container">
                 <h1>Ticket Name</h1>
                 <div class="border"></div>
@@ -59,7 +59,7 @@
 
 <?php function drawEditTicketForm($departments, $hashtags, $agents, $error, Ticket $ticket){ ?>
     <main>
-        <form action="../actions/ticket/edit_ticket.action.php" method="post">
+        <form action="../actions/ticket/editTicket.action.php" method="post">
             <div class="container">
                 <h1>Ticket Name</h1>
                 <div class="border"></div>
@@ -119,7 +119,7 @@
 
 <?php function drawDepartmentForm($clients, $error){ ?>
     <main>
-        <form action="../actions/department/create_department.action.php" method="post" enctype="multipart/form-data">
+        <form action="../actions/department/createDepartment.action.php" method="post" enctype="multipart/form-data">
             <div class="container" >
                 <h1>Department Name</h1>
                 <div class="border"></div>
@@ -153,7 +153,7 @@
 
 <?php function drawEditDepartmentForm(Department $department, array $allClients){ ?>
     <main>
-        <form action="../actions/department/edit_department.action.php" method="post" enctype="multipart/form-data">
+        <form action="../actions/department/editDepartment.action.php" method="post" enctype="multipart/form-data">
             <div class="container" >
                 <h1>Department Name</h1>
                 <div class="border"></div>
@@ -188,7 +188,7 @@
 
 <?php function drawEditFaqForm($questions, $faq_id){ ?>
     <main>
-        <form action="../actions/faq/edit_faq.action.php" method="post">
+        <form action="../actions/faq/editFaq.action.php" method="post">
             <?php foreach($questions as $question) { ?>
             <div class="container">
                 <h1>Question <?php echo $question->num ?></h1>
@@ -241,7 +241,7 @@
         <?php if(isset($_GET['error']) && htmlentities($_GET['error']) == 'wrong_password') { ?>
                 <p style="text-align: center; padding-top: 1em; color: #9d2219;">Wrong password</p>
             <?php } ?>
-        <form action="../actions/profile/edit_password.action.php" method="post">
+        <form action="../actions/profile/editPassword.action.php" method="post">
             <div class="container">
                 <h1>Old Password</h1>
                 <div class="border"></div>

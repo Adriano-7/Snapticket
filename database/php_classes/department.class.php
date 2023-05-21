@@ -47,7 +47,7 @@ class Department{
     }
 
     function displayIcon(string $class){
-        echo '<img src="../actions/display_pic.action.php?id=' . $this->image_id . '" alt="' . $this->name . ' icon" class="' . $class . '">';
+        echo '<img src="../actions/displayPic.action.php?id=' . $this->image_id . '" alt="' . $this->name . ' icon" class="' . $class . '">';
     }
 
     static function createDepartment(PDO $db, string $title, array $members, $image){

@@ -26,7 +26,7 @@ if(!isset($_GET['ticket_id'])) {
 
 $isAuthorised = Ticket::isAuthorized($db, intval($_GET['ticket_id']), $session->getUserId());
 if (!$isAuthorised) {
-  header('Location: error_page.php');
+  header('Location: errorPage.php');
   die();
 }
 

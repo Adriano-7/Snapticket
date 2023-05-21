@@ -9,29 +9,35 @@ require_once(__DIR__ . '/../../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
 
-if(!isset($_POST['name']) || !isset($_POST['user_id'])){
-  header('Location: ../../pages/error_page.php?error=missing_data');
+
+
+if(!isset($_FILES['image']) || !isset($_POST['user_id'])){
+  header('Location: ../../pages/errorPage.php?error=missing_data');
   die();
 }
 
 
 $user_id = htmlentities($_POST['user_id']);
-$client = Client::getClient($db, $session->getUserId(), NULL);
 $target = Client::getClient($db, intval($user_id), null);
+$client = Client::getClient($db, $session->getUserId(), NULL);
 
 $isAuthorized = $client->isAdmin || ($client->user_id === $target->user_id);
 if(!$isAuthorized || $_SESSION['csrf'] !== $_POST['csrf']){
-  header('Location: ../../pages/error_page.php?error=unauthorized');
+  header('Location: ../../pages/errorPage.php?error=unauthorized');
   die();
 }
 
-$name = htmlentities($_POST['name']);
+$image = $_FILES['image']['tmp_name'];
+$type = $_FILES['image']['type'];
 
-if(empty($name)){
-  header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error=invalid_name');
+
+if(!preg_match('/^image\/(jpeg|png|jpg|svg)$/', $type) || $_FILES['image']['size'] > 200000000){
+  header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error=invalid_image');
   die();
 }
 
-$target->changeName($db, $name);
+$image_blob = file_get_contents($image);
+$target->changeProfilePhoto($db, $image_blob);
+
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

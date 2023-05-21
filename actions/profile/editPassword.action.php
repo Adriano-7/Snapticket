@@ -11,12 +11,12 @@ $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
 if ($_SESSION['csrf'] !== $_POST['csrf']) {
-  header('Location: ../../pages/error_page.php?error=unauthorized');
+  header('Location: ../../pages/errorPage.php?error=unauthorized');
   die();
 }
 
 if (!isset($_POST['old_password']) || !isset($_POST['new_password'])) {
-  header('Location: ../../pages/error_page.php?error=missing_data');
+  header('Location: ../../pages/errorPage.php?error=missing_data');
   die();
 }
 

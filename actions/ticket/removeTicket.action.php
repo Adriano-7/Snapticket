@@ -12,7 +12,7 @@ $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
 if (!isset($_GET['ticket_id'])) {
-    header('Location: ../../pages/error_page.php?error=missing_data');
+    header('Location: ../../pages/errorPage.php?error=missing_data');
     die();
 }
 
@@ -20,12 +20,12 @@ $ticket_id = htmlspecialchars($_GET['ticket_id']);
 $isAuthorised = Ticket::isAuthorized($db, intval($ticket_id), $client->user_id) && $client->isAgent;
 
 if (!$isAuthorised) {
-    header('Location: ../../pages/error_page.php?error=unauthorized');
+    header('Location: ../../pages/errorPage.php?error=unauthorized');
     die();
 }
 
 if (!preg_match('/^[0-9]+$/', $ticket_id)) {
-    header('Location: ../../pages/error_page.php?error=invalid_data');
+    header('Location: ../../pages/errorPage.php?error=invalid_data');
     die();
 }
 

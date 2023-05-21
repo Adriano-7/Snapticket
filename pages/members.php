@@ -10,7 +10,7 @@ require_once(__DIR__ . '/../templates/members.tpl.php');
 require_once(__DIR__ . '/../database/php_classes/client.class.php');
 require_once(__DIR__ . '/../database/php_classes/department.class.php');
 
-require_once(__DIR__ . '/../api/filter_members.php');
+require_once(__DIR__ . '/../api/filterMembers.php');
 
 $db = connectToDatabase();
 $session = new Session();
@@ -24,13 +24,13 @@ if (!$session->isLoggedIn()) {
 }
 
 if(!$client->isAdmin){
-  header('Location: error_page.php');
+  header('Location: errorPage.php');
   die();
 }
 
 $members = $client->searchClients($db, new MemberFilters());
 
-createHead('Members', ['style', 'members'], ['members-search', 'script']);
+createHead('Members', ['style', 'members'], ['membersSearch', 'script']);
 drawMenu($db, $client);
 drawSearchFilters($departments, $roles);
 drawMembersTable($db, $members);

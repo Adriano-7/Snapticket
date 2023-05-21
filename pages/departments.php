@@ -22,7 +22,7 @@ if (!$session->isLoggedIn()) {
 }
 
 if(!$client->isAdmin){
-  header('Location: error_page.php');
+  header('Location: errorPage.php');
   die();
 }
 

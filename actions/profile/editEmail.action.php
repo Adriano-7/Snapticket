@@ -10,7 +10,7 @@ require_once(__DIR__ . '/../../database/php_classes/client.class.php');
 $db = connectToDatabase();
 
 if(!isset($_POST['email']) || !isset($_POST['user_id'])){
-  header('Location: ../../pages/error_page.php?error=missing_data');
+  header('Location: ../../pages/errorPage.php?error=missing_data');
   die();
 }
 
@@ -20,7 +20,7 @@ $client = Client::getClient($db, $session->getUserId(), NULL);
 
 $isAuthorized = $client->isAdmin || ($client->user_id === $target->user_id);
 if(!$isAuthorized || $_SESSION['csrf'] !== $_POST['csrf']){
-  header('Location: ../../pages/error_page.php?error=unauthorized');
+  header('Location: ../../pages/errorPage.php?error=unauthorized');
   die();
 }
 

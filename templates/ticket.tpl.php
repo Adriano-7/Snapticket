@@ -12,7 +12,7 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
                 <?php echo $ticket->ticket_name; ?>
                 <?php if ($client->isAgent) { ?>
                     <a href="../pages/editTicket.php?ticket_id=<?php echo $ticket->ticket_id; ?>"><img src="../assets/icons/edit-icon.svg" id="ticket-edit-button" alt="Edit ticket"></a>
-                    <a href="../actions/ticket/remove_ticket.action.php?ticket_id=<?php echo  $ticket->ticket_id;?>" class="confirm-action">
+                    <a href="../actions/ticket/removeTicket.action.php?ticket_id=<?php echo  $ticket->ticket_id;?>" class="confirm-action">
                         <img src="../assets/icons/delete-icon.svg" id="ticket-delete-button" alt="Delete ticket" >
                     </a>
                 <?php } ?>
@@ -45,7 +45,7 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
             </div>
         </div>
     <?php if ($client->isAgent) { ?>
-        <form action="../actions/ticket/change_status.action.php" id="status-form" method="post">
+        <form action="../actions/ticket/changeStatus.action.php" id="status-form" method="post">
             <input type="hidden" name="ticket_id" value="<?php echo $ticket->ticket_id; ?>">
             <select class="ticket-status" name="status" onchange="changeStatus()" style="background-color: <?php if($ticket->status==="Open"){echo '#4a7155';} elseif($ticket->status==="Assigned"){echo '#c59c69';}elseif($ticket->status==="Closed"){echo '#994A4C';}?>">
                 <option value="Open" <?php if ($ticket->status === "Open")
@@ -81,7 +81,7 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
 <?php } ?>
 
 <?php function drawTextContainer($ticket){  ?>
-            <form action = "../actions/ticket/submit_comment.action.php" id="comment-container" method="post">
+            <form action = "../actions/ticket/submitComment.action.php" id="comment-container" method="post">
                 <input type="hidden" name="ticket_id" value="<?php echo $ticket->ticket_id; ?>">
                 <div class="comment-bar">
                     <textarea class="comment-textarea" placeholder="Your reply" name="comment" required></textarea>

@@ -9,10 +9,8 @@ require_once(__DIR__ . '/../../database/php_classes/client.class.php');
 
 $db = connectToDatabase();
 
-
-
-if(!isset($_FILES['image']) || !isset($_POST['user_id'])){
-  header('Location: ../../pages/error_page.php?error=missing_data');
+if(!isset($_POST['username']) || !isset($_POST['user_id'])){
+  header('Location: ../../pages/errorPage.php?error=missing_data');
   die();
 }
 
@@ -23,21 +21,17 @@ $client = Client::getClient($db, $session->getUserId(), NULL);
 
 $isAuthorized = $client->isAdmin || ($client->user_id === $target->user_id);
 if(!$isAuthorized || $_SESSION['csrf'] !== $_POST['csrf']){
-  header('Location: ../../pages/error_page.php?error=unauthorized');
+  header('Location: ../../pages/errorPage.php?error=unauthorized');
   die();
 }
 
-$image = $_FILES['image']['tmp_name'];
-$type = $_FILES['image']['type'];
+$username = htmlentities($_POST['username']);
 
-
-if(!preg_match('/^image\/(jpeg|png|jpg|svg)$/', $type) || $_FILES['image']['size'] > 200000000){
-  header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error=invalid_image');
+if(!preg_match('/^[a-zA-Z][a-zA-Z0-9._]+$/', $username) || Client::usernameExists($db, $username)){
+  header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error=invalid_username');
   die();
 }
 
-$image_blob = file_get_contents($image);
-$target->changeProfilePhoto($db, $image_blob);
-
+$target->changeUsername($db, $username);
 header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

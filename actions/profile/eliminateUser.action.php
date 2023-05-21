@@ -13,14 +13,14 @@ $operator = Client::getClient($db, $session->getUserId(), NULL);
 $id = htmlspecialchars($_GET['id']);
 
 if (!isset($id) || empty($id) || !preg_match('/^[0-9]+$/', $id)) {
-    header('Location: /../../pages/error_page.php?error=invalid_data');
+    header('Location: /../../pages/errorPage.php?error=invalid_data');
 }
 
 $target = Client::getClient($db, intval($id), NULL);
 
 $isAuthorised = ($operator->isAdmin) || ($operator->user_id==$target->user_id);
 if (!$isAuthorised || $_SESSION['csrf'] !== $_GET['csrf']) {
-    header('Location: /../../pages/error_page.php?error=unauthorized');
+    header('Location: /../../pages/errorPage.php?error=unauthorized');
     die();
 }
 

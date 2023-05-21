@@ -13,7 +13,7 @@ $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
 if(!$client->isAdmin || $_SESSION['csrf'] !== $_POST['csrf']){
-    header('Location: ../../pages/error_page.php?error=unauthorized');
+    header('Location: ../../pages/errorPage.php?error=unauthorized');
     die();
 }
 

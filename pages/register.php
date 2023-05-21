@@ -7,7 +7,7 @@ require_once(__DIR__ . '/../database/connection.db.php');
 
 $session = new Session();
 
-createHead('Register', ['register'], ['register-check']);
+createHead('Register', ['register'], ['registerCheck']);
 drawLogo();
 drawIntroductionText();
 drawRegisterForm($session->getDuplicateUsername());

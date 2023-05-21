@@ -14,7 +14,7 @@ $session = new Session();
 
 $id = htmlspecialchars($_GET['id']);
 if (!isset($id) || empty($id) || !preg_match('/^[0-9]+$/', $id)) {
-    header('Location: /../../pages/error_page.php');
+    header('Location: /../../pages/errorPage.php');
 }
 
 $client = Client::getClient($db, $session->getUserId(), null);
@@ -26,11 +26,11 @@ if (!$session->isLoggedIn()) {
 }
 
 if($target===NULL || !$client->isAdmin && $client->user_id != $target->user_id) {
-  header('Location: /../../pages/error_page.php');
+  header('Location: /../../pages/errorPage.php');
   die();
 }
 
-createHead('Profile', ['style', 'profile'], ['edit-member', 'profile']);
+createHead('Profile', ['style', 'profile'], ['editMember', 'profile']);
 drawMenu($db, $client);
 drawUserInfo($db, $target);
 

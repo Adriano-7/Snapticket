@@ -13,7 +13,7 @@ let assigneeSortValue = '';
 let descriptionSortValue = '';
 
 function updateMembers() {
-    fetch(`../api/api_tickets.php?search=${search.value}&dept=${dept.value}&status=${status_.value}&priority=&assignee=${assignee.value}&hashtag=${hashtag.value}&orderId=${idSortValue}&orderAssignee=${assigneeSortValue}&orderDescription=${descriptionSortValue}`)
+    fetch(`../api/apiTickets.php?search=${search.value}&dept=${dept.value}&status=${status_.value}&priority=&assignee=${assignee.value}&hashtag=${hashtag.value}&orderId=${idSortValue}&orderAssignee=${assigneeSortValue}&orderDescription=${descriptionSortValue}`)
         .then(response => response.json())
         .then(data => {
             clearTickets();

@@ -9,7 +9,7 @@ require_once(__DIR__ . '/../templates/common.tpl.php');
 
 require_once(__DIR__ . '/../database/php_classes/client.class.php');
 require_once(__DIR__ . '/../database/php_classes/ticket.class.php');
-require_once(__DIR__ . '/../api/filter_tickets.php');
+require_once(__DIR__ . '/../api/filterTickets.php');
 
 $db = connectToDatabase();
 $session = new Session();
@@ -41,7 +41,7 @@ $status = Ticket::getStatuses($tickets);
 $assignee = Ticket::getAssignees($tickets);
 $hashtags = Ticket::getHashtags($tickets);
 
-createHead('Dashboard', ['style', 'dashboard'], ['tickets-search']);
+createHead('Dashboard', ['style', 'dashboard'], ['ticketsSearch']);
 drawMenu($db, $client);
 drawSearchBar($departments, $status, $assignee, $hashtags);
 drawTicketsTable($tickets, $db);

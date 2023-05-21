@@ -20,14 +20,14 @@ if (!$session->isLoggedIn()) {
 }
 
 if (!isset($_GET['department']) || !$client->isAdmin) {
-    header('Location: ../../pages/error_page.php');
+    header('Location: ../../pages/errorPage.php');
     die();
 }
 
 $department_id = htmlentities($_GET['department']);
 
 if (!preg_match('/^[0-9]+$/', $department_id)) {
-    header('Location: ../../pages/error_page.php');
+    header('Location: ../../pages/errorPage.php');
     die();
 }
 

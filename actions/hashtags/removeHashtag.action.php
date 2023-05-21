@@ -12,12 +12,12 @@ $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
 if(!$client->isAgent){
-    header('Location: ../../pages/error_page.php?error=unauthorized');
+    header('Location: ../../pages/errorPage.php?error=unauthorized');
     die();
 }
 
 if (!isset($_GET['hashtag_name'])) {
-    header('Location: ../../pages/error_page.php?error=missing_data');
+    header('Location: ../../pages/errorPage.php?error=missing_data');
     die();
 }
 

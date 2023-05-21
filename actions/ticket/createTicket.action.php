@@ -15,12 +15,12 @@ $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
 if (!isset($_POST['title'])) {
-    header('Location: ../../pages/error_page.php?error=missing_data');
+    header('Location: ../../pages/errorPage.php?error=missing_data');
     die();
 }
 
 if($_SESSION['csrf'] !== $_POST['csrf']){
-    header('Location: ../../pages/error_page.php?error=unhautorized');
+    header('Location: ../../pages/errorPage.php?error=unhautorized');
     die();
 }
 
@@ -31,7 +31,7 @@ $priority = htmlspecialchars($_POST['priority']  ?? '');
 $assignee = htmlspecialchars($_POST['assignee']  ?? '');
 
 if(!preg_match('/^[0-9,]*$/', $department) || !preg_match('/^(Low|Medium|High|)$/', $priority) || !preg_match('/^[0-9]*$/', $assignee)){
-    header('Location: ../../pages/error_page.php?error=invalid_data');
+    header('Location: ../../pages/errorPage.php?error=invalid_data');
     die();
 }
 

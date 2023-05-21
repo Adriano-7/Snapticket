@@ -21,7 +21,7 @@ require_once(__DIR__ . '/../database/php_classes/department.class.php');
                 <a href="../pages/editDepartment.php?department=<?=$department->department_id?>">
                     <img src="../assets/icons/edit-icon.svg" alt="Edit Department" style="width: 1em;">
                 </a>
-                <a href="../actions/department/remove_department.action.php?department=<?=$department->department_id?>" class="confirm-action">
+                <a href="../actions/department/removeDepartment.action.php?department=<?=$department->department_id?>" class="confirm-action">
                     <img src="../assets/icons/delete-icon.svg" alt="Delete Department" style="width: 1em;">
                 </a>
             </div>

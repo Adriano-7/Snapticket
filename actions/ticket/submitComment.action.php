@@ -15,7 +15,7 @@ $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
 if(!isset($_POST['ticket_id']) || !isset($_POST['comment'])){
-    header('Location: ../../pages/error_page.php?error=missing_data');
+    header('Location: ../../pages/errorPage.php?error=missing_data');
     die();
 }
 
@@ -24,12 +24,12 @@ $comment = htmlspecialchars($_POST['comment']);
 
 $isAuthorised = Ticket::isAuthorized($db, intval($ticket_id), $client->user_id);
 if (!$isAuthorised) {
-    header('Location: ../../pages/error_page.php?error=unauthorized');
+    header('Location: ../../pages/errorPage.php?error=unauthorized');
     die();
 }
 
 if (!preg_match('/^[0-9]+$/', $ticket_id) || !Ticket::isAuthorized($db, intval($ticket_id), $client->user_id)) {
-    header('Location: ../../pages/error_page.php?error=invalid_data');
+    header('Location: ../../pages/errorPage.php?error=invalid_data');
     die();
 }
 

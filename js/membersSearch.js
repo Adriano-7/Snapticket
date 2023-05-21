@@ -13,7 +13,7 @@ let roleSortValue = "";
 let departmentSortValue = "";
 
 function updateMembers() {
-    fetch(`../api/api_members.php?search=${search.value}&dept=${dept.value}&role=${role.value}&orderName=${nameSortValue}&orderUsername=${usernameSortValue}&orderRole=${roleSortValue}&orderDepartment=${departmentSortValue}`)
+    fetch(`../api/apiMembers.php?search=${search.value}&dept=${dept.value}&role=${role.value}&orderName=${nameSortValue}&orderUsername=${usernameSortValue}&orderRole=${roleSortValue}&orderDepartment=${departmentSortValue}`)
         .then(response => response.json())
         .then(data => {
             clearMembers();
@@ -103,7 +103,7 @@ function createNameCell(member) {
     const nameCell = document.createElement('td');
     nameCell.classList.add('member_name');
     const profilePic = document.createElement('img');
-    profilePic.src = `../actions/display_pic.action.php?id=${member.image_id}`;
+    profilePic.src = `../actions/displayPic.action.php?id=${member.image_id}`;
     profilePic.alt = 'Profile Photo';
     profilePic.classList.add('table_profile_pic');
     const userDetails = document.createElement('div');
@@ -157,7 +157,7 @@ function createActionCell(member) {
     actionCell.classList.add('member_action');
 
     const editLink = document.createElement('a');
-    editLink.href = 'edit_member.php?id=' + member.id;
+    editLink.href = 'editMember.php?id=' + member.id;
 
     const editIcon = document.createElement('img');
     editIcon.src = '../assets/icons/edit-icon.svg';

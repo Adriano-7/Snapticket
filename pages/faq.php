@@ -20,20 +20,20 @@ if (!$session->isLoggedIn()) {
 }
 
 if(!isset($_GET['faq_id'])) {
-  header('Location: error_page.php');
+  header('Location: errorPage.php');
   die();
 }
 $faq_id = htmlspecialchars($_GET['faq_id']);
 
 if(!preg_match('/^[0-9]+$/', $faq_id)) {
-  header('Location: error_page.php');
+  header('Location: errorPage.php');
   die();
 }
 
 $faq_id = intval($faq_id);
 
 if(!FAQ::exists($db, $faq_id)) {
-  header('Location: error_page.php');
+  header('Location: errorPage.php');
   die();
 }
 

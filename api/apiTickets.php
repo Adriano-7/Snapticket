@@ -9,7 +9,7 @@
     require_once(__DIR__ . '/../database/php_classes/ticket.class.php');
     require_once(__DIR__ . '/../database/php_classes/client.class.php');
 
-    require_once(__DIR__ . '/filter_tickets.php');
+    require_once(__DIR__ . '/filterTickets.php');
 
     $db = connectToDatabase();
     $client = Client::getClient($db, $session->getUserId(), null);

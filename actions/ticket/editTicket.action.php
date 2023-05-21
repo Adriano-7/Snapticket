@@ -17,7 +17,7 @@ $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
 if (!isset($_POST['title']) || !isset($_POST['ticket_id'])) {
-    header('Location: ../../pages/error_page.php?error=missing_data');
+    header('Location: ../../pages/errorPage.php?error=missing_data');
     die();
 }
 
@@ -31,12 +31,12 @@ $ticket_id = intval(htmlspecialchars($_POST['ticket_id']  ?? '-1'));
 $isAuthorised = Ticket::isAuthorized($db, $ticket_id, $client->user_id) && $client->isAgent;
 
 if(!$isAuthorised || $_SESSION['csrf'] !== $_POST['csrf']){
-    header('Location: ../../pages/error_page.php?error=unauthorized');
+    header('Location: ../../pages/errorPage.php?error=unauthorized');
     die();
 }
 
 if(!preg_match('/^[0-9]+$/', (string)$ticket_id) || !preg_match('/^[0-9,]*$/', $department) || !preg_match('/^(Low|Medium|High|)$/', $priority) || !preg_match('/^[0-9]*$/', $assignee)){
-    header('Location: ../../pages/error_page.php?error=invalid_data');
+    header('Location: ../../pages/errorPage.php?error=invalid_data');
     die();
 }
 

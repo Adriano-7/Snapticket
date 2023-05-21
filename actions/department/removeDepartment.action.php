@@ -13,19 +13,19 @@ $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
 if(!$client->isAdmin){
-    header('Location: ../../pages/error_page.php?error=unauthorized');
+    header('Location: ../../pages/errorPage.php?error=unauthorized');
     die();
 }
 
 if (!isset($_GET['department'])) {
-    header('Location: ../../pages/error_page.php?error=missing_department');
+    header('Location: ../../pages/errorPage.php?error=missing_department');
     die();
 }
 
 $department_id = htmlspecialchars($_GET['department']);
 
 if (!preg_match('/^[0-9]+$/', $department_id) || !Department::exists($db, intval($department_id))){
-    header('Location: ../../pages/error_page.php?error=invalid_data');
+    header('Location: ../../pages/errorPage.php?error=invalid_data');
     die();
 }
 

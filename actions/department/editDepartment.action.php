@@ -13,19 +13,19 @@ $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
 if(!$client->isAdmin || $_SESSION['csrf'] !== $_POST['csrf']){
-    header('Location: ../../pages/error_page.php');
+    header('Location: ../../pages/errorPage.php');
     die();
 }
 
 if (!isset($_POST['department_id'])) {
-    header('Location: ../../pages/error_page.php');
+    header('Location: ../../pages/errorPage.php');
     die();
 }
 
 $department_id = htmlspecialchars($_POST['department_id']);
 
 if (!preg_match('/^[0-9]+$/', $department_id) || !Department::exists($db, intval($department_id))) {
-    header('Location: ../../pages/error_page.php');
+    header('Location: ../../pages/errorPage.php');
     die();
 }
 
