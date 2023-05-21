@@ -1,21 +1,26 @@
 <img src="docs\SnapTicket_logo.png" height="80">
 
 ## About
-This website will enable users to submit, track, and resolve tickets promptly and efficiently. <br>
-You can also see the project's requirements in the following <a href="https://web.fe.up.pt/~arestivo/page/courses/ltw/project/">page.</a>
+Users can utilize this website to promptly and efficiently submit, track, and resolve tickets. <br>
+You can see the project's requirements in the following <a href="https://web.fe.up.pt/~arestivo/page/courses/ltw/project/">page.</a>
 
 ## Class Diagram
 <img src="docs\Database_uml.jpg" height="375">
 
 # Credentials
-For now, every user has password Qwerty12. Here is the list  with some of our current users:
+Every user in the database has password Qwerty12. Here is the list  with some of our current users:
+- JMurphy (Admin)
+- JamesDavis (Agent)
 - APeterson12 (User)
 - JessicaRamirez15 (User)
-- JamesDavis (Agent)
-- JMurphy (Admin)
 
 ## Mockups
-<img src="docs\Mockup_Dashboard.png" height="500"> <img src="docs\Mockup_Ticket.png" height="500">
+<img src="docs\Screenshot1.png" height="500"> 
+<img src="docs\Screenshot2.png" height="500">
+<img src="docs\Screenshot3.png" height="500">
+<img src="docs\Screenshot4.png" height="500">
+<img src="docs\Screenshot5.png" height="500">
+<img src="docs\Screenshot6.png" height="500">
 
 Check out the full <a href="https://www.figma.com/file/uDBj08hPKx92RlbTRj0ScS/LTW---Ticket?node-id=0%3A1&t=4C9HZdWOnx5rpN5W-1">mockups</a>!
 

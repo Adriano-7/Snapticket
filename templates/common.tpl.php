@@ -47,12 +47,12 @@ require_once(__DIR__ . '/../database/php_classes/client.class.php');
             <span class="menu-text">FAQ</span>
           </a>
         <?php } ?>
-        <?php if ($_SERVER['REQUEST_URI'] == '/pages/notifications.php') { ?>
+        <?php if (!$client->isAdmin && $_SERVER['REQUEST_URI'] == '/pages/notifications.php') { ?>
           <a href="notifications.php" style="color:#FFFFFF">
             <img src="../assets/menu_icons/notifications-white-icon.svg" alt="Notifications" class="menu-icon">
             <span class="menu-text">Notifications</span>
           </a>
-        <?php } else { ?>
+        <?php } else if(!$client->isAdmin){ ?>
           <a href="notifications.php" style="color:#808080">
             <img src="../assets/menu_icons/notifications-gray-icon.svg" alt="Notifications" class="menu-icon">
             <span class="menu-text">Notifications</span>

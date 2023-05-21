@@ -196,6 +196,34 @@ class Ticket{
         return $client_tickets;
     }
 
+    static function getTickets(PDO $db, int $user_id) : array{
+        $query = $db->prepare('SELECT * FROM Ticket WHERE creator = ? OR assignee = ? ORDER BY ticket_id DESC');
+        $query->execute([$user_id, $user_id]);
+        $tickets = $query->fetchAll();
+
+        $user_tickets = array();
+
+        foreach ($tickets as $ticket) {
+            $creator = Client::getClient($db, $ticket['creator'], null);
+            $assignee = Client::getClient($db, $ticket['assignee'], null);
+
+            $departments = array();
+            $stmt = $db->prepare('SELECT d.name FROM TicketDepartment td JOIN Department d ON td.department_id = d.department_id WHERE ticket_id = ?');
+            $stmt->execute([$ticket['ticket_id']]);
+            $departments = $stmt->fetchAll();
+
+            $hashtags = array();
+            $stmt = $db->prepare('SELECT name FROM TicketHashtag WHERE ticket_id = ?');
+            $stmt->execute([$ticket['ticket_id']]);
+            $hashtags = $stmt->fetchAll();
+
+            $ticket = new Ticket($ticket['ticket_id'], $ticket['ticket_name'], $ticket['date'], $ticket['priority'], $assignee, $ticket['status'], $creator, $departments, $hashtags, Ticket::getComments($db, $ticket['ticket_id']), History::getHistory($db, $ticket['ticket_id']));
+            $user_tickets[] = $ticket;
+        }
+
+        return $user_tickets;
+    }
+
     function getformattedDate() {
         $dateObj = DateTime::createFromFormat('Y-m-d H:i:s', $this->date);
         return $dateObj->format('d M Y');

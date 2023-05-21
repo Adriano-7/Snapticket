@@ -42,7 +42,7 @@ BEGIN
            (SELECT user_id FROM Client WHERE user_id = NEW.creator),
             NEW.ticket_id
     FROM Ticket
-    WHERE ticket_id = NEW.ticket_id;
+    WHERE ticket_id = NEW.ticket_id AND assignee IS NOT NULL;
 END;
 
 CREATE TRIGGER new_status_notification AFTER UPDATE OF status ON Ticket

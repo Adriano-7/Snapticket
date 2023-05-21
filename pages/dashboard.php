@@ -23,7 +23,8 @@ if (!$session->isLoggedIn() || $client === null) {
 if(isset($_GET['username'])){
   $username = htmlspecialchars($_GET['username']);
   if(preg_match('/^[a-zA-Z0-9_]+$/', $username)){
-    $tickets = Ticket::searchTickets($db, new TicketFilters("", "", "", "", $username), $client);
+    $target = Client::getClient($db, null, $username);
+    $tickets = Ticket::getTickets($db, $target->user_id);
     
   }
   else{

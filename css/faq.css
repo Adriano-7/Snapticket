@@ -11,7 +11,7 @@
   background-color: #82B7DC;
   border: none;
   color: white;
-  
+  cursor: pointer;
   border-radius: 0.5em;
 }
 
@@ -22,6 +22,7 @@
   border-radius: 0.5em;
 
   text-align: center;
+  cursor: pointer;
 }
 
 ul{
