@@ -8,19 +8,19 @@ class Hashtag{
     }
 
     static function getAllHashtags(PDO $db){
-        $stmt = $db->prepare('SELECT * FROM Hashtag');
-        $stmt->execute();
+        $query = $db->prepare('SELECT * FROM Hashtag');
+        $query->execute();
         $hashtags = [];
-        while($row = $stmt->fetch()){
+        while($row = $query->fetch()){
             $hashtags[] = new Hashtag($row['name']);
         }
         return $hashtags;
     }
 
     static function hashtagExists(PDO $db, string $hashtag){
-        $stmt = $db->prepare('SELECT * FROM Hashtag WHERE name = ?');
-        $stmt->execute([$hashtag]);
-        return $stmt->fetch() !== false;
+        $query = $db->prepare('SELECT * FROM Hashtag WHERE name = ?');
+        $query->execute([$hashtag]);
+        return $query->fetch() !== false;
     }
 
     static function editHashtags(PDO $db, array $hashtags){
@@ -30,6 +30,11 @@ class Hashtag{
             $query = $db->prepare('INSERT INTO Hashtag (name) VALUES (?)');
             $query->execute([$hashtag]);
         }
+    }
+
+    static function removeHashtag(PDO $db, string $hashtag){
+        $query = $db->prepare('DELETE FROM Hashtag WHERE name = ?');
+        $query->execute([$hashtag]);
     }
 }
 ?>

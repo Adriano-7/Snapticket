@@ -212,6 +212,7 @@
             <?php $i = 0; foreach($hashtags as $hashtag){ ?>
             <div class="container">
                 <h1></h1>
+                <a href="../actions/hashtags/removeHashtag.action.php?hashtag_name=<?php echo $hashtag->name?>" class="delete-hashtag">Delete Hashtag</a>
                 <div class="border"></div>
                 <textarea class="textarea" name="H[]" required><?php echo $hashtag->name ?></textarea>
             </div>
@@ -221,7 +222,7 @@
                 <div class="border"></div>
                 <button id="add_button" type="button" onclick="addHashtag()">Add Hashtag</button>
             </div>
-            <button id="submit_button" type="submit">Save</button>
+            <button id="submit_button" type="submit">Save</button>"
         </form>
     </main>
 </body>
