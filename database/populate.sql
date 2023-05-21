@@ -193,6 +193,10 @@ INSERT INTO Comment (date, content, user_id, ticket_id) VALUES ('2023-05-13 15:1
 --Default
 INSERT INTO FAQ (faq_id, department_id) VALUES (0, NULL);
 INSERT INTO Question (num, title, content, faq_id) VALUES (1, 'How do I reset my password?','Go to your profile, fill the password and click the edit button', 0);
+INSERT INTO Question (num, title, content, faq_id) VALUES (2, 'How do I change my email address?','Go to your profile, fill the email and click the edit button', 0);
+INSERT INTO Question (num, title, content, faq_id) VALUES (3, 'How do I change my profile picture?','Go to your profile, click in "Change profile picture" and select a new one', 0);
+INSERT INTO Question (num, title, content, faq_id) VALUES (4, 'How do I change my username?','Go to your profile, fill the username and click the edit button', 0);
+INSERT INTO Question (num, title, content, faq_id) VALUES (5, 'How do I change my name?', 'Go to your profile, fill the name and click the edit button', 0);
 
 --Accounting
 INSERT INTO FAQ (faq_id, department_id) VALUES (1, 1);
