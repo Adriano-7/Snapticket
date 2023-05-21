@@ -38,5 +38,6 @@ require_once(__DIR__ . '/../utils/session.php');
                     <p>Don't you have an account? <a href="register.php">Sign Up</a></p>
                 </form>
             </div>
+        </div>
     </body>
 <?php } ?>

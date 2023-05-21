@@ -126,7 +126,7 @@ input:focus{
     border: 1px solid #9d2219;
 }
 
-#create_dept{
+.create_btn{
     cursor: pointer;
 }
 
