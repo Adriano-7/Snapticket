@@ -14,9 +14,9 @@
                         <button class="option" type="button" onclick="select(this)"
                             value="<?=$department->department_id?>"><?=$department->name?></button>
                     <?php } ?>
-                    <button id="create_dept" class="option" type="button"
+                    <button id="create_dept1" class="option" type="button"
                         onclick="window.location.href='../pages/createDepartment.php'"> Create +
-                    </button> </button>
+                    </button>
                 </div>
             </div>
             <div class="container">
@@ -26,7 +26,7 @@
                 <?php foreach ($hashtags as $hashtag) { ?>
                 <button class="option" type="button" onclick="select(this)"><?=$hashtag->name?></button>
                 <?php } ?>
-                <button id="create_dept" class="option" type="button" onclick="window.location.href='../pages/editHashtag.php'"> Create +</button> 
+                <button id="create_dept2" class="option" type="button" onclick="window.location.href='../pages/editHashtag.php'"> Create +</button> 
                 </div>
             </div>
             <div class="container">
