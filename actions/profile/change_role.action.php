@@ -25,7 +25,7 @@ if (!preg_match('/^(Client|Agent|Admin|)$/', $role) || !preg_match('/^[0-9]+$/',
 
 $target = Client::getClient($db, intval($id), NULL);
 
-if (!$client->isAdmin || $target === NULL) {
+if (!$client->isAdmin || $target === NULL || $_SESSION['csrf'] !== $_POST['csrf']) {
   header('Location: ../../pages/error_page.php?error=unauthorized');
   die();
 }

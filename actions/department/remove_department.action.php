@@ -13,22 +13,22 @@ $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
 if(!$client->isAdmin){
-    header('Location: ../../pages/error_page.php');
+    header('Location: ../../pages/error_page.php?error=unauthorized');
     die();
 }
 
 if (!isset($_GET['department'])) {
-    header('Location: ../../pages/error_page.php');
+    header('Location: ../../pages/error_page.php?error=missing_department');
     die();
 }
 
 $department_id = htmlspecialchars($_GET['department']);
 
 if (!preg_match('/^[0-9]+$/', $department_id) || !Department::exists($db, intval($department_id))){
-    header('Location: ../../pages/error_page.php');
+    header('Location: ../../pages/error_page.php?error=invalid_data');
     die();
 }
 
 Department::removeDepartment($db, intval($department_id));
-header('Location: ../../pages/departments.php');
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

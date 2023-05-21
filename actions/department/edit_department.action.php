@@ -12,7 +12,7 @@ require_once(__DIR__ . '/../../database/php_classes/client.class.php');
 $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
-if(!$client->isAdmin){
+if(!$client->isAdmin || $_SESSION['csrf'] !== $_POST['csrf']){
     header('Location: ../../pages/error_page.php');
     die();
 }

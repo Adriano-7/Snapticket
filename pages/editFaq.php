@@ -24,6 +24,11 @@ if (!isset($_POST['faq_id']) || !$client->isAgent) {
     die();
 }
 
+if($_SESSION['csrf'] !== $_POST['csrf']){
+  header('Location: ../../pages/error_page.php?error=unhautorized');
+  die();
+}
+
 $faq_id = htmlentities($_POST['faq_id']);
 
 if (!preg_match('/^[0-9]+$/', $faq_id)) {

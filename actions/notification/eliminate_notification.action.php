@@ -10,20 +10,22 @@ require_once(__DIR__ . '/../../database/php_classes/notifications.class.php');
 $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
-$notification_id = intval($_GET['notification_id']);
-if (!isset($notification_id) || empty($notification_id)) {
-    header('Location: /../../pages/dashboard.php');
+if(!isset($_GET['notification_id'])){
+    header('Location: ../../pages/error_page.php?error=missing_data');
+    die();
 }
 
+$notification_id = intval($_GET['notification_id']);
 $notification = Notification::getNotification($db, $notification_id);
+
 if ($notification === null) {
-    header('Location: /../../pages/error_page.php');
+    header('Location: /../../pages/error_page.php?error=invalid_data');
     die();
 }
 
 $isAuthorised = Notification::isAuthorised($db, $notification, $session->getUserId());
 if (!$isAuthorised) {
-    header('Location: /../../pages/error_page.php');
+    header('Location: /../../pages/error_page.php?error=unauthorized');
     die();
 }
 

@@ -11,13 +11,13 @@ require_once(__DIR__ . '/../../database/php_classes/client.class.php');
 $db = connectToDatabase();
 $client = Client::getClient($db, $session->getUserId(), NULL);
 
-if(!$client->isAgent){
-    header('Location: ../../pages/error_page.php');
+if(!$client->isAgent || $_SESSION['csrf'] !== $_POST['csrf']){
+    header('Location: ../../pages/error_page.php?error=unauthorized');
     die();
 }
 
 if (!isset($_POST['H'])) {
-    header('Location: ../../pages/error_page.php');
+    header('Location: ../../pages/error_page.php?error=missing_data');
     die();
 }
 

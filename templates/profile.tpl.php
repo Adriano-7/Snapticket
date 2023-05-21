@@ -30,6 +30,7 @@
                 <input type="text" name="name" value="<?php echo $client->name ?>" readonly required>
                 <button type="submit" class="edit-icon" onclick="toggleEditForm(this)"><img src="../assets/icons/edit-icon.svg"alt="edit-button"></button>
                 <input type="hidden" name="user_id" value="<?php echo $client->user_id ?>">
+                <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
             </form>
         </div>
     <?php } ?>
@@ -40,6 +41,7 @@
             <input type="text" name="username" value=<?php echo $client->username ?> readonly required>
             <button type="submit" class="edit-icon" onclick="toggleEditForm(this)"><img src="../assets/icons/edit-icon.svg"alt="edit-button"></button>
             <input type="hidden" name="user_id" value="<?php echo $client->user_id ?>">
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         </form>
     </div>
 <?php } ?>
@@ -50,6 +52,7 @@
             <input type="email" name="email" value=<?php echo $client->email ?> readonly required>
             <button type="submit" class="edit-icon" onclick="toggleEditForm(this)"><img src="../assets/icons/edit-icon.svg"alt="edit-button"></button>
             <input type="hidden" name="user_id" value="<?php echo $client->user_id ?>">
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         </form>
     </div>
 </div>
@@ -69,6 +72,7 @@
             <label for="file-input" id="file-label">Change profile image</label>
             <button id="upload-btn">Upload</button>
             <input type="hidden" name="user_id" value="<?php echo $client->user_id ?>">
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         </form>
     </div>
 <?php } ?>
@@ -93,6 +97,7 @@
                 <option value="Admin" <?php if ($client->isAdmin) echo "selected"; ?>>Admin</option>
             </select>
             <input type="hidden" name="id" value="<?php echo $client->user_id ?>">
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         </form>
     </div>
 <?php } ?>

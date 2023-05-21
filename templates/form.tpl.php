@@ -49,6 +49,7 @@
                 </select>
             </div>
             <button id="submit_button" type="button" onclick="submitTicketForm()">Create</button>
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         </form>
     </main>
     </body>
@@ -108,6 +109,7 @@
             </div>
             <button id="submit_button" type="button" onclick="submitTicketForm()">Save</button>
             <input type="hidden" name="ticket_id" value="<?php echo $ticket->ticket_id ?>">
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         </form>
     </main>
 </body>
@@ -140,6 +142,7 @@
             </div>
             </div>
             <button id="submit_button" type="button" onclick="submitDepartmentForm()">Create</button>
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         </form>
     </main>
     </body>
@@ -175,6 +178,7 @@
             </div>
             <input type="hidden" name="department_id" value="<?=$department->department_id?>">
             <button id="submit_button" type="button" onclick="submitDepartmentForm()">Create</button>
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         </form>
     </main>
     </body>
@@ -200,6 +204,7 @@
             </div>
             <button id="submit_button" type="submit">Save</button>
             <input type="hidden" name="faq_id" value="<?php echo $faq_id?>">
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         </form>
     </main>
 </body>
@@ -223,6 +228,7 @@
                 <button id="add_button" type="button" onclick="addHashtag()">Add Hashtag</button>
             </div>
             <button id="submit_button" type="submit">Save</button>"
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         </form>
     </main>
 </body>
@@ -247,6 +253,7 @@
                 <input type="password" name="new_password" required>
             </div>
             <button id="submit_button" type="button" onclick="submitChangePassword()">Save</button>
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         </form>
     </main>
 <?php } ?>

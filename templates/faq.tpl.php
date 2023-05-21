@@ -7,6 +7,7 @@
           <form action="../pages/editFaq.php" method="post">
             <input type="hidden" name="faq_id" value="<?=$faq_id?>">
             <input type="submit" value="Edit">
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
           </form>
         <?php } ?>
         <select name="department" id="dept_select" onchange="updateURL()">

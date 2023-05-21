@@ -19,7 +19,7 @@ if (!isset($id) || empty($id) || !preg_match('/^[0-9]+$/', $id)) {
 $target = Client::getClient($db, intval($id), NULL);
 
 $isAuthorised = ($operator->isAdmin) || ($operator->user_id==$target->user_id);
-if (!$isAuthorised) {
+if (!$isAuthorised || $_SESSION['csrf'] !== $_GET['csrf']) {
     header('Location: /../../pages/error_page.php?error=unauthorized');
     die();
 }

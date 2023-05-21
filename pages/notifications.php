@@ -21,7 +21,7 @@ if (!$session->isLoggedIn()) {
 }
 
 $client = Client::getClient($db, $session->getUserId(), null);
-$notifications = Notification::getNotifications($db, $session->getUserId());
+$notifications = Notification::getNotifications($db, $client->user_id);
 
 createHead('Notifications', ['style', 'notifications']);
 drawMenu($db, $client);

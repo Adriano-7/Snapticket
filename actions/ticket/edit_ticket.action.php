@@ -30,7 +30,7 @@ $ticket_id = intval(htmlspecialchars($_POST['ticket_id']  ?? '-1'));
 
 $isAuthorised = Ticket::isAuthorized($db, $ticket_id, $client->user_id) && $client->isAgent;
 
-if(!$isAuthorised){
+if(!$isAuthorised || $_SESSION['csrf'] !== $_POST['csrf']){
     header('Location: ../../pages/error_page.php?error=unauthorized');
     die();
 }

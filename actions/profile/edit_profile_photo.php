@@ -19,6 +19,13 @@ if(!isset($_FILES['image']) || !isset($_POST['user_id'])){
 
 $user_id = htmlentities($_POST['user_id']);
 $target = Client::getClient($db, intval($user_id), null);
+$client = Client::getClient($db, $session->getUserId(), NULL);
+
+$isAuthorized = $client->isAdmin || ($client->user_id === $target->user_id);
+if(!$isAuthorized || $_SESSION['csrf'] !== $_POST['csrf']){
+  header('Location: ../../pages/error_page.php?error=unauthorized');
+  die();
+}
 
 $image = $_FILES['image']['tmp_name'];
 $type = $_FILES['image']['type'];

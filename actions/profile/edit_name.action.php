@@ -14,8 +14,16 @@ if(!isset($_POST['name']) || !isset($_POST['user_id'])){
   die();
 }
 
+
 $user_id = htmlentities($_POST['user_id']);
+$client = Client::getClient($db, $session->getUserId(), NULL);
 $target = Client::getClient($db, intval($user_id), null);
+
+$isAuthorized = $client->isAdmin || ($client->user_id === $target->user_id);
+if(!$isAuthorized || $_SESSION['csrf'] !== $_POST['csrf']){
+  header('Location: ../../pages/error_page.php?error=unauthorized');
+  die();
+}
 
 $name = htmlentities($_POST['name']);
 

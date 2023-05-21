@@ -19,6 +19,11 @@ if (!isset($_POST['title'])) {
     die();
 }
 
+if($_SESSION['csrf'] !== $_POST['csrf']){
+    header('Location: ../../pages/error_page.php?error=unhautorized');
+    die();
+}
+
 $title = htmlspecialchars($_POST['title']);
 $department = htmlspecialchars($_POST['departments']  ?? '');
 $hashtag = htmlspecialchars($_POST['hashtags']  ?? '');
