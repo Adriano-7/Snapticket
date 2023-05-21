@@ -35,22 +35,22 @@ INSERT INTO Department (department_id, name, image_id) VALUES (4, 'Sales', 21);
 INSERT INTO Hashtag VALUES ('LackPermissions');
 
 --Client Table
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (1, 'Andrew Peterson', 'APeterson12', 'peterson_andrew@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 2);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (2, 'Emily Davis', 'EmilyDavis', 'EmilyDavis15@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 3);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (3, 'Adam Green', 'AGreen', 'Agreen@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 4);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (4, 'Jessica Ramirez', 'JessicaRamirez15', 'jessica_ramirez@snapticket.com','22255db5e42ee69fcda1019d3cebb95e64b62f76', 5);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (5, 'Daniel Wilson', 'DWilson14', 'DWilson14@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 6);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (6, 'James Davis', 'JamesDavis', 'james_davis7@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 7);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (7, 'Jessica Murphy', 'JMurphy', 'jessica_murphy@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 8);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (8, 'Michael Brown', 'MBrown1', 'michael_brown24@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 9);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (9, 'Sarah Johnson', 'SarahJohnson7', 'sarah_johnson7@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 10);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (10, 'Christopher Chen', 'CChen', 'christopher_chen2@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 11);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (11, 'Samantha Kim', 'SKim', 'SKim@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 12);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (12, 'Andrew Patel', 'APatel', 'APat@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 13);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (13, 'Mattew Cooper', 'MCooper', 'MCooper12@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 14);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (14, 'Ethan Chen', 'EChen', 'EthanChen1@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 15);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (15, 'Benjamin Collins', 'BenjCollins', 'BCollins@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 16);
-INSERT INTO Client (user_id, name,username,email,password, image_id) VALUES (16, 'Tyler Williams', 'TWilliams', 'TWilliams@snapticket.com', '22255db5e42ee69fcda1019d3cebb95e64b62f76', 17);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (1, 'Andrew Peterson', 'APeterson12', 'peterson_andrew@snapticket.com', '$2y$10$D6D4HftdCKh64zpaP/AjVOC3iZ1tw7Nh1s5ifYSe5vWfmcQeR68m2', 2);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (2, 'Emily Davis', 'EmilyDavis', 'EmilyDavis15@snapticket.com', '$2y$10$O5mJmqR6RSsPAZ3c.rIOLu7YdSsEyL3qEDO49nORyNC8AIYl6Qxl2', 3);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (3, 'Adam Green', 'AGreen', 'Agreen@snapticket.com', '$2y$10$UNrExBwUGpyMPS9HeL.umuqjwl6R3MyfUMIu78jNM8BDk2VGH2v6e', 4);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (4, 'Jessica Ramirez', 'JessicaRamirez15', 'jessica_ramirez@snapticket.com', '$2y$10$QN65JL3kvg.uQrMvTBuLtuExg9a1qITmBujr/EBAKMsFuYUaF7HT.', 5);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (5, 'Daniel Wilson', 'DWilson14', 'DWilson14@snapticket.com', '$2y$10$RSPatJOUQW3GvVZhXfPPleznS2PCNuUNAIkQlESJgEeEPOqbznlYe', 6);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (6, 'James Davis', 'JamesDavis', 'james_davis7@snapticket.com', '$2y$10$C/3XBJq7XeSqlalgSAJ0DeMMByESA5NWIFagcnpFdpzX5RnXVZGkC', 7);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (7, 'Jessica Murphy', 'JMurphy', 'jessica_murphy@snapticket.com', '$2y$10$/FpSG78RIBsZ5ta6DhAsVeWh9P4egmorX7Y61aCu3s7NcFqLWC/eW', 8);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (8, 'Michael Brown', 'MBrown1', 'michael_brown24@snapticket.com', '$2y$10$/zt.b2zHGBo4GElrmzciSOaoemq9qN1eyao6F/UvI/DygDoyskZem', 9);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (9, 'Sarah Johnson', 'SarahJohnson7', 'sarah_johnson7@snapticket.com', '$2y$10$e.udOSc4IeJ1xuym.Xdm5OWteSROwQfADi57Oforh22MecbIVKnNG', 10);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (10, 'Christopher Chen', 'CChen', 'christopher_chen2@snapticket.com', '$2y$10$p4BcsOeaArrmxMGG5S8fOeepyZ3AOnNlh/vAuyQZVFWALp/Ym6BGq', 11);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (11, 'Samantha Kim', 'SKim', 'SKim@snapticket.com', '$2y$10$nEbb4hIVCJKVGac9fQZ5E.NV7ClgkTzf12q0OwEf4PCIzBu/NxbgG', 12);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (12, 'Andrew Patel', 'APatel', 'APat@snapticket.com', '$2y$10$g239BBRplBHpOK7eBKuzc.1oa1rQF2.zj8WlAzfgVim7WU3ONh/pG', 13);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (13, 'Mattew Cooper', 'MCooper', 'MCooper12@snapticket.com', '$2y$10$sBa/.Ui0vQoFyg4uXSMn7uDpKoAolmTDeTYyfcdjL6YVu0/J0Gz66', 14);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (14, 'Ethan Chen', 'EChen', 'EthanChen1@snapticket.com', '$2y$10$eA.BP1w/45jnAZzWR6hhoezBFH05H/D7nIjxdsLYN2fBoF5zpu4.q', 15);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (15, 'Benjamin Collins', 'BenjCollins', 'BCollins@snapticket.com', '$2y$10$mI50w0MUjeo402Ra08sq8.WVPll0Nl8iXnFx0xSistxVH4DVJV332', 16);
+INSERT INTO Client (user_id, name, username, email, password, image_id) VALUES (16, 'Tyler Williams', 'TWilliams', 'TWilliams@snapticket.com', '$2y$10$KV1llaQgauPHdI917VMX0.BZJlEZuUF./FShxljG85AKSAbvfJ0Ra', 17);
 
 --Agents Table
 INSERT INTO Agent VALUES (16);

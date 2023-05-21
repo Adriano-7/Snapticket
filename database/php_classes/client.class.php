@@ -27,7 +27,7 @@ class Client {
             VALUES (?, ?, ?, ?)
           ');
 
-    return $query->execute(array($name, $username, $email, sha1($password)));
+    return $query->execute(array($name, $username, $email, password_hash($password, PASSWORD_BCRYPT)));
   }
 
   static function usernameExists(PDO $db, string $username): bool
@@ -113,14 +113,18 @@ class Client {
     $query = $db->prepare('
             SELECT *
             FROM Client
-            WHERE lower(username) = ? AND password = ?
+            WHERE lower(username) = ?
           ');
 
-    $query->execute(array(strtolower($username), sha1($password)));
+    $query->execute(array(strtolower($username)));
 
     if ($client = $query->fetch()) {
-      return new Client($client['user_id'], $client['name'], $client['username'], $client['email']);
+      if (password_verify($password, $client['password'])) {
+        return new Client($client['user_id'], $client['name'], $client['username'], $client['email']);
+      }
+      return null;
     }
+    
     return null;
   }
 
