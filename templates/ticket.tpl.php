@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../database/php_classes/ticket.class.php');
 require_once(__DIR__ . '/../database/php_classes/comment.class.php');
 ?>
 
-<?php function drawTitle(Ticket $ticket, PDO $db, Client $client){ ?>
+<?php function drawTitle(Ticket $ticket, Client $client){ ?>
 <main>
     <div class="ticket-header">
         <div class="ticket-info">
@@ -64,7 +64,7 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
     </div>
 <?php } ?>
 
-<?php function drawComments(Ticket $ticket, PDO $db){  ?>
+<?php function drawComments(Ticket $ticket){  ?>
         <div class="comments">
         <?php foreach ($ticket->comments as $comment) { ?>
             <div class="comment">
@@ -80,13 +80,33 @@ require_once(__DIR__ . '/../database/php_classes/comment.class.php');
         </div>
 <?php } ?>
 
+
+<?php function drawFaqPopup($questions, $faq_id, $departments){ ?>
+    <div id="faq-popup" style="display: none;">
+                <h1>FAQ</h1>
+                <select name="department" id="dept_select" onchange="updateURL()">
+                    <option value="0" <?php if($faq_id==0) echo 'selected'?>>Departments</option>
+                <?php foreach ($departments as $department) { ?>
+                    <option value="<?=$department->department_id?>" <?=$department->department_id === $faq_id ? 'selected' : ''?>><?= $department->name ?></option>
+                <?php } ?>
+                </select>
+                <div id="faq-questions">
+                    <?php foreach ($questions as $question) { ?>
+                        <div class="faq-question" onclick="chooseQuestion(this)">
+                            <p><?php echo "Q" . $question->num . ": " . $question->title; ?></p>
+                            <p style="display: none;"><?php echo $question->content; ?></p>
+                        </div>
+                    <?php } ?>
+                </div>
+    </div>
+<?php } ?>
+
 <?php function drawTextContainer($ticket){  ?>
             <form action = "../actions/ticket/submitComment.action.php" id="comment-container" method="post">
                 <input type="hidden" name="ticket_id" value="<?php echo $ticket->ticket_id; ?>">
                 <div class="comment-bar">
                     <textarea class="comment-textarea" placeholder="Your reply" name="comment" required></textarea>
-                    <button id="faq-button">FAQ</button>
-                    <button id="attachment-button"><img src=../assets/icons/attachment-icon.svg alt="Attach Files"></button>
+                    <button id="faq-button" onclick="showFaq()">FAQ</button>
                 </div>
                 <div id="send-button-container">
                     <button id="send-button">Send</button>
