@@ -3,11 +3,11 @@ const faqButton = document.getElementById("faq-button");
 const attachmentButton = document.getElementById("attachment-button");
 
 faqButton.addEventListener("click", (e) => {
-    e.preventDefault();
+  e.preventDefault();
 });
 
 attachmentButton.addEventListener("click", (e) => {
-    e.preventDefault();
+  e.preventDefault();
 });
 
 selectStatus.addEventListener('change', () => {
@@ -22,7 +22,7 @@ selectStatus.addEventListener('change', () => {
   }
 });
 
-function changeStatus(){
+function changeStatus() {
   document.getElementById("status-form").submit();
 }
 
@@ -33,9 +33,37 @@ function showHistory() {
   if (history.style.display === "none") {
     history.style.display = "block";
     historyButton.textContent = "Hide History";
-  } 
+  }
   else {
     history.style.display = "none";
     historyButton.textContent = "Show History";
   }
+}
+
+function showFaq() {
+  var popup = document.getElementById("faq-popup");
+  if (popup.style.display === "none") {
+    popup.style.display = "block";
+  } else {
+    popup.style.display = "none";
+  }
+}
+
+function updateURL() {
+  var department = document.getElementById("dept_select").value;
+  var currentURL = window.location.href;
+  var ticket_id = currentURL.split("=")[1];
+
+  if (department == "") {
+    window.location.href = "ticket.php?ticket_id=" + ticket_id;
+  }
+  else {
+    window.location.href = "ticket.php?ticket_id=" + ticket_id + "&faq_id=" + department;
+  }
+}
+
+function chooseQuestion(question) {
+  const answer = question.querySelector("p:nth-child(2)").textContent;
+  const commentTextarea = document.querySelector(".comment-textarea");
+  commentTextarea.value = answer;
 }

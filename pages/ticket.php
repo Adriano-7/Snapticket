@@ -9,6 +9,8 @@ require_once(__DIR__ . '/../templates/ticket.tpl.php');
 
 
 require_once(__DIR__ . '/../database/php_classes/ticket.class.php');
+require_once(__DIR__ . '/../database/php_classes/client.class.php');
+require_once(__DIR__ . '/../database/php_classes/faq.class.php');;
 
 $db = connectToDatabase();
 $session = new Session();
@@ -20,7 +22,7 @@ if (!$session->isLoggedIn()) {
 }
 
 if(!isset($_GET['ticket_id'])) {
-  header('Location: ' . $_SERVER['HTTP_REFERER']);
+  header('Location: errorPage.php?error=missing_data');
   die();
 }
 
@@ -31,11 +33,16 @@ if (!$isAuthorised) {
 }
 
 $ticket = Ticket::getTicket($db, intval($_GET['ticket_id']));
+$faq_id = isset($_GET['faq_id']) ? intval(htmlentities($_GET['faq_id'])) : 0;
+
+$departments = FAQ::getDepartments($db);
+$questions = FAQ::getQuestions($db, $faq_id);
 
 createHead($ticket->ticket_name, ['style','ticket'], ['ticket', 'script']);
-drawMenu($db, $client);
 
-drawTitle($ticket, $db, $client);
-drawComments($ticket, $db);
+drawMenu($db, $client);
+drawTitle($ticket, $client);
+drawComments($ticket);
+drawFaqPopup($questions, $faq_id, $departments);
 drawTextContainer($ticket);
 ?>

@@ -117,7 +117,7 @@ div.ticket-status{
 }
 
 .comment-bar{
-  background-color: #333537;
+  background-color: #232426;
   border-radius: 0.5em;
 
   padding-top: 0.5em;
@@ -168,14 +168,7 @@ textarea{
   color: white;
   font-size: 0.8em;
   margin-right: 0.5em;
-}
-
-#attachment-button{
-  border: none;
-  background-color: transparent;
-  color: white;
-  font-size: 0.8em;
-  margin-right: 0.5em;
+  cursor: pointer;
 }
 
 #ticket-edit-button{
@@ -230,10 +223,58 @@ textarea{
   
 }
 
+#faq-popup-header{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+
+  position: relative;
+  left: 25%;
+}
+
+#faq-popup{
+  width: 22em;
+  height: 15em;
+  color:white;
+  background-color: #232426;
+  border-radius: 0.5em;
+  padding: 1em;
+  font-size: 0.8em;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#faq-popup h1{
+  text-align: center;
+}
+
+#faq-popup select{
+  background-color: #35353E;
+  border: none;
+  color: white;
+
+  margin-top: 1em;
+  margin-bottom: 0.8em;
+  margin-right: 0.5em;
+  padding: 0.25em;
+  border-radius: 0.5em;
+
+  position: relative;
+  left: 25%;
+}
+
+#faq-popup select:focus{
+  outline: none;
+}
+
+#faq-popup p{
+  margin-top: 1em;
+}
 
 @media screen and (min-width: 1000px){
   .comment-bar{
-    grid-template-columns: 90% 5% 5%;
+    grid-template-columns: 95% 5%;
   }
 
   #comment-container{
@@ -246,6 +287,12 @@ textarea{
   .ticket-status{
     padding-left: 2em;
     padding-right: 2em;
+  }
+
+  #faq-popup{
+    position: absolute;
+    right: 19%;
+    bottom:6em;
   }
 }
 
@@ -263,5 +310,10 @@ textarea{
   .ticket-status{
     padding-left: 0.5em;
     padding-right: 0.5em;
+  }
+  #faq-popup{
+    position: absolute;
+    right: 21%;
+    bottom:12em;
   }
 }
