@@ -21,6 +21,7 @@ Every user in the database has password Qwerty12. Here is the list  with some of
 <img src="docs\Screenshot4.png">
 <img src="docs\Screenshot5.png">
 <img src="docs\Screenshot6.png">
+<img src="docs\Screenshot7.png">
 
 Check out the full <a href="https://www.figma.com/file/uDBj08hPKx92RlbTRj0ScS/LTW---Ticket?node-id=0%3A1&t=4C9HZdWOnx5rpN5W-1">mockups</a>!
 
